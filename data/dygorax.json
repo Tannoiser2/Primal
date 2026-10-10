@@ -1,0 +1,1042 @@
+{
+  "_note": "Dygorax. Numeri e testi letti dalle immagini delle carte. I quattro mazzi da 9 sono 18 carte distinte (due versioni per nome), verificato sugli hash. Le Stance II e III sono States della carta Stance I; i lati esposti sono stati letti campionando i pixel del diagramma, calibrando su Vyraxen. Vedi docs/dygorax_struttura.md.",
+  "id": "dygorax",
+  "name": "Dygorax",
+  "element": "earth",
+  "art": {
+    "_note": "Miniatura GLB (Meshy) come per Vyraxen: e' quella che si vede sulla plancia. Restano il mesh e la texture del mod TTS come ripiego, con la scultura non dipinta.",
+    "behavior_back": "res://art/monsters/dygorax/g1_00_retro.jpg",
+    "model": "res://models/dygorax.glb",
+    "mesh": "res://models/dygorax.obj",
+    "texture": "res://art/models/dygorax_diffuse.jpg",
+    "triplanar": false,
+    "model_yaw": 180,
+    "portrait": {
+      "art": "res://art/monsters/dygorax/sciolta_2.jpg",
+      "region": [
+        0.24,
+        0.1,
+        0.3,
+        0.42
+      ]
+    },
+    "board": "res://art/monsters/dygorax/board.jpg"
+  },
+  "hardening": {
+    "max": 3,
+    "hardened_at": 3
+  },
+  "levels": {
+    "0": {
+      "health": 10,
+      "behavior_deck": [
+        44001,
+        44003,
+        44005,
+        44007,
+        44009,
+        44011,
+        44013,
+        44015,
+        44017
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 2,
+          "progression": 8,
+          "damage": 1,
+          "exposed": [
+            "front",
+            "flank",
+            "rear"
+          ],
+          "resistant": true,
+          "peril": 44101,
+          "objective": 44201,
+          "text": "Resistant. At the start of round 1, place a dust token in the front sector. Dygorax gains PP-1 struggle.",
+          "it": "Resistant. All'inizio del round 1 piazza un segnalino dust nel settore front. Dygorax guadagna (giocatori-1) struggle.",
+          "on_round_1": [
+            {
+              "op": "place_dust",
+              "where": "front"
+            },
+            {
+              "op": "monster_gain_struggle",
+              "n": "players_minus_1"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_2.jpg"
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 3,
+          "progression": 4,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "resistant": true,
+          "peril": 44102,
+          "text": "Resistant. When revealed: Place a fire terrain in the front sector.",
+          "it": "Resistant. Quando rivelata: piazza un terreno fire nel settore front.",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_2_stato2.jpg"
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 4,
+          "damage": 2,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 44103,
+          "text": "When revealed: Each player in a sector with a dust token suffers DMG unless they discard a dodge from their hand.",
+          "it": "Quando rivelata: ogni giocatore in un settore con un segnalino dust subisce DMG a meno che non scarti un dodge dalla mano.",
+          "on_reveal": [
+            {
+              "op": "suffer_unless_discard",
+              "who": "players_in_dust_sectors",
+              "discard_type": "dodge"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_2_stato3.jpg"
+        }
+      ]
+    },
+    "1": {
+      "health": 10,
+      "behavior_deck": [
+        44003,
+        44005,
+        44008,
+        44016,
+        44013,
+        44010,
+        44011,
+        44001,
+        44017
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 5,
+          "progression": 8,
+          "damage": 1,
+          "exposed": [
+            "front",
+            "flank",
+            "rear"
+          ],
+          "resistant": true,
+          "peril": 44101,
+          "objective": 44201,
+          "text": "Resistant. At the start of round 1, place a dust token in the front sector. Dygorax gains PP-1 struggle.",
+          "it": "Resistant. All'inizio del round 1 piazza un segnalino dust nel settore front. Dygorax guadagna (giocatori-1) struggle.",
+          "on_round_1": [
+            {
+              "op": "place_dust",
+              "where": "front"
+            },
+            {
+              "op": "monster_gain_struggle",
+              "n": "players_minus_1"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_1.jpg"
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 7,
+          "progression": 4,
+          "damage": 2,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "resistant": true,
+          "peril": 44102,
+          "text": "Resistant. When revealed: Place a fire terrain in the front sector.",
+          "it": "Resistant. Quando rivelata: piazza un terreno fire nel settore front.",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_1_stato2.jpg"
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 10,
+          "damage": 3,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 44103,
+          "text": "When revealed: Each player in a sector with a dust token suffers DMG unless they discard a dodge from their hand.",
+          "it": "Quando rivelata: ogni giocatore in un settore con un segnalino dust subisce DMG a meno che non scarti un dodge dalla mano.",
+          "on_reveal": [
+            {
+              "op": "suffer_unless_discard",
+              "who": "players_in_dust_sectors",
+              "discard_type": "dodge"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_1_stato3.jpg"
+        }
+      ]
+    },
+    "2": {
+      "health": 10,
+      "behavior_deck": [
+        44003,
+        44005,
+        44008,
+        44016,
+        44018,
+        44013,
+        44010,
+        44012,
+        44002
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 9,
+          "progression": 8,
+          "damage": 2,
+          "exposed": [
+            "front",
+            "flank",
+            "rear"
+          ],
+          "resistant": true,
+          "peril": 44101,
+          "objective": 44201,
+          "text": "Resistant. At the start of round 1, place a dust token in the front sector. Dygorax gains PP-1 struggle.",
+          "it": "Resistant. All'inizio del round 1 piazza un segnalino dust nel settore front. Dygorax guadagna (giocatori-1) struggle.",
+          "on_round_1": [
+            {
+              "op": "place_dust",
+              "where": "front"
+            },
+            {
+              "op": "monster_gain_struggle",
+              "n": "players_minus_1"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_3.jpg"
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 14,
+          "progression": 4,
+          "damage": 3,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "resistant": true,
+          "peril": 44102,
+          "text": "Resistant. When revealed: Place a fire terrain in the front sector.",
+          "it": "Resistant. Quando rivelata: piazza un terreno fire nel settore front.",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_3_stato2.jpg"
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 18,
+          "damage": 4,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 44103,
+          "text": "When revealed: Each player in a sector with a dust token suffers DMG unless they discard a dodge from their hand.",
+          "it": "Quando rivelata: ogni giocatore in un settore con un segnalino dust subisce DMG a meno che non scarti un dodge dalla mano.",
+          "on_reveal": [
+            {
+              "op": "suffer_unless_discard",
+              "who": "players_in_dust_sectors",
+              "discard_type": "dodge"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_3_stato3.jpg"
+        }
+      ]
+    },
+    "3": {
+      "health": 10,
+      "behavior_deck": [
+        44004,
+        44006,
+        44008,
+        44016,
+        44018,
+        44010,
+        44012,
+        44002,
+        44014
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 15,
+          "progression": 8,
+          "damage": 3,
+          "exposed": [
+            "front",
+            "flank",
+            "rear"
+          ],
+          "resistant": true,
+          "peril": 441010,
+          "objective": 442010,
+          "text": "Resistant. At the start of round 1, place a dust token in the front sector. Dygorax gains PP-1 struggle.",
+          "it": "Resistant. All'inizio del round 1 piazza un segnalino dust nel settore front. Dygorax guadagna (giocatori-1) struggle.",
+          "on_round_1": [
+            {
+              "op": "place_dust",
+              "where": "front"
+            },
+            {
+              "op": "monster_gain_struggle",
+              "n": "players_minus_1"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_4.jpg"
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 20,
+          "progression": 4,
+          "damage": 5,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "resistant": true,
+          "peril": 441020,
+          "text": "Resistant. When revealed: Place a fire terrain in the front sector. Players in that sector suffer burning.",
+          "it": "Resistant. Quando rivelata: piazza un terreno fire nel settore front. I giocatori in quel settore subiscono burning.",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            },
+            {
+              "op": "inflict_burning",
+              "who": "players_in_front"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_4_stato2.jpg"
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 25,
+          "damage": 6,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 441030,
+          "text": "When revealed: Players in a sector with a dust token suffer DMG.",
+          "it": "Quando rivelata: i giocatori in un settore con un segnalino dust subiscono DMG.",
+          "on_reveal": [
+            {
+              "op": "suffer",
+              "who": "players_in_dust_sectors"
+            }
+          ],
+          "art": "res://art/monsters/dygorax/sciolta_4_stato3.jpg"
+        }
+      ]
+    }
+  },
+  "behaviors": {
+    "44001": {
+      "name": "Voice of Destruction",
+      "icon": "cerchio",
+      "reaction": "attack_played",
+      "refresh": 4,
+      "art": "res://art/monsters/dygorax/g1_00_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_00_retro.jpg",
+      "text": "The active player suffers DMG unless they discard a parry from their hand.",
+      "it": "Il giocatore attivo subisce DMG a meno che non scarti un parry dalla mano.",
+      "effects": [
+        {
+          "op": "suffer_unless_discard",
+          "who": "active",
+          "discard_type": "parry"
+        }
+      ]
+    },
+    "44002": {
+      "name": "Voice of Destruction",
+      "icon": "M",
+      "reaction": "attack_played",
+      "refresh": 4,
+      "art": "res://art/monsters/dygorax/g3_08_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_00_retro.jpg",
+      "text": "Each player in the active player's sector suffers DMG unless they discard a parry from their hand.",
+      "it": "Ogni giocatore nel settore del giocatore attivo subisce DMG a meno che non scarti un parry dalla mano.",
+      "effects": [
+        {
+          "op": "suffer_unless_discard",
+          "who": "players_in_active_sector",
+          "discard_type": "parry"
+        }
+      ]
+    },
+    "44003": {
+      "name": "Tail Smash",
+      "icon": "psi",
+      "reaction": "turn_start_rear",
+      "refresh": 1,
+      "art": "res://art/monsters/dygorax/g1_01_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_01_retro.jpg",
+      "text": "Place a dust token in the rear sector (max: 2 dust tokens per sector). The active player suffers DMG+1 unless they reveal 2 dodges from their hand.",
+      "it": "Piazza un segnalino dust nel settore rear (max 2 per settore). Il giocatore attivo subisce DMG+1 a meno che non riveli 2 dodge dalla mano.",
+      "effects": [
+        {
+          "op": "place_dust",
+          "where": "rear"
+        },
+        {
+          "op": "suffer_unless_reveal",
+          "who": "active",
+          "type": "dodge",
+          "n": 2,
+          "damage_bonus": 1
+        }
+      ]
+    },
+    "44004": {
+      "name": "Tail Smash",
+      "icon": "V",
+      "reaction": "any_turn_start_rear",
+      "refresh": 1,
+      "art": "res://art/monsters/dygorax/g4_00_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g4_00_retro.jpg",
+      "text": "Place a dust token in the rear sector (max: 2 dust tokens per sector). Each player in that sector suffers DMG+1 unless they reveal 2 dodges from their hand.",
+      "it": "Piazza un segnalino dust nel settore rear (max 2 per settore). Ogni giocatore in quel settore subisce DMG+1 a meno che non riveli 2 dodge dalla mano.",
+      "effects": [
+        {
+          "op": "place_dust",
+          "where": "rear"
+        },
+        {
+          "op": "suffer_unless_reveal",
+          "who": "players_in_rear",
+          "type": "dodge",
+          "n": 2,
+          "damage_bonus": 1
+        }
+      ]
+    },
+    "44005": {
+      "name": "Wing Attack",
+      "icon": "psi",
+      "reaction": "turn_start_flank",
+      "refresh": 4,
+      "art": "res://art/monsters/dygorax/g1_02_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_02_retro.jpg",
+      "text": "Place a dust token in each of the flank sectors (max: 2 dust tokens per sector). Each player in those sectors suffers DMG unless they reveal 2 defensive cards from their hand.",
+      "it": "Piazza un segnalino dust in ognuno dei settori flank (max 2 per settore). Ogni giocatore in quei settori subisce DMG a meno che non riveli 2 carte difensive dalla mano.",
+      "effects": [
+        {
+          "op": "place_dust",
+          "where": "each_flank"
+        },
+        {
+          "op": "suffer_unless_reveal",
+          "who": "players_in_flank",
+          "kind": "defensive",
+          "n": 2
+        }
+      ]
+    },
+    "44006": {
+      "name": "Wing Attack",
+      "icon": "V",
+      "reaction": "any_turn_start_flank",
+      "refresh": 4,
+      "art": "res://art/monsters/dygorax/g4_01_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g4_01_retro.jpg",
+      "text": "Place a dust token in each of the flank sectors (max: 2 dust tokens per sector). Each player in those sectors suffers DMG unless they reveal 2 dodges from their hand.",
+      "it": "Piazza un segnalino dust in ognuno dei settori flank (max 2 per settore). Ogni giocatore in quei settori subisce DMG a meno che non riveli 2 dodge dalla mano.",
+      "effects": [
+        {
+          "op": "place_dust",
+          "where": "each_flank"
+        },
+        {
+          "op": "suffer_unless_reveal",
+          "who": "players_in_flank",
+          "type": "dodge",
+          "n": 2
+        }
+      ]
+    },
+    "44007": {
+      "name": "Dragon Fire",
+      "icon": "triplo",
+      "reaction": "rampage",
+      "refresh": 4,
+      "rampage": true,
+      "art": "res://art/monsters/dygorax/g1_03_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_03_retro.jpg",
+      "text": "Place a dust token in the front sector (max: 2 dust tokens per sector).",
+      "it": "Piazza un segnalino dust nel settore front (max 2 per settore).",
+      "effects": [
+        {
+          "op": "place_dust",
+          "where": "front"
+        }
+      ],
+      "boost": {
+        "cost": 3,
+        "text": "Place a fire terrain in the front sector.",
+        "it": "Piazza un terreno fire nel settore front.",
+        "effects": [
+          {
+            "op": "place_terrain",
+            "terrain": "fire",
+            "where": "front"
+          }
+        ]
+      }
+    },
+    "44008": {
+      "name": "Dragon Fire",
+      "icon": "otto",
+      "reaction": "rampage",
+      "refresh": 4,
+      "rampage": true,
+      "art": "res://art/monsters/dygorax/g2_02_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_03_retro.jpg",
+      "text": "Increase the hardening level by 1 and place a dust token in the front sector (max: 2 dust tokens per sector).",
+      "it": "Aumenta il livello di hardening di 1 e piazza un segnalino dust nel settore front (max 2 per settore).",
+      "effects": [
+        {
+          "op": "hardening",
+          "n": 1
+        },
+        {
+          "op": "place_dust",
+          "where": "front"
+        }
+      ],
+      "boost": {
+        "cost": 2,
+        "text": "Place a fire terrain in the aggro player's sector. Players in that sector suffer burning.",
+        "it": "Piazza un terreno fire nel settore del giocatore aggro. I giocatori in quel settore subiscono burning.",
+        "effects": [
+          {
+            "op": "place_terrain",
+            "terrain": "fire",
+            "where": "aggro_sector"
+          },
+          {
+            "op": "inflict_burning",
+            "who": "players_in_aggro_sector"
+          }
+        ]
+      }
+    },
+    "44009": {
+      "name": "Armoring",
+      "icon": "triplo",
+      "reaction": "attack_played",
+      "refresh": 4,
+      "art": "res://art/monsters/dygorax/g1_04_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_04_retro.jpg",
+      "text": "The monster's ivory skin thickens until it becomes harder than stone.",
+      "it": "La pelle d'avorio del mostro si ispessisce finche' diventa piu' dura della pietra.",
+      "effects": [],
+      "boost": {
+        "cost": 2,
+        "text": "Increase the hardening level by 1.",
+        "it": "Aumenta il livello di hardening di 1.",
+        "effects": [
+          {
+            "op": "hardening",
+            "n": 1
+          }
+        ]
+      }
+    },
+    "44010": {
+      "name": "Armoring",
+      "icon": "otto",
+      "reaction": "offensive_played",
+      "refresh": 4,
+      "art": "res://art/monsters/dygorax/g2_05_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g2_05_retro.jpg",
+      "text": "The monster's ivory skin thickens until it becomes harder than stone.",
+      "it": "La pelle d'avorio del mostro si ispessisce finche' diventa piu' dura della pietra.",
+      "effects": [],
+      "boost": {
+        "cost": 2,
+        "text": "Increase the hardening level by 1.",
+        "it": "Aumenta il livello di hardening di 1.",
+        "effects": [
+          {
+            "op": "hardening",
+            "n": 1
+          }
+        ]
+      }
+    },
+    "44011": {
+      "name": "Burning Eye",
+      "icon": "cerchio",
+      "reaction": "turn_start_front",
+      "refresh": 3,
+      "art": "res://art/monsters/dygorax/g1_05_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_05_retro.jpg",
+      "text": "Dygorax gains 1 PP struggle. Stance III: Place a fire terrain in the front sector.",
+      "it": "Dygorax guadagna 1 struggle per giocatore. Stance III: piazza un terreno fire nel settore front.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "place_terrain",
+          "terrain": "fire",
+          "where": "front",
+          "condition": "stance_3"
+        }
+      ]
+    },
+    "44012": {
+      "name": "Burning Eye",
+      "icon": "M",
+      "reaction": "turn_start_front",
+      "refresh": 3,
+      "art": "res://art/monsters/dygorax/g3_07_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_05_retro.jpg",
+      "text": "Dygorax gains 1 PP struggle. The aggro player suffers DMG unless they discard a defensive card from their hand. Stance III: Place a fire terrain in the front sector. The aggro player suffers burning and discards the top 3 cards of their deck.",
+      "it": "Dygorax guadagna 1 struggle per giocatore. Il giocatore aggro subisce DMG a meno che non scarti una carta difensiva dalla mano. Stance III: piazza un terreno fire nel settore front; il giocatore aggro subisce burning e scarta le prime 3 carte del mazzo.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "suffer_unless_discard",
+          "who": "aggro",
+          "discard_kind": "defensive"
+        },
+        {
+          "op": "place_terrain",
+          "terrain": "fire",
+          "where": "front",
+          "condition": "stance_3"
+        },
+        {
+          "op": "inflict_burning",
+          "who": "aggro",
+          "condition": "stance_3"
+        },
+        {
+          "op": "mill",
+          "who": "aggro",
+          "n": 3,
+          "condition": "stance_3"
+        }
+      ]
+    },
+    "44013": {
+      "name": "Dragon's Roar",
+      "icon": "psi",
+      "reaction": "two_offensive_played",
+      "refresh": 5,
+      "art": "res://art/monsters/dygorax/g1_06_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_06_retro.jpg",
+      "text": "Dygorax gains 1 PP struggle and gets DMG+1 until the end of the round. Place a dust token in the aggro player's sector (max: 2 dust tokens per sector).",
+      "it": "Dygorax guadagna 1 struggle per giocatore e ottiene DMG+1 fino alla fine del round. Piazza un segnalino dust nel settore del giocatore aggro (max 2 per settore).",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "monster_damage_bonus",
+          "n": 1,
+          "duration": "round"
+        },
+        {
+          "op": "place_dust",
+          "where": "aggro_sector"
+        }
+      ]
+    },
+    "44014": {
+      "name": "Dragon's Roar",
+      "icon": "V",
+      "reaction": "two_offensive_played",
+      "refresh": 5,
+      "art": "res://art/monsters/dygorax/g4_08_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_06_retro.jpg",
+      "text": "Dygorax gains 1 PP struggle and gets DMG+2 until the end of the round. Place a dust token in the aggro player's sector (max: 2 dust tokens per sector).",
+      "it": "Dygorax guadagna 1 struggle per giocatore e ottiene DMG+2 fino alla fine del round. Piazza un segnalino dust nel settore del giocatore aggro (max 2 per settore).",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "monster_damage_bonus",
+          "n": 2,
+          "duration": "round"
+        },
+        {
+          "op": "place_dust",
+          "where": "aggro_sector"
+        }
+      ]
+    },
+    "44015": {
+      "name": "Dust Attack",
+      "icon": "triplo",
+      "reaction": "end_of_round",
+      "refresh": 6,
+      "art": "res://art/monsters/dygorax/g1_07_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_07_retro.jpg",
+      "text": "Each player in a sector with a dust token suffers DMG unless they discard a dodge from their hand.",
+      "it": "Ogni giocatore in un settore con un segnalino dust subisce DMG a meno che non scarti un dodge dalla mano.",
+      "effects": [
+        {
+          "op": "suffer_unless_discard",
+          "who": "players_in_dust_sectors",
+          "discard_type": "dodge"
+        }
+      ]
+    },
+    "44016": {
+      "name": "Dust Attack",
+      "icon": "otto",
+      "reaction": "end_of_round",
+      "refresh": 6,
+      "art": "res://art/monsters/dygorax/g2_03_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_07_retro.jpg",
+      "text": "Each player in a sector with a dust token suffers DMG+1. Targeted players may discard a dodge from their hand to halve that damage.",
+      "it": "Ogni giocatore in un settore con un segnalino dust subisce DMG+1. I bersagli possono scartare un dodge dalla mano per dimezzare quel danno.",
+      "effects": [
+        {
+          "op": "suffer_halved_on_discard",
+          "who": "players_in_dust_sectors",
+          "discard_type": "dodge",
+          "damage_bonus": 1
+        }
+      ]
+    },
+    "44017": {
+      "name": "Pressure",
+      "icon": "cerchio",
+      "reaction": "parry_played",
+      "refresh": 2,
+      "art": "res://art/monsters/dygorax/g1_08_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g1_08_retro.jpg",
+      "text": "Dygorax gains PP-1 struggle. The active player suffers DMG unless they play a defensive card as the next card in their sequence.",
+      "it": "Dygorax guadagna (giocatori-1) struggle. Il giocatore attivo subisce DMG a meno che non giochi una carta difensiva come carta successiva della sua sequenza.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": "players_minus_1"
+        },
+        {
+          "op": "suffer_unless_next_card",
+          "who": "active",
+          "kind": "defensive"
+        }
+      ]
+    },
+    "44018": {
+      "name": "Pressure",
+      "icon": "M",
+      "reaction": "defensive_played",
+      "refresh": 2,
+      "art": "res://art/monsters/dygorax/g3_04_fronte.jpg",
+      "back": "res://art/monsters/dygorax/g3_04_retro.jpg",
+      "text": "Dygorax gains PP-1 struggle. The active player suffers DMG+1 unless they play a defensive card as the next card in their sequence.",
+      "it": "Dygorax guadagna (giocatori-1) struggle. Il giocatore attivo subisce DMG+1 a meno che non giochi una carta difensiva come carta successiva della sua sequenza.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": "players_minus_1"
+        },
+        {
+          "op": "suffer_unless_next_card",
+          "who": "active",
+          "kind": "defensive",
+          "damage_bonus": 1
+        }
+      ]
+    }
+  },
+  "perils": {
+    "44101": {
+      "n": 1,
+      "stance": 1,
+      "name": "Hardening",
+      "aggression": "psi",
+      "permanent": true,
+      "art": "res://art/monsters/dygorax/g5_02_fronte.jpg",
+      "text": "Permanent. When a player suffers attrition damage, increase the hardening level by 1.",
+      "it": "Permanente. Quando un giocatore subisce danno da attrition, aumenta il livello di hardening di 1.",
+      "abilities": [
+        {
+          "trigger": "attrition_damage",
+          "effects": [
+            {
+              "op": "hardening",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    },
+    "44102": {
+      "n": 2,
+      "stance": 2,
+      "name": "Unbreakable",
+      "aggression": "psi",
+      "permanent": true,
+      "art": "res://art/monsters/dygorax/g5_01_fronte.jpg",
+      "text": "Permanent. At the start of the round, increase the hardening level by 1.",
+      "it": "Permanente. All'inizio del round aumenta il livello di hardening di 1.",
+      "abilities": [
+        {
+          "trigger": "round_start",
+          "effects": [
+            {
+              "op": "hardening",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    },
+    "44103": {
+      "n": 3,
+      "stance": 3,
+      "name": "Dragon Scales",
+      "aggression": "psi",
+      "art": "res://art/monsters/dygorax/g5_00_fronte.jpg",
+      "hardened_exposed": [
+        "rear"
+      ],
+      "text": "While Dygorax is hardened, the rear side is the only exposed side.",
+      "it": "Mentre Dygorax e' hardened, il lato rear e' l'unico esposto.",
+      "abilities": []
+    },
+    "441010": {
+      "n": 1,
+      "stance": 1,
+      "name": "Hardening",
+      "aggression": "V",
+      "permanent": true,
+      "art": "res://art/monsters/dygorax/g5_02_retro.jpg",
+      "text": "Permanent. When a player suffers attrition damage, increase the hardening level by 1. Then if Dygorax is hardened, it gains 1 struggle.",
+      "it": "Permanente. Quando un giocatore subisce danno da attrition, aumenta il livello di hardening di 1. Poi, se Dygorax e' hardened, guadagna 1 struggle.",
+      "abilities": [
+        {
+          "trigger": "attrition_damage",
+          "effects": [
+            {
+              "op": "hardening",
+              "n": 1
+            },
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "condition": "monster_hardened"
+            }
+          ]
+        }
+      ]
+    },
+    "441020": {
+      "n": 2,
+      "stance": 2,
+      "name": "Unbreakable",
+      "aggression": "V",
+      "permanent": true,
+      "art": "res://art/monsters/dygorax/g5_01_retro.jpg",
+      "text": "Permanent. At the start of the round, increase the hardening level by 1. Then if Dygorax is hardened, it gets DMG+1 until the end of this round.",
+      "it": "Permanente. All'inizio del round aumenta il livello di hardening di 1. Poi, se Dygorax e' hardened, ottiene DMG+1 fino alla fine del round.",
+      "abilities": [
+        {
+          "trigger": "round_start",
+          "effects": [
+            {
+              "op": "hardening",
+              "n": 1
+            },
+            {
+              "op": "monster_damage_bonus",
+              "n": 1,
+              "duration": "round",
+              "condition": "monster_hardened"
+            }
+          ]
+        }
+      ]
+    },
+    "441030": {
+      "n": 3,
+      "stance": 3,
+      "name": "Dragon Scales",
+      "aggression": "V",
+      "art": "res://art/monsters/dygorax/g5_00_retro.jpg",
+      "hardened_exposed": [
+        "rear"
+      ],
+      "infuriate": [
+        2,
+        6,
+        9
+      ],
+      "text": "Infuriate 2/6/9. While Dygorax is hardened, the rear side is the only exposed side.",
+      "it": "Infuriate 2/6/9. Mentre Dygorax e' hardened, il lato rear e' l'unico esposto.",
+      "abilities": []
+    }
+  },
+  "objectives": {
+    "44201": {
+      "name": "Hit the Tail",
+      "stance": 1,
+      "permanent": true,
+      "art": "res://art/monsters/dygorax/sciolta_0.jpg",
+      "text": "Permanent. After you play an attack: if you are in the rear sector, decrease the hardening level by 1.",
+      "it": "Permanente. Dopo che giochi un attack: se sei nel settore rear, riduci il livello di hardening di 1.",
+      "abilities": [
+        {
+          "combo": [
+            "attack"
+          ],
+          "condition": "actor_in_rear",
+          "effects": [
+            {
+              "op": "hardening",
+              "n": -1
+            }
+          ]
+        }
+      ]
+    },
+    "442010": {
+      "name": "Hit the Tail",
+      "stance": 1,
+      "permanent": true,
+      "art": "res://art/monsters/dygorax/sciolta_0_retro.jpg",
+      "text": "Permanent. After you play an attack: if you are in the rear sector, decrease the hardening level by 1. If you do, Dygorax gains 1 struggle.",
+      "it": "Permanente. Dopo che giochi un attack: se sei nel settore rear, riduci il livello di hardening di 1. Se lo fai, Dygorax guadagna 1 struggle.",
+      "abilities": [
+        {
+          "combo": [
+            "attack"
+          ],
+          "condition": "actor_in_rear",
+          "effects": [
+            {
+              "op": "hardening",
+              "n": -1
+            },
+            {
+              "op": "monster_gain_struggle",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "aggression": "V"
+    }
+  },
+  "expeditions": {
+    "1": {
+      "name": "Expedition 1",
+      "terrain": [
+        {
+          "type": "rock",
+          "sector": 0
+        },
+        {
+          "type": "sand",
+          "sector": 1
+        },
+        {
+          "type": "baethanis",
+          "sector": 1
+        },
+        {
+          "type": "plateau",
+          "sector": 2
+        },
+        {
+          "type": "rock",
+          "sector": 3
+        },
+        {
+          "type": "wildmaw",
+          "sector": 3
+        }
+      ]
+    },
+    "2": {
+      "name": "Expedition 2",
+      "terrain": [
+        {
+          "type": "sand",
+          "sector": 1
+        },
+        {
+          "type": "rock",
+          "sector": 1
+        },
+        {
+          "type": "wildmaw",
+          "sector": 2
+        },
+        {
+          "type": "plateau",
+          "sector": 2
+        },
+        {
+          "type": "sand",
+          "sector": 3
+        },
+        {
+          "type": "rock",
+          "sector": 3
+        }
+      ]
+    },
+    "_note": "Terreno iniziale letto dai diagrammi di setup del regolamento (Expedition, pp. 67-70). I settori sono relativi al fronte: 0 = front, poi in senso orario. Nel diagramma il fronte e' il settore in basso, quello indicato dal fregio al centro."
+  }
+}

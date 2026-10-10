@@ -1,0 +1,1091 @@
+{
+  "_note": "Vyraxen, livello di aggression 0 (= setup del Prologo, Regolamento p.14). Testi trascritti dalle carte originali. 'PP' = numero di giocatori che hanno iniziato lo scenario.",
+  "id": "vyraxen",
+  "name": "Vyraxen",
+  "element": "fire",
+  "art": {
+    "board": "res://art/vyraxen/monster_board.jpg",
+    "mesh": "res://models/vyraxen.obj",
+    "texture": "res://art/models/vyraxen_diffuse.jpg",
+    "behavior_back": "res://art/vyraxen/behavior_2308_back.jpg",
+    "model": "res://models/vyraxen.glb",
+    "triplanar": true,
+    "_note": "Le UV del mesh TTS non corrispondono alla DiffuseURL: senza triplanare il modello resta grigio. Con la miniatura GLB il mesh non serve.",
+    "model_yaw": 180,
+    "portrait": {
+      "art": "res://art/vyraxen/stance1_lv0.jpg",
+      "region": [
+        0.4,
+        0.02,
+        0.3,
+        0.42
+      ]
+    }
+  },
+  "levels": {
+    "0": {
+      "health": 10,
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 2,
+          "progression": 7,
+          "damage": 1,
+          "exposed": [
+            "front",
+            "rear"
+          ],
+          "text": "",
+          "art": "res://art/vyraxen/stance1_lv0.jpg",
+          "peril": 2322,
+          "objective": 2320
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 3,
+          "progression": 3,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "text": "When revealed: Vyraxen gains 1 PP struggle.",
+          "on_reveal": [
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            }
+          ],
+          "art": "res://art/vyraxen/stance2_lv0.jpg",
+          "peril": 2300,
+          "it": "Quando rivelata: Vyraxen guadagna 1 struggle per giocatore."
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 4,
+          "progression": 0,
+          "damage": 2,
+          "exposed": [
+            "front",
+            "flank",
+            "rear"
+          ],
+          "text": "When revealed: Place a fire terrain in each threatened sector.",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "each_threatened_sector"
+            }
+          ],
+          "art": "res://art/vyraxen/stance3_lv0.jpg",
+          "peril": 2323,
+          "it": "Quando rivelata: piazza un terreno fire in ogni settore con giocatori threatened."
+        }
+      ],
+      "behavior_deck": [
+        2316,
+        2315,
+        2313,
+        2312,
+        2310,
+        2308,
+        2311,
+        2309,
+        2314
+      ]
+    },
+    "1": {
+      "health": 10,
+      "behavior_deck": [
+        2316,
+        2315,
+        2321,
+        14183,
+        2310,
+        2308,
+        14184,
+        2309,
+        2314
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 5,
+          "progression": 7,
+          "damage": 1,
+          "exposed": [
+            "front",
+            "rear"
+          ],
+          "text": "At the start of round 1, Vyraxen gains PP-1 struggle.",
+          "art": "res://art/vyraxen/stance1_lv1.jpg",
+          "peril": 2322,
+          "objective": 2320,
+          "on_round_1": [
+            {
+              "op": "monster_gain_struggle",
+              "n": "players_minus_1"
+            }
+          ],
+          "it": "All'inizio del round 1, Vyraxen guadagna (giocatori-1) struggle."
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 7,
+          "progression": 3,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "text": "When revealed: Vyraxen gains 1 PP struggle.",
+          "art": "res://art/vyraxen/stance2_lv1.jpg",
+          "on_reveal": [
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            }
+          ],
+          "peril": 2300,
+          "it": "Quando rivelata: Vyraxen guadagna 1 struggle per giocatore."
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 10,
+          "progression": 0,
+          "damage": 2,
+          "exposed": [
+            "front",
+            "flank",
+            "rear"
+          ],
+          "text": "When revealed: Place a fire terrain in each threatened sector.",
+          "art": "res://art/vyraxen/stance3_lv1.jpg",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "each_threatened_sector"
+            }
+          ],
+          "peril": 2323,
+          "it": "Quando rivelata: piazza un terreno fire in ogni settore con giocatori threatened."
+        }
+      ]
+    },
+    "2": {
+      "health": 10,
+      "behavior_deck": [
+        14186,
+        14177,
+        14175,
+        2302,
+        2321,
+        14174,
+        2309,
+        2308,
+        2310
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 10,
+          "progression": 7,
+          "damage": 2,
+          "exposed": [
+            "front",
+            "rear"
+          ],
+          "text": "At the start of round 1, Vyraxen gains PP-1 struggle.",
+          "art": "res://art/vyraxen/stance1_lv2.jpg",
+          "peril": 2322,
+          "objective": 2320,
+          "on_round_1": [
+            {
+              "op": "monster_gain_struggle",
+              "n": "players_minus_1"
+            }
+          ],
+          "it": "All'inizio del round 1, Vyraxen guadagna (giocatori-1) struggle."
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 15,
+          "progression": 4,
+          "damage": 2,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "text": "When revealed: Vyraxen gains 1 PP struggle. All players discard the top 3 cards of their deck.",
+          "art": "res://art/vyraxen/stance2_lv2.jpg",
+          "on_reveal": [
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            },
+            {
+              "op": "mill",
+              "who": "all",
+              "n": 3
+            }
+          ],
+          "peril": 2300,
+          "it": "Quando rivelata: Vyraxen guadagna 1 struggle per giocatore. Tutti i giocatori scartano le prime 3 carte del mazzo."
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 20,
+          "progression": 0,
+          "damage": 3,
+          "exposed": [
+            "front",
+            "flank",
+            "rear"
+          ],
+          "text": "When revealed: Place a fire terrain in each threatened sector. Players in those sectors discard the top 2 cards of their deck.",
+          "art": "res://art/vyraxen/stance3_lv2.jpg",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "each_threatened_sector"
+            },
+            {
+              "op": "mill",
+              "who": "players_in_threatened_sectors",
+              "n": 2
+            }
+          ],
+          "peril": 2323,
+          "it": "Quando rivelata: piazza un terreno fire in ogni settore con giocatori threatened. I giocatori in quei settori scartano le prime 2 carte del mazzo."
+        }
+      ]
+    },
+    "3": {
+      "health": 10,
+      "behavior_deck": [
+        14188,
+        2295,
+        2296,
+        14181,
+        14179,
+        2302,
+        14180,
+        2321,
+        2297
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 18,
+          "progression": 7,
+          "damage": 3,
+          "exposed": [
+            "front",
+            "rear"
+          ],
+          "text": "At the start of round 1, place a fire terrain in the front sector. Vyraxen gains 1 PP struggle.",
+          "art": "res://art/vyraxen/stance1_lv3.jpg",
+          "peril": 23230,
+          "objective": 23200,
+          "on_round_1": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            },
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            }
+          ],
+          "it": "All'inizio del round 1 piazza un terreno fire nel settore front. Vyraxen guadagna 1 struggle per giocatore."
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 24,
+          "progression": 4,
+          "damage": 4,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "text": "When revealed: Vyraxen gains 1 PP struggle. All players discard the top 3 cards of their deck.",
+          "art": "res://art/vyraxen/stance2_lv3.jpg",
+          "on_reveal": [
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            },
+            {
+              "op": "mill",
+              "who": "all",
+              "n": 3
+            }
+          ],
+          "peril": 23000,
+          "it": "Quando rivelata: Vyraxen guadagna 1 struggle per giocatore. Tutti i giocatori scartano le prime 3 carte del mazzo."
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 30,
+          "progression": 0,
+          "damage": 5,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "text": "When revealed: Place a fire terrain in each threatened sector. Players in those sectors discard the top 2 cards of their deck.",
+          "art": "res://art/vyraxen/stance3_lv3.jpg",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "each_threatened_sector"
+            },
+            {
+              "op": "mill",
+              "who": "players_in_threatened_sectors",
+              "n": 2
+            }
+          ],
+          "peril": 23220,
+          "it": "Quando rivelata: piazza un terreno fire in ogni settore con giocatori threatened. I giocatori in quei settori scartano le prime 2 carte del mazzo."
+        }
+      ]
+    }
+  },
+  "behaviors": {
+    "2308": {
+      "name": "Thunderous Growl",
+      "reaction": "turn_start_front",
+      "refresh": 7,
+      "art": "res://art/vyraxen/behavior_2308.jpg",
+      "back": "res://art/vyraxen/behavior_2308_back.jpg",
+      "text": "Vyraxen gains PP-1 struggle and gets +1 damage until the end of this round.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": "players_minus_1"
+        },
+        {
+          "op": "monster_damage_bonus",
+          "n": 1,
+          "duration": "round"
+        }
+      ],
+      "it": "Vyraxen guadagna (giocatori-1) struggle e ottiene DMG+1 fino alla fine del round."
+    },
+    "2309": {
+      "name": "Flamethrower",
+      "reaction": "rampage",
+      "refresh": 5,
+      "rampage": true,
+      "art": "res://art/vyraxen/behavior_2309.jpg",
+      "back": "res://art/vyraxen/behavior_2309_back.jpg",
+      "text": "Place a fire terrain in the front sector.",
+      "effects": [
+        {
+          "op": "place_terrain",
+          "terrain": "fire",
+          "where": "front"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "Each player in the front sector suffers DMG unless they discard a dodge from their hand.",
+        "effects": [
+          {
+            "op": "suffer_unless_discard",
+            "who": "players_in_front",
+            "discard_type": "dodge"
+          }
+        ],
+        "it": "Ogni giocatore nel settore front subisce DMG a meno che non scarti un dodge dalla mano."
+      },
+      "it": "Piazza un terreno fire nel settore front."
+    },
+    "2310": {
+      "name": "Whipping Tail",
+      "reaction": "turn_start_rear",
+      "refresh": 3,
+      "art": "res://art/vyraxen/behavior_2310.jpg",
+      "back": "res://art/vyraxen/behavior_2310_back.jpg",
+      "text": "The active player suffers DMG unless they discard a dodge from their hand. If the Hit the Tail objective has been completed, this card has no effect. If so, remove it from the game.",
+      "effects": [
+        {
+          "op": "if_objective_completed",
+          "objective": 2320,
+          "then": [
+            {
+              "op": "remove_from_game"
+            }
+          ],
+          "else": [
+            {
+              "op": "suffer_unless_discard",
+              "who": "active",
+              "discard_type": "dodge"
+            }
+          ]
+        }
+      ],
+      "it": "Il giocatore attivo subisce DMG a meno che non scarti un dodge dalla mano. Se l'obiettivo Hit the Tail e' stato completato questa carta non ha effetto e va rimossa dal gioco."
+    },
+    "2311": {
+      "name": "Aggression",
+      "reaction": "end_of_round",
+      "refresh": 6,
+      "art": "res://art/vyraxen/behavior_2311.jpg",
+      "back": "res://art/vyraxen/behavior_2311_back.jpg",
+      "text": "Each player in the front sector must either immediately move or suffer DMG. Then Vyraxen turns to the player with the fewest defensive cards in their hand.",
+      "effects": [
+        {
+          "op": "move_or_suffer",
+          "who": "players_in_front"
+        },
+        {
+          "op": "monster_turn_to",
+          "criteria": "fewest_defensive_in_hand"
+        }
+      ],
+      "it": "Ogni giocatore nel settore front deve muoversi subito oppure subire DMG. Poi Vyraxen si gira verso il giocatore con meno carte difensive in mano."
+    },
+    "2312": {
+      "name": "Wrath of the Dragon",
+      "reaction": "maneuver_played",
+      "refresh": 4,
+      "art": "res://art/vyraxen/behavior_2312.jpg",
+      "back": "res://art/vyraxen/behavior_2312_back.jpg",
+      "text": "Vyraxen turns to the active player. Then place a fire terrain in the front sector.",
+      "effects": [
+        {
+          "op": "monster_turn_to",
+          "criteria": "active"
+        },
+        {
+          "op": "place_terrain",
+          "terrain": "fire",
+          "where": "front"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "The active player suffers DMG unless they have a dodge in their sequence.",
+        "effects": [
+          {
+            "op": "suffer_unless_in_sequence",
+            "who": "active",
+            "type": "dodge"
+          }
+        ],
+        "it": "Il giocatore attivo subisce DMG a meno che non abbia un dodge nella sequenza."
+      },
+      "it": "Vyraxen si gira verso il giocatore attivo. Poi piazza un terreno fire nel settore front."
+    },
+    "2313": {
+      "name": "Flaming Gaze",
+      "reaction": "dodge_played",
+      "refresh": 1,
+      "art": "res://art/vyraxen/behavior_2313.jpg",
+      "back": "res://art/vyraxen/behavior_2313_back.jpg",
+      "text": "The active player becomes threatened.",
+      "effects": [
+        {
+          "op": "become_threatened",
+          "who": "active"
+        }
+      ],
+      "it": "Il giocatore attivo diventa threatened."
+    },
+    "2314": {
+      "name": "Smoldering Breath",
+      "reaction": "threatened",
+      "refresh": 2,
+      "tags": [
+        "firestorm"
+      ],
+      "art": "res://art/vyraxen/behavior_2314.jpg",
+      "back": "res://art/vyraxen/behavior_2314_back.jpg",
+      "text": "Vyraxen gains 1 PP struggle.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        }
+      ],
+      "it": "Vyraxen guadagna 1 struggle per giocatore."
+    },
+    "2315": {
+      "name": "Blazing Assault",
+      "reaction": "attack_played",
+      "refresh": 4,
+      "art": "res://art/vyraxen/behavior_2315.jpg",
+      "back": "res://art/vyraxen/behavior_2315_back.jpg",
+      "text": "The active player discards the top 3 cards of their deck. That player suffers DMG unless a defensive card is discarded this way.",
+      "effects": [
+        {
+          "op": "mill_then_suffer",
+          "who": "active",
+          "n": 3,
+          "unless_kind": "defensive"
+        }
+      ],
+      "boost": {
+        "cost": 2,
+        "text": "Repeat the base ability effect of this card.",
+        "effects": [
+          {
+            "op": "repeat_base"
+          }
+        ],
+        "it": "Ripeti l'effetto base di questa carta."
+      },
+      "it": "Il giocatore attivo scarta le prime 3 carte del mazzo. Subisce DMG a meno che fra quelle non ci sia una carta difensiva."
+    },
+    "2316": {
+      "name": "Sudden Blaze",
+      "reaction": "attack_played",
+      "refresh": 2,
+      "tags": [
+        "firestorm"
+      ],
+      "art": "res://art/vyraxen/behavior_2316.jpg",
+      "back": "res://art/vyraxen/behavior_2316_back.jpg",
+      "text": "The active player discards the top 3 cards of their deck. That player suffers DMG unless a defensive card is discarded this way.",
+      "effects": [
+        {
+          "op": "mill_then_suffer",
+          "who": "active",
+          "n": 3,
+          "unless_kind": "defensive"
+        }
+      ],
+      "it": "Il giocatore attivo scarta le prime 3 carte del mazzo. Subisce DMG a meno che fra quelle non ci sia una carta difensiva."
+    },
+    "2321": {
+      "name": "Flaming Gaze",
+      "reaction": "dodge_played",
+      "refresh": 1,
+      "art": "res://art/vyraxen/behavior_2321.jpg",
+      "back": "res://art/vyraxen/behavior_2321_back.jpg",
+      "text": "All players become threatened.",
+      "effects": [
+        {
+          "op": "become_threatened",
+          "who": "all"
+        }
+      ],
+      "it": "Tutti i giocatori diventano threatened."
+    },
+    "14183": {
+      "name": "Wrath of the Dragon",
+      "reaction": "maneuver_played",
+      "refresh": 4,
+      "art": "res://art/vyraxen/behavior_14183.jpg",
+      "back": "res://art/vyraxen/behavior_14183_back.jpg",
+      "text": "Vyraxen turns to the active player. Then place a fire terrain in the front sector. The active player suffers DMG+1 unless they have a dodge in their sequence.",
+      "effects": [
+        {
+          "op": "monster_turn_to",
+          "criteria": "active"
+        },
+        {
+          "op": "place_terrain",
+          "terrain": "fire",
+          "where": "front"
+        },
+        {
+          "op": "suffer_unless_in_sequence",
+          "who": "active",
+          "type": "dodge",
+          "damage_bonus": 1
+        }
+      ],
+      "it": "Vyraxen si gira verso il giocatore attivo. Poi piazza un terreno fire nel settore front. Il giocatore attivo subisce DMG+1 a meno che non abbia un dodge nella sequenza."
+    },
+    "14184": {
+      "name": "Aggression",
+      "reaction": "end_of_round",
+      "refresh": 6,
+      "art": "res://art/vyraxen/behavior_14184.jpg",
+      "back": "res://art/vyraxen/behavior_14184_back.jpg",
+      "text": "Each player in the front sector must either immediately move or suffer DMG. Then Vyraxen turns to the player with the fewest defensive cards in their hand. If that player is threatened, they suffer DMG.",
+      "effects": [
+        {
+          "op": "move_or_suffer",
+          "who": "players_in_front"
+        },
+        {
+          "op": "monster_turn_to",
+          "criteria": "fewest_defensive_in_hand",
+          "suffer_if_threatened": true
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "modifies_base": true,
+        "text": "Enhancement: chi sceglie di muoversi deve generare la stamina scartando un dodge dalla mano.",
+        "flags": {
+          "move_payment_type": "dodge"
+        },
+        "it": "Enhancement: chi sceglie di muoversi deve generare la stamina scartando un dodge dalla mano."
+      },
+      "it": "Ogni giocatore nel settore front deve muoversi subito oppure subire DMG. Poi Vyraxen si gira verso il giocatore con meno carte difensive in mano. Se quel giocatore e' threatened, subisce DMG."
+    },
+    "14177": {
+      "name": "Blazing Assault",
+      "reaction": "attack_played",
+      "refresh": 4,
+      "art": "res://art/vyraxen/behavior_14177.jpg",
+      "back": "res://art/vyraxen/behavior_14177_back.jpg",
+      "text": "The active player discards the top 2 cards of their deck. That player suffers DMG unless a parry is discarded this way. If the active player is threatened, repeat this effect once.",
+      "effects": [
+        {
+          "op": "mill_then_suffer",
+          "who": "active",
+          "n": 2,
+          "unless_type": "parry",
+          "repeat_if_threatened": true
+        }
+      ],
+      "boost": {
+        "cost": 2,
+        "modifies_base": true,
+        "text": "Enhancement: l'effetto colpisce tutti i giocatori nel settore del giocatore attivo.",
+        "flags": {
+          "retarget": "players_in_active_sector"
+        },
+        "it": "Enhancement: l'effetto colpisce tutti i giocatori nel settore del giocatore attivo."
+      },
+      "it": "Il giocatore attivo scarta le prime 2 carte del mazzo. Subisce DMG a meno che fra quelle non ci sia una parry. Se e' threatened, ripeti l'effetto una volta."
+    },
+    "14186": {
+      "name": "Sudden Blaze",
+      "reaction": "attack_played",
+      "refresh": 2,
+      "art": "res://art/vyraxen/behavior_14186.jpg",
+      "back": "res://art/vyraxen/behavior_14186_back.jpg",
+      "text": "The active player discards the top 2 cards of their deck. That player suffers DMG unless a parry is discarded this way. If the active player is threatened, repeat this effect once.",
+      "effects": [
+        {
+          "op": "mill_then_suffer",
+          "who": "active",
+          "n": 2,
+          "unless_type": "parry",
+          "repeat_if_threatened": true
+        }
+      ],
+      "tags": [
+        "firestorm"
+      ],
+      "it": "Il giocatore attivo scarta le prime 2 carte del mazzo. Subisce DMG a meno che fra quelle non ci sia una parry. Se e' threatened, ripeti l'effetto una volta."
+    },
+    "2302": {
+      "name": "Smoldering Breath",
+      "reaction": "threatened",
+      "refresh": 2,
+      "art": "res://art/vyraxen/behavior_2302.jpg",
+      "back": "res://art/vyraxen/behavior_2302_back.jpg",
+      "text": "Vyraxen gains 1 PP struggle. All players discard the top 2 cards of their deck.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "mill",
+          "who": "all",
+          "n": 2
+        }
+      ],
+      "tags": [
+        "firestorm"
+      ],
+      "it": "Vyraxen guadagna 1 struggle per giocatore. Tutti i giocatori scartano le prime 2 carte del mazzo."
+    },
+    "2295": {
+      "name": "Whipping Tail",
+      "reaction": "turn_start_rear",
+      "refresh": 3,
+      "art": "res://art/vyraxen/behavior_2295.jpg",
+      "back": "res://art/vyraxen/behavior_2295_back.jpg",
+      "text": "Each player in the rear sector suffers DMGx2 unless they discard a dodge from their hand. If the Hit the Tail objective has been completed, this card has no effect. If so, remove it from the game.",
+      "effects": [
+        {
+          "op": "if_objective_completed",
+          "objective": 2320,
+          "then": [
+            {
+              "op": "remove_from_game"
+            }
+          ],
+          "else": [
+            {
+              "op": "suffer_unless_discard",
+              "who": "players_in_rear",
+              "discard_type": "dodge",
+              "damage_multiplier": 2
+            }
+          ]
+        }
+      ],
+      "it": "Ogni giocatore nel settore rear subisce DMGx2 a meno che non scarti un dodge dalla mano. Se l'obiettivo Hit the Tail e' stato completato questa carta non ha effetto e va rimossa dal gioco."
+    },
+    "2296": {
+      "name": "Thunderous Growl",
+      "reaction": "turn_start_front",
+      "refresh": 7,
+      "art": "res://art/vyraxen/behavior_2296.jpg",
+      "back": "res://art/vyraxen/behavior_2296_back.jpg",
+      "text": "Vyraxen gains 1 PP struggle and gets DMG+2 until the end of the round.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "monster_damage_bonus",
+          "n": 2,
+          "duration": "round"
+        }
+      ],
+      "tags": [
+        "firestorm"
+      ],
+      "it": "Vyraxen guadagna 1 struggle per giocatore e ottiene DMG+2 fino alla fine del round."
+    },
+    "2297": {
+      "name": "Flamethrower",
+      "reaction": "rampage",
+      "refresh": 5,
+      "art": "res://art/vyraxen/behavior_2297.jpg",
+      "back": "res://art/vyraxen/behavior_2297_back.jpg",
+      "text": "Place a fire terrain in the front sector. Players in that sector suffer burning.",
+      "effects": [
+        {
+          "op": "place_terrain",
+          "terrain": "fire",
+          "where": "front"
+        },
+        {
+          "op": "inflict_burning",
+          "who": "players_in_front"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "Each player in the front sector suffers DMG+1 unless they discard a dodge from their hand.",
+        "effects": [
+          {
+            "op": "suffer_unless_discard",
+            "who": "players_in_front",
+            "discard_type": "dodge",
+            "damage_bonus": 1
+          }
+        ],
+        "it": "Ogni giocatore nel settore front subisce DMG+1 a meno che non scarti un dodge dalla mano."
+      },
+      "rampage": true,
+      "it": "Piazza un terreno fire nel settore front. I giocatori in quel settore subiscono burning."
+    }
+  },
+  "perils": {
+    "2322": {
+      "name": "Fire Breathing",
+      "stance": 1,
+      "art": "res://art/vyraxen/peril_2322.jpg",
+      "text": "At the end of the round, if the aggro player is threatened, place a fire terrain in the front sector.",
+      "abilities": [
+        {
+          "trigger": "end_of_round",
+          "condition": "aggro_player_threatened",
+          "effects": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            }
+          ]
+        }
+      ],
+      "it": "Alla fine del round, se il giocatore aggro e' threatened, piazza un terreno fire nel settore front."
+    },
+    "2300": {
+      "name": "Wall of Flames",
+      "stance": 2,
+      "art": "res://art/vyraxen/peril_2300.jpg",
+      "text": "When a behavior card with firestorm is revealed, immediately place a fire terrain in the front sector.",
+      "abilities": [
+        {
+          "trigger": "behavior_revealed",
+          "tag": "firestorm",
+          "effects": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            }
+          ]
+        }
+      ],
+      "it": "Quando viene rivelata una carta behavior con firestorm, piazza subito un terreno fire nel settore front."
+    },
+    "2323": {
+      "name": "Inferno",
+      "stance": 3,
+      "art": "res://art/vyraxen/peril_2323.jpg",
+      "text": "When a behavior card with firestorm is revealed, immediately place a fire terrain in the front sector. Players in that sector become threatened.",
+      "abilities": [
+        {
+          "trigger": "behavior_revealed",
+          "tag": "firestorm",
+          "effects": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            },
+            {
+              "op": "become_threatened",
+              "who": "players_in_front"
+            }
+          ]
+        }
+      ],
+      "it": "Quando viene rivelata una carta behavior con firestorm, piazza subito un terreno fire nel settore front. I giocatori in quel settore diventano threatened."
+    },
+    "23230": {
+      "name": "Fire Breathing",
+      "stance": 1,
+      "art": "res://art/vyraxen/peril_2323_back.jpg",
+      "text": "At the end of the round, place a fire terrain in the front sector. Threatened players in that sector suffer burning.",
+      "abilities": [
+        {
+          "trigger": "end_of_round",
+          "effects": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            },
+            {
+              "op": "inflict_burning",
+              "who": "threatened_players_in_front"
+            }
+          ]
+        }
+      ],
+      "it": "Alla fine del round piazza un terreno fire nel settore front. I giocatori threatened in quel settore subiscono burning."
+    },
+    "23000": {
+      "name": "Wall of Flames",
+      "stance": 2,
+      "infuriate": [
+        2,
+        6,
+        9
+      ],
+      "art": "res://art/vyraxen/peril_2300_back.jpg",
+      "text": "Infuriate 2/6/9. When a behavior card with firestorm is revealed, immediately place a fire terrain in the front sector.",
+      "abilities": [
+        {
+          "trigger": "behavior_revealed",
+          "tag": "firestorm",
+          "effects": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            }
+          ]
+        }
+      ],
+      "it": "Infuriate 2/6/9. Quando viene rivelata una carta behavior con firestorm, piazza subito un terreno fire nel settore front."
+    },
+    "23220": {
+      "name": "Inferno",
+      "stance": 3,
+      "infuriate": [
+        2,
+        6,
+        9
+      ],
+      "art": "res://art/vyraxen/peril_2322_back.jpg",
+      "text": "Infuriate 2/6/9. When a behavior card with firestorm is revealed, place a fire terrain in the front sector. Players in that sector suffer burning and become threatened.",
+      "abilities": [
+        {
+          "trigger": "behavior_revealed",
+          "tag": "firestorm",
+          "effects": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "front"
+            },
+            {
+              "op": "inflict_burning",
+              "who": "players_in_front"
+            },
+            {
+              "op": "become_threatened",
+              "who": "players_in_front"
+            }
+          ]
+        }
+      ],
+      "it": "Infuriate 2/6/9. Quando viene rivelata una carta behavior con firestorm, piazza subito un terreno fire nel settore front. I giocatori in quel settore subiscono burning e diventano threatened."
+    }
+  },
+  "objectives": {
+    "2320": {
+      "name": "Hit the Tail",
+      "stance": 1,
+      "permanent": true,
+      "art": "res://art/vyraxen/objective_2320.jpg",
+      "text": "Permanent. Two offensive cards in a row: if you are in the rear sector, place a counter on this card. When there are 2 PP counters on this card, Vyraxen suffers 2 wounds. Then remove this card from the game.",
+      "abilities": [
+        {
+          "combo": [
+            "offensive",
+            "offensive"
+          ],
+          "condition": "actor_in_rear",
+          "effects": [
+            {
+              "op": "add_counter",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "trigger": "counters_reached",
+          "threshold": 2,
+          "scale": "per_player",
+          "effects": [
+            {
+              "op": "monster_suffer_wounds",
+              "n": 2
+            },
+            {
+              "op": "complete_objective"
+            }
+          ]
+        }
+      ],
+      "it": "Permanente. Dopo due carte offensive di fila: se sei nel settore rear, metti un segnalino su questa carta. Quando ci sono 2 segnalini per giocatore, Vyraxen subisce 2 ferite. Poi rimuovi questa carta dal gioco."
+    },
+    "23200": {
+      "name": "Hit the Tail",
+      "stance": 1,
+      "permanent": true,
+      "art": "res://art/vyraxen/objective_2320_back.jpg",
+      "text": "Permanent. Two offensive cards in a row: if you are in the rear sector, place a counter on this card. When there are 3 PP counters on this card, Vyraxen suffers 2 wounds. Then remove this card from the game.",
+      "abilities": [
+        {
+          "combo": [
+            "offensive",
+            "offensive"
+          ],
+          "condition": "actor_in_rear",
+          "effects": [
+            {
+              "op": "add_counter",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "trigger": "counters_reached",
+          "threshold": 3,
+          "scale": "per_player",
+          "effects": [
+            {
+              "op": "monster_suffer_wounds",
+              "n": 2
+            },
+            {
+              "op": "complete_objective"
+            }
+          ]
+        }
+      ],
+      "it": "Permanente. Dopo due carte offensive di fila: se sei nel settore rear, metti un segnalino su questa carta. Quando ci sono 3 segnalini per giocatore, Vyraxen subisce 2 ferite. Poi rimuovi questa carta dal gioco."
+    }
+  },
+  "expeditions": {
+    "1": {
+      "name": "Expedition 1",
+      "terrain": [
+        {
+          "type": "cyricae",
+          "sector": 0
+        },
+        {
+          "type": "brush",
+          "sector": 1
+        },
+        {
+          "type": "rock",
+          "sector": 2
+        },
+        {
+          "type": "cyricae",
+          "sector": 2
+        },
+        {
+          "type": "brush",
+          "sector": 3
+        }
+      ]
+    },
+    "2": {
+      "name": "Expedition 2",
+      "terrain": [
+        {
+          "type": "rock",
+          "sector": 0
+        },
+        {
+          "type": "brush",
+          "sector": 1
+        },
+        {
+          "type": "cyricae",
+          "sector": 1
+        },
+        {
+          "type": "water",
+          "sector": 2
+        },
+        {
+          "type": "plateau",
+          "sector": 2
+        },
+        {
+          "type": "baethanis",
+          "sector": 3
+        }
+      ]
+    },
+    "_note": "Terreno iniziale letto dai diagrammi di setup del regolamento (Expedition, pp. 67-70). I settori sono relativi al fronte: 0 = front, poi in senso orario. Nel diagramma il fronte e' il settore in basso, quello indicato dal fregio al centro."
+  },
+  "behavior_aliases": {
+    "14179": 14183,
+    "14174": 14183,
+    "14180": 14184,
+    "14175": 14184,
+    "14188": 14177,
+    "14181": 14186
+  }
+}

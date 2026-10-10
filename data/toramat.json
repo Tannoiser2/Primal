@@ -1,0 +1,1091 @@
+{
+  "_note": "Toramat. Numeri e testi letti dalle immagini. I 4 mazzi da 9 sono 18 carte distinte; l'ordine dei livelli e' stato dedotto dalle sovrapposizioni fra mazzi (6 carte in comune fra livelli adiacenti, 3 a distanza 2, 0 a distanza 3) e confermato dai testi, che si induriscono. Out of Control e Crashing Charge stanno fuori dal mazzo finche' una carta non le chiama. L'icona di Tail Strike e' stata letta come pozione: e' l'unica lettura incerta di questo mostro. Vedi docs/toramat_struttura.md.",
+  "id": "toramat",
+  "name": "Toramat",
+  "element": "earth",
+  "art": {
+    "_note": "Miniatura GLB (Meshy) come per Vyraxen: e' quella che si vede sulla plancia. Restano il mesh e la texture del mod TTS come ripiego, con la scultura non dipinta.",
+    "behavior_back": "res://art/monsters/toramat/g1_00_retro.jpg",
+    "model": "res://models/toramat.glb",
+    "mesh": "res://models/toramat.obj",
+    "texture": "res://art/models/toramat_diffuse.jpg",
+    "triplanar": false,
+    "model_yaw": 180,
+    "portrait": {
+      "art": "res://art/monsters/toramat/sciolta_1.jpg",
+      "region": [
+        0.15,
+        0.02,
+        0.3,
+        0.42
+      ]
+    },
+    "board": "res://art/monsters/toramat/board.jpg"
+  },
+  "hardening": {
+    "max": 3,
+    "hardened_at": 3
+  },
+  "acceleration": {
+    "max_per_player": 1
+  },
+  "attrition": {
+    "_note": "Setup dello scenario: si tolgono dal mazzo attrition due carte di valore 1 e si mettono queste.",
+    "replace_value": 1,
+    "count": 2,
+    "card": {
+      "value": 1,
+      "type": "dodge",
+      "art": "res://art/monsters/toramat/g5_00_fronte.jpg"
+    }
+  },
+  "expeditions": {
+    "1": {
+      "name": "Expedition 1",
+      "terrain": [
+        {
+          "type": "wildmaw",
+          "sector": 0
+        },
+        {
+          "type": "rock",
+          "sector": 1
+        },
+        {
+          "type": "sand",
+          "sector": 2
+        },
+        {
+          "type": "sand",
+          "sector": 2
+        },
+        {
+          "type": "baethanis",
+          "sector": 2
+        },
+        {
+          "type": "rock",
+          "sector": 3
+        }
+      ]
+    },
+    "2": {
+      "name": "Expedition 2",
+      "terrain": [
+        {
+          "type": "sand",
+          "sector": 0
+        },
+        {
+          "type": "wildmaw",
+          "sector": 1
+        },
+        {
+          "type": "rock",
+          "sector": 1
+        },
+        {
+          "type": "sand",
+          "sector": 2
+        },
+        {
+          "type": "wildmaw",
+          "sector": 3
+        },
+        {
+          "type": "rock",
+          "sector": 3
+        }
+      ]
+    },
+    "_note": "Terreno iniziale letto dai diagrammi di setup del regolamento (Expedition, pp. 67-70). I settori sono relativi al fronte: 0 = front, poi in senso orario. Nel diagramma il fronte e' il settore in basso, quello indicato dal fregio al centro."
+  },
+  "levels": {
+    "0": {
+      "health": 10,
+      "behavior_deck": [
+        45017,
+        45015,
+        45003,
+        45005,
+        45007,
+        45001,
+        45013,
+        45009,
+        45011
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 2,
+          "progression": 7,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 45101,
+          "objective": 45201,
+          "art": "res://art/monsters/toramat/sciolta_1.jpg"
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 3,
+          "progression": 4,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 45102,
+          "text": "When revealed: Toramat gains 1 PP struggle.",
+          "it": "Quando rivelata: Toramat guadagna 1 struggle per giocatore.",
+          "on_reveal": [
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_1_stato2.jpg"
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 3,
+          "damage": 2,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "text": "When revealed: Place Out of Control on top of the behavior deck. Remove the plateau terrain from the board. Then place 2 rock terrains in that sector and 1 in each adjacent one.",
+          "it": "Quando rivelata: metti Out of Control in cima al mazzo behavior. Rimuovi il terreno plateau dalla plancia, poi piazza 2 terreni rock in quel settore e 1 in ognuno adiacente.",
+          "on_reveal": [
+            {
+              "op": "place_behavior_on_top",
+              "id": 45019
+            },
+            {
+              "op": "remove_terrain",
+              "terrain": "plateau",
+              "where": "any",
+              "remember": true
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "rock",
+              "where": "remembered",
+              "count": 2
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "rock",
+              "where": "adjacent_to_remembered",
+              "count": 1
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_1_stato3.jpg"
+        }
+      ]
+    },
+    "1": {
+      "health": 10,
+      "behavior_deck": [
+        45001,
+        45003,
+        45005,
+        45008,
+        45009,
+        45012,
+        45013,
+        45015,
+        45018
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 4,
+          "progression": 7,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 45101,
+          "objective": 45201,
+          "text": "At the start of round 1, Toramat gains PP-1 struggle.",
+          "it": "All'inizio del round 1 Toramat guadagna (giocatori-1) struggle.",
+          "on_round_1": [
+            {
+              "op": "monster_gain_struggle",
+              "n": "players_minus_1"
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_0.jpg"
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 6,
+          "progression": 4,
+          "damage": 2,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 45102,
+          "text": "When revealed: Toramat gains 1 PP struggle.",
+          "it": "Quando rivelata: Toramat guadagna 1 struggle per giocatore.",
+          "on_reveal": [
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_0_stato2.jpg"
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 9,
+          "damage": 2,
+          "exposed": [
+            "flank"
+          ],
+          "text": "When revealed: Place Out of Control on top of the behavior deck. Remove the plateau terrain from the board. Then place 2 rock terrains in that sector and 1 in each adjacent one.",
+          "it": "Quando rivelata: metti Out of Control in cima al mazzo behavior. Rimuovi il terreno plateau dalla plancia, poi piazza 2 terreni rock in quel settore e 1 in ognuno adiacente.",
+          "on_reveal": [
+            {
+              "op": "place_behavior_on_top",
+              "id": 45019
+            },
+            {
+              "op": "remove_terrain",
+              "terrain": "plateau",
+              "where": "any",
+              "remember": true
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "rock",
+              "where": "remembered",
+              "count": 2
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "rock",
+              "where": "adjacent_to_remembered",
+              "count": 1
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_0_stato3.jpg"
+        }
+      ]
+    },
+    "2": {
+      "health": 10,
+      "behavior_deck": [
+        45001,
+        45004,
+        45005,
+        45008,
+        45010,
+        45012,
+        45013,
+        45016,
+        45018
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 10,
+          "progression": 7,
+          "damage": 2,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 45101,
+          "objective": 45201,
+          "text": "At the start of round 1, Toramat gains 1 PP struggle.",
+          "it": "All'inizio del round 1 Toramat guadagna 1 struggle per giocatore.",
+          "on_round_1": [
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_5.jpg"
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 16,
+          "progression": 4,
+          "damage": 3,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 45102,
+          "text": "When revealed: Toramat gains 1 PP struggle and 1 acceleration (max: 1 PP acceleration).",
+          "it": "Quando rivelata: Toramat guadagna 1 struggle per giocatore e 1 acceleration (max 1 per giocatore).",
+          "on_reveal": [
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            },
+            {
+              "op": "acceleration",
+              "n": 1
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_5_stato2.jpg"
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 20,
+          "damage": 4,
+          "exposed": [
+            "flank"
+          ],
+          "text": "When revealed: Place Out of Control on top of the behavior deck. Remove the plateau terrain from the board. Players in that sector suffer 2 damage. Then place 2 rock terrains in that sector and 1 in each adjacent one.",
+          "it": "Quando rivelata: metti Out of Control in cima al mazzo behavior. Rimuovi il terreno plateau; i giocatori in quel settore subiscono 2 danni. Poi piazza 2 terreni rock in quel settore e 1 in ognuno adiacente.",
+          "on_reveal": [
+            {
+              "op": "place_behavior_on_top",
+              "id": 45019
+            },
+            {
+              "op": "remove_terrain",
+              "terrain": "plateau",
+              "where": "any",
+              "remember": true
+            },
+            {
+              "op": "suffer",
+              "who": "players_in_remembered",
+              "flat": 2
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "rock",
+              "where": "remembered",
+              "count": 2
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "rock",
+              "where": "adjacent_to_remembered",
+              "count": 1
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_5_stato3.jpg"
+        }
+      ]
+    },
+    "3": {
+      "health": 10,
+      "behavior_deck": [
+        45016,
+        45004,
+        45006,
+        45008,
+        45012,
+        45010,
+        45014,
+        45002,
+        45018
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 18,
+          "progression": 7,
+          "damage": 3,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 451010,
+          "objective": 45201,
+          "text": "At the start of round 1, increase the hardening level by 1. Toramat gains 1 PP struggle.",
+          "it": "All'inizio del round 1 aumenta il livello di hardening di 1. Toramat guadagna 1 struggle per giocatore.",
+          "on_round_1": [
+            {
+              "op": "hardening",
+              "n": 1
+            },
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_2.jpg"
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 25,
+          "progression": 4,
+          "damage": 4,
+          "exposed": [
+            "flank"
+          ],
+          "peril": 451020,
+          "text": "When revealed: Toramat gains 1 PP struggle and 1 acceleration (max: 1 PP acceleration).",
+          "it": "Quando rivelata: Toramat guadagna 1 struggle per giocatore e 1 acceleration (max 1 per giocatore).",
+          "on_reveal": [
+            {
+              "op": "monster_gain_struggle",
+              "n": 1,
+              "scale": "per_player"
+            },
+            {
+              "op": "acceleration",
+              "n": 1
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_2_stato2.jpg"
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 30,
+          "damage": 6,
+          "exposed": [
+            "flank"
+          ],
+          "text": "When revealed: Place Out of Control on top of the behavior deck. Remove the plateau terrain from the board. Players in that sector suffer 3 damage. Then place a rock terrain in that sector and in each adjacent one.",
+          "it": "Quando rivelata: metti Out of Control in cima al mazzo behavior. Rimuovi il terreno plateau; i giocatori in quel settore subiscono 3 danni. Poi piazza un terreno rock in quel settore e in ognuno adiacente.",
+          "on_reveal": [
+            {
+              "op": "place_behavior_on_top",
+              "id": 45019
+            },
+            {
+              "op": "remove_terrain",
+              "terrain": "plateau",
+              "where": "any",
+              "remember": true
+            },
+            {
+              "op": "suffer",
+              "who": "players_in_remembered",
+              "flat": 3
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "rock",
+              "where": "remembered",
+              "count": 1
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "rock",
+              "where": "adjacent_to_remembered",
+              "count": 1
+            }
+          ],
+          "art": "res://art/monsters/toramat/sciolta_2_stato3.jpg"
+        }
+      ]
+    }
+  },
+  "behaviors": {
+    "45001": {
+      "name": "Pawing the Ground",
+      "reaction": "turn_start_front",
+      "refresh": 7,
+      "art": "res://art/monsters/toramat/g1_00_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_00_retro.jpg",
+      "text": "Place a dust token in the rear sector (max: 2 dust tokens per sector).",
+      "it": "Piazza un segnalino dust nel settore rear (max 2 per settore).",
+      "effects": [
+        {
+          "op": "place_dust",
+          "where": "rear"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "Toramat gets DMG+1 until the end of this turn.",
+        "it": "Toramat ottiene DMG+1 fino alla fine di questo turno.",
+        "effects": [
+          {
+            "op": "monster_damage_bonus",
+            "n": 1,
+            "duration": "round"
+          }
+        ]
+      }
+    },
+    "45002": {
+      "name": "Pawing the Ground",
+      "reaction": "turn_start_front",
+      "refresh": 7,
+      "art": "res://art/monsters/toramat/g6_07_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_00_retro.jpg",
+      "text": "Place a dust token in the rear sector (max: 2 dust tokens per sector).",
+      "it": "Piazza un segnalino dust nel settore rear (max 2 per settore).",
+      "effects": [
+        {
+          "op": "place_dust",
+          "where": "rear"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "Toramat gets DMG+1 until the end of this turn.",
+        "it": "Toramat ottiene DMG+1 fino alla fine di questo turno.",
+        "effects": [
+          {
+            "op": "monster_damage_bonus",
+            "n": 1,
+            "duration": "round"
+          }
+        ]
+      }
+    },
+    "45003": {
+      "name": "Tail Strike",
+      "reaction": "turn_start_rear",
+      "refresh": 1,
+      "art": "res://art/monsters/toramat/g1_01_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_01_retro.jpg",
+      "text": "The active player discards a potion from their hand.",
+      "it": "Il giocatore attivo scarta una pozione.",
+      "effects": [
+        {
+          "op": "exhaust_potion",
+          "who": "active"
+        }
+      ]
+    },
+    "45004": {
+      "name": "Tail Strike",
+      "reaction": "any_turn_start_rear",
+      "refresh": 1,
+      "art": "res://art/monsters/toramat/g4_01_fronte.jpg",
+      "back": "res://art/monsters/toramat/g4_01_retro.jpg",
+      "text": "Players in the rear sector must discard a potion from their hand.",
+      "it": "I giocatori nel settore rear devono scartare una pozione.",
+      "effects": [
+        {
+          "op": "exhaust_potion",
+          "who": "players_in_rear"
+        }
+      ]
+    },
+    "45005": {
+      "name": "Raging Havoc",
+      "reaction": "rampage",
+      "refresh": 3,
+      "rampage": true,
+      "art": "res://art/monsters/toramat/g1_02_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_02_retro.jpg",
+      "text": "Toramat turns to the player with the highest number of aggro cards in their hand. That player suffers DMG unless they reveal a dodge from their hand.",
+      "it": "Toramat si gira verso il giocatore con piu' carte aggro in mano. Quel giocatore subisce DMG a meno che non riveli un dodge dalla mano.",
+      "effects": [
+        {
+          "op": "monster_turn_to",
+          "criteria": "most_aggro_in_hand"
+        },
+        {
+          "op": "suffer_unless_reveal",
+          "who": "target",
+          "type": "dodge"
+        }
+      ]
+    },
+    "45006": {
+      "name": "Raging Havoc",
+      "reaction": "rampage",
+      "refresh": 3,
+      "rampage": true,
+      "art": "res://art/monsters/toramat/g6_02_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_02_retro.jpg",
+      "text": "Toramat turns to the player with the highest number of aggro cards in their hand. That player suffers DMG unless they reveal 2 dodges from their hand.",
+      "it": "Toramat si gira verso il giocatore con piu' carte aggro in mano. Quel giocatore subisce DMG a meno che non riveli 2 dodge dalla mano.",
+      "effects": [
+        {
+          "op": "monster_turn_to",
+          "criteria": "most_aggro_in_hand"
+        },
+        {
+          "op": "suffer_unless_reveal",
+          "who": "target",
+          "type": "dodge",
+          "n": 2
+        }
+      ]
+    },
+    "45007": {
+      "name": "Stone Wall",
+      "reaction": "turn_start_flank",
+      "refresh": 5,
+      "art": "res://art/monsters/toramat/g3_04_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_03_retro.jpg",
+      "text": "Increase the hardening level by 1. Then if Toramat is hardened, it gains PP-1 struggle.",
+      "it": "Aumenta il livello di hardening di 1. Poi, se Toramat e' hardened, guadagna (giocatori-1) struggle.",
+      "effects": [
+        {
+          "op": "hardening",
+          "n": 1
+        },
+        {
+          "op": "monster_gain_struggle",
+          "n": "players_minus_1",
+          "condition": "monster_hardened"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "The active player suffers DMG unless they have a dodge in their sequence.",
+        "it": "Il giocatore attivo subisce DMG a meno che non abbia un dodge nella sequenza.",
+        "effects": [
+          {
+            "op": "suffer_unless_in_sequence",
+            "who": "active",
+            "type": "dodge"
+          }
+        ]
+      }
+    },
+    "45008": {
+      "name": "Stone Wall",
+      "reaction": "turn_start_flank",
+      "refresh": 5,
+      "art": "res://art/monsters/toramat/g1_03_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_03_retro.jpg",
+      "text": "Increase the hardening level by 1. Then if Toramat is hardened, it gains PP-1 struggle. The active player suffers DMG unless they have a dodge in their sequence.",
+      "it": "Aumenta il livello di hardening di 1. Poi, se Toramat e' hardened, guadagna (giocatori-1) struggle. Il giocatore attivo subisce DMG a meno che non abbia un dodge nella sequenza.",
+      "effects": [
+        {
+          "op": "hardening",
+          "n": 1
+        },
+        {
+          "op": "monster_gain_struggle",
+          "n": "players_minus_1",
+          "condition": "monster_hardened"
+        },
+        {
+          "op": "suffer_unless_in_sequence",
+          "who": "active",
+          "type": "dodge"
+        }
+      ]
+    },
+    "45009": {
+      "name": "Tail Swipe",
+      "reaction": "monster_turned",
+      "refresh": 4,
+      "art": "res://art/monsters/toramat/g1_04_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_04_retro.jpg",
+      "text": "Each player in the rear sector suffers DMG unless they reveal a dodge. If there are no players in the rear sector, players in the flank sectors are targeted instead.",
+      "it": "Ogni giocatore nel settore rear subisce DMG a meno che non riveli un dodge. Se non c'e' nessuno nel rear, i bersagli sono i giocatori nei settori flank.",
+      "effects": [
+        {
+          "op": "suffer_unless_reveal",
+          "who": "players_in_rear_or_flank",
+          "type": "dodge"
+        }
+      ]
+    },
+    "45010": {
+      "name": "Tail Swipe",
+      "reaction": "monster_turned",
+      "refresh": 4,
+      "art": "res://art/monsters/toramat/g4_04_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_04_retro.jpg",
+      "text": "Each player in the rear sector suffers DMG unless they discard a dodge. If there are no players in the rear sector, players in the flank sectors are targeted instead.",
+      "it": "Ogni giocatore nel settore rear subisce DMG a meno che non scarti un dodge. Se non c'e' nessuno nel rear, i bersagli sono i giocatori nei settori flank.",
+      "effects": [
+        {
+          "op": "suffer_unless_discard",
+          "who": "players_in_rear_or_flank",
+          "discard_type": "dodge"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "Place a dust token in each sector where at least one player was targeted (max: 2 dust tokens per sector).",
+        "it": "Piazza un segnalino dust in ogni settore dove almeno un giocatore e' stato bersagliato (max 2 per settore).",
+        "effects": [
+          {
+            "op": "place_dust",
+            "where": "targeted_sectors"
+          }
+        ]
+      }
+    },
+    "45011": {
+      "name": "Smash",
+      "reaction": "monster_turned",
+      "refresh": 4,
+      "art": "res://art/monsters/toramat/g3_08_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_05_retro.jpg",
+      "text": "If there is a rock terrain in the rear sector, remove it. Each player in that sector suffers DMG unless they reveal a dodge from their hand.",
+      "it": "Se c'e' un terreno rock nel settore rear, rimuovilo. Ogni giocatore in quel settore subisce DMG a meno che non riveli un dodge dalla mano.",
+      "effects": [
+        {
+          "op": "remove_terrain",
+          "terrain": "rock",
+          "where": "rear"
+        },
+        {
+          "op": "suffer_unless_reveal",
+          "who": "players_in_rear",
+          "type": "dodge"
+        }
+      ]
+    },
+    "45012": {
+      "name": "Smash",
+      "reaction": "monster_turned",
+      "refresh": 4,
+      "art": "res://art/monsters/toramat/g1_05_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_05_retro.jpg",
+      "text": "Remove a rock terrain from the rear sector. Each player in that sector suffers DMG unless they discard a dodge from their hand.",
+      "it": "Rimuovi un terreno rock dal settore rear. Ogni giocatore in quel settore subisce DMG a meno che non scarti un dodge dalla mano.",
+      "effects": [
+        {
+          "op": "remove_terrain",
+          "terrain": "rock",
+          "where": "rear"
+        },
+        {
+          "op": "suffer_unless_discard",
+          "who": "players_in_rear",
+          "discard_type": "dodge"
+        }
+      ]
+    },
+    "45013": {
+      "name": "Hardening",
+      "reaction": "end_of_round",
+      "refresh": 9,
+      "art": "res://art/monsters/toramat/g1_06_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_06_retro.jpg",
+      "text": "Increase the hardening level by 1 unless the aggro player discards a maneuver from their hand. Then if Toramat is hardened, it gains PP-1 struggle.",
+      "it": "Aumenta il livello di hardening di 1 a meno che il giocatore aggro non scarti un maneuver dalla mano. Poi, se Toramat e' hardened, guadagna (giocatori-1) struggle.",
+      "effects": [
+        {
+          "op": "hardening",
+          "n": 1,
+          "unless_discard": {
+            "who": "aggro",
+            "type": "maneuver"
+          }
+        },
+        {
+          "op": "monster_gain_struggle",
+          "n": "players_minus_1",
+          "condition": "monster_hardened"
+        }
+      ]
+    },
+    "45014": {
+      "name": "Hardening",
+      "reaction": "end_of_round",
+      "refresh": 9,
+      "art": "res://art/monsters/toramat/g6_06_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_06_retro.jpg",
+      "text": "Increase the hardening level by 1 unless all players discard a maneuver from their hand. Then if Toramat is hardened, it gains 1 PP struggle.",
+      "it": "Aumenta il livello di hardening di 1 a meno che tutti i giocatori non scartino un maneuver dalla mano. Poi, se Toramat e' hardened, guadagna 1 struggle per giocatore.",
+      "effects": [
+        {
+          "op": "hardening",
+          "n": 1,
+          "unless_discard": {
+            "who": "all",
+            "type": "maneuver"
+          }
+        },
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player",
+          "condition": "monster_hardened"
+        }
+      ]
+    },
+    "45015": {
+      "name": "Skull Bash",
+      "reaction": "turn_start_front",
+      "refresh": 8,
+      "art": "res://art/monsters/toramat/g1_07_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_07_retro.jpg",
+      "text": "The active player suffers DMG unless they reveal a dodge from their hand. If they do reveal a dodge, remove 1 acceleration from Toramat.",
+      "it": "Il giocatore attivo subisce DMG a meno che non riveli un dodge dalla mano. Se lo rivela, rimuovi 1 acceleration da Toramat.",
+      "effects": [
+        {
+          "op": "suffer_unless_reveal",
+          "who": "active",
+          "type": "dodge",
+          "on_reveal": [
+            {
+              "op": "acceleration",
+              "n": -1
+            }
+          ]
+        }
+      ]
+    },
+    "45016": {
+      "name": "Skull Bash",
+      "reaction": "turn_start_front",
+      "refresh": 8,
+      "art": "res://art/monsters/toramat/g4_07_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_07_retro.jpg",
+      "text": "Toramat gains 1 struggle for each player in the front sector. Each player in the front sector suffers DMG+1 unless they reveal 2 dodges from their hand. Remove 1 acceleration token from Toramat for each player that revealed 2 dodges this way.",
+      "it": "Toramat guadagna 1 struggle per ogni giocatore nel settore front. Ogni giocatore nel front subisce DMG+1 a meno che non riveli 2 dodge dalla mano. Rimuovi 1 acceleration per ogni giocatore che li ha rivelati.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "per_target": "players_in_front"
+        },
+        {
+          "op": "suffer_unless_reveal",
+          "who": "players_in_front",
+          "type": "dodge",
+          "n": 2,
+          "damage_bonus": 1,
+          "on_reveal": [
+            {
+              "op": "acceleration",
+              "n": -1
+            }
+          ]
+        }
+      ]
+    },
+    "45017": {
+      "name": "Ancient Fury",
+      "reaction": "aggro_played",
+      "refresh": 6,
+      "art": "res://art/monsters/toramat/g3_00_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_08_retro.jpg",
+      "text": "Toramat gains 1 PP struggle.",
+      "it": "Toramat guadagna 1 struggle per giocatore.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        }
+      ]
+    },
+    "45018": {
+      "name": "Ancient Fury",
+      "reaction": "aggro_played",
+      "refresh": 6,
+      "art": "res://art/monsters/toramat/g1_08_fronte.jpg",
+      "back": "res://art/monsters/toramat/g1_08_retro.jpg",
+      "text": "Toramat gains 1 PP struggle. The active player becomes threatened.",
+      "it": "Toramat guadagna 1 struggle per giocatore. Il giocatore attivo diventa threatened.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "become_threatened",
+          "who": "active"
+        }
+      ]
+    },
+    "45019": {
+      "name": "Out of Control",
+      "reaction": "on_enter_play",
+      "refresh": 5,
+      "art": "res://art/monsters/toramat/sciolta_3.jpg",
+      "back": "res://art/monsters/toramat/sciolta_3_retro.jpg",
+      "text": "The monster turns to the active player. That player suffers DMG unless they reveal 2 dodges from their hand. Then discard any other behavior card in play with the aggro reaction.",
+      "it": "Il mostro si gira verso il giocatore attivo. Quel giocatore subisce DMG a meno che non riveli 2 dodge dalla mano. Poi scarta ogni altra behavior in gioco con la reazione aggro.",
+      "effects": [
+        {
+          "op": "monster_turn_to",
+          "criteria": "active"
+        },
+        {
+          "op": "suffer_unless_reveal",
+          "who": "active",
+          "type": "dodge",
+          "n": 2
+        },
+        {
+          "op": "discard_behaviors_with_reaction",
+          "reaction": "aggro_played"
+        }
+      ]
+    },
+    "45020": {
+      "name": "Crashing Charge",
+      "reaction": "on_enter_play",
+      "refresh": 5,
+      "art": "res://art/monsters/toramat/sciolta_4.jpg",
+      "back": "res://art/monsters/toramat/sciolta_3_retro.jpg",
+      "text": "The monster turns to the active player. Then players in the front sector suffer DMGx2 unless the active player removes a rock terrain from that sector. If they do remove a rock terrain, remove 1 PP acceleration tokens, set the hardening level to 1 and Toramat suffers a wound. Discard any other behavior card in play with the aggro reaction.",
+      "it": "Il mostro si gira verso il giocatore attivo. Poi i giocatori nel settore front subiscono DMGx2 a meno che il giocatore attivo non rimuova un terreno rock da quel settore. Se lo rimuove: togli 1 acceleration per giocatore, porta l'hardening a 1 e Toramat subisce una ferita. Scarta ogni altra behavior in gioco con la reazione aggro.",
+      "effects": [
+        {
+          "op": "monster_turn_to",
+          "criteria": "active"
+        },
+        {
+          "op": "remove_terrain_or_suffer",
+          "terrain": "rock",
+          "where": "front",
+          "who": "players_in_front",
+          "damage_multiplier": 2,
+          "on_removed": [
+            {
+              "op": "acceleration",
+              "n": -1,
+              "scale": "per_player"
+            },
+            {
+              "op": "hardening",
+              "set": 1
+            },
+            {
+              "op": "monster_suffer_wounds",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "op": "discard_behaviors_with_reaction",
+          "reaction": "aggro_played"
+        }
+      ]
+    }
+  },
+  "perils": {
+    "45101": {
+      "n": 1,
+      "stance": 1,
+      "name": "Granite Skin",
+      "permanent": true,
+      "art": "res://art/monsters/toramat/g2_01_fronte.jpg",
+      "text": "Permanent. At the end of the round, if Toramat has 1 PP or more struggle, increase the hardening level by 1.",
+      "it": "Permanente. Alla fine del round, se Toramat ha almeno 1 struggle per giocatore, aumenta il livello di hardening di 1.",
+      "abilities": [
+        {
+          "trigger": "end_of_round",
+          "condition": "struggle_per_player",
+          "effects": [
+            {
+              "op": "hardening",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    },
+    "45102": {
+      "n": 2,
+      "stance": 2,
+      "name": "Rising Fury",
+      "permanent": true,
+      "art": "res://art/monsters/toramat/g2_00_fronte.jpg",
+      "text": "Permanent. Escalation: Toramat gains 1 acceleration (max: 1 PP acceleration).",
+      "it": "Permanente. Escalation: Toramat guadagna 1 acceleration (max 1 per giocatore).",
+      "abilities": [
+        {
+          "trigger": "escalation",
+          "effects": [
+            {
+              "op": "acceleration",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    },
+    "451010": {
+      "n": 1,
+      "stance": 1,
+      "name": "Granite Skin",
+      "aggression": "V",
+      "permanent": true,
+      "art": "res://art/monsters/toramat/g2_01_retro.jpg",
+      "text": "Permanent. At the end of the round, if Toramat has 1 or more struggle, increase the hardening level by 1.",
+      "it": "Permanente. Alla fine del round, se Toramat ha almeno 1 struggle, aumenta il livello di hardening di 1.",
+      "abilities": [
+        {
+          "trigger": "end_of_round",
+          "condition": "struggle_at_least_1",
+          "effects": [
+            {
+              "op": "hardening",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    },
+    "451020": {
+      "n": 2,
+      "stance": 2,
+      "name": "Rising Fury",
+      "aggression": "V",
+      "permanent": true,
+      "art": "res://art/monsters/toramat/g2_00_retro.jpg",
+      "text": "Permanent. Escalation: Toramat gains 1 acceleration (max: 1 PP acceleration).",
+      "it": "Permanente. Escalation: Toramat guadagna 1 acceleration (max 1 per giocatore).",
+      "abilities": [
+        {
+          "trigger": "escalation",
+          "effects": [
+            {
+              "op": "acceleration",
+              "n": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "objectives": {
+    "45201": {
+      "name": "Crash on the Rocks",
+      "stance": 1,
+      "permanent": true,
+      "art": "res://art/monsters/toramat/sciolta_6.jpg",
+      "text": "Permanent. At the start of a player's turn, that player may reveal 2 aggro cards from their hand. If they do, place a counter on this card. When there are 1 PP counters on this card, remove this card from the game and place Crashing Charge on top of the behavior deck.",
+      "it": "Permanente. All'inizio del turno di un giocatore, quel giocatore puo' rivelare 2 carte aggro dalla mano. Se lo fa, metti un segnalino su questa carta. Quando ci sono tanti segnalini quanti i giocatori, rimuovi questa carta dal gioco e metti Crashing Charge in cima al mazzo behavior.",
+      "abilities": [
+        {
+          "trigger": "turn_start",
+          "reveal": {
+            "kind": "aggro",
+            "n": 2
+          },
+          "effects": [
+            {
+              "op": "add_counter",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "trigger": "counters_reached",
+          "threshold": 1,
+          "scale": "per_player",
+          "effects": [
+            {
+              "op": "place_behavior_on_top",
+              "id": 45020
+            },
+            {
+              "op": "complete_objective"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

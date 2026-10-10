@@ -1,0 +1,60 @@
+# Costruisce la versione web del gioco con Godot e la pubblica su GitHub Pages
+# a ogni aggiornamento del ramo main (oppure a mano dalla scheda Actions).
+# Prima di esportare, tools/alleggerisci_web.py semplifica le miniature e comprime le immagini
+# SOLO nella copia dell'azione: il progetto resta a piena qualità per la versione desktop.
+name: Pubblica su GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scarica Godot 4.7 e il modello di esportazione web
+        run: |
+          wget -q https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_linux.x86_64.zip
+          unzip -q Godot_v4.7-stable_linux.x86_64.zip
+          wget -q https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_export_templates.tpz
+          T=~/.local/share/godot/export_templates/4.7.stable
+          mkdir -p $T
+          unzip -q -j Godot_v4.7-stable_export_templates.tpz templates/web_nothreads_release.zip -d $T
+          cp $T/web_nothreads_release.zip $T/web_nothreads_debug.zip
+
+      - name: Alleggerisce modelli 3D e immagini per il browser
+        run: python3 tools/alleggerisci_web.py
+
+      - name: Esporta la versione web
+        run: |
+          mkdir -p build/web
+          ./Godot_v4.7-stable_linux.x86_64 --headless --path . --import || true
+          ./Godot_v4.7-stable_linux.x86_64 --headless --path . --export-release "Web" build/web/index.html
+          test -f build/web/index.pck
+          touch build/web/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

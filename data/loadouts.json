@@ -1,0 +1,4508 @@
+{
+  "_note": "Generato da tools/build_loadouts.py: non modificare a mano.",
+  "upgrades_per_level": {
+    "1": 2,
+    "2": 4,
+    "3": 6
+  },
+  "hunters": {
+    "dareon": {
+      "weapons": [
+        {
+          "name": "Great sword",
+          "level": 1,
+          "text": "AA: Increase the damage the attack deals by 2 and remove 1 struggle.",
+          "element": "Base",
+          "damage": 2,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Bloodreef",
+          "level": 1,
+          "text": "Increase your hand size limit by 1.",
+          "element": "Coral",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Bloodreef",
+          "level": 2,
+          "text": "Increase your hand size limit by 1.\nMA: Heal 2",
+          "element": "Coral",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Bloodreef",
+          "level": 3,
+          "text": "Increase your hand size limit by 1.\nMA: Heal 3 and remove 1 struggle.",
+          "element": "Coral",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Shimmerblade",
+          "level": 1,
+          "text": "Start: You may reveal AAA from your hand to reduce the stamina cost of those cards by 1 until the end of this turn.",
+          "element": "Crystal",
+          "damage": 3,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Shimmerblade",
+          "level": 2,
+          "text": "Start: You may reveal AAA from your hand to reduce the stamina cost of those cards by 1 until the end of this turn.\nAA: Increase the damage the attack deals by 3.",
+          "element": "Crystal",
+          "damage": 5,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Shimmerblade",
+          "level": 3,
+          "text": "Start/Action: You may reveal AAA from your hand to reduce the stamina cost of those cards by 1 until the end of this turn (max: once per turn).\nAA: Increase the damage the attack deals by 5.",
+          "element": "Crystal",
+          "damage": 7,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Windblade",
+          "level": 1,
+          "text": "When you play a card with slash,  deal 1 damage.",
+          "element": "Feather",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Windblade",
+          "level": 2,
+          "text": "When you play a card with slash,  deal 2 damage.\nStart: If the top card of your discard pile has slash, you may add it to your hand.",
+          "element": "Feather",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Windblade",
+          "level": 3,
+          "text": "When you play a card with slash,  deal 3 damage.\nStart: If the top card of your discard pile has slash, you may add it to your hand.",
+          "element": "Feather",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Flame Tounge",
+          "level": 1,
+          "text": "A: You may suffer 1 damage. If you do, increase the damage per attack deals by 3 (max: once per turn).",
+          "element": "Fire",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Flame Tounge",
+          "level": 2,
+          "text": "Start: You may suffer 2 damage. If you do, Flame Tongue gets +4 damage until the end of the turn.",
+          "element": "Fire",
+          "damage": 6,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Flame Tounge",
+          "level": 3,
+          "text": "Start: You may suffer 3 damage. If you do, Flame Tongue gets +6 damage until the end of the turn.\nWhen your health become critical, search your discard pile for a A and add it to your hand.",
+          "element": "Fire",
+          "damage": 9,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dragon Claw",
+          "level": 1,
+          "text": "When you pay the stamina cost of A,  you may increase that cost by 1. If you do, increase the damage that attack deals by 3 (max: once per turn).",
+          "element": "Horn",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dragon Claw",
+          "level": 2,
+          "text": "When you pay the stamina cost of A,  you may increase that cost by 1. If you do, increase the damage that attack deals by 6 (max: once per turn).",
+          "element": "Horn",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dragon Claw",
+          "level": 3,
+          "text": "When you pay the stamina cost of A,  you may increase that cost by 1. If you do, increase the damage that attack deals by 12 (max: once per turn).",
+          "element": "Horn",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Frostblade",
+          "level": 1,
+          "text": "When you pay the stamina cost of a M,  you may increase that cost by 1. If you do, deal 4 damage.",
+          "element": "Ice",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Frostblade",
+          "level": 2,
+          "text": "When you pay the stamina cost of a M,  you may increase that cost by 1. If you do, inflicts slow or deal 6 damage.",
+          "element": "Ice",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 7,
+            "parry": 5,
+            "dodge": 3
+          }
+        },
+        {
+          "name": "Frostblade",
+          "level": 3,
+          "text": "When you pay the stamina cost of a M,  you may increase that cost by 1. If you do, inflicts slow and deal 9 damage.",
+          "element": "Ice",
+          "damage": 9,
+          "composition": {
+            "attack": 5,
+            "maneuver": 7,
+            "parry": 5,
+            "dodge": 3
+          }
+        },
+        {
+          "name": "Aurean Blade",
+          "level": 1,
+          "text": "A: Look at the top card of the attrition deck. You may choose to discard it.",
+          "element": "Metal",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Aurean Blade",
+          "level": 2,
+          "text": "When the attrition deck is emptied, inflicts vulnerable.\nA: Look at the top card of the attrition deck. You may choose to discard it.",
+          "element": "Metal",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Aurean Blade",
+          "level": 3,
+          "text": "When the attrition deck is emptied, inflicts vulnerable.\nStart: Look at the top card of the attrition deck. You may choose to discard it.",
+          "element": "Metal",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Iridian Sunder",
+          "level": 1,
+          "text": "When you empty your deck, Iridian Sunder gets +1 damage (max: 3 times per game).",
+          "element": "Thunder",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Iridian Sunder",
+          "level": 2,
+          "text": "When you empty your deck, Iridian Sunder gets +1 damage (max: 3 times per game).\nMAA: If Iridian Sunder's damage is 8 or more, stun the monster.",
+          "element": "Thunder",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Iridian Sunder",
+          "level": 3,
+          "text": "When you empty your deck, Iridian Sunder gets +2 damage (max: 3 times per game).\nMAA: If Iridian Sunder's damage is 11 or more, stun the monster.",
+          "element": "Thunder",
+          "damage": 9,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Kobra",
+          "level": 1,
+          "text": "DM: Deal 1 damage for each A in your discard pile",
+          "element": "Venom",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Kobra",
+          "level": 2,
+          "text": "DM: Deal 3 damage for each A in your discard pile",
+          "element": "Venom",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Kobra",
+          "level": 3,
+          "text": "DM: Deal 5 damage for each A in your discard pile. If this inflicts a wound, inflict vulnerable.",
+          "element": "Venom",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 6
+          }
+        }
+      ],
+      "masteries": [
+        {
+          "name": "Relentelss Assault",
+          "track": "S",
+          "text": "UNFOCUSED(2)\n A A: Place a counter on this card.\nFOCUSED\n Reduce the stamina cost of all A you play by 1."
+        },
+        {
+          "name": "Dragon Guard",
+          "track": "A2",
+          "text": "UNFOCUSED(2)\n PA: Place a counter on this card.\nFOCUSED\nStart Recycle 2.\nPA: Gain a defense token."
+        },
+        {
+          "name": "The Berserker",
+          "track": "B2",
+          "text": "UNFOCUSED(1)\nWhen your health become critical, place a counter on this card.\nFOCUSED\nWhen focused: You may heal 1xWL\nWhen you enter the berserker state, you may heal 1xWL.\nYour weapon has +2xWL damage"
+        },
+        {
+          "name": "Tenacious Blade",
+          "track": "C2",
+          "text": "UNFOCUSED(2) \nWhen you suffer damage, you may reveal a P from your hand. If you do, place a counter on this card.\nFOCUSED\n P: Remove 1 struggle and gain a defense token.\nWhen you suffer damage, you may discard a P from your hand to halve that damage (rounded down)."
+        },
+        {
+          "name": "Slash Storm",
+          "track": "D2",
+          "text": "UNFOCUSED(1)\nWhen you play a card, if you have 3 cards with Slash in your sequence, place a counter on this card.\nFOCUSED\n Your sequence limit is increased by 1.\nStart: if you have a card with Slash in your hand, search your discard pile for another card with Slash and add it to your hand."
+        },
+        {
+          "name": "Sword Master",
+          "track": "E2",
+          "text": "UNFOCUSED(4)\nM: Place a counter on this card\nFOCUSED\nReduce the stamina cost of all M you play by 1.\nMM: Double your base wapeon damage until the end of this turn (max: twice per turn)."
+        }
+      ],
+      "upgrades": [
+        {
+          "name": "Balanced Defense",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Reduce the stamina cost of the next card you play by 1.",
+          "track": "A1",
+          "id": 212700,
+          "art": "res://art/dareon/upgrade_212700.jpg"
+        },
+        {
+          "name": "Lateral Move",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist.\nWhile this is the top card of your discard pile, reduce the stamina cost of your movements to 0.",
+          "track": "A1",
+          "id": 214000,
+          "art": "res://art/dareon/upgrade_214000.jpg"
+        },
+        {
+          "name": "Feral Desire",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Search your discard pile for a card with slash and add it to your hand.",
+          "track": "A2",
+          "id": 213400,
+          "art": "res://art/dareon/upgrade_213400.jpg"
+        },
+        {
+          "name": "Lacerate",
+          "type": "attack",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "P↓: This attack inflicts vulnerable.",
+          "track": "A2",
+          "id": 213800,
+          "art": "res://art/dareon/upgrade_213800.jpg"
+        },
+        {
+          "name": "Blind Rage",
+          "type": "attack",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist.\nIncrease your sequence limit by 1 this turn",
+          "track": "B1",
+          "id": 213000,
+          "art": "res://art/dareon/upgrade_213000.jpg"
+        },
+        {
+          "name": "Wrath of Blood",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "If your health is critical, increase the damage this attack deals by 5xWL",
+          "track": "B1",
+          "id": 214300,
+          "art": "res://art/dareon/upgrade_214300.jpg"
+        },
+        {
+          "name": "Final Breath",
+          "type": "dodge",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "If your health is critical, draw up to your hand size limit +1.",
+          "track": "B2",
+          "id": 213500,
+          "art": "res://art/dareon/upgrade_213500.jpg"
+        },
+        {
+          "name": "Primal Fury",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Berserker.\nDraw 1 or heal 1xWL",
+          "track": "B2",
+          "id": 214200,
+          "art": "res://art/dareon/upgrade_214200.jpg"
+        },
+        {
+          "name": "Defensive Insight",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "Reveal any number of P from your hand and then draw that many cards.",
+          "track": "C1",
+          "id": 213100,
+          "art": "res://art/dareon/upgrade_213100.jpg"
+        },
+        {
+          "name": "Guardian",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "At the end of your action phase, return a card from your sequence to your hand.",
+          "track": "C1",
+          "id": 213600,
+          "art": "res://art/dareon/upgrade_213600.jpg"
+        },
+        {
+          "name": "Exhausting Defense",
+          "type": "parry",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Remove 1 struggle for each defensive in your hand and reduce the stamina cost of the next card you play by 1.",
+          "track": "C2",
+          "id": 213300,
+          "art": "res://art/dareon/upgrade_213300.jpg"
+        },
+        {
+          "name": "Sentinel",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "Resilience.\nWhen you or another play in your sector would suffer damage, you may discard this card from your hand. If you do, prevent that damage",
+          "track": "C2",
+          "id": 214500,
+          "art": "res://art/dareon/upgrade_214500.jpg"
+        },
+        {
+          "name": "Blade Reflex",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "While your mastery is focused, ignore the stamina cost of this card.\nAt the end of your action phase, return a card with Slash from your sequence to your hand.",
+          "track": "D1",
+          "id": 212800,
+          "art": "res://art/dareon/upgrade_212800.jpg"
+        },
+        {
+          "name": "Rapid Slash",
+          "type": "maneuver",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [
+            "slash"
+          ],
+          "text": "Assist.",
+          "track": "D1",
+          "id": 214400,
+          "art": "res://art/dareon/upgrade_214400.jpg"
+        },
+        {
+          "name": "Dragon Descent",
+          "type": "attack",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": true,
+          "traits": [
+            "slash"
+          ],
+          "text": "A↓: Increase the damage this attack deals by 2xWL for each other card with Slash in your sequence.",
+          "track": "D2",
+          "id": 213200,
+          "art": "res://art/dareon/upgrade_213200.jpg"
+        },
+        {
+          "name": "Hurricane",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Reduce the stamina cost of cards with Slash by 1 until the end of the turn.",
+          "track": "D2",
+          "id": 213700,
+          "art": "res://art/dareon/upgrade_213700.jpg"
+        },
+        {
+          "name": "Lateral Jump",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "When you play a M in your sequence, you may discard this card from your hand to immediately move witouth paying any stamina cost.",
+          "track": "E1",
+          "id": 213900,
+          "art": "res://art/dareon/upgrade_213900.jpg"
+        },
+        {
+          "name": "Tactical Guard",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Increase the struggle this removes by 1.\nWhile a Defensive is on top of your discard pile, it counts for the attrition check this turn.",
+          "track": "E1",
+          "id": 214600,
+          "art": "res://art/dareon/upgrade_214600.jpg"
+        },
+        {
+          "name": "Blade Surge",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "You may play a M from your discard pile as the next card in your sequence witouth paying its stamina cost.",
+          "track": "E2",
+          "id": 212900,
+          "art": "res://art/dareon/upgrade_212900.jpg"
+        },
+        {
+          "name": "Momentum Strike",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Increase the damage this attack deals by 1xWL for each M in your discard pile.",
+          "track": "E2",
+          "id": 214100,
+          "art": "res://art/dareon/upgrade_214100.jpg"
+        }
+      ]
+    },
+    "mirah": {
+      "weapons": [
+        {
+          "name": "Great Bow",
+          "level": 1,
+          "text": "A: Volley 1",
+          "element": "Base",
+          "damage": 2,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Abyss",
+          "level": 1,
+          "text": "When you discard a A from your hand to generate stamina, heal 1 (max: once per turn).",
+          "element": "Coral",
+          "damage": 4,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Abyss",
+          "level": 2,
+          "text": "Start: Recycle 1.\nWhen you discard a A from your hand to generate stamina, heal 2 (max: once per turn).",
+          "element": "Coral",
+          "damage": 5,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Abyss",
+          "level": 3,
+          "text": "Start: Recycle 2.\nWhen you discard a A from your hand to generate stamina, heal 3 (max: once per turn).",
+          "element": "Coral",
+          "damage": 7,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Death Sparkle",
+          "level": 1,
+          "text": "When you play a card in your sequence, reveal the top card of your deck. If the color of that card matches the one you played, add it to your hand (max: once per turn).",
+          "element": "Crystal",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Death Sparkle",
+          "level": 2,
+          "text": "When you play a card in your sequence, reveal the top card of your deck. If the color of that card matches the one you played, add it to your hand (max: 2 times per turn).",
+          "element": "Crystal",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Death Sparkle",
+          "level": 3,
+          "text": "When you play a card in your sequence, reveal the top card of your deck. If the color of that card matches the one you played, add it to your hand (max: 3 times per turn).",
+          "element": "Crystal",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Airswan",
+          "level": 1,
+          "text": "MM: Draw 1.",
+          "element": "Feather",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 3,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Airswan",
+          "level": 2,
+          "text": "MM: Draw 1. The card you drew gains stealth until the end of this turn.",
+          "element": "Feather",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 3,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Airswan",
+          "level": 3,
+          "text": "MM: Draw 1. The card you drew gains stealth, and its stamina cost is reduced by 1 until the end of this turn.",
+          "element": "Feather",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 3,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Ashbringer",
+          "level": 1,
+          "text": "When you discard a M from your hand, deal 2 damage.",
+          "element": "Fire",
+          "damage": 3,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Ashbringer",
+          "level": 2,
+          "text": "Start: Volley 1\nWhen you discard a M from your hand, deal 3 damage.",
+          "element": "Fire",
+          "damage": 5,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Ashbringer",
+          "level": 3,
+          "text": "Start: Volley 2\nWhen you discard a M from your hand, deal 5 damage.",
+          "element": "Fire",
+          "damage": 7,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Tuskbow",
+          "level": 1,
+          "text": "Increase your hand size limit by 1.",
+          "element": "Horn",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Tuskbow",
+          "level": 2,
+          "text": "Increase your hand size limit by 1.\nStart: Recycle 1.",
+          "element": "Horn",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Tuskbow",
+          "level": 3,
+          "text": "Increase your hand size limit by 1.\nStart: Recycle 2.",
+          "element": "Horn",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Northlaw",
+          "level": 1,
+          "text": "When you pay the stamina cost of a card with aim, you may increase that cost by 1. If you do, inflicts slow.",
+          "element": "Ice",
+          "damage": 3,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Northlaw",
+          "level": 2,
+          "text": "MMM: Draw 1.\nWhen you pay the stamina cost of a card with aim, you may increase that cost by 1. If you do, inflicts slow.",
+          "element": "Ice",
+          "damage": 6,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Northlaw",
+          "level": 3,
+          "text": "Offensive offensive offensive: Draw 1.\nWhen you pay the stamina cost of a card with aim, you may increase that cost by 1. If you do, inflicts slow.",
+          "element": "Ice",
+          "damage": 7,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Iron Bow",
+          "level": 1,
+          "text": "AA: Increase the damage the attack deals by 3.",
+          "element": "Metal",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Iron Bow",
+          "level": 2,
+          "text": "AA: Gain a defense token and increase the damage the attack deals by 3.",
+          "element": "Metal",
+          "damage": 6,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Iron Bow",
+          "level": 3,
+          "text": "AA: Increase the damage the attack deals by 5.\nYou and the next player in turn order each gain a defense token.",
+          "element": "Metal",
+          "damage": 9,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Lightning Bow",
+          "level": 1,
+          "text": "Start: Place a counter on Lightning Bow for each A in tour hand.\nAt the end of the round, discard all counters from Lightining Bow and deal 1 damage for each counter discarded.",
+          "element": "Thunder",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Lightning Bow",
+          "level": 2,
+          "text": "Start: Place a counter on Lightning Bow for each A in tour hand.\nAt the end of the round, discard all counters from Lightining Bow and deal 2 damage for each counter discarded.",
+          "element": "Thunder",
+          "damage": 6,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Lightning Bow",
+          "level": 3,
+          "text": "Start: Place a counter on Lightning Bow for each A in tour hand.\nAt the end of the round, discard all counters from Lightining Bow and deal 3 damage for each counter discarded.",
+          "element": "Thunder",
+          "damage": 9,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Spider Needle",
+          "level": 1,
+          "text": "Start: Volley 1.",
+          "element": "Venom",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Spider Needle",
+          "level": 2,
+          "text": "Start: Volley 2.\nWhen the monster suffers a wound, deal 2 damage for each A in your discard pile.",
+          "element": "Venom",
+          "damage": 6,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Spider Needle",
+          "level": 3,
+          "text": "Start: Volley 3.\nWhen the monster suffers a wound, deal 3 damage for each A in your discard pile.",
+          "element": "Venom",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        }
+      ],
+      "masteries": [
+        {
+          "name": "Ultimate Shot",
+          "track": "S",
+          "text": "UNFOCUSED (1)\nWhen you empty your deck, place a counter on this card.\nFOCUSED\nStart: Volley 2.\nWhen you empty your deck, deal 5WL damage"
+        },
+        {
+          "name": "Storm of Arrows",
+          "track": "A2",
+          "text": "UNFOCUSED (3)\nAA: Place a counter on this card.\nFOCUSED\nWhen you deal damage through volley, increase that damage by 1WL.\nA: Increase the amount of damage the attack deals by 1WL for each other A in your sequence."
+        },
+        {
+          "name": "Burst",
+          "track": "B2",
+          "text": "UNFOCUSED (3)\nWhen you empty your hand, place a counter on this card.\nFOCUSED\nPrevent any fatigue damage you would suffer\nWhen you empty your hand, deal 3WL damage."
+        },
+        {
+          "name": "The Silencer",
+          "track": "C2",
+          "text": "UNFOCUSED (2)\nWhen you inflict blind, place a counter on this card.\nFOCUSED\nWhen a behavior card is revealed, you may discard a card with aim from your hand to cancel the effects of that behavior card (max: once per round)."
+        },
+        {
+          "name": "Deadly Aim",
+          "track": "D2",
+          "text": "UNFOCUSED (3)\nWhen you recycle a card, you may place it face down under this card (max: 1 per round).\nIf you do, place a counter on this card.\nFOCUSED\nWhen focused: Discard the cards underneat Deadly Aim and deal 4WL damage for each offensive card discarded this way.\nAt the end of the round, lose focus."
+        },
+        {
+          "name": "Exhausting Shot",
+          "track": "E2",
+          "text": "UNFOCUSED (4)\nWhen you play a card with aim, place a counter on this card.\nFOCUSED\nIncrease the struggle your maneuvers removes by 1.\nWhen the monster reaches 0 struggle, you may discard a A from your hand to inflict vulnerable (max: once per round)."
+        }
+      ],
+      "upgrades": [
+        {
+          "name": "Arrow Switch",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "When you play a A, you may recycle this card from your hand.",
+          "track": "A1",
+          "id": 214400,
+          "art": "res://art/mirah/upgrade_214400.jpg"
+        },
+        {
+          "name": "Double Shot",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "A↓: Increase the damage this attack deals by 3WL.",
+          "track": "A1",
+          "id": 212900,
+          "art": "res://art/mirah/upgrade_212900.jpg"
+        },
+        {
+          "name": "Dancing Arrow",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Assist. Volley 2.\nThis card is considered to be both M and A",
+          "track": "A2",
+          "id": 212800,
+          "art": "res://art/mirah/upgrade_212800.jpg"
+        },
+        {
+          "name": "Flash Arrow",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Discard the top card of your deck. If that card is a A, you may play it as the next card in your sequence witouth paying its stamina cost.",
+          "track": "A2",
+          "id": 213100,
+          "art": "res://art/mirah/upgrade_213100.jpg"
+        },
+        {
+          "name": "Refill the Quiver",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Shuffle all A from your discard pile into your deck.\nMF: You may shuffle your entire discard pile into your deck instead.",
+          "track": "B1",
+          "id": 214000,
+          "art": "res://art/mirah/upgrade_214000.jpg"
+        },
+        {
+          "name": "Waiting Game",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "At the start of the round,  you may reveal this card from your hand to become the last player in player order. If you do, do you may recycle any number of cards.",
+          "track": "B1",
+          "id": 214600,
+          "art": "res://art/mirah/upgrade_214600.jpg"
+        },
+        {
+          "name": "Infinite Blast",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist.\nRecycle up to three times.",
+          "track": "B2",
+          "id": 213300,
+          "art": "res://art/mirah/upgrade_213300.jpg"
+        },
+        {
+          "name": "Second Chance",
+          "type": "parry",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Discard any number of cards from your hand and then draw up to your hand size limit.",
+          "track": "B2",
+          "id": 214200,
+          "art": "res://art/mirah/upgrade_214200.jpg"
+        },
+        {
+          "name": "Midair Shot",
+          "type": "maneuver",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [
+            "aim"
+          ],
+          "text": "When you discard this card from your hand,  deal your weapon damage.",
+          "track": "C1",
+          "id": 213500,
+          "art": "res://art/mirah/upgrade_213500.jpg"
+        },
+        {
+          "name": "Take Aim",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "Stealt.\nSearch your discard pile for a card with aim and add it to your hand.",
+          "track": "C1",
+          "id": 214500,
+          "art": "res://art/mirah/upgrade_214500.jpg"
+        },
+        {
+          "name": "Combined Assault",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [
+            "aim"
+          ],
+          "text": "Recycle 1.\nWhen a player plays AA, you may discard this card from your hand to inflict blind.",
+          "track": "C2",
+          "id": 212700,
+          "art": "res://art/mirah/upgrade_212700.jpg"
+        },
+        {
+          "name": "Precision Shot",
+          "type": "attack",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist. Stealth.\nIncrease the damage this attack deals by 2WL for each card with aim in your discard pile.",
+          "track": "C2",
+          "id": 213900,
+          "art": "res://art/mirah/upgrade_213900.jpg"
+        },
+        {
+          "name": "Open Target",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": true,
+          "traits": [],
+          "text": "When you reveal cards from your hand to deal damage as part of a stun resolution, you may reveal this card as if it were AA",
+          "track": "D1",
+          "id": 213600,
+          "art": "res://art/mirah/upgrade_213600.jpg"
+        },
+        {
+          "name": "Persistence",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Recycle 1.\nWhen you discard this card from the top of your deck, add it to your hand",
+          "track": "D1",
+          "id": 213800,
+          "art": "res://art/mirah/upgrade_213800.jpg"
+        },
+        {
+          "name": "Hail of Arrows",
+          "type": "attack",
+          "cost": 0,
+          "variable_cost": true,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Finisher.\nDiscard X cards from the top of your deck. Deal your base weapon damage for each offensive card discarded this way.",
+          "track": "D2",
+          "id": 213200,
+          "art": "res://art/mirah/upgrade_213200.jpg"
+        },
+        {
+          "name": "Retreat Shot",
+          "type": "dodge",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "Perform volley 2 or recycle 1.\nOpening: Prevent any attrition damage you would suffer this turn.",
+          "track": "D2",
+          "id": 214100,
+          "art": "res://art/mirah/upgrade_214100.jpg"
+        },
+        {
+          "name": "Final Reckoning",
+          "type": "attack",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [
+            "aim"
+          ],
+          "text": "Finisher.\nRemove 1 struggle and increase the damage this attack deals by 1WL for each A in your discard pile.",
+          "track": "E1",
+          "id": 213000,
+          "art": "res://art/mirah/upgrade_213000.jpg"
+        },
+        {
+          "name": "Lateral Jump",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "When you play a M in your sequence, you may discard this card from your hand to immediately move witouth paying any stamina cost.",
+          "track": "E1",
+          "id": 213400,
+          "art": "res://art/mirah/upgrade_213400.jpg"
+        },
+        {
+          "name": "Paralyzing Arrow",
+          "type": "maneuver",
+          "cost": 0,
+          "variable_cost": true,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Increase the struggle this maneuver removes by X (max: 5). If you pay 5 for this card, stun the monster.",
+          "track": "E2",
+          "id": 213700,
+          "art": "res://art/mirah/upgrade_213700.jpg"
+        },
+        {
+          "name": "Shielded Position",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "If you suffer attrition damage this turn, reduce that damage by 1WL and remove 1 struggle.",
+          "track": "E2",
+          "id": 214300,
+          "art": "res://art/mirah/upgrade_214300.jpg"
+        }
+      ]
+    },
+    "thoreg": {
+      "weapons": [
+        {
+          "name": "Hammer",
+          "level": 1,
+          "text": "M: If you are in the front sector, increase the struggle the maneuver removes by 1.",
+          "element": "Base",
+          "damage": 2,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Thyphoon",
+          "level": 1,
+          "text": "The stamina cost of the first M you play each turn is reduced by 1.",
+          "element": "Coral",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Thyphoon",
+          "level": 2,
+          "text": "The stamina cost of the first M you play each turn is reduced by 1.\nWhile your mastery is focused, the stamina cost of the first A you play each turn is reduce by 1.",
+          "element": "Coral",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Thyphoon",
+          "level": 3,
+          "text": "The stamina cost of the first M you play each turn is reduced by 1.\nWhile your mastery is focused, the stamina cost of the first A you play each turn is reduce by 2.",
+          "element": "Coral",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Radiant Stone",
+          "level": 1,
+          "text": "Start: You may reveal MMM from your hand to place a counter on your mastery card.",
+          "element": "Crystal",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Radiant Stone",
+          "level": 2,
+          "text": "Start: You may reveal MMM from your hand to place a counter on your mastery card.\nWhile your mastery is focused, Radiant Stone has +1 damage.",
+          "element": "Crystal",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Radiant Stone",
+          "level": 3,
+          "text": "Start: You may reveal MMM from your hand to place a counter on your mastery card.\nWhile your mastery is focused, Radiant Stone has +2 damage.",
+          "element": "Crystal",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Earthshaker",
+          "level": 1,
+          "text": "Start: If you have 2 cards with impetus in your hand, draw 1.",
+          "element": "Feather",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 4,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Earthshaker",
+          "level": 2,
+          "text": "Start: If you have 2 cards with impetus in your hand, draw 1.",
+          "element": "Feather",
+          "damage": 5,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Earthshaker",
+          "level": 3,
+          "text": "DPAM: Deal 20 damage\nStart: If you have 2 cards with impetus in your hand, draw 1.",
+          "element": "Feather",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Burning Stone",
+          "level": 1,
+          "text": "M: You may discard the top card of your deck. If that card is a A, you may add it to your hand.",
+          "element": "Fire",
+          "damage": 5,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Burning Stone",
+          "level": 2,
+          "text": "M: You may discard the top 2 card of your deck. If you do, you may add any A discarded this way to your hand.",
+          "element": "Fire",
+          "damage": 7,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Burning Stone",
+          "level": 3,
+          "text": "When you pay the stamina cost of A, you may suffer 3 damage to reduce that cost by 2.\nM: You may discard the top 2 card of your deck. If you do, you may add any A discarded this way to your hand.",
+          "element": "Fire",
+          "damage": 9,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Shellstone",
+          "level": 1,
+          "text": "When you pay the stamina cost of A, you may increase the cost by 1 to remove 1 struggle (max: once per turn).",
+          "element": "Horn",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Shellstone",
+          "level": 2,
+          "text": "When you pay the stamina cost of A, you may increase the cost by 1 to remove 2 struggle (max: once per turn).",
+          "element": "Horn",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Shellstone",
+          "level": 3,
+          "text": "When you pay the stamina cost of A, you may increase the cost by 1 to remove 2 struggle and confuse the monster (max: once per turn).",
+          "element": "Horn",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Froljark",
+          "level": 1,
+          "text": "When you play a card with impetus, inflicts slow.",
+          "element": "Ice",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Froljark",
+          "level": 2,
+          "text": "When you play a card with impetus, inflicts slow.\nWhile the monster is slowed, the front side is considered to be exposed.",
+          "element": "Ice",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Froljark",
+          "level": 3,
+          "text": "When you play a card with impetus, inflicts slow.\nWhile the monster is slowed, the front side is considered to be exposed and Froljark has +2 damage.",
+          "element": "Ice",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Rawstone",
+          "level": 1,
+          "text": "When a behavior card is revealed and you are in the front sector, you may increase its boost cost by 1 (max: 1 per round).",
+          "element": "Metal",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Rawstone",
+          "level": 2,
+          "text": "When you avoid attrition damage, deal 3 damage.\nWhen a behavior card is revealed and you are in the front sector, you may increase its boost cost by 1 (max: 1 per round).",
+          "element": "Metal",
+          "damage": 6,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Rawstone",
+          "level": 3,
+          "text": "When you avoid attrition damage, deal 5 damage.\nWhen a behavior card is revealed and you are in the front sector, you may increase its boost cost by 2 (max: 1 per round).",
+          "element": "Metal",
+          "damage": 9,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Skullshock",
+          "level": 1,
+          "text": "A: Place a counter on Skullshock (max:3 counters).\nIf there are already 3 counters on Skullshocks, stun the monster and remove all counters from it after the attack.",
+          "element": "Thunder",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Skullshock",
+          "level": 2,
+          "text": "Skullshocks has +1 damage for each counter on it.\nA: Place a counter on Skullshock (max:3 counters).\nIf there are already 3 counters on Skullshocks, stun the monster and remove all counters from it after the attack.",
+          "element": "Thunder",
+          "damage": 6,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Skullshock",
+          "level": 3,
+          "text": "Skullshocks has +2 damage for each counter on it.\nA: Place a counter on Skullshock (max:3 counters).\nIf there are already 3 counters on Skullshocks, stun the monster and remove all counters from it after the attack.",
+          "element": "Thunder",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Dragon Bane",
+          "level": 1,
+          "text": "DA: Increase the damage the attack deals by 1 for each M in your discard pile.",
+          "element": "Venom",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dragon Bane",
+          "level": 2,
+          "text": "DA: Increase the damage the attack deals by 3 for each M in your discard pile.",
+          "element": "Venom",
+          "damage": 6,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dragon Bane",
+          "level": 3,
+          "text": "DA: Increase the damage the attack deals by 5 for each M in your discard pile. If this inflicts a wound, stun the monster.",
+          "element": "Venom",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        }
+      ],
+      "masteries": [
+        {
+          "name": "Massive Blow",
+          "track": "S",
+          "text": "UNFOCUSED (2)\nWhen you stun the monster, place a counter on this card.\nFOCUSED\nM: Deal 2WL damage.\nMAA: Stun the monster."
+        },
+        {
+          "name": "Devastating Strenght",
+          "track": "A2",
+          "text": "UNFOCUSED(1)\nStart: You may take a strain token to place a counter on this card.\nFOCUSED\nYour weapon has +3WL  damage.\nAt the end of the round, lose focus."
+        },
+        {
+          "name": "Hammer Knight",
+          "track": "B2",
+          "text": "UNFOCUSED (2)\nMA: Place a counter on this card\nFOCUSED\nThe monster's front side is considered to be exposed during your turn. While you are in the front sector, your weapon has +1WL damage.\nAt the end of your action phase, if you are in the front sector, gain a defense token."
+        },
+        {
+          "name": "Dragon Tamer",
+          "track": "C2",
+          "text": "UNFOCUSED (1)\nWhen you reduce the monster to 0 struggle, place a counter on this card.\nFOCUSED\nWhen a behavior card is revealed and the monster has 1PP or less struggle,  you may immediately place your miniature on that behavior card. If you do, cancel the effects of that card and perform a riding check (max: once per round)."
+        },
+        {
+          "name": "Blood Rush",
+          "track": "D2",
+          "text": "UNFOCUSED (3)\nWhen the monster suffer a wound, draw 1 and place a counter on this card.\nFOCUSED\nIncrease your hand size limit by 1. Reduce the stamina cost of all cards with impetus you play by 1."
+        },
+        {
+          "name": "Overdrive",
+          "track": "E2",
+          "text": "UNFOCUSED (2)\nAt the end of your turn, you may take a strain token. If you do, place a counter on this card.\nFOCUSED\nWhen you discard a card from yout hand to generate stamina,  that card generates an additional stamina.\nWhen you pay the stamina cost of a offensive,  you may inacraese that cost by 1. If you do, deal 1WL damage."
+        }
+      ],
+      "upgrades": [
+        {
+          "name": "Impressive Strike",
+          "type": "maneuver",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [
+            "impetus"
+          ],
+          "text": "If you have any strain token, stun or confuse the monster.",
+          "track": "A1",
+          "id": 215700,
+          "art": "res://art/thoreg/upgrade_215700.jpg"
+        },
+        {
+          "name": "Step Back",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Finisher.\nDiscard a strain token.",
+          "track": "A1",
+          "id": 216600,
+          "art": "res://art/thoreg/upgrade_216600.jpg"
+        },
+        {
+          "name": "Adreanlina Rush",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": true,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "Draw X.",
+          "track": "A2",
+          "id": 214800,
+          "art": "res://art/thoreg/upgrade_214800.jpg"
+        },
+        {
+          "name": "Dashing Blow",
+          "type": "attack",
+          "cost": 4,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Increase the damage this attack deals by 5WL. Reduce the stamina cost of this card by 1 for each card with impetus in your discard pile.",
+          "track": "A2",
+          "id": 215200,
+          "art": "res://art/thoreg/upgrade_215200.jpg"
+        },
+        {
+          "name": "Adaptive Defense",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "While this card is the top card of your discard pile, it count as a P in your sequence for the attrition deck.",
+          "track": "B1",
+          "id": 212800,
+          "art": "res://art/thoreg/upgrade_212800.jpg"
+        },
+        {
+          "name": "Rumbling Impact",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Confuse the monster.\nMF: Increase the damage this attack deals by 1WL  for each exposed monster side.",
+          "track": "B1",
+          "id": 216100,
+          "art": "res://art/thoreg/upgrade_216100.jpg"
+        },
+        {
+          "name": "Dragon Bane",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": true,
+          "traits": [
+            "impetus"
+          ],
+          "text": "Taunt.\nThe monster imeediately turns to your sector and your weapon gets +2WL damage until the end of this turn.",
+          "track": "B2",
+          "id": 215400,
+          "art": "res://art/thoreg/upgrade_215400.jpg"
+        },
+        {
+          "name": "Skull Crasher",
+          "type": "maneuver",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "↓A: If you are in the front sector, stun the monster and increase the damage the attack deals by 2WL.",
+          "track": "B2",
+          "id": 216300,
+          "art": "res://art/thoreg/upgrade_216300.jpg"
+        },
+        {
+          "name": "Grace",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Reduce the stamina cost of each M you play this turn by 1.",
+          "track": "C1",
+          "id": 215700,
+          "art": "res://art/thoreg/upgrade_215700.jpg"
+        },
+        {
+          "name": "Judgement",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "When a player would suffer attrition damage and you are in the front sector, you may discard this card rom your hand to prevent that damage and remove struggle equal to the current attrition level.",
+          "track": "C1",
+          "id": 215900,
+          "art": "res://art/thoreg/upgrade_215900.jpg"
+        },
+        {
+          "name": "Confrontation",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Remove 1 struggle . If you are the aggro player, remove 2 struggle instead.",
+          "track": "C2",
+          "id": 216100,
+          "art": "res://art/thoreg/upgrade_216100.jpg"
+        },
+        {
+          "name": "Thunderous Voice",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Taunt.\nRemove 1 struggle. If you are the aggro player, remove 2 struggle instead.",
+          "track": "C2",
+          "id": 216200,
+          "art": "res://art/thoreg/upgrade_216200.jpg"
+        },
+        {
+          "name": "Call of the dragon",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [
+            "impetus"
+          ],
+          "text": "Draw 1. If your health is critical, draw cards until you have 5 instead.",
+          "track": "D1",
+          "id": 214900,
+          "art": "res://art/thoreg/upgrade_214900.jpg"
+        },
+        {
+          "name": "Impulse",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Search your deck for a card with impetus and add it to your hand. Then reshuffle your deck.",
+          "track": "D1",
+          "id": 215800,
+          "art": "res://art/thoreg/upgrade_215800.jpg"
+        },
+        {
+          "name": "For Alborea!",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Assist.\nDraw 1 for each card with impetus in your discard pile.",
+          "track": "D2",
+          "id": 215500,
+          "art": "res://art/thoreg/upgrade_215500.jpg"
+        },
+        {
+          "name": "Tear Down",
+          "type": "attack",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [
+            "impetus"
+          ],
+          "text": "If the monster has 0 struggle, increase the damage this attack deals by 5WL. Otherwise, remove 2 struggle.",
+          "track": "D2",
+          "id": 216400,
+          "art": "res://art/thoreg/upgrade_216400.jpg"
+        },
+        {
+          "name": "Chase",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "When you discard this card from your hand to generate stamina,  your weapon gets +2WL damage until the end of the turn.",
+          "track": "E1",
+          "id": 216400,
+          "art": "res://art/thoreg/upgrade_216400.jpg"
+        },
+        {
+          "name": "Limitless Stamina",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "When you discard this card to generate stamina for a A, it generates 4 stamina.",
+          "track": "E1",
+          "id": 216800,
+          "art": "res://art/thoreg/upgrade_216800.jpg"
+        },
+        {
+          "name": "Deep Breath",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 3,
+          "aggro": false,
+          "traits": [],
+          "text": "Draw 2.",
+          "track": "E2",
+          "id": 215300,
+          "art": "res://art/thoreg/upgrade_215300.jpg"
+        },
+        {
+          "name": "Stormstrike",
+          "type": "attack",
+          "cost": 0,
+          "variable_cost": true,
+          "stamina": 2,
+          "aggro": true,
+          "traits": [],
+          "text": "Finisher.\nIncrease the damage this attack deals by XWL (max increse 7WL). If you pay 6 or more for this card, confuse the monster.",
+          "track": "E2",
+          "id": 216500,
+          "art": "res://art/thoreg/upgrade_216500.jpg"
+        }
+      ]
+    },
+    "karah": {
+      "weapons": [
+        {
+          "name": "Dual Blade",
+          "level": 1,
+          "text": "When you trigger battle dance, deal 1 damage",
+          "element": "Base",
+          "damage": 2,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Tidal Waves",
+          "level": 1,
+          "text": "When you chain a card, recycle 1.",
+          "element": "Coral",
+          "damage": 4,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Tidal Waves",
+          "level": 2,
+          "text": "When you chain a card, remove 1 struggle or recycle 1.",
+          "element": "Coral",
+          "damage": 6,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Tidal Waves",
+          "level": 3,
+          "text": "When you chain a card, remove 1 struggle or recycle 1.\nWhen you overrun the monster, heal 3 (max: once per round).",
+          "element": "Coral",
+          "damage": 8,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Shimmering Star",
+          "level": 1,
+          "text": "When another player plays a card in their sequence, you may discard a card of that same color from your hand. If you do, deal your weapon damage (max: once per turn).",
+          "element": "Crystal",
+          "damage": 4,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Shimmering Star",
+          "level": 2,
+          "text": "When a player plays a card in their sequence, you may discard a card of that same color from your hand (max: once per turn). If you do, deal your weapon damage. If the discarded card is a A, draw 1.",
+          "element": "Crystal",
+          "damage": 6,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Shimmering Star",
+          "level": 3,
+          "text": "When a player plays a card in their sequence, you may discard a card of that same color from your hand (max: once per turn). If you do, deal your weapon damage. If the discarded card is a offensive, draw 1.",
+          "element": "Crystal",
+          "damage": 9,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Twinblade",
+          "level": 1,
+          "text": "At the end of your action phase, Twinblade gets +1 damage if your sequence includes a card of each color (max: 4 times per game).",
+          "element": "Feather",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 3,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Twinblade",
+          "level": 2,
+          "text": "At the end of your action phase, Twinblade gets +2 damage if your sequence includes a card of each color (max: 3 times per game).",
+          "element": "Feather",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 7,
+            "parry": 3,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Twinblade",
+          "level": 3,
+          "text": "At the end of your action phase, Twinblade gets +3 damage if your sequence includes a card of each color (max:5 times per game).",
+          "element": "Feather",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 7,
+            "parry": 3,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dragon Wings",
+          "level": 1,
+          "text": "When you empty your deck, Dragon Wings gets +1 damage (max: 4 times per game).",
+          "element": "Fire",
+          "damage": 3,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dragon Wings",
+          "level": 2,
+          "text": "When you empty your deck, Dragon Wings gets +2 damage (max: 4 times per game).",
+          "element": "Fire",
+          "damage": 5,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dragon Wings",
+          "level": 3,
+          "text": "When you empty your deck, Dragon Wings gets +3 damage (max: 4 times per game).",
+          "element": "Fire",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dancing Bones",
+          "level": 1,
+          "text": "When you trigger battle dance, Dancing Bones gets +2 damage until the end of the turn.",
+          "element": "Horn",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dancing Bones",
+          "level": 2,
+          "text": "When you trigger battle dance, Dancing Bones gets +3 damage until the end of the turn.",
+          "element": "Horn",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Dancing Bones",
+          "level": 3,
+          "text": "When you trigger battle dance, Dancing Bones gets +4 damage until the end of the turn.\nWhen you chain a card and your mastery is focused, gain a stamina token (max: once per turn).",
+          "element": "Horn",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Ice Wings",
+          "level": 1,
+          "text": "When you overrun the monster, inflicts slow.",
+          "element": "Ice",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Ice Wings",
+          "level": 2,
+          "text": "When you overrun the monster, inflicts slow or remove 1 struggle.",
+          "element": "Ice",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Ice Wings",
+          "level": 3,
+          "text": "When you overrun the monster, inflicts slow or remove 1 struggle.\nWhen you trigger battle dance, remove 1 struggle.",
+          "element": "Ice",
+          "damage": 9,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Moonblades",
+          "level": 1,
+          "text": "MAM: Deal 1 damage for each P in your discard pile.",
+          "element": "Metal",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Moonblades",
+          "level": 2,
+          "text": "MAM: Deal 2 damage for each P in your discard pile.",
+          "element": "Metal",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Moonblades",
+          "level": 3,
+          "text": "MAM: Deal 3 damage for each P in your discard pile.",
+          "element": "Metal",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 7,
+            "dodge": 3
+          }
+        },
+        {
+          "name": "Voltrage",
+          "level": 1,
+          "text": "When you overrun the monster, place a counter on this card. Voltrage has +4 damage for each counter on it.\nA: Remove all counters from Voltrage after the attack.",
+          "element": "Thunder",
+          "damage": 3,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Voltrage",
+          "level": 2,
+          "text": "When you overrun the monster, place a counter on this card. Voltrage has +6 damage for each counter on it.\nA: Remove all counters from Voltrage after the attack.",
+          "element": "Thunder",
+          "damage": 5,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Voltrage",
+          "level": 3,
+          "text": "When you overrun the monster, place a counter on this card. Voltrage has +8 damage for each counter on it.\nA: Remove all counters from Voltrage after the attack.",
+          "element": "Thunder",
+          "damage": 7,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Vipers",
+          "level": 1,
+          "text": "When the monster suffers damage during another player's turn, deal 2 damage if you assisted that player with a offensive that turn.",
+          "element": "Venom",
+          "damage": 3,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Vipers",
+          "level": 2,
+          "text": "When the monster suffers damage during another player's turn, deal 4 damage if you assisted that player with a offensive that turn.",
+          "element": "Venom",
+          "damage": 5,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Vipers",
+          "level": 3,
+          "text": "Setup: Place 4 counters on this card.\nWhen the monter suffers a wound, discard a counter from this card for each A in your discard pile. Vipers gets +1 damage for each counter discarded this way.\nWhen the monster suffers damage during another player's turn, deal 4 damage if you assisted that player with a offensive that turn.",
+          "element": "Venom",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        }
+      ],
+      "masteries": [
+        {
+          "name": "Piercing Dash",
+          "track": "S",
+          "text": "UNFOCUSED (2)\nWhen you overrun the monster, place a counter on this card.\nFOCUSED\nWhen you overrun the monster, deal your base weapon damage or draw 1."
+        },
+        {
+          "name": "Double Edge",
+          "track": "A2",
+          "text": "UNFOCUSED (3)\nWhen you discard a offensive card from your hand, place a counter on this card.\nFOCUSED\nWhen you discard a offensive card from your hand, deal 1WL damage. If that card is a A, deal 3WL instead."
+        },
+        {
+          "name": "Unstoppable",
+          "track": "B2",
+          "text": "UNFOCUSED (4)\nWhen you trigger battle dance, place a counter on this card.\nFOCUSED\nPrevent any fatigue damage would suffer. \nWhen you trigger battle dance, draw 1 and then discard a card from your hand."
+        },
+        {
+          "name": "The Dancer",
+          "track": "C2",
+          "text": "UNFOCUSED (4)\nWhen you chain a card, place a counter on this card.\nFOCUSED\nWhen you chain a card, deal 1WL damage. \nIf that card is a A, deal 3WL instead"
+        },
+        {
+          "name": "Master of Elusion",
+          "track": "D2",
+          "text": "UNFOCUSED (1)\nStart: Reveal DD from your hand to place a counter on this card.\nFOCUSED\nEach offensive you play gains stealth.\nAt the end of your turn, remove 1 struggle and lose focus."
+        },
+        {
+          "name": "Blade of Vengeance",
+          "track": "E2",
+          "text": "UNFOCUSED (2)\nWhen you suffer damage, reveal AA to place a counter on this card.\nFOCUSED\nIncrease your hand size limit by 1.\nRetaliate AA: Deal your weapon damage."
+        }
+      ],
+      "upgrades": [
+        {
+          "name": "Returning Blade",
+          "type": "attack",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist.\nReclaim: offensive offensive offensive",
+          "track": "A1",
+          "id": 206800,
+          "art": "res://art/karah/upgrade_206800.jpg"
+        },
+        {
+          "name": "Twin Blades",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "Chain M.\nWhen you discard this card from your hand, deal your weapon damage.",
+          "track": "A1",
+          "id": 207200,
+          "art": "res://art/karah/upgrade_207200.jpg"
+        },
+        {
+          "name": "Lightning Strike",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "If the top card of your discard pile is a A, you may play that card as the next card in your sequence witouth paing its stamina cost.",
+          "track": "A2",
+          "id": 206300,
+          "art": "res://art/karah/upgrade_206300.jpg"
+        },
+        {
+          "name": "Overture",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "If you paid with a A, draw 3.",
+          "track": "A2",
+          "id": 206600,
+          "art": "res://art/karah/upgrade_206600.jpg"
+        },
+        {
+          "name": "Dance Step",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "↓A: Draw 1. If you draw a A this way, draw 1 additional card.",
+          "track": "B1",
+          "id": 205500,
+          "art": "res://art/karah/upgrade_205500.jpg"
+        },
+        {
+          "name": "Endless Strike",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist.\nIncrease your sequence limit by 1 this turn.",
+          "track": "B1",
+          "id": 205800,
+          "art": "res://art/karah/upgrade_205800.jpg"
+        },
+        {
+          "name": "Maelstorm",
+          "type": "attack",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "AA↓: The next time you deal damage through battle dance this turn, double that damage.",
+          "track": "B2",
+          "id": 206400,
+          "art": "res://art/karah/upgrade_206400.jpg"
+        },
+        {
+          "name": "Outweigh",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Increase your sequence limit by 1 this turn.\nMF: Draw 1.",
+          "track": "B2",
+          "id": 206500,
+          "art": "res://art/karah/upgrade_206500.jpg"
+        },
+        {
+          "name": "Reactive Defense",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "When you suffer damage, you may discard this card from your hand to immediately overrun the monster and draw 1.",
+          "track": "C1",
+          "id": 206700,
+          "art": "res://art/karah/upgrade_206700.jpg"
+        },
+        {
+          "name": "Spinning",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "Chain M.\nAA↓: Gain a defense token.",
+          "track": "C1",
+          "id": 207100,
+          "art": "res://art/karah/upgrade_207100.jpg"
+        },
+        {
+          "name": "Dancing Shield",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Chain A.\nThis card counts as A for battle dance and retaliate.",
+          "track": "C2",
+          "id": 205600,
+          "art": "res://art/karah/upgrade_205600.jpg"
+        },
+        {
+          "name": "Double Strike",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "This card counts as offensive offensive for battle dance.\nMF: Draw 1.",
+          "track": "C2",
+          "id": 205700,
+          "art": "res://art/karah/upgrade_205700.jpg"
+        },
+        {
+          "name": "Evasive Dance",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Search your discard pile for up to offensive and shuffle them into your deck.",
+          "track": "D1",
+          "id": 205900,
+          "art": "res://art/karah/upgrade_205900.jpg"
+        },
+        {
+          "name": "Fade",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Stealth.\nMF: Draw 1 and increase your sequence limit by 1 this turn.",
+          "track": "D1",
+          "id": 206000,
+          "art": "res://art/karah/upgrade_206000.jpg"
+        },
+        {
+          "name": "Rising Moon",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "You may draw 1 or increase the struggle this maneuver removes by 1.\nMF: Your weapon gets +1WL damage until the end of this turn for each card with stealth in your sequence.",
+          "track": "D2",
+          "id": 207000,
+          "art": "res://art/karah/upgrade_207000.jpg"
+        },
+        {
+          "name": "Unseen",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Chain A.\nReclaim: Start your turn in the same sector as another player.",
+          "track": "D2",
+          "id": 206900,
+          "art": "res://art/karah/upgrade_206900.jpg"
+        },
+        {
+          "name": "Blade Rush",
+          "type": "attack",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "When you suffer damage,  you may discard this card from your hand to immediately overrun the monster and deal 2WL damage.",
+          "track": "E1",
+          "id": 205400,
+          "art": "res://art/karah/upgrade_205400.jpg"
+        },
+        {
+          "name": "Iron Hedge",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "When you would suffer damage, you may discard this card from your hand to halve that damage and draw 1.",
+          "track": "E1",
+          "id": 206200,
+          "art": "res://art/karah/upgrade_206200.jpg"
+        },
+        {
+          "name": "Blade Charge",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Your weapon gets +2 damage until the end of this turn.",
+          "track": "E2",
+          "id": 205300,
+          "art": "res://art/karah/upgrade_205300.jpg"
+        },
+        {
+          "name": "Fighting Spirit",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": true,
+          "traits": [],
+          "text": "You may suffer monster damage.\nIf you do, draw 2 or remove 2 struggle.",
+          "track": "E2",
+          "id": 206100,
+          "art": "res://art/karah/upgrade_206100.jpg"
+        }
+      ]
+    },
+    "ljonar": {
+      "weapons": [
+        {
+          "name": "Ocean Shield",
+          "level": 1,
+          "text": "MA: Heal 1 (max: once per turn).",
+          "element": "Coral",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Ocean Shield",
+          "level": 2,
+          "text": "MA: Heal 2 (max: once per turn).\nStart: Search your discard pile for a card of your choice and place it on top of your deck.",
+          "element": "Coral",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Ocean Shield",
+          "level": 3,
+          "text": "MA: Heal 3 (max: once per turn).\nStart: Search your discard pile for a card of your choice and add it to your hand.",
+          "element": "Coral",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Darkstone Shield",
+          "level": 1,
+          "text": "Retaliate P: Reveal the top card of your deck. If that card is a A, deal 2 damage.",
+          "element": "Crystal",
+          "damage": 4,
+          "composition": {
+            "attack": 4,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Darkstone Shield",
+          "level": 2,
+          "text": "Retaliate P: Reveal the top card of your deck. If that card is a A, deal 2 damage.\nWhen another player would suffer attrition damage,  they may reveal a card from their hand. If you are in the front sector, you may reveal a card of that same color from your hand to reduce the attrition damage by 2.",
+          "element": "Crystal",
+          "damage": 5,
+          "composition": {
+            "attack": 4,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Darkstone Shield",
+          "level": 3,
+          "text": "Retaliate P: Reveal the top card of your deck. If that card is a Offensive, deal 3 damage.\nWhen another player would suffer attrition damage,  they may reveal a card from their hand. If you are in the front sector, you may reveal a card of that same color from your hand to reduce the attrition damage by 3.",
+          "element": "Crystal",
+          "damage": 7,
+          "composition": {
+            "attack": 4,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Shard",
+          "level": 1,
+          "text": "When the monsters turns to your sector, draw 1 (max: once per turn).",
+          "element": "Feather",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Shard",
+          "level": 2,
+          "text": "When another player plays a aggro card in their sequence, you may immediately move witouth pating any stamina cost (max: once per round).\nWhen the monsters turns to your sector, draw 1 (max: once per turn).",
+          "element": "Feather",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Shard",
+          "level": 3,
+          "text": "When another player plays a aggro card in their sequence, you may immediately move witouth pating any stamina cost (max: once per round).\nWhen the monsters turns to your sector, draw up to your hand size limit (max: once per turn).",
+          "element": "Feather",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Volcano",
+          "level": 1,
+          "text": "When a behavior card is revealed and you are in the front sector,  you may suffer damage to cancel the effetcs of that card (max: once per round). If you do, the monster gains 1 struggle.",
+          "element": "Fire",
+          "damage": 3,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Volcano",
+          "level": 2,
+          "text": "Retaliate DA: Deal 3 damage\nWhen a behavior card is revealed and you are in the front sector,  you may suffer damage to cancel the effetcs of that card (max: once per round). If you do, the monster gains 1 struggle.",
+          "element": "Fire",
+          "damage": 5,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Volcano",
+          "level": 3,
+          "text": "Retaliate DA: Deal 5 damage\nWhen a behavior card is revealed and you are in the front sector,  you may suffer damage to cancel the effetcs of that card (max: once per round). If you do, the monster gains 1 struggle.",
+          "element": "Fire",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Horn Wall",
+          "level": 1,
+          "text": "You may spend a stamina token to assist other players in your sector instead of discarding a card with the corresponding keyword.",
+          "element": "Horn",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Horn Wall",
+          "level": 2,
+          "text": "You may spend a stamina token to assist other players or taunt the monster instead of discarding a card with the corresponding keyword.",
+          "element": "Horn",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Horn Wall",
+          "level": 3,
+          "text": "P: Remove 1 struggle.\nYou may spend a stamina token to assist other players or taunt the monster instead of discarding a card with the corresponding keyword.",
+          "element": "Horn",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 7,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Icewall",
+          "level": 1,
+          "text": "Retaliate PM:Inflct slow.",
+          "element": "Ice",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Icewall",
+          "level": 2,
+          "text": "Retaliate PM: Deal 2 damage and inflct slow.",
+          "element": "Ice",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Icewall",
+          "level": 3,
+          "text": "Retaliate PM: Deal 3 damage and inflct slow.\nWhile the monster is slowed, Icewall has +2 damage.",
+          "element": "Ice",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Brass Wall",
+          "level": 1,
+          "text": "Retaliate M: Remove 1 struggle.",
+          "element": "Metal",
+          "damage": 4,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Brass Wall",
+          "level": 2,
+          "text": "Retaliate PM: Reduce the damage you suffered by 1 and remove 1 struggle.\nWhen another player in your sector would suffer attrition damage, you may suffer that damage instead.",
+          "element": "Metal",
+          "damage": 6,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Brass Wall",
+          "level": 3,
+          "text": "Retaliate M: Reduce the damage you suffered by 1 and remove 1 struggle.\nWhen another player in your sector would suffer attrition damage, you may suffer that damage instead.",
+          "element": "Metal",
+          "damage": 8,
+          "composition": {
+            "attack": 4,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Thundercore",
+          "level": 1,
+          "text": "Retaliate P:  Place a counter on this card.\nPAA: Deal 1 damage for each counter on this card. Then discard all counters from this card.",
+          "element": "Thunder",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Thundercore",
+          "level": 2,
+          "text": "Retaliate P:  Place a counter on this card.\nPAA: Deal 2 damage for each counter on this card. Then discard all counters from this card.",
+          "element": "Thunder",
+          "damage": 7,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Thundercore",
+          "level": 3,
+          "text": "Retaliate P:  Place a counter on this card.\nPAA: Stun the monster and deal 3 damage for each counter on this card. Then discard all counters from this card.",
+          "element": "Thunder",
+          "damage": 9,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Serpent Shield",
+          "level": 1,
+          "text": "Retaliate A: Deal 1 damage.",
+          "element": "Venom",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Serpent Shield",
+          "level": 2,
+          "text": "Retaliate A: Deal 2 damage.\nPA: Increase the damage the attack deals by 1 for each A in your discard pile.",
+          "element": "Venom",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Serpent Shield",
+          "level": 3,
+          "text": "Retaliate A: Deal 3 damage.\nPA: Increase the damage the attack deals by 2 for each A in your discard pile. If this inflicts a wound, remove 2 struggle.",
+          "element": "Venom",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 6,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Sword and Shield",
+          "level": 1,
+          "text": "P: Remove 1 struggle",
+          "element": "",
+          "damage": 2,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 6
+          }
+        }
+      ],
+      "masteries": [
+        {
+          "name": "",
+          "track": "S",
+          "text": "UNFOCUSED (3)\nPA: Place a counter on this card.\nFOCUSED\nP: Deal 2WL damage.\nPA: Incrase the amount of damage the attack deals by 3WL"
+        },
+        {
+          "name": "Unbreakable",
+          "track": "A2",
+          "text": "UNFOCUSED (1)\nWhen you are KO'd, place a counter on this card.\nFOCUSED\nWhen focused: Immediately rise. Your health value is increased by 2WL and your weapon has +2WL."
+        },
+        {
+          "name": "Shield of Support",
+          "track": "B2",
+          "text": "UNFOCUSED (3)\nWhen you taunt the monster or assist another player,  place a counter on this card (max: 1 per round).\nFOCUSED\nStart: Choose a player in your sector to heal 1WL.\nWhen you taunt the monster or assist another player using a M then remove 1 struggle, using a P then draw 1, using a A then deal your weapon damage."
+        },
+        {
+          "name": "Tactician",
+          "track": "C2",
+          "text": "UNFOCUSED (4)\nM: Place a counter on this card\nFOCUSED\nWhile you are in the front sector,  all monster sides are considered to be exposed.\nM: Choose a sector. Players in that sector may draw 1 or immediately move witouth paying any stamina cost (max: once per turn)"
+        },
+        {
+          "name": "Fierce Guard",
+          "track": "D2",
+          "text": "UNFOCUSED (4)\nWhen you trigger retaliate,  place a counter on this card.\nFOCUSED\nWhen you trigger retaliate, deal 2WL damage."
+        },
+        {
+          "name": "Bastion",
+          "track": "E2",
+          "text": "UNFOCUSED (2)\nWhen you avoid attrition damage,  place a counter on this card.\nFOCUSED\nIncrease your hand size limit by 1.\nAt the start of another player's attrition phase, that player gains a defense token if you are in their sector."
+        }
+      ],
+      "upgrades": [
+        {
+          "name": "Mettle",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "If your health is critical, this card count as DD for the attrition check this turn.",
+          "track": "A1",
+          "id": 213300,
+          "art": "res://art/ljonar/upgrade_213300.jpg"
+        },
+        {
+          "name": "Tempered Pain",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Resilience.\nYou may suffer 1WL damage to draw 1.",
+          "track": "A1",
+          "id": 214700,
+          "art": "res://art/ljonar/upgrade_214700.jpg"
+        },
+        {
+          "name": "Monstrous effort",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Resilience.\nIf your health is critical, you can play next card in your sequence without paying its stamina cost.",
+          "track": "A2",
+          "id": 213400,
+          "art": "res://art/ljonar/upgrade_213400.jpg"
+        },
+        {
+          "name": "Retribution",
+          "type": "attack",
+          "cost": 3,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Increase the damage this attack deals by X where X is the damage you currently sustain.",
+          "track": "A2",
+          "id": 213900,
+          "art": "res://art/ljonar/upgrade_213900.jpg"
+        },
+        {
+          "name": "Coordinated Attack",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Assist.\nChoose a player to draw 1.",
+          "track": "B1",
+          "id": 212900,
+          "art": "res://art/ljonar/upgrade_212900.jpg"
+        },
+        {
+          "name": "Tactical Evade",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Search your discard pile for a card with assist and add it to your hand.",
+          "track": "B1",
+          "id": 214500,
+          "art": "res://art/ljonar/upgrade_214500.jpg"
+        },
+        {
+          "name": "Assistence",
+          "type": "maneuver",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist.\nWhile this card is in the top of your discard pile, reduce the stamina cost of any other A other players play by 1.",
+          "track": "B2",
+          "id": 212700,
+          "art": "res://art/ljonar/upgrade_212700.jpg"
+        },
+        {
+          "name": "Eye of the Storm",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Reveal any number of cards with assist from your hand. Then choose another player to draw many cards.",
+          "track": "B2",
+          "id": 213000,
+          "art": "res://art/ljonar/upgrade_213000.jpg"
+        },
+        {
+          "name": "Rally",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Choose a player to draw 1 or immediately move witouth paying any stamina cost.",
+          "track": "C1",
+          "id": 213800,
+          "art": "res://art/ljonar/upgrade_213800.jpg"
+        },
+        {
+          "name": "Teamwork",
+          "type": "maneuver",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "While another player is paying the stamina cost of a card,  you may discard this card from your hand in order to reduce that cost by 2.",
+          "track": "C1",
+          "id": 214600,
+          "art": "res://art/ljonar/upgrade_214600.jpg"
+        },
+        {
+          "name": "Golden Opportunity",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Taunt.\nChoose a player to reveal up to 2A from their hand and deal their weapon damage for each card they reveal this way.",
+          "track": "C2",
+          "id": 213100,
+          "art": "res://art/ljonar/upgrade_213100.jpg"
+        },
+        {
+          "name": "Outflank",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "At the start of another player's turn,  you may discard this card from your hand. If you do, immediately move witouth paying any stamina cost.",
+          "track": "C2",
+          "id": 213500,
+          "art": "res://art/ljonar/upgrade_213500.jpg"
+        },
+        {
+          "name": "Over Here!",
+          "type": "attack",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Taunt.\nYou may suffer damage. If you do, choose a player to recycle up to 2 cards.",
+          "track": "D1",
+          "id": 213600,
+          "art": "res://art/ljonar/upgrade_213600.jpg"
+        },
+        {
+          "name": "Sacrifice",
+          "type": "maneuver",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist. Resilience.\nWhen the monster would gain struggle,  you may suffer damage and discard this card from your hand to prevent that struggle gain.",
+          "track": "D1",
+          "id": 214000,
+          "art": "res://art/ljonar/upgrade_214000.jpg"
+        },
+        {
+          "name": "Shield Smash",
+          "type": "parry",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Deal your wepaon damage.\nYou may choose to suffer damage to deal double that damage instead.",
+          "track": "D2",
+          "id": 214100,
+          "art": "res://art/ljonar/upgrade_214100.jpg"
+        },
+        {
+          "name": "Shield strike",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Increase the damage this attack deals by 1WL for each P in your discard pile.",
+          "track": "D2",
+          "id": 214200,
+          "art": "res://art/ljonar/upgrade_214200.jpg"
+        },
+        {
+          "name": "Pulsating Fury",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "If you are the aggro player, draw cards equal to the current stance number.",
+          "track": "E1",
+          "id": 213700,
+          "art": "res://art/ljonar/upgrade_213700.jpg"
+        },
+        {
+          "name": "Snare",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "If you avoid attrition damage this turn, deal your weapon damage for each defensive in your sequence.",
+          "track": "E1",
+          "id": 214400,
+          "art": "res://art/ljonar/upgrade_214400.jpg"
+        },
+        {
+          "name": "Guardian Shield",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "When the monster would unleash,  you may discard this card from your hand. If you do and you are in the front sector, prevent that unleash damage (no player suffers damage).",
+          "track": "E2",
+          "id": 213200,
+          "art": "res://art/ljonar/upgrade_213200.jpg"
+        },
+        {
+          "name": "Shield Wall",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Assist.\nWhen another player in your sector would suffer damage, if this card is the top card of your discard pile, you may suffer that damage instead.",
+          "track": "E2",
+          "id": 214300,
+          "art": "res://art/ljonar/upgrade_214300.jpg"
+        }
+      ]
+    },
+    "heleren": {
+      "weapons": [
+        {
+          "name": "Gunbow",
+          "level": 1,
+          "text": "Ignite: Deal 1 damage.",
+          "element": "Base",
+          "damage": 3,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Ocean Gun",
+          "level": 1,
+          "text": "Ignite: Recycle 1.",
+          "element": "Coral",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Ocean Gun",
+          "level": 2,
+          "text": "Ignite: Recycle 1.\nWhen you reload, heal 2 (max: once per turn).",
+          "element": "Coral",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Ocean Gun",
+          "level": 3,
+          "text": "Ignite: You may draw 1 or recycle 2.\nWhen you reload, heal 3 (max: once per turn).",
+          "element": "Coral",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Amethyst",
+          "level": 1,
+          "text": "Ignite: Reveal the top card of your deck and remove 1 struggle if that card is a M",
+          "element": "Crystal",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Amethyst",
+          "level": 2,
+          "text": "Ignite: Reveal the top card of your deck and remove 1 struggle if that card is a offensive.",
+          "element": "Crystal",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 7,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Amethyst",
+          "level": 3,
+          "text": "Ignite: Reveal the top card of your deck and remove 1 struggle if that card is a offensive. Then you may add that card to your hand.",
+          "element": "Crystal",
+          "damage": 9,
+          "composition": {
+            "attack": 5,
+            "maneuver": 7,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Winged Cannon",
+          "level": 1,
+          "text": "Ignite: You may immediately move without paying any stamina cost.",
+          "element": "Feather",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Winged Cannon",
+          "level": 2,
+          "text": "Ignite: You may immediately move without paying any stamina cost. If you do move, deal 3 damage.",
+          "element": "Feather",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Winged Cannon",
+          "level": 3,
+          "text": "Start: You may reveal AMPD from your hand to reload 1.\nIgnite: You may immediately move without paying any stamina cost. If you do move, deal 6 damage.",
+          "element": "Feather",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Ignis",
+          "level": 1,
+          "text": "Ignite: Place a counter on the behavior discard pile (max: 3 counters).\nEscalation: The monster suffers 1 damage for each counter on the behavior discard pile. Then remove 1 of those counters.",
+          "element": "Fire",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Ignis",
+          "level": 2,
+          "text": "Ignite: Place a counter on the behavior discard pile (max: 3 counters).\nEscalation: The monster suffers 3 damage for each counter on the behavior discard pile. Then remove 1 of those counters.",
+          "element": "Fire",
+          "damage": 6,
+          "composition": {
+            "attack": 7,
+            "maneuver": 4,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Ignis",
+          "level": 3,
+          "text": "Ignite: Place a counter on the behavior discard pile (max: 3 counters).\nEscalation: The monster suffers 5 damage for each counter on the behavior discard pile. Then remove 1 of those counters.",
+          "element": "Fire",
+          "damage": 9,
+          "composition": {
+            "attack": 7,
+            "maneuver": 4,
+            "parry": 4,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Tiger",
+          "level": 1,
+          "text": "Ignite: You may pay 1 stamina to deal 3 damage.",
+          "element": "Horn",
+          "damage": 3,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Tiger",
+          "level": 2,
+          "text": "Ignite: You may pay 1 stamina to deal 6 damage.\nWhen you reaload, gain a stamina token (max: once per turn).",
+          "element": "Horn",
+          "damage": 5,
+          "composition": {
+            "attack": 5,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 5
+          }
+        },
+        {
+          "name": "Tiger",
+          "level": 3,
+          "text": "Ignite: You may pay 1 stamina to deal 9 damage.\nWhen you reaload, gain a stamina token (max: once per turn).",
+          "element": "Horn",
+          "damage": 7,
+          "composition": {
+            "attack": 6,
+            "maneuver": 6,
+            "parry": 6,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Frostgun",
+          "level": 1,
+          "text": "Ignite: Inflict slow.",
+          "element": "Ice",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Frostgun",
+          "level": 2,
+          "text": "Ignite: Inflict slow or add one of your exiled cards to your hand.\nM: You may exile a card fro your hand to deal 4 damage.",
+          "element": "Ice",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 7,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Frostgun",
+          "level": 3,
+          "text": "Ignite: Inflict slow or add one of your exiled cards to your hand.\nM: You may exile a card fro your hand to deal 6 damage.",
+          "element": "Ice",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 7,
+            "parry": 4,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Mothergun",
+          "level": 1,
+          "text": "Ignite: Gain a defense token (max: once per round).",
+          "element": "Metal",
+          "damage": 4,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Mothergun",
+          "level": 2,
+          "text": "Ignite: Gain a defense token (max: once per round).\nWhile your mastery is focused, Mothergun has +1 damage.",
+          "element": "Metal",
+          "damage": 6,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Mothergun",
+          "level": 3,
+          "text": "Ignite: Choose a player to gain a defense token (max: 1 token per player).\nWhile your mastery is focused, Mothergun has +1 damage.",
+          "element": "Metal",
+          "damage": 8,
+          "composition": {
+            "attack": 5,
+            "maneuver": 6,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Electroblast",
+          "level": 1,
+          "text": "When you play a M, P or D in your sequence, place a counter on Electroblas and then suffer 1 damage if it has 5 or more counters.\nIgnite: Deal 1 damage for each counter on Electroblast, then remove all counters.",
+          "element": "Thunder",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Electroblast",
+          "level": 2,
+          "text": "When you play a M, P or D in your sequence, place a counter on Electroblas and then suffer 2 damage if it has 5 or more counters.\nIgnite: Deal 2 damage for each counter on Electroblast, then remove all counters.",
+          "element": "Thunder",
+          "damage": 7,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Electroblast",
+          "level": 3,
+          "text": "When you play a M, P or D in your sequence, place a counter on Electroblas and then suffer 3 damage if it has 5 or more counters.\nIgnite: Deal 3 damage for each counter on Electroblast, then remove all counters.",
+          "element": "Thunder",
+          "damage": 9,
+          "composition": {
+            "attack": 6,
+            "maneuver": 5,
+            "parry": 5,
+            "dodge": 4
+          }
+        },
+        {
+          "name": "Reptile",
+          "level": 1,
+          "text": "Ignite: You may add the top card of your discard pile to your hand.",
+          "element": "Venom",
+          "damage": 4,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Reptile",
+          "level": 2,
+          "text": "Ignite: You may add the top card of your discard pile to your hand. If that card is a M, deal 3 damage.",
+          "element": "Venom",
+          "damage": 6,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 4,
+            "dodge": 6
+          }
+        },
+        {
+          "name": "Reptile",
+          "level": 3,
+          "text": "Ignite: You may add the top card of your discard pile to your hand. If that card is a M, deal 6 damage.",
+          "element": "Venom",
+          "damage": 8,
+          "composition": {
+            "attack": 6,
+            "maneuver": 4,
+            "parry": 4,
+            "dodge": 6
+          }
+        }
+      ],
+      "masteries": [
+        {
+          "name": "Precision Reload",
+          "track": "S",
+          "text": "UNFOCUSED (2)\nWhen you reload,  place a counter on this card.\nFOCUSED\nWhen you reload, search your deck or discard pile for A and add it to your hand. If you searched your deck, reshuffle it."
+        },
+        {
+          "name": "Heat",
+          "track": "A2",
+          "text": "UNFOCUSED (1)\nAt the end of your action phase, you may discard a M from your hand. If you do, place a counter on this card.\nFOCUSED\nYour weapon has +5WL damage.\nA: Spend 2 bullets or lose focus."
+        },
+        {
+          "name": "Hail of Bullets",
+          "track": "B2",
+          "text": "UNFOCUSED (2)\nAt the end of your tun, if you spent 2 or more bullets this turn, place a counter on this card.\nFOCUSED\nAt the end of your turn, if you spent 2 or more bullets this turn, deal 5WL damage."
+        },
+        {
+          "name": "Rapid Fire",
+          "track": "C2",
+          "text": "UNFOCUSED (3)\nWhen you draw a A during your action phase, you may reveal it to place a counter on this card.\nFOCUSED\nStart: Draw 1 or reload 1."
+        },
+        {
+          "name": "The Huntress' Mark",
+          "track": "D2",
+          "text": "UNFOCUSED (1)\nWhen a behavior card is triggered, you may note the triggered reaction to place a counter on this card.\nFOCUSED\nWhen a behavior card with the reaction you noted is triggered, you may spend 1 bullet. If you do, draw 1 or deal your weapon damage."
+        },
+        {
+          "name": "Ballistic Defense",
+          "track": "E2",
+          "text": "UNFOCUSED (2)\nDefensive Defensive: Place a counter on this card.\nFOCUSED\nStart: If the bullet track is level 0, reload 1.\nWhen a player in your sector or an adjacent sector would suffer damage, you may spend 1 bullet to prevent that damage (ma: once per turn)"
+        }
+      ],
+      "upgrades": [
+        {
+          "name": "Quick Shot",
+          "type": "maneuver",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "When you discard this card from your hand, reload 1 or deal your base weapon damage.",
+          "track": "A1",
+          "id": 217100,
+          "art": "res://art/heleren/upgrade_217100.jpg"
+        },
+        {
+          "name": "Target Acquisition",
+          "type": "attack",
+          "cost": 2,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist.\nSearch your deck for a offensive and add it to your hand. Then reshuffle your deck.",
+          "track": "A1",
+          "id": 217500,
+          "art": "res://art/heleren/upgrade_217500.jpg"
+        },
+        {
+          "name": "Replenishment",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "At the end of your action phase, reload X where X is the number of bullets you spent this turn.",
+          "track": "A2",
+          "id": 217200,
+          "art": "res://art/heleren/upgrade_217200.jpg"
+        },
+        {
+          "name": "Vanguard",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "You may reveal a M from your hand.\nIf you do, draw 2.",
+          "track": "A2",
+          "id": 216800,
+          "art": "res://art/heleren/upgrade_216800.jpg"
+        },
+        {
+          "name": "Bullet Surge",
+          "type": "attack",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "M↓: Spend any number of bullets. If you do, choose a player to draw 1 for each bullet spent this way.",
+          "track": "B1",
+          "id": 216000,
+          "art": "res://art/heleren/upgrade_216000.jpg"
+        },
+        {
+          "name": "Suppressive Fire",
+          "type": "maneuver",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist.\nReduce the stamina cost of the next card you play by 1.",
+          "track": "B1",
+          "id": 217300,
+          "art": "res://art/heleren/upgrade_217300.jpg"
+        },
+        {
+          "name": "Blinding Fre",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "You may spend 2 bullets to inflit blind.",
+          "track": "B2",
+          "id": 215800,
+          "art": "res://art/heleren/upgrade_215800.jpg"
+        },
+        {
+          "name": "Thunderous Shot",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Spend any number of bullets. For each bullet spent this way, draw 1 and increase the struggle this maneuver removes by 1.",
+          "track": "B2",
+          "id": 217700,
+          "art": "res://art/heleren/upgrade_217700.jpg"
+        },
+        {
+          "name": "Breath control",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Search your discard pile for a A and place it on top of your deck.",
+          "track": "C1",
+          "id": 215900,
+          "art": "res://art/heleren/upgrade_215900.jpg"
+        },
+        {
+          "name": "Cooldown",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Search your discard pile for up to 2 A and shuffle them into your deck.",
+          "track": "C1",
+          "id": 216200,
+          "art": "res://art/heleren/upgrade_216200.jpg"
+        },
+        {
+          "name": "Barrel Roll",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Draw 3 and then discard 2 cards from your hand.",
+          "track": "C2",
+          "id": 215700,
+          "art": "res://art/heleren/upgrade_215700.jpg"
+        },
+        {
+          "name": "Line of Fire",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Assist.\nAt the start of your movement phase, if you have 7 cards or more in your hand, you may reveal this card from your hand. If you do, your weapon gets +3 damage until the end of the turn.",
+          "track": "C2",
+          "id": 216900,
+          "art": "res://art/heleren/upgrade_216900.jpg"
+        },
+        {
+          "name": "Cycle of Bullets",
+          "type": "parry",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": false,
+          "traits": [],
+          "text": "When you discard this card to generate stamina for a A, reload 1.",
+          "track": "D1",
+          "id": 216400,
+          "art": "res://art/heleren/upgrade_216400.jpg"
+        },
+        {
+          "name": "Fire Cascade",
+          "type": "attack",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Reclaim: AA.",
+          "track": "D1",
+          "id": 216600,
+          "art": "res://art/heleren/upgrade_216600.jpg"
+        },
+        {
+          "name": "Infallible Aim",
+          "type": "maneuver",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 2,
+          "aggro": true,
+          "traits": [],
+          "text": "Your weapon gets +3 damage until the end of this turn. If your bullet track level is 3, your weapon gets +5 damage instead.",
+          "track": "D2",
+          "id": 216700,
+          "art": "res://art/heleren/upgrade_216700.jpg"
+        },
+        {
+          "name": "Prompt Answer",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "When a behavior card is revealed, you may discard this card from your hand to reload 2.",
+          "track": "D2",
+          "id": 217000,
+          "art": "res://art/heleren/upgrade_217000.jpg"
+        },
+        {
+          "name": "Camouflage",
+          "type": "dodge",
+          "cost": 0,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Stealth.",
+          "track": "E1",
+          "id": 216100,
+          "art": "res://art/heleren/upgrade_216100.jpg"
+        },
+        {
+          "name": "Swift Reload",
+          "type": "parry",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": false,
+          "traits": [],
+          "text": "Assist.\nReload 1. If you another P in your sequence, reload 2 instead.",
+          "track": "E1",
+          "id": 217400,
+          "art": "res://art/heleren/upgrade_217400.jpg"
+        },
+        {
+          "name": "Counter Measure",
+          "type": "dodge",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Assist.\nIf you avoid attrition damage this turn, search your discard pile for up 2 cards of your choice and add them to your hand.",
+          "track": "E2",
+          "id": 216300,
+          "art": "res://art/heleren/upgrade_216300.jpg"
+        },
+        {
+          "name": "Explosive Shot",
+          "type": "attack",
+          "cost": 1,
+          "variable_cost": false,
+          "stamina": 1,
+          "aggro": true,
+          "traits": [],
+          "text": "Remove 1 struggle. \nYou may spend 2 bullets. If you do, this attac inflicts vulnerable.",
+          "track": "E2",
+          "id": 216500,
+          "art": "res://art/heleren/upgrade_216500.jpg"
+        }
+      ]
+    }
+  },
+  "shared": {
+    "armor": [
+      {
+        "name": "Reefbound Plate",
+        "level": 1,
+        "text": "When you inflict a wound, heal 1.",
+        "element": "Coral",
+        "health": 7
+      },
+      {
+        "name": "Reefbound Plate",
+        "level": 2,
+        "text": "When you inflict a wound, heal 2.\nStart: Search your discard pile for a card of your choice and shuffle it into your deck.",
+        "element": "Coral",
+        "health": 12
+      },
+      {
+        "name": "Reefbound Plate",
+        "level": 3,
+        "text": "When you inflict a wound, heal 3.\nStart: Search your discard pile up to 2 cards of your choice and shuffle it into your deck.",
+        "element": "Coral",
+        "health": 16
+      },
+      {
+        "name": "Crystal Armor",
+        "level": 1,
+        "text": "Start: If you have 3 or more cards of the same color in your hand, draw 1.",
+        "element": "Crystal",
+        "health": 6
+      },
+      {
+        "name": "Crystal Armor",
+        "level": 2,
+        "text": "Start: If you have 3 or more cards of the same color in your hand, draw 1 and reveal the color of that card. Search your discard pile for a card of that color and shuffle it into your deck.",
+        "element": "Crystal",
+        "health": 11
+      },
+      {
+        "name": "Crystal Armor",
+        "level": 3,
+        "text": "Start: If you have 3 or more cards of the same color in your hand, draw 1 and reveal the color of that card. Search your discard pile for a card of that color and place it on top of your deck.",
+        "element": "Crystal",
+        "health": 18
+      },
+      {
+        "name": "Totemic Plate",
+        "level": 1,
+        "text": "At the end of your action phase, you may search the top 3 cards of your discard pile for a D and add it to your hand.",
+        "element": "Feather",
+        "health": 6
+      },
+      {
+        "name": "Totemic Plate",
+        "level": 2,
+        "text": "At the end of your action phase, you may search your discard pile for a D and add it to your hand.",
+        "element": "Feather",
+        "health_missing": true
+      },
+      {
+        "name": "Totemic Plate",
+        "level": 3,
+        "text": "Start: You may draw 1 unless you are threatened.\nAt the end of your action phase, you may search your discard pile for a D and add it to your hand.",
+        "element": "Feather",
+        "health": 15
+      },
+      {
+        "name": "Red Scale Armor",
+        "level": 1,
+        "text": "Start: If your healt is critical, draw 1.",
+        "element": "Fire",
+        "health": 6
+      },
+      {
+        "name": "Red Scale Armor",
+        "level": 2,
+        "text": "Start: You may suffer 1 damage. If your health is critical, or you choose to suffer damage from Red Scale Armor, draw 1.",
+        "element": "Fire",
+        "health": 12
+      },
+      {
+        "name": "Red Scale Armor",
+        "level": 3,
+        "text": "Start: You may suffer 2 damage. If your health is critical, or you choose to suffer damage from Red Scale Armor, draw 2 and then discard a card from your hand.",
+        "element": "Fire",
+        "health": 19
+      },
+      {
+        "name": "Spined Armor",
+        "level": 1,
+        "text": "You can hold up to 2 stamina tokens.\nAt the end of your action phase, gain 2 stamina tokens instead 1 if you have 2 or more cards in your hand.",
+        "element": "Horn",
+        "health": 5
+      },
+      {
+        "name": "Spined Armor",
+        "level": 2,
+        "text": "You can hold up to 3 stamina tokens.\nAt the end of your action phase, gain stamina tokens equal to the number of cards in your hand (max: 3 tokens).",
+        "element": "Horn",
+        "health": 9
+      },
+      {
+        "name": "Spined Armor",
+        "level": 3,
+        "text": "You can hold up to 3 stamina tokens.\nAt the end of your action phase, gain stamina tokens equal to the number of cards in your hand (max: 3 tokens).\nWhen you suffer attrition damage, you may spend one stamina to reduce that damage by 2.",
+        "element": "Horn",
+        "health": 14
+      },
+      {
+        "name": "Frost Armor",
+        "level": 1,
+        "text": "Start: Add an exiled card to your hand or exile the top card of your deck.",
+        "element": "Ice",
+        "health": 6
+      },
+      {
+        "name": "Frost Armor",
+        "level": 2,
+        "text": "Start: Add up to 2 of your exiled cards to your hand or exile the top card of your deck or discard pile.",
+        "element": "Ice",
+        "health": 13
+      },
+      {
+        "name": "Frost Armor",
+        "level": 3,
+        "text": "Start: Add up to 3 of your exiled cards to your hand or exile the top card of your deck or discard pile.\nWhen you focus your mastery, you may exile up to 2 cards from your discard pile.",
+        "element": "Ice",
+        "health": 18
+      },
+      {
+        "name": "Iron Plate",
+        "level": 1,
+        "text": "When you reveal the first attrition card during your attrition check, you may pay one stamina to discard that card and reveal another one from the attrition deck.",
+        "element": "Metal",
+        "health": 7
+      },
+      {
+        "name": "Iron Plate",
+        "level": 2,
+        "text": "When you reveal the first attrition card during your attrition check, you may choose to discard that card and reveal another one from the attrition deck.",
+        "element": "Metal",
+        "health": 13
+      },
+      {
+        "name": "Iron Plate",
+        "level": 3,
+        "text": "Remove any attrition damage you suffer by 1.\nWhen you reveal the first attrition card during your attrition check, you may choose to discard that card and reveal another one from the attrition deck.",
+        "element": "Metal",
+        "health": 17
+      },
+      {
+        "name": "Thunder Armor",
+        "level": 1,
+        "text": "When you empty your hand, deal 3 damage.",
+        "element": "Thunder",
+        "health": 6
+      },
+      {
+        "name": "Thunder Armor",
+        "level": 2,
+        "text": "When you empty your hand, deal 5 damage.",
+        "element": "Thunder",
+        "health": 11
+      },
+      {
+        "name": "Thunder Armor",
+        "level": 3,
+        "text": "When you empty your hand, deal 7 damage.",
+        "element": "Thunder",
+        "health": 16
+      },
+      {
+        "name": "Ironleaf Armor",
+        "level": 1,
+        "text": "When you suffer damage, you may search your discard pile for a A and shuffle it into your deck",
+        "element": "Venom",
+        "health": 7
+      },
+      {
+        "name": "Ironleaf Armor",
+        "level": 2,
+        "text": "When you suffer damage, you may search your discard pile for a A and place it on top of your deck",
+        "element": "Venom",
+        "health": 12
+      },
+      {
+        "name": "Ironleaf Armor",
+        "level": 3,
+        "text": "When you suffer damage, you may search your discard pile for a card of your choice and place it on top of your deck",
+        "element": "Venom",
+        "health": 17
+      },
+      {
+        "name": "Base Armor",
+        "level": 1,
+        "text": "",
+        "element": "",
+        "health": 5
+      }
+    ],
+    "helm": [
+      {
+        "name": "Reefbound Helm",
+        "level": 1,
+        "text": "At the end of your action phase, you may reveal a M from your hand. If you do, search your discard pile for a offensive and shuffle it into your deck.",
+        "element": "Coral",
+        "health": 5
+      },
+      {
+        "name": "Reefbound Helm",
+        "level": 2,
+        "text": "At the end of your action phase, you may reveal a M from your hand. If you do, you may either heal 2 damage or search your discard pile for a of your choice and shuffle it into your deck.",
+        "element": "Coral",
+        "health": 10
+      },
+      {
+        "name": "Reefbound Helm",
+        "level": 3,
+        "text": "At the end of your action phase, you may reveal a M from your hand. If you do, you may either heal 3 damage or search your discard pile for a card of your choice and place it on top of your deck.",
+        "element": "Coral",
+        "health": 14
+      },
+      {
+        "name": "Crystal Helm",
+        "level": 1,
+        "text": "Start: Look at the top 2 cards of your deck.",
+        "element": "Crystal",
+        "health": 4
+      },
+      {
+        "name": "Crystal Helm",
+        "level": 2,
+        "text": "Start: Look at the top 3 cards of your deck and reorder them as you choose.",
+        "element": "Crystal",
+        "health": 8
+      },
+      {
+        "name": "Crystal Helm",
+        "level": 3,
+        "text": "Start: Name a color and then look at the top 3 cards of your deck. You may add one of those cards to your hand if it matches the color named. Return the other cards to the top of your deck in any order.",
+        "element": "Crystal",
+        "health": 13
+      },
+      {
+        "name": "Totemic Helm",
+        "level": 1,
+        "text": "While a player in an adjacent sector is paying stamina cost of a card,  you may reveal 2 cards of that same color from your hand. If you do, reduce the stamina cost by 1 (max: once per round).",
+        "element": "Feather",
+        "health": 5
+      },
+      {
+        "name": "Totemic Helm",
+        "level": 2,
+        "text": "While another player is paying stamina cost of a card,  you may reveal 2 cards of that same color from your hand. If you do, reduce the stamina cost by 1 (max: once per round).",
+        "element": "Feather",
+        "health": 9
+      },
+      {
+        "name": "Totemic Helm",
+        "level": 3,
+        "text": "While another player is paying stamina cost of a card,  you may reveal 2 cards of that same color from your hand. If you do, draw 1 and reduce the stamina cost by 1 (max: once per round).",
+        "element": "Feather",
+        "health": 13
+      },
+      {
+        "name": "Red Scale Helm",
+        "level": 1,
+        "text": "Action: Discard the top card of your deck. If that card is A, add it to your hand (max: once per turn).",
+        "element": "Fire",
+        "health": 5
+      },
+      {
+        "name": "Red Scale Helm",
+        "level": 2,
+        "text": "Action: Discard the top card of your deck. If that card is A, add it to your hand (max: twice per turn).",
+        "element": "Fire",
+        "health": 9
+      },
+      {
+        "name": "Red Scale Helm",
+        "level": 3,
+        "text": "While your health is critical, your weapon has +3 damage.\nAction: Discard the top card of your deck. If that card is A, add it to your hand (max: twice per turn).",
+        "element": "Fire",
+        "health": 15
+      },
+      {
+        "name": "Spined Helm",
+        "level": 1,
+        "text": "Start: Recycle 1.",
+        "element": "Horn",
+        "health": 4
+      },
+      {
+        "name": "Spined Helm",
+        "level": 2,
+        "text": "Start: You may discard a card with a printed stamina cost of 2 or higher from your hand. If you do, draw 2.",
+        "element": "Horn",
+        "health": 8
+      },
+      {
+        "name": "Spined Helm",
+        "level": 3,
+        "text": "Start: You may discard a stamina token or a card with a printed cost of 2 or higher from your hand. If you do, draw 2.",
+        "element": "Horn",
+        "health": 12
+      },
+      {
+        "name": "Frost Helm",
+        "level": 1,
+        "text": "During the monster upkeep phase, if you are in the front sector, you may reveal a M from your hand to reduce the number of struggle the monster gains by 1 (only 1 player can trigger this ability each round).",
+        "element": "Ice",
+        "health": 4
+      },
+      {
+        "name": "Frost Helm",
+        "level": 2,
+        "text": "During the monster upkeep phase, if you are in the front sector, reduce the number of struggle the monster gains by 1 (only 1 player can trigger this ability each round).",
+        "element": "Ice",
+        "health": 9
+      },
+      {
+        "name": "Frost Helm",
+        "level": 3,
+        "text": "During the monster upkeep phase, reduce the number of struggle the monster gains by 1 (only 1 player can trigger this ability each round).",
+        "element": "Ice",
+        "health": 14
+      },
+      {
+        "name": "Iron Helm",
+        "level": 1,
+        "text": "When you would suffer damage that would knock you down,  prevent that damage (max: once per game).",
+        "element": "Metal",
+        "health": 5
+      },
+      {
+        "name": "Iron Helm",
+        "level": 2,
+        "text": "When you would suffer damage that would knock you down,  prevent that damage and then draw 1 (max: once per game).",
+        "element": "Metal",
+        "health": 11
+      },
+      {
+        "name": "Iron Helm",
+        "level": 3,
+        "text": "When you would suffer damage that would knock you down,  prevent that damage, draw 1 and deal your weapon damage (max: once per game).",
+        "element": "Metal",
+        "health": 15
+      },
+      {
+        "name": "Thunder Helm",
+        "level": 1,
+        "text": "When you discard a A from your hand to generate stamina, deal 1 damage.",
+        "element": "Thunder",
+        "health": 4
+      },
+      {
+        "name": "Thunder Helm",
+        "level": 2,
+        "text": "When you discard a A from your hand to generate stamina, deal 2 damage.",
+        "element": "Thunder",
+        "health": 9
+      },
+      {
+        "name": "Thunder Helm",
+        "level": 3,
+        "text": "When you discard a A from your hand to generate stamina, deal 4 damage.",
+        "element": "Thunder",
+        "health": 15
+      },
+      {
+        "name": "Ironleaf Helm",
+        "level": 1,
+        "text": "When the monster suffers a wound,  you may search your discard pile for A and shuffle it into your deck",
+        "element": "Venom",
+        "health": 5
+      },
+      {
+        "name": "Ironleaf Helm",
+        "level": 2,
+        "text": "When the monster suffers a wound,  you may search your discard pile for offensive and place it on top of your deck.",
+        "element": "Venom",
+        "health": 9
+      },
+      {
+        "name": "Ironleaf Helm",
+        "level": 3,
+        "text": "When the monster suffers a wound,  you may search your discard pile for a card of your choice and add it to your hand.",
+        "element": "Venom",
+        "health": 13
+      },
+      {
+        "name": "Base Helm",
+        "level": 1,
+        "text": "",
+        "element": "",
+        "health": 4
+      }
+    ],
+    "potion": [
+      {
+        "name": "Alemore",
+        "level": 1,
+        "text": "Consume: Choose a player in your sector to heal 2. If the current attrition level (the attrition value of the top card of the attrition discard pile) is 1 or lower, that player heals 4 instead.",
+        "element": ""
+      },
+      {
+        "name": "Alemore",
+        "level": 2,
+        "text": "Consume: Choose a player in your sector to heal 4. If the current attrition level (the attrition value of the top card of the attrition discard pile) is 1 or lower, that player heals 8 instead.",
+        "element": ""
+      },
+      {
+        "name": "Alemore",
+        "level": 3,
+        "text": "Consume: Choose a player in your sector to heal 6. If the current attrition level (the attrition value of the top card of the attrition discard pile) is 1 or lower, that player heals 12 instead.",
+        "element": ""
+      },
+      {
+        "name": "Evok",
+        "level": 1,
+        "text": "Consume: Discard a card from your hand to search your deck for a defensive and add it to your hand. Then shuffle your deck.",
+        "element": ""
+      },
+      {
+        "name": "Evok",
+        "level": 2,
+        "text": "Consume: Search your deck for a defensive and add it to your hand. Then shuffle your deck.",
+        "element": ""
+      },
+      {
+        "name": "Evok",
+        "level": 3,
+        "text": "Consume: Search your deck for a card of your choice and add it to your hand. Then shuffle your deck. If that card is a defensive, its stamina cost is reduced by 1 until the end of this turn.",
+        "element": ""
+      },
+      {
+        "name": "Vydia",
+        "level": 1,
+        "text": "Consume: Discard a card from your hand to search your deck for a offensive and add it to your hand. Then shuffle your deck.",
+        "element": ""
+      },
+      {
+        "name": "Vydia",
+        "level": 2,
+        "text": "Consume: Search your deck for a offensive and add it to your hand. Then shuffle your deck.",
+        "element": ""
+      },
+      {
+        "name": "Vydia",
+        "level": 3,
+        "text": "Consume: Search your deck for a card of your choice and add it to your hand. Then shuffle your deck. If that card is a offensive, its stamina cost is reduced by 1 until the end of this turn.",
+        "element": ""
+      },
+      {
+        "name": "Imperia",
+        "level": 1,
+        "text": "Consume: Suffer damage equal to your weapon level and draw 2.",
+        "element": ""
+      },
+      {
+        "name": "Imperia",
+        "level": 2,
+        "text": "Consume: Draw 2.",
+        "element": ""
+      },
+      {
+        "name": "Imperia",
+        "level": 3,
+        "text": "Consume: Draw 2 and reduce the stamina cost of the first card you play this round by 1.",
+        "element": ""
+      },
+      {
+        "name": "Hatrox",
+        "level": 1,
+        "text": "Consume: Suffer damage equal to your weapon level. Your weapon gets +3 damage until the end of this round.",
+        "element": ""
+      },
+      {
+        "name": "Hatrox",
+        "level": 2,
+        "text": "Consume: Suffer damage equal to your weapon level. Your weapon gets +6 damage until the end of this round.",
+        "element": ""
+      },
+      {
+        "name": "Hatrox",
+        "level": 3,
+        "text": "Consume: Suffer damage equal to your weapon level. Your weapon gets +9 damage until the end of this round.",
+        "element": ""
+      },
+      {
+        "name": "Irden",
+        "level": 1,
+        "text": "Consume: Gain a defense token.",
+        "element": ""
+      },
+      {
+        "name": "Irden",
+        "level": 2,
+        "text": "Consume: Gain a defense token and reduce the attrition damage you would suffer this round by 1.",
+        "element": ""
+      },
+      {
+        "name": "Irden",
+        "level": 3,
+        "text": "Consume: Skip the attrition phase this round.",
+        "element": ""
+      }
+    ]
+  }
+}

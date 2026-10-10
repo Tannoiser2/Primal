@@ -1,0 +1,3850 @@
+{
+  "_note": "Testi trascritti dalle carte originali (mod TTS). type: attack|maneuver|dodge|parry. cost = costo stamina, stamina = stamina generata scartando la carta. combo = pattern nella sequenza; 'this' marca la posizione della carta stessa.",
+  "dareon": {
+    "name": "Dareon",
+    "weapon_class": "great_sword",
+    "hand_limit": 5,
+    "sequence_limit": 5,
+    "art": {
+      "board": "res://art/dareon/dareon_character_board.jpg",
+      "standee": "res://art/models/dareon_standee.png",
+      "card_back": "res://art/dareon/action_back.jpg",
+      "model": "res://models/dareon.glb",
+      "portrait": {
+        "art": "res://art/dareon/dareon_character_board.jpg",
+        "region": [
+          0.5,
+          0.11,
+          0.3,
+          0.48
+        ]
+      }
+    },
+    "weapon": {
+      "id": 1856,
+      "name": "Great Sword",
+      "level": 1,
+      "damage": 2,
+      "art": "res://art/dareon/dareon_base_great_sword.jpg",
+      "text": "AA: Increase the damage the attack deals by 2 and remove 1 struggle.",
+      "combo": [
+        "attack",
+        "attack"
+      ],
+      "effects": [
+        {
+          "op": "bonus_damage",
+          "n": 2
+        },
+        {
+          "op": "remove_struggle",
+          "n": 1
+        }
+      ],
+      "it": "Dopo due attack di fila: aumenta di 2 i danni dell'attacco e rimuovi 1 struggle."
+    },
+    "mastery": {
+      "id": 2105,
+      "name": "Relentless Assault",
+      "focus": 2,
+      "art": "res://art/dareon/card_2105.jpg",
+      "art_focused": "res://art/dareon/card_2105_back.jpg",
+      "unfocused_text": "AA: Place a counter on this card.",
+      "unfocused_combo": [
+        "attack",
+        "attack"
+      ],
+      "focused_text": "Reduce the stamina cost of all attacks you play by 1.",
+      "focused_effects": [
+        {
+          "op": "cost_modifier",
+          "type": "attack",
+          "n": -1,
+          "duration": "permanent"
+        }
+      ],
+      "it_unfocused": "Dopo due attack di fila: metti un segnalino su questa carta.",
+      "it_focused": "Riduci di 1 il costo in stamina di tutti gli attack che giochi."
+    },
+    "armor": {
+      "name": "Base Armor",
+      "level": 1,
+      "health": 5,
+      "art": "res://art/dareon/base_armor.jpg"
+    },
+    "helm": {
+      "name": "Base Helm",
+      "level": 1,
+      "health": 4,
+      "art": "res://art/dareon/base_helm.jpg"
+    },
+    "potions": [
+      {
+        "name": "Alemore",
+        "level": 1,
+        "art": "res://art/dareon/level_1_alemore.jpg",
+        "text": "Consume: Choose a player in your sector to heal 2. If the current attrition level is 1 or lower, that player heals 4 instead.",
+        "effects": [
+          {
+            "op": "heal_choose",
+            "n": 2,
+            "n_if_low_attrition": 4,
+            "scope": "sector"
+          }
+        ],
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition corrente e' 1 o meno, ne recupera 4."
+      }
+    ],
+    "deck": [
+      {
+        "id": 178100,
+        "name": "Engage",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Choose another player in your sector or an adjacent sector to draw 1.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1,
+            "target": "choose_other",
+            "range": "adjacent"
+          }
+        ],
+        "it": "Scegli un altro giocatore nel tuo settore o in uno adiacente: pesca 1."
+      },
+      {
+        "id": 178101,
+        "name": "Battle Cry",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Berserker. Resilience.",
+        "keywords": [
+          "berserker",
+          "resilience"
+        ],
+        "it": "Berserker. Resilience."
+      },
+      {
+        "id": 178102,
+        "name": "Precise Strike",
+        "type": "attack",
+        "cost": 3,
+        "stamina": 2,
+        "aggro": false,
+        "text": "This attack inflicts vulnerable.",
+        "effects": [
+          {
+            "op": "inflict",
+            "status": "vulnerable"
+          }
+        ],
+        "it": "Questo attacco infligge vulnerable."
+      },
+      {
+        "id": 178103,
+        "name": "Dragon Strike",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Assist. P>: Draw 1.",
+        "keywords": [
+          "assist"
+        ],
+        "abilities": [
+          {
+            "combo": [
+              "parry",
+              "this"
+            ],
+            "effects": [
+              {
+                "op": "draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Assist. Dopo una parry: pesca 1."
+      },
+      {
+        "id": 178104,
+        "name": "Deflecting Blade",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Search your deck for a card with slash and add it to your hand. Then reshuffle your deck.",
+        "effects": [
+          {
+            "op": "search_deck",
+            "trait": "slash",
+            "to": "hand",
+            "reshuffle": true
+          }
+        ],
+        "it": "Cerca nel mazzo una carta con slash e aggiungila alla mano. Poi rimescola il mazzo."
+      },
+      {
+        "id": 178105,
+        "name": "Counterstrike",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": ">A: Increase the damage the attack deals by 3xWL.",
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "attack"
+            ],
+            "effects": [
+              {
+                "op": "bonus_damage",
+                "n": 3,
+                "scale": "weapon_level"
+              }
+            ]
+          }
+        ],
+        "it": "Prima di un attack: aumenta di 3xWL i danni di quell'attacco."
+      },
+      {
+        "id": 178106,
+        "name": "Reactive Guard",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Resilience. >A: Draw 1.",
+        "keywords": [
+          "resilience"
+        ],
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "attack"
+            ],
+            "effects": [
+              {
+                "op": "draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Resilience. Prima di un attack: pesca 1."
+      },
+      {
+        "id": 178107,
+        "name": "Guardian Blade",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": true,
+        "text": "At the end of your action phase, choose another player to draw 1 for each aggro icon in your sequence (max: draw 3).",
+        "abilities": [
+          {
+            "trigger": "end_of_action_phase",
+            "effects": [
+              {
+                "op": "draw",
+                "n": "aggro_icons_in_sequence",
+                "max": 3,
+                "target": "choose_other"
+              }
+            ]
+          }
+        ],
+        "it": "Alla fine della tua fase Azione, scegli un altro giocatore che pesca 1 per ogni icona aggro nella tua sequenza (massimo 3)."
+      },
+      {
+        "id": 178108,
+        "name": "Voice of the Dragon",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. Resilience. Reduce the stamina cost of each attack you play this turn by 1.",
+        "keywords": [
+          "assist",
+          "resilience"
+        ],
+        "effects": [
+          {
+            "op": "cost_modifier",
+            "type": "attack",
+            "n": -1,
+            "duration": "turn"
+          }
+        ],
+        "it": "Assist. Resilience. Riduci di 1 il costo in stamina di ogni attack che giochi questo turno."
+      },
+      {
+        "id": 178109,
+        "name": "Heavy Clash",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Assist. Remove 1 struggle token.",
+        "keywords": [
+          "assist"
+        ],
+        "effects": [
+          {
+            "op": "remove_struggle",
+            "n": 1
+          }
+        ],
+        "it": "Assist. Rimuovi 1 segnalino struggle."
+      },
+      {
+        "id": 178110,
+        "name": "Evasive Step",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Search your deck for an attack and add it to your hand. Then reshuffle your deck.",
+        "effects": [
+          {
+            "op": "search_deck",
+            "type": "attack",
+            "to": "hand",
+            "reshuffle": true
+          }
+        ],
+        "it": "Cerca un attack nel mazzo e aggiungilo alla mano. Poi rimescola il mazzo."
+      },
+      {
+        "id": 178111,
+        "name": "Quick Attack",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you discard this card from your hand, deal your base weapon damage.",
+        "abilities": [
+          {
+            "trigger": "discarded_from_hand",
+            "effects": [
+              {
+                "op": "deal_damage",
+                "n": "base_weapon"
+              }
+            ]
+          }
+        ],
+        "it": "Quando scarti questa carta dalla mano, infliggi il danno base della tua weapon."
+      },
+      {
+        "id": 178112,
+        "name": "Dragon Dash",
+        "type": "dodge",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": false,
+        "text": "MF: Reduce the stamina cost of the next card you play by 1.",
+        "abilities": [
+          {
+            "condition": "mastery_focused",
+            "effects": [
+              {
+                "op": "cost_modifier",
+                "type": "any",
+                "n": -1,
+                "duration": "next_card"
+              }
+            ]
+          }
+        ],
+        "it": "Con la mastery focalizzata: riduci di 1 il costo in stamina della prossima carta che giochi."
+      },
+      {
+        "id": 178113,
+        "name": "Empty Fade",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "You may play a card with slash as the next card in your sequence without paying its stamina cost.",
+        "effects": [
+          {
+            "op": "free_next",
+            "trait": "slash"
+          }
+        ],
+        "it": "Puoi giocare una carta con slash come carta successiva della sequenza senza pagarne il costo in stamina."
+      },
+      {
+        "id": 178114,
+        "name": "Retreat",
+        "type": "dodge",
+        "cost": 2,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Draw 2.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2
+          }
+        ],
+        "it": "Pesca 2."
+      },
+      {
+        "id": 178115,
+        "name": "Endurance",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw 1. MF: Draw 2 instead.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1,
+            "n_if_mastery_focused": 2
+          }
+        ],
+        "it": "Pesca 1. Con la mastery focalizzata: pesca 2 invece di 1."
+      },
+      {
+        "id": 178116,
+        "name": "Swift Dodge",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Reduce the stamina cost of the next card you play by 1.",
+        "effects": [
+          {
+            "op": "cost_modifier",
+            "type": "any",
+            "n": -1,
+            "duration": "next_card"
+          }
+        ],
+        "it": "Riduci di 1 il costo in stamina della prossima carta che giochi."
+      },
+      {
+        "id": 178117,
+        "name": "Thwart",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": false,
+        "text": "When another player removes struggle, you may discard this card from your hand to double the amount of struggle removed. Then the active player draws 1 card.",
+        "abilities": [
+          {
+            "trigger": "other_player_removes_struggle",
+            "from": "hand",
+            "optional": true,
+            "effects": [
+              {
+                "op": "double_struggle_removed"
+              },
+              {
+                "op": "draw",
+                "n": 1,
+                "target": "active"
+              }
+            ]
+          }
+        ],
+        "it": "Quando un altro giocatore rimuove struggle, puoi scartare questa carta dalla mano per raddoppiare lo struggle rimosso. Poi il giocatore attivo pesca 1."
+      },
+      {
+        "id": 178118,
+        "name": "Pressing Strike",
+        "type": "maneuver",
+        "cost": 2,
+        "stamina": 1,
+        "aggro": true,
+        "traits": [
+          "slash"
+        ],
+        "text": "Draw 2.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2
+          }
+        ],
+        "it": "Pesca 2."
+      },
+      {
+        "id": 178119,
+        "name": "Slash to the Flank",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "traits": [
+          "slash"
+        ],
+        "text": "If you are in a flank sector, you may play an attack as the next card in your sequence without paying its stamina cost.",
+        "effects": [
+          {
+            "op": "free_next",
+            "type": "attack",
+            "if_sector": "flank"
+          }
+        ],
+        "it": "Se sei in un settore flank, puoi giocare un attack come carta successiva della sequenza senza pagarne il costo in stamina."
+      },
+      {
+        "id": 178121,
+        "name": "Jumping Slice",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "traits": [
+          "slash"
+        ],
+        "keywords": [
+          "assist"
+        ],
+        "text": "Assist. If you paid with a maneuver, increase the damage this attack deals by 3xWL.",
+        "effects": [
+          {
+            "op": "bonus_damage",
+            "n": 3,
+            "scale": "weapon_level",
+            "if_paid_with": "maneuver"
+          }
+        ],
+        "it": "Assist. Se hai pagato con un maneuver, aumenta di 3xWL i danni di questo attacco."
+      },
+      {
+        "id": 178122,
+        "name": "Double Slash",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "traits": [
+          "slash"
+        ],
+        "text": "If the next card you play in your sequence is an attack, reduce its stamina cost by 1.",
+        "effects": [
+          {
+            "op": "cost_modifier",
+            "type": "attack",
+            "n": -1,
+            "duration": "next_card"
+          }
+        ],
+        "it": "Se la prossima carta della sequenza e' un attack, riduci di 1 il suo costo in stamina."
+      },
+      {
+        "id": 178123,
+        "name": "Massive Strike",
+        "type": "attack",
+        "cost": 4,
+        "stamina": 2,
+        "aggro": true,
+        "keywords": [
+          "finisher"
+        ],
+        "text": "Finisher. You can only play this card after an attack. Increase the damage this attack deals by 5xWL.",
+        "requires": {
+          "previous_in_sequence": "attack"
+        },
+        "effects": [
+          {
+            "op": "bonus_damage",
+            "n": 5,
+            "scale": "weapon_level"
+          }
+        ],
+        "it": "Finisher. Puoi giocarla solo dopo un attack. Aumenta di 5xWL i danni di questo attacco."
+      },
+      {
+        "id": 210300,
+        "name": "Aggressive Charge",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Assist. Berserker.",
+        "keywords": [
+          "assist",
+          "berserker"
+        ],
+        "it": "Assist. Berserker."
+      }
+    ]
+  },
+  "mirah": {
+    "name": "Mirah",
+    "weapon_class": "great_bow",
+    "hand_limit": 5,
+    "sequence_limit": 5,
+    "art": {
+      "board": "res://art/mirah/mirah_character_board.jpg",
+      "standee": "res://art/models/mirah_standee.png",
+      "card_back": "res://art/mirah/action_back.jpg",
+      "model": "res://models/mirah.glb",
+      "portrait": {
+        "art": "res://art/mirah/mirah_character_board.jpg",
+        "region": [
+          0.52,
+          0.1,
+          0.3,
+          0.48
+        ]
+      }
+    },
+    "weapon": {
+      "id": 1860,
+      "name": "Great Bow",
+      "level": 1,
+      "damage": 2,
+      "art": "res://art/mirah/mirah_base_great_bow.jpg",
+      "text": "A: Volley 1.",
+      "combo": [
+        "attack"
+      ],
+      "effects": [
+        {
+          "op": "volley",
+          "n": 1
+        }
+      ],
+      "it": "Su un attack: Volley 1."
+    },
+    "mastery": {
+      "id": 2115,
+      "name": "Ultimate Shot",
+      "focus": 1,
+      "art": "res://art/mirah/card_2115.jpg",
+      "art_focused": "res://art/mirah/card_2115_back.jpg",
+      "unfocused_text": "When you empty your deck, place a counter on this card.",
+      "unfocused_trigger": "deck_emptied",
+      "focused_text": "Start: Volley 2. When you empty your deck, deal 5xWL damage.",
+      "focused_effects": [
+        {
+          "op": "volley",
+          "n": 2,
+          "trigger": "start_of_turn"
+        },
+        {
+          "op": "deal_damage",
+          "n": 5,
+          "scale": "weapon_level",
+          "trigger": "deck_emptied"
+        }
+      ],
+      "it_unfocused": "Quando esaurisci il mazzo, metti un segnalino su questa carta.",
+      "it_focused": "All'inizio del turno: Volley 2. Quando esaurisci il mazzo, infliggi 5xWL danni."
+    },
+    "armor": {
+      "name": "Base Armor",
+      "level": 1,
+      "health": 5,
+      "art": "res://art/mirah/base_armor.jpg"
+    },
+    "helm": {
+      "name": "Base Helm",
+      "level": 1,
+      "health": 4,
+      "art": "res://art/mirah/base_helm.jpg"
+    },
+    "potions": [
+      {
+        "name": "Alemore",
+        "level": 1,
+        "art": "res://art/mirah/level_1_alemore.jpg",
+        "text": "Consume: Choose a player in your sector to heal 2. If the current attrition level is 1 or lower, that player heals 4 instead.",
+        "effects": [
+          {
+            "op": "heal_choose",
+            "n": 2,
+            "n_if_low_attrition": 4,
+            "scope": "sector"
+          }
+        ],
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition corrente e' 1 o meno, ne recupera 4."
+      }
+    ],
+    "deck": [
+      {
+        "id": 178400,
+        "name": "Adrenaline Shot",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Recycle 1. MF: Volley 2.",
+        "effects": [
+          {
+            "op": "recycle",
+            "n": 1
+          }
+        ],
+        "abilities": [
+          {
+            "condition": "mastery_focused",
+            "effects": [
+              {
+                "op": "volley",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "it": "Recycle 1. Con la mastery focalizzata: Volley 2."
+      },
+      {
+        "id": 178401,
+        "name": "Heavy Arrow",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "You may pay 2 stamina to increase the damage this attack deals by 6xWL.",
+        "effects": [
+          {
+            "op": "optional_pay",
+            "stamina": 2,
+            "then": [
+              {
+                "op": "bonus_damage",
+                "n": 6,
+                "scale": "weapon_level"
+              }
+            ]
+          }
+        ],
+        "it": "Puoi pagare 2 stamina per aumentare di 6xWL i danni di questo attacco."
+      },
+      {
+        "id": 178402,
+        "name": "Precision Draw",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "keywords": [
+          "assist"
+        ],
+        "text": "Assist. At the start of your turn, if this card is the top card of your discard pile, draw 2.",
+        "abilities": [
+          {
+            "trigger": "start_of_turn",
+            "from": "discard_top",
+            "effects": [
+              {
+                "op": "draw",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "it": "Assist. All'inizio del tuo turno, se questa carta e' in cima ai tuoi scarti, pesca 2."
+      },
+      {
+        "id": 178403,
+        "name": "Cover Fire",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "keywords": [
+          "assist"
+        ],
+        "text": "Assist. When another player would suffer attrition damage, you may discard this card from your hand to prevent that damage.",
+        "it": "Assist. Quando un altro giocatore subirebbe danno da attrition, puoi scartare questa carta dalla mano per prevenire quel danno.",
+        "out_of_turn": {
+          "trigger": "other_would_suffer_attrition",
+          "effects": [
+            {
+              "op": "prevent_damage"
+            }
+          ]
+        }
+      },
+      {
+        "id": 178404,
+        "name": "Intuition",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you play a parry, you may recycle this card from your hand.",
+        "abilities": [
+          {
+            "trigger": "played_card",
+            "type": "parry",
+            "from": "hand",
+            "optional": true,
+            "effects": [
+              {
+                "op": "recycle_self"
+              }
+            ]
+          }
+        ],
+        "it": "Quando giochi una parry, puoi fare recycle di questa carta dalla mano."
+      },
+      {
+        "id": 178405,
+        "name": "Prompt Reflexes",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw 1.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1
+          }
+        ],
+        "it": "Pesca 1."
+      },
+      {
+        "id": 178406,
+        "name": "Decoy",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": true,
+        "text": "Choose a player to draw 1.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1,
+            "target": "choose_any"
+          }
+        ],
+        "it": "Scegli un giocatore che pesca 1."
+      },
+      {
+        "id": 178407,
+        "name": "Swift Deflection",
+        "type": "parry",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you discard this card from your hand, draw 1.",
+        "abilities": [
+          {
+            "trigger": "discarded_from_hand",
+            "effects": [
+              {
+                "op": "draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Quando scarti questa carta dalla mano, pesca 1."
+      },
+      {
+        "id": 178408,
+        "name": "Graceful Defense",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Reduce the stamina cost of each parry you play this turn by 1.",
+        "effects": [
+          {
+            "op": "cost_modifier",
+            "type": "parry",
+            "n": -1,
+            "duration": "turn"
+          }
+        ],
+        "it": "Riduci di 1 il costo in stamina di ogni parry che giochi questo turno."
+      },
+      {
+        "id": 178409,
+        "name": "Lightning Escape",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Search your discard pile for a dodge and add it to your hand.",
+        "effects": [
+          {
+            "op": "search_discard",
+            "type": "dodge",
+            "to": "hand"
+          }
+        ],
+        "it": "Cerca un dodge nella pila degli scarti e aggiungilo alla mano."
+      },
+      {
+        "id": 178410,
+        "name": "Sneaky Glide",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Recycle 1. The next card you play in your sequence gains stealth.",
+        "effects": [
+          {
+            "op": "recycle",
+            "n": 1
+          },
+          {
+            "op": "grant_keyword",
+            "keyword": "stealth",
+            "duration": "next_card"
+          }
+        ],
+        "it": "Recycle 1. La prossima carta della sequenza guadagna Stealth."
+      },
+      {
+        "id": 178411,
+        "name": "Sharp Shot",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "traits": [
+          "aim"
+        ],
+        "text": "MF: The next time you play an attack this turn, deal 2xWL damage.",
+        "abilities": [
+          {
+            "condition": "mastery_focused",
+            "effects": [
+              {
+                "op": "on_next",
+                "type": "attack",
+                "duration": "turn",
+                "then": [
+                  {
+                    "op": "deal_damage",
+                    "n": 2,
+                    "scale": "weapon_level"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "it": "Con la mastery focalizzata: la prossima volta che giochi un attack in questo turno, infliggi 2xWL danni."
+      },
+      {
+        "id": 178412,
+        "name": "Backflip",
+        "type": "dodge",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": false,
+        "text": "You can only play this card after an attack. The next time you refill your hand, draw 1.",
+        "requires": {
+          "previous_in_sequence": "attack"
+        },
+        "effects": [
+          {
+            "op": "bonus_refill",
+            "n": 1
+          }
+        ],
+        "it": "Puoi giocarla solo dopo un attack. La prossima volta che ripristini la mano, pesca 1 in piu'."
+      },
+      {
+        "id": 178413,
+        "name": "Evasion",
+        "type": "dodge",
+        "cost": 2,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw 2.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2
+          }
+        ],
+        "it": "Pesca 2."
+      },
+      {
+        "id": 178414,
+        "name": "Acrobatics",
+        "type": "dodge",
+        "cost": 2,
+        "stamina": 1,
+        "aggro": false,
+        "text": ">M: Draw 3 and then you may immediately move without paying any stamina cost.",
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "maneuver"
+            ],
+            "effects": [
+              {
+                "op": "draw",
+                "n": 3
+              },
+              {
+                "op": "free_move"
+              }
+            ]
+          }
+        ],
+        "it": "Prima di un maneuver: pesca 3, poi puoi muoverti subito senza pagare stamina."
+      },
+      {
+        "id": 178415,
+        "name": "Long Range",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "The next attack you play in your sequence gains stealth. While this card is the top card of your discard pile, prevent any attrition damage you would suffer.",
+        "effects": [
+          {
+            "op": "grant_keyword",
+            "keyword": "stealth",
+            "type": "attack",
+            "duration": "next_of_type"
+          }
+        ],
+        "it": "Il prossimo attack della sequenza guadagna Stealth. Mentre questa carta e' in cima agli scarti, previeni il danno da attrition che subiresti.",
+        "prevents_attrition_on_top": true
+      },
+      {
+        "id": 178416,
+        "name": "Ranged Position",
+        "type": "dodge",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "keywords": [
+          "assist"
+        ],
+        "text": "Assist. While this card is the top card of your discard pile, it counts as a dodge in your sequence for the attrition check.",
+        "it": "Assist. Mentre questa carta e' in cima agli scarti, conta come dodge nella tua sequenza per il check di attrition.",
+        "counts_as_defensive_on_top": true
+      },
+      {
+        "id": 178417,
+        "name": "Targeted Shot",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "traits": [
+          "aim"
+        ],
+        "text": "MF: The next time you play a maneuver this turn, draw 1.",
+        "abilities": [
+          {
+            "condition": "mastery_focused",
+            "effects": [
+              {
+                "op": "on_next",
+                "type": "maneuver",
+                "duration": "turn",
+                "then": [
+                  {
+                    "op": "draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "it": "Con la mastery focalizzata: la prossima volta che giochi un maneuver in questo turno, pesca 1."
+      },
+      {
+        "id": 178418,
+        "name": "Accurate Shot",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "traits": [
+          "aim"
+        ],
+        "keywords": [
+          "assist"
+        ],
+        "text": "Assist.",
+        "it": "Assist."
+      },
+      {
+        "id": 178419,
+        "name": "Rapid Burst",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": true,
+        "keywords": [
+          "assist"
+        ],
+        "text": "Assist. Volley 2.",
+        "effects": [
+          {
+            "op": "volley",
+            "n": 2
+          }
+        ],
+        "it": "Assist. Volley 2."
+      },
+      {
+        "id": 178420,
+        "name": "Bouncing Shot",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you discard this card from your hand, perform volley 2.",
+        "abilities": [
+          {
+            "trigger": "discarded_from_hand",
+            "effects": [
+              {
+                "op": "volley",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "it": "Quando scarti questa carta dalla mano, esegui Volley 2."
+      },
+      {
+        "id": 178421,
+        "name": "Silent Arrow",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "traits": [
+          "aim"
+        ],
+        "keywords": [
+          "stealth"
+        ],
+        "text": "Stealth. While you are the aggro player, you cannot play this card in your sequence.",
+        "requires": {
+          "not_aggro_player": true
+        },
+        "it": "Stealth. Mentre hai il segnalino aggro non puoi giocare questa carta nella sequenza."
+      },
+      {
+        "id": 178422,
+        "name": "Deadly Shot",
+        "type": "attack",
+        "cost": 3,
+        "stamina": 2,
+        "aggro": true,
+        "text": "Increase the damage this attack deals by 5xWL. MF: If this attack deals damage, inflict blind.",
+        "effects": [
+          {
+            "op": "bonus_damage",
+            "n": 5,
+            "scale": "weapon_level"
+          }
+        ],
+        "abilities": [
+          {
+            "condition": "mastery_focused",
+            "if_dealt_damage": true,
+            "effects": [
+              {
+                "op": "inflict",
+                "status": "blind"
+              }
+            ]
+          }
+        ],
+        "it": "Aumenta di 5xWL i danni di questo attacco. Con la mastery focalizzata: se l'attacco infligge danno, infliggi blind."
+      },
+      {
+        "id": 178423,
+        "name": "Blinding Shot",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "keywords": [
+          "stealth"
+        ],
+        "text": "Stealth. If the previous card in your sequence has aim, inflict blind.",
+        "abilities": [
+          {
+            "combo": [
+              "aim",
+              "this"
+            ],
+            "effects": [
+              {
+                "op": "inflict",
+                "status": "blind"
+              }
+            ]
+          }
+        ],
+        "it": "Stealth. Se la carta precedente della sequenza ha aim, infliggi blind."
+      }
+    ]
+  },
+  "heleren": {
+    "name": "Heleren",
+    "weapon_class": "gunbow",
+    "hand_limit": 5,
+    "sequence_limit": 5,
+    "_note": "Bullet, Ignite, Reload e defense token sono spiegati in docs/heleren_struttura.md. Il tracciato bullet arriva a 3.",
+    "bullet_track": 3,
+    "art": {
+      "board": "res://art/heleren/heleren_character_board.jpg",
+      "card_back": "res://art/heleren/action_back.jpg",
+      "model": "res://models/heleren.glb",
+      "portrait": {
+        "art": "res://art/heleren/heleren_character_board.jpg",
+        "region": [
+          0.6,
+          0.1,
+          0.3,
+          0.48
+        ]
+      }
+    },
+    "weapon": {
+      "id": 2277,
+      "name": "Gunbow",
+      "level": 1,
+      "damage": 3,
+      "art": "res://art/heleren/heleren_base_gunbow.jpg",
+      "composition": {
+        "attack": 6,
+        "maneuver": 6,
+        "parry": 6,
+        "dodge": 6
+      },
+      "text": "Ignite: Deal 1 damage.",
+      "on_ignite": [
+        {
+          "op": "deal_damage",
+          "n": 1
+        }
+      ],
+      "it": "Ignite: infliggi 1 danno."
+    },
+    "mastery": {
+      "id": 2278,
+      "name": "Precision Reload",
+      "focus": 2,
+      "art": "res://art/heleren/card_2278.jpg",
+      "art_focused": "res://art/heleren/card_2278_back.jpg",
+      "unfocused_text": "When you reload, place a counter on this card.",
+      "unfocused_trigger": "reload",
+      "focused_text": "When you reload, search your deck or discard pile for an attack and add it to your hand. If you searched your deck, reshuffle it.",
+      "focused_trigger": "reload",
+      "focused_effects": [
+        {
+          "op": "choose_one",
+          "options": [
+            {
+              "label": "Cerca nel mazzo",
+              "effects": [
+                {
+                  "op": "search_deck",
+                  "type": "attack",
+                  "to": "hand"
+                }
+              ]
+            },
+            {
+              "label": "Cerca negli scarti",
+              "effects": [
+                {
+                  "op": "search_discard",
+                  "type": "attack",
+                  "to": "hand"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "it_unfocused": "Quando fai reload, metti un segnalino su questa carta.",
+      "it_focused": "Quando fai reload, cerca un attack nel mazzo o negli scarti e aggiungilo alla mano."
+    },
+    "armor": {
+      "name": "Base Armor",
+      "level": 1,
+      "health": 5,
+      "art": "res://art/heleren/base_armor.jpg"
+    },
+    "helm": {
+      "name": "Base Helm",
+      "level": 1,
+      "health": 4,
+      "art": "res://art/heleren/base_helm.jpg"
+    },
+    "potions": [
+      {
+        "name": "Alemore",
+        "level": 1,
+        "art": "res://art/heleren/level_1_alemore.jpg",
+        "text": "Consume: Choose a player in your sector to heal 2. If the current attrition level is 1 or lower, that player heals 4 instead.",
+        "effects": [
+          {
+            "op": "heal_choose",
+            "n": 2,
+            "n_if_low_attrition": 4,
+            "scope": "sector"
+          }
+        ],
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition e' 1 o meno, ne recupera 4."
+      }
+    ],
+    "deck": [
+      {
+        "id": 213400,
+        "name": "Bombardment",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "You may spend a bullet. If you do, confuse the monster or increase the struggle this maneuver removes by 2.",
+        "art": "res://art/heleren/action_213400.jpg",
+        "it": "Puoi spendere un bullet: se lo fai, confondi il mostro oppure questo maneuver rimuove 2 struggle in piu'.",
+        "effects": [
+          {
+            "op": "spend_bullets",
+            "n": 1,
+            "label": "Bombardment",
+            "then": [
+              {
+                "op": "choose_one",
+                "options": [
+                  {
+                    "label": "Confondi il mostro",
+                    "effects": [
+                      {
+                        "op": "inflict",
+                        "status": "confuse"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Rimuovi 2 struggle in piu'",
+                    "effects": [
+                      {
+                        "op": "maneuver_struggle_bonus",
+                        "n": 2
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 213600,
+        "name": "Cover Fire",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. When another player would suffer attrition damage, you may discard this card from your hand to prevent that damage.",
+        "art": "res://art/heleren/action_213600.jpg",
+        "it": "Assist. Quando un altro giocatore subirebbe danno da attrition, puoi scartarla dalla mano per prevenirlo.",
+        "keywords": [
+          "assist"
+        ],
+        "out_of_turn": {
+          "trigger": "other_would_suffer_attrition",
+          "effects": [
+            {
+              "op": "prevent_damage"
+            }
+          ]
+        }
+      },
+      {
+        "id": 213800,
+        "name": "Exertion",
+        "type": "parry",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. When you discard this card to generate stamina for an attack, it generates 2 stamina.",
+        "art": "res://art/heleren/action_213800.jpg",
+        "it": "Assist. Quando la scarti per generare stamina per un attack, ne genera 2.",
+        "keywords": [
+          "assist"
+        ],
+        "stamina_bonus": {
+          "when": "paying_for",
+          "type": "attack",
+          "stamina": 2
+        }
+      },
+      {
+        "id": 214000,
+        "name": "Haul of Bullets",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw X where X is your bullet track level.",
+        "art": "res://art/heleren/action_214000.jpg",
+        "it": "Pesca X, dove X e' il livello del tuo tracciato bullet.",
+        "effects": [
+          {
+            "op": "draw",
+            "per_count": true,
+            "count": "bullet_track"
+          }
+        ]
+      },
+      {
+        "id": 214600,
+        "name": "Prompt Reflexes",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw 1.",
+        "art": "res://art/heleren/action_214600.jpg",
+        "it": "Pesca 1.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "id": 214800,
+        "name": "Ranged",
+        "type": "dodge",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. While this card is the top card of your discard pile, it counts as a dodge in your sequence for the attrition check.",
+        "art": "res://art/heleren/action_214800.jpg",
+        "it": "Assist. Mentre e' in cima ai tuoi scarti conta come un dodge nella sequenza per il check di attrition.",
+        "keywords": [
+          "assist"
+        ],
+        "counts_as_defensive_on_top": true
+      },
+      {
+        "id": 214900,
+        "name": "Rapid Ignition",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "You may spend a bullet to search your discard pile for an attack and place it on top of your deck.",
+        "art": "res://art/heleren/action_214900.jpg",
+        "it": "Puoi spendere un bullet per cercare un attack negli scarti e metterlo in cima al mazzo.",
+        "effects": [
+          {
+            "op": "spend_bullets",
+            "n": 1,
+            "label": "Rapid Ignition",
+            "then": [
+              {
+                "op": "search_discard",
+                "type": "attack",
+                "to": "deck_top"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 215000,
+        "name": "Ready to Shine!",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Discard any number of cards from your hand and then draw until you have 3.",
+        "art": "res://art/heleren/action_215000.jpg",
+        "it": "Scarta quante carte vuoi dalla mano, poi pesca fino ad averne 3.",
+        "effects": [
+          {
+            "op": "discard_any"
+          },
+          {
+            "op": "draw_up_to",
+            "n": 3
+          }
+        ]
+      },
+      {
+        "id": 215100,
+        "name": "Recharging",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. Reload 2.",
+        "art": "res://art/heleren/action_215100.jpg",
+        "it": "Assist. Reload 2.",
+        "keywords": [
+          "assist"
+        ],
+        "effects": [
+          {
+            "op": "reload",
+            "n": 2
+          }
+        ]
+      },
+      {
+        "id": 215200,
+        "name": "Repositioning",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "MF: You may shuffle all attacks from your discard pile into your deck.",
+        "art": "res://art/heleren/action_215200.jpg",
+        "it": "Con la mastery focused: puoi rimescolare tutti gli attack dagli scarti nel mazzo.",
+        "abilities": [
+          {
+            "condition": "mastery_focused",
+            "effects": [
+              {
+                "op": "shuffle_discard_into_deck",
+                "type": "attack"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 215300,
+        "name": "Strafing",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. You may spend a bullet to deal 3 damage. If you do, you may immediately move without paying any stamina cost.",
+        "art": "res://art/heleren/action_215300.jpg",
+        "it": "Assist. Puoi spendere un bullet per infliggere 3 danni; se lo fai, puoi muoverti subito senza pagare stamina.",
+        "keywords": [
+          "assist"
+        ],
+        "effects": [
+          {
+            "op": "spend_bullets",
+            "n": 1,
+            "label": "Strafing",
+            "then": [
+              {
+                "op": "deal_damage",
+                "n": 3
+              },
+              {
+                "op": "free_move_now"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 215400,
+        "name": "Strategic Support",
+        "type": "dodge",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "You may choose a player to discard a maneuver from their hand. If they do, you reload 2.",
+        "art": "res://art/heleren/action_215400.jpg",
+        "it": "Puoi scegliere un giocatore che scarti un maneuver dalla mano. Se lo fa, fai Reload 2.",
+        "effects": [
+          {
+            "op": "ask_discard_of_type",
+            "type": "maneuver",
+            "who": "choose_other",
+            "then": [
+              {
+                "op": "reload",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 215500,
+        "name": "Swift Deflection",
+        "type": "parry",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you discard this card from your hand, draw 1.",
+        "art": "res://art/heleren/action_215500.jpg",
+        "it": "Quando la scarti dalla mano, pesca 1.",
+        "abilities": [
+          {
+            "trigger": "discarded_from_hand",
+            "effects": [
+              {
+                "op": "draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 227900,
+        "name": "Barrage of Bullets",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Spend any number of bullets to increase the damage this attack deals by 2 WL for each bullet spent this way.",
+        "art": "res://art/heleren/action_227900.jpg",
+        "it": "Spendi quanti bullet vuoi: questo attacco infligge 2 danni per livello weapon in piu' per ognuno.",
+        "effects": [
+          {
+            "op": "spend_bullets",
+            "amount": "any",
+            "label": "Barrage of Bullets",
+            "then": [
+              {
+                "op": "bonus_damage_per",
+                "n": 2,
+                "scale": "weapon_level",
+                "count": "variable_payment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 228000,
+        "name": "Pressing Shot",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw 1. If your bullet track level is 1 or higher, draw 2 instead.",
+        "art": "res://art/heleren/action_228000.jpg",
+        "it": "Pesca 1. Se il tracciato bullet e' a 1 o piu', pesca 2.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2,
+            "condition": "has_bullets"
+          },
+          {
+            "op": "draw",
+            "n": 1,
+            "condition": "no_bullets"
+          }
+        ]
+      },
+      {
+        "id": 228100,
+        "name": "Quick Reload",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Reload 1.",
+        "art": "res://art/heleren/action_228100.jpg",
+        "it": "Reload 1.",
+        "effects": [
+          {
+            "op": "reload",
+            "n": 1
+          }
+        ]
+      },
+      {
+        "id": 228200,
+        "name": "Tactical Reload",
+        "type": "dodge",
+        "cost": 2,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Reload 3.",
+        "art": "res://art/heleren/action_228200.jpg",
+        "it": "Reload 3.",
+        "effects": [
+          {
+            "op": "reload",
+            "n": 3
+          }
+        ]
+      },
+      {
+        "id": 228300,
+        "name": "Diversion",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Choose another player to draw 1. You may spend a bullet. If you do, that player draws 2 instead.",
+        "art": "res://art/heleren/action_228300.jpg",
+        "it": "Scegli un altro giocatore che pesca 1. Puoi spendere un bullet: se lo fai, ne pesca 2.",
+        "effects": [
+          {
+            "op": "spend_bullets",
+            "n": 1,
+            "label": "Diversion",
+            "then": [
+              {
+                "op": "draw",
+                "n": 2,
+                "target": "choose_other"
+              }
+            ]
+          },
+          {
+            "op": "draw",
+            "n": 1,
+            "target": "choose_other",
+            "condition": "no_bullet_spent"
+          }
+        ]
+      },
+      {
+        "id": 228400,
+        "name": "Prompt Jump",
+        "type": "dodge",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you would suffer damage, you may discard this card from your hand to prevent that damage.",
+        "art": "res://art/heleren/action_228400.jpg",
+        "it": "Quando subiresti danno, puoi scartarla dalla mano per prevenirlo.",
+        "out_of_turn": {
+          "trigger": "would_suffer",
+          "only_victim": true,
+          "effects": [
+            {
+              "op": "prevent_damage"
+            }
+          ]
+        }
+      },
+      {
+        "id": 228500,
+        "name": "Negation",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": false,
+        "text": "When a behavior card is revealed, you may discard this card from your hand and spend a bullet in order to cancel the effects of that card.",
+        "art": "res://art/heleren/action_228500.jpg",
+        "it": "Quando viene rivelata una carta behavior, puoi scartarla dalla mano e spendere un bullet per annullare gli effetti di quella carta.",
+        "out_of_turn": {
+          "trigger": "behavior_revealed",
+          "effects": [
+            {
+              "op": "spend_bullets",
+              "n": 1,
+              "optional": false,
+              "then": [
+                {
+                  "op": "cancel_behavior"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": 228600,
+        "name": "Gunfire",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": true,
+        "text": "You may spend a bullet to increase the damage this attack deals by 3 WL.",
+        "art": "res://art/heleren/action_228600.jpg",
+        "it": "Puoi spendere un bullet: questo attacco infligge 3 danni per livello weapon in piu'.",
+        "effects": [
+          {
+            "op": "spend_bullets",
+            "n": 1,
+            "label": "Gunfire",
+            "then": [
+              {
+                "op": "bonus_damage",
+                "n": 3,
+                "scale": "weapon_level"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 228700,
+        "name": "Cannonball",
+        "type": "attack",
+        "cost": 4,
+        "stamina": 2,
+        "aggro": true,
+        "text": "You may spend 3 bullets. If you do, stun the monster and increase the damage this attack deals by 4 WL. Another player can generate stamina to help you pay for this card.",
+        "art": "res://art/heleren/action_228700.jpg",
+        "it": "Puoi spendere 3 bullet: se lo fai, stordisci il mostro e questo attacco infligge 4 danni per livello weapon in piu'. Un altro giocatore puo' generare stamina per aiutarti a pagarla.",
+        "effects": [
+          {
+            "op": "spend_bullets",
+            "n": 3,
+            "label": "Cannonball",
+            "then": [
+              {
+                "op": "inflict",
+                "status": "stun"
+              },
+              {
+                "op": "bonus_damage",
+                "n": 4,
+                "scale": "weapon_level"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 228900,
+        "name": "Long Range",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "The next attack you play this turn gains stealth. While this card is the top card of your discard pile, prevent any attrition damage you would suffer.",
+        "art": "res://art/heleren/action_228900.jpg",
+        "it": "Il prossimo attack che giochi in questo turno guadagna stealth. Mentre e' in cima ai tuoi scarti, previene il danno da attrition che subiresti.",
+        "prevents_attrition_on_top": true,
+        "effects": [
+          {
+            "op": "grant_keyword",
+            "keyword": "stealth",
+            "type": "attack",
+            "duration": "next_of_type"
+          }
+        ]
+      },
+      {
+        "id": 229000,
+        "name": "Not This Time!",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you reveal an attrition card, you may reveal this card from your hand and spend a bullet in order to gain a defense token (max: 1 per turn).",
+        "art": "res://art/heleren/action_229000.jpg",
+        "it": "Quando riveli una carta attrition, puoi rivelarla dalla mano e spendere un bullet per prendere un defense token (max 1 per turno).",
+        "out_of_turn": {
+          "trigger": "attrition_revealed",
+          "reveal": true,
+          "once_per_turn": true,
+          "effects": [
+            {
+              "op": "spend_bullets",
+              "n": 1,
+              "optional": false,
+              "then": [
+                {
+                  "op": "gain_defense_token"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "karah": {
+    "name": "Karah",
+    "weapon_class": "dual_blade",
+    "hand_limit": 5,
+    "sequence_limit": 5,
+    "art": {
+      "board": "res://art/karah/karah_character_board.jpg",
+      "card_back": "res://art/karah/action_back.jpg",
+      "model": "res://models/karah.glb",
+      "portrait": {
+        "art": "res://art/karah/karah_character_board.jpg",
+        "region": [
+          0.62,
+          0.09,
+          0.3,
+          0.48
+        ]
+      }
+    },
+    "battle_dance": {
+      "_note": "Letta dalla plancia cacciatore: sei caselle maneuver, con 3, 5 e 7 (per livello weapon) sopra la seconda, la quarta e la sesta.",
+      "scale": "weapon_level",
+      "thresholds": {
+        "2": 3,
+        "4": 5,
+        "6": 7
+      }
+    },
+    "weapon": {
+      "id": 2073,
+      "name": "Dual Blade",
+      "level": 1,
+      "damage": 2,
+      "art": "res://art/karah/karah_base_dual_blades.jpg",
+      "composition": {
+        "attack": 6,
+        "maneuver": 6,
+        "parry": 6,
+        "dodge": 6
+      },
+      "text": "When you trigger battle dance, deal 1 damage.",
+      "on_battle_dance": [
+        {
+          "op": "deal_damage",
+          "n": 1
+        }
+      ],
+      "it": "Quando inneschi la battle dance, infliggi 1 danno."
+    },
+    "mastery": {
+      "id": 2077,
+      "name": "Piercing Dash",
+      "focus": 2,
+      "art": "res://art/karah/card_2077.jpg",
+      "art_focused": "res://art/karah/card_2077_back.jpg",
+      "unfocused_text": "When you overrun the monster, place a counter on this card.",
+      "unfocused_trigger": "overrun",
+      "focused_text": "When you overrun the monster, deal your base weapon damage or draw 1.",
+      "focused_trigger": "overrun",
+      "focused_effects": [
+        {
+          "op": "choose_one",
+          "options": [
+            {
+              "label": "Infliggi il danno base della weapon",
+              "effects": [
+                {
+                  "op": "deal_damage",
+                  "n": "base_weapon"
+                }
+              ]
+            },
+            {
+              "label": "Pesca 1",
+              "effects": [
+                {
+                  "op": "draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "it_unfocused": "Quando fai overrun sul mostro, metti un segnalino su questa carta.",
+      "it_focused": "Quando fai overrun sul mostro, infliggi il danno base della tua weapon oppure pesca 1."
+    },
+    "armor": {
+      "name": "Base Armor",
+      "level": 1,
+      "health": 5,
+      "art": "res://art/karah/base_armor.jpg"
+    },
+    "helm": {
+      "name": "Base Helm",
+      "level": 1,
+      "health": 4,
+      "art": "res://art/karah/base_helm.jpg"
+    },
+    "potions": [
+      {
+        "name": "Alemore",
+        "level": 1,
+        "art": "res://art/karah/level_1_alemore.jpg",
+        "text": "Consume: Choose a player in your sector to heal 2. If the current attrition level is 1 or lower, that player heals 4 instead.",
+        "effects": [
+          {
+            "op": "heal_choose",
+            "n": 2,
+            "n_if_low_attrition": 4,
+            "scope": "sector"
+          }
+        ],
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition e' 1 o meno, ne recupera 4."
+      }
+    ],
+    "deck": [
+      {
+        "id": 207300,
+        "name": "Airblade",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Chain parry. >M: Remove 1 struggle.",
+        "chain": "parry",
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "maneuver"
+            ],
+            "effects": [
+              {
+                "op": "remove_struggle",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Chain parry. Questa carta seguita da un maneuver: rimuovi 1 struggle.",
+        "art": "res://art/karah/action_207300.jpg"
+      },
+      {
+        "id": 208000,
+        "name": "Backstab",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Stealth. When you overrun the monster, you may discard this card from your hand to deal 4 WL damage.",
+        "keywords": [
+          "stealth"
+        ],
+        "out_of_turn": {
+          "trigger": "overrun",
+          "who": "self",
+          "effects": [
+            {
+              "op": "deal_damage",
+              "n": 4,
+              "scale": "weapon_level"
+            }
+          ]
+        },
+        "it": "Stealth. Quando fai overrun sul mostro, puoi scartarla dalla mano per infliggere 4 danni per livello weapon.",
+        "art": "res://art/karah/action_208000.jpg"
+      },
+      {
+        "id": 208100,
+        "name": "Crescent Strike",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Chain attack. Increase your sequence limit by 1 this turn.",
+        "chain": "attack",
+        "effects": [
+          {
+            "op": "sequence_limit",
+            "n": 1
+          }
+        ],
+        "it": "Chain attack. Aumenta di 1 il tuo limite di sequenza per questo turno.",
+        "art": "res://art/karah/action_208100.jpg"
+      },
+      {
+        "id": 208200,
+        "name": "Cross Over",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you discard this card from your hand to generate stamina for a movement, you may overrun the monster instead of moving. If you do, remove 1 struggle.",
+        "on_pay_for_move": [
+          {
+            "op": "overrun"
+          },
+          {
+            "op": "remove_struggle",
+            "n": 1
+          }
+        ],
+        "it": "Quando la scarti per generare la stamina di un movimento, puoi fare overrun invece di muoverti. Se lo fai, rimuovi 1 struggle.",
+        "art": "res://art/karah/action_208200.jpg"
+      },
+      {
+        "id": 208300,
+        "name": "Cut Through",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": false,
+        "text": "You may immediately overrun the monster. If you do, draw 1.",
+        "effects": [
+          {
+            "op": "overrun",
+            "optional": true,
+            "then": [
+              {
+                "op": "draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Puoi fare subito overrun sul mostro. Se lo fai, pesca 1.",
+        "art": "res://art/karah/action_208300.jpg"
+      },
+      {
+        "id": 208400,
+        "name": "Dancing",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Draw 1 for each maneuver in your sequence (max draw: 3). MF: Increase your sequence limit by 1 this turn.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1,
+            "per_count": true,
+            "count": "type_in_sequence",
+            "type": "maneuver",
+            "max": 3
+          },
+          {
+            "op": "sequence_limit",
+            "n": 1,
+            "condition": "mastery_focused"
+          }
+        ],
+        "it": "Pesca 1 per ogni maneuver nella tua sequenza (max 3). Con la mastery focused: aumenta di 1 il limite di sequenza.",
+        "art": "res://art/karah/action_208400.jpg"
+      },
+      {
+        "id": 208500,
+        "name": "Deny",
+        "type": "parry",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you reveal an attrition card, you may discard this card from your hand to discard that attrition card and reveal another one instead.",
+        "out_of_turn": {
+          "trigger": "attrition_revealed",
+          "effects": [
+            {
+              "op": "reroll_attrition"
+            }
+          ]
+        },
+        "it": "Quando riveli una carta attrition, puoi scartarla dalla mano per scartare quella carta e rivelarne un'altra.",
+        "art": "res://art/karah/action_208500.jpg"
+      },
+      {
+        "id": 208600,
+        "name": "Disengage",
+        "type": "dodge",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": false,
+        "text": "When the monster changes its orientation, you may discard this card from your hand to draw up to your hand size limit.",
+        "out_of_turn": {
+          "trigger": "monster_turned",
+          "effects": [
+            {
+              "op": "draw_to_limit"
+            }
+          ]
+        },
+        "it": "Quando il mostro cambia orientamento, puoi scartarla dalla mano per pescare fino al limite di mano.",
+        "art": "res://art/karah/action_208600.jpg"
+      },
+      {
+        "id": 208700,
+        "name": "Divert",
+        "type": "parry",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Assist. When a behavior card is revealed, you may discard this card from your hand to immediately overrun the monster.",
+        "keywords": [
+          "assist"
+        ],
+        "out_of_turn": {
+          "trigger": "behavior_revealed",
+          "effects": [
+            {
+              "op": "overrun"
+            }
+          ]
+        },
+        "it": "Assist. Quando viene rivelata una behavior, puoi scartarla dalla mano per fare subito overrun sul mostro.",
+        "art": "res://art/karah/action_208700.jpg"
+      },
+      {
+        "id": 208800,
+        "name": "Echoing Blades",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": ">O: Draw 2 and then discard a card from your hand.",
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "offensive"
+            ],
+            "effects": [
+              {
+                "op": "draw",
+                "n": 2
+              },
+              {
+                "op": "discard_any",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Questa carta seguita da una carta offensive: pesca 2 e poi scarta una carta dalla mano.",
+        "art": "res://art/karah/action_208800.jpg"
+      },
+      {
+        "id": 208900,
+        "name": "Finesse",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw 1. MF: Draw 2 instead.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2,
+            "condition": "mastery_focused"
+          },
+          {
+            "op": "draw",
+            "n": 1,
+            "condition": "mastery_not_focused"
+          }
+        ],
+        "it": "Pesca 1. Con la mastery focused: ne peschi 2.",
+        "art": "res://art/karah/action_208900.jpg"
+      },
+      {
+        "id": 209000,
+        "name": "Halfmoon",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. >A: Deal your weapon damage and draw 1.",
+        "keywords": [
+          "assist"
+        ],
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "attack"
+            ],
+            "effects": [
+              {
+                "op": "deal_damage",
+                "n": "base_weapon"
+              },
+              {
+                "op": "draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Assist. Questa carta seguita da un attack: infliggi il danno della tua weapon e pesca 1.",
+        "art": "res://art/karah/action_209000.jpg"
+      },
+      {
+        "id": 209100,
+        "name": "Natural Agility",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Increase your sequence limit by 1 this turn. >A: Draw 1.",
+        "effects": [
+          {
+            "op": "sequence_limit",
+            "n": 1
+          }
+        ],
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "attack"
+            ],
+            "effects": [
+              {
+                "op": "draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Aumenta di 1 il limite di sequenza per questo turno. Questa carta seguita da un attack: pesca 1.",
+        "art": "res://art/karah/action_209100.jpg"
+      },
+      {
+        "id": 209200,
+        "name": "Offensive Attitude",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When another player plays an attack in their sequence, you may discard this card from your hand to search your deck for an attack and add it to your hand. Then reshuffle your deck.",
+        "out_of_turn": {
+          "trigger": "other_combo",
+          "combo": [
+            "attack"
+          ],
+          "effects": [
+            {
+              "op": "search_deck",
+              "type": "attack",
+              "n": 1
+            }
+          ]
+        },
+        "it": "Quando un altro giocatore gioca un attack, puoi scartarla dalla mano per cercare un attack nel mazzo e metterlo in mano, poi rimescolare.",
+        "art": "res://art/karah/action_209200.jpg"
+      },
+      {
+        "id": 209300,
+        "name": "Perfection",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw 1. If that card is an attack, you may play it as the next card in your sequence without paying its stamina cost.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1,
+            "free_if_type": "attack"
+          }
+        ],
+        "it": "Pesca 1. Se e' un attack, puoi giocarlo come carta successiva senza pagarne la stamina.",
+        "art": "res://art/karah/action_209300.jpg"
+      },
+      {
+        "id": 209400,
+        "name": "Piercing Strike",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Chain dodge. You may immediately overrun the monster.",
+        "chain": "dodge",
+        "effects": [
+          {
+            "op": "overrun",
+            "optional": true
+          }
+        ],
+        "it": "Chain dodge. Puoi fare subito overrun sul mostro.",
+        "art": "res://art/karah/action_209400.jpg"
+      },
+      {
+        "id": 209500,
+        "name": "Run Through",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "You may immediately overrun the monster.",
+        "effects": [
+          {
+            "op": "overrun",
+            "optional": true
+          }
+        ],
+        "it": "Puoi fare subito overrun sul mostro.",
+        "art": "res://art/karah/action_209500.jpg"
+      },
+      {
+        "id": 209600,
+        "name": "Scythe",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. Chain maneuver. Remove 1 struggle.",
+        "keywords": [
+          "assist"
+        ],
+        "chain": "maneuver",
+        "effects": [
+          {
+            "op": "remove_struggle",
+            "n": 1
+          }
+        ],
+        "it": "Assist. Chain maneuver. Rimuovi 1 struggle.",
+        "art": "res://art/karah/action_209600.jpg"
+      },
+      {
+        "id": 209700,
+        "name": "Shadow Step",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Reclaim: AA. You may immediately move without paying any stamina cost.",
+        "reclaim": {
+          "combo": [
+            "attack",
+            "attack"
+          ]
+        },
+        "effects": [
+          {
+            "op": "free_move_now"
+          }
+        ],
+        "it": "Reclaim: dopo due attack. Puoi muoverti subito senza pagare stamina.",
+        "art": "res://art/karah/action_209700.jpg"
+      },
+      {
+        "id": 209800,
+        "name": "Shadowstrike",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Your cards gain stealth until the end of the turn. When you overrun the monster, you may discard this card from your hand to draw 2.",
+        "effects": [
+          {
+            "op": "grant_stealth_turn"
+          }
+        ],
+        "out_of_turn": {
+          "trigger": "overrun",
+          "who": "self",
+          "effects": [
+            {
+              "op": "draw",
+              "n": 2
+            }
+          ]
+        },
+        "it": "Le tue carte guadagnano stealth fino a fine turno. Quando fai overrun, puoi scartarla dalla mano per pescare 2.",
+        "art": "res://art/karah/action_209800.jpg"
+      },
+      {
+        "id": 209900,
+        "name": "Slice",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Assist. Chain attack.",
+        "keywords": [
+          "assist"
+        ],
+        "chain": "attack",
+        "it": "Assist. Chain attack.",
+        "art": "res://art/karah/action_209900.jpg"
+      },
+      {
+        "id": 210000,
+        "name": "Swing",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Assist. Increase your sequence limit by 1 this turn.",
+        "keywords": [
+          "assist"
+        ],
+        "effects": [
+          {
+            "op": "sequence_limit",
+            "n": 1
+          }
+        ],
+        "it": "Assist. Aumenta di 1 il limite di sequenza per questo turno.",
+        "art": "res://art/karah/action_210000.jpg"
+      },
+      {
+        "id": 210100,
+        "name": "Twist",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Chain attack. Draw 1.",
+        "chain": "attack",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1
+          }
+        ],
+        "it": "Chain attack. Pesca 1.",
+        "art": "res://art/karah/action_210100.jpg"
+      },
+      {
+        "id": 210200,
+        "name": "Wall of Blades",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": false,
+        "text": "If you have 3 cards or more in your sequence, you can play this card without paying its stamina cost.",
+        "free_if": {
+          "sequence_at_least": 3
+        },
+        "it": "Se hai 3 o piu' carte in sequenza, puoi giocarla senza pagarne la stamina.",
+        "art": "res://art/karah/action_210200.jpg"
+      }
+    ]
+  },
+  "ljonar": {
+    "name": "Ljonar",
+    "weapon_class": "sword_and_shield",
+    "hand_limit": 5,
+    "sequence_limit": 5,
+    "art": {
+      "board": "res://art/ljonar/ljonar_character_board.jpg",
+      "card_back": "res://art/ljonar/action_back.jpg",
+      "model": "res://models/ljonar.glb",
+      "portrait": {
+        "art": "res://art/ljonar/ljonar_character_board.jpg",
+        "region": [
+          0.55,
+          0.2,
+          0.3,
+          0.48
+        ]
+      }
+    },
+    "weapon": {
+      "id": 1807,
+      "name": "Sword and Shield",
+      "level": 1,
+      "damage": 2,
+      "art": "res://art/ljonar/ljonar_base_sword_and_shield.jpg",
+      "composition": {
+        "attack": 6,
+        "maneuver": 6,
+        "parry": 6,
+        "dodge": 6
+      },
+      "text": "P: Remove 1 struggle.",
+      "combo": [
+        "parry"
+      ],
+      "effects": [
+        {
+          "op": "remove_struggle",
+          "n": 1
+        }
+      ],
+      "it": "Dopo un parry: rimuovi 1 struggle."
+    },
+    "mastery": {
+      "id": 15667,
+      "name": "Shield Master",
+      "focus": 3,
+      "art": "res://art/ljonar/card_15667.png",
+      "art_focused": "res://art/ljonar/card_15667_back.png",
+      "unfocused_text": "PA: Place a counter on this card.",
+      "unfocused_combo": [
+        "parry",
+        "attack"
+      ],
+      "focused_text": "P: Deal 2 WL damage. PA: Increase the damage the attack deals by 3 WL.",
+      "focused_abilities": [
+        {
+          "combo": [
+            "parry"
+          ],
+          "effects": [
+            {
+              "op": "deal_damage",
+              "n": 2,
+              "scale": "weapon_level"
+            }
+          ]
+        },
+        {
+          "combo": [
+            "parry",
+            "attack"
+          ],
+          "effects": [
+            {
+              "op": "bonus_damage",
+              "n": 3,
+              "scale": "weapon_level"
+            }
+          ]
+        }
+      ],
+      "it_unfocused": "Dopo parry e attack: metti un segnalino su questa carta.",
+      "it_focused": "Dopo un parry: infliggi 2 danni per livello weapon. Dopo parry e attack: l'attacco fa 3 per livello in piu'."
+    },
+    "armor": {
+      "name": "Base Armor",
+      "level": 1,
+      "health": 5,
+      "art": "res://art/ljonar/base_armor.jpg"
+    },
+    "helm": {
+      "name": "Base Helm",
+      "level": 1,
+      "health": 4,
+      "art": "res://art/ljonar/base_helm.jpg"
+    },
+    "potions": [
+      {
+        "name": "Alemore",
+        "level": 1,
+        "art": "res://art/ljonar/level_1_alemore.jpg",
+        "text": "Consume: Choose a player in your sector to heal 2. If the current attrition level is 1 or lower, that player heals 4 instead.",
+        "effects": [
+          {
+            "op": "heal_choose",
+            "n": 2,
+            "n_if_low_attrition": 4,
+            "scope": "sector"
+          }
+        ],
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition e' 1 o meno, ne recupera 4."
+      }
+    ],
+    "deck": [
+      {
+        "id": 178200,
+        "name": "Surround",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "This maneuver removes 1 struggle for each occupied sector.",
+        "effects": [
+          {
+            "op": "maneuver_struggle_bonus",
+            "n": 1,
+            "per_count": true,
+            "count": "occupied_sectors"
+          }
+        ],
+        "it": "Questo maneuver rimuove 1 struggle per ogni settore occupato.",
+        "art": "res://art/ljonar/action_178200.jpg"
+      },
+      {
+        "id": 178201,
+        "name": "Shielded Strike",
+        "type": "attack",
+        "cost": 2,
+        "stamina": 2,
+        "aggro": true,
+        "text": "P>: Remove 2 struggle. MF: Increase the damage this attack deals by 1 WL for each parry in your sequence.",
+        "abilities": [
+          {
+            "combo": [
+              "parry",
+              "this"
+            ],
+            "effects": [
+              {
+                "op": "remove_struggle",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "op": "bonus_damage_per",
+            "n": 1,
+            "count": "type_in_sequence",
+            "type": "parry",
+            "scale": "weapon_level",
+            "condition": "mastery_focused"
+          }
+        ],
+        "it": "Dopo un parry: rimuovi 2 struggle. Con la mastery focused: +1 danno per livello weapon per ogni parry nella sequenza.",
+        "art": "res://art/ljonar/action_178201.jpg"
+      },
+      {
+        "id": 178202,
+        "name": "Concentrated Attack",
+        "type": "attack",
+        "cost": 2,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Choose another player. Increase the damage this attack deals by 1 WL for each attack in that player's discard pile. If this attack inflicts a wound, inflict vulnerable.",
+        "it": "Scegli un altro giocatore: questo attacco infligge 1 danno per livello weapon in piu' per ogni attack nei suoi scarti. Se infligge una ferita, infligge vulnerable.",
+        "art": "res://art/ljonar/action_178202.jpg",
+        "effects": [
+          {
+            "op": "bonus_damage_per",
+            "n": 1,
+            "scale": "weapon_level",
+            "count": "type_in_other_discard",
+            "type": "attack"
+          }
+        ],
+        "on_wound": [
+          {
+            "op": "inflict",
+            "status": "vulnerable"
+          }
+        ]
+      },
+      {
+        "id": 178203,
+        "name": "Rapid Dash",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Taunt. While this card is the top card of your discard pile, all other players' weapons have +1 WL damage.",
+        "keywords": [
+          "taunt"
+        ],
+        "it": "Taunt. Mentre e' in cima ai tuoi scarti, le weapon di tutti gli altri giocatori infliggono 1 danno per livello in piu'.",
+        "art": "res://art/ljonar/action_178203.jpg",
+        "aura": {
+          "weapon_for_others": 1,
+          "scale": "weapon_level"
+        }
+      },
+      {
+        "id": 178204,
+        "name": "Shield Block",
+        "type": "parry",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When a behavior card is revealed, you may discard this card from your hand to cancel the effects of that behavior card and confuse the monster.",
+        "out_of_turn": {
+          "trigger": "behavior_revealed",
+          "effects": [
+            {
+              "op": "cancel_behavior"
+            },
+            {
+              "op": "inflict",
+              "status": "confuse"
+            }
+          ]
+        },
+        "it": "Quando viene rivelata una behavior, puoi scartarla dalla mano per annullarne gli effetti e confondere il mostro.",
+        "art": "res://art/ljonar/action_178204.jpg"
+      },
+      {
+        "id": 178205,
+        "name": "Undaunted Charge",
+        "type": "parry",
+        "cost": 2,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Remove 2 struggle. MF: Confuse the monster. All other players draw 1.",
+        "effects": [
+          {
+            "op": "remove_struggle",
+            "n": 2
+          },
+          {
+            "op": "inflict",
+            "status": "confuse",
+            "condition": "mastery_focused"
+          },
+          {
+            "op": "draw",
+            "n": 1,
+            "target": "others",
+            "condition": "mastery_focused"
+          }
+        ],
+        "it": "Rimuovi 2 struggle. Con la mastery focused: confondi il mostro e tutti gli altri giocatori pescano 1.",
+        "art": "res://art/ljonar/action_178205.jpg"
+      },
+      {
+        "id": 178206,
+        "name": "Last Breath",
+        "type": "parry",
+        "cost": 2,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Resilience. Deal damage to the monster equal to the damage you currently sustain.",
+        "keywords": [
+          "resilience"
+        ],
+        "effects": [
+          {
+            "op": "deal_damage",
+            "n": "own_damage"
+          }
+        ],
+        "it": "Resilience. Infliggi al mostro danni pari al damage che hai addosso.",
+        "art": "res://art/ljonar/action_178206.jpg"
+      },
+      {
+        "id": 178207,
+        "name": "Battle Trance",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": true,
+        "text": "Taunt. MF: Draw 2.",
+        "keywords": [
+          "taunt"
+        ],
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2,
+            "condition": "mastery_focused"
+          }
+        ],
+        "it": "Taunt. Con la mastery focused: pesca 2.",
+        "art": "res://art/ljonar/action_178207.jpg"
+      },
+      {
+        "id": 178208,
+        "name": "Attack Plan",
+        "type": "parry",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Assist. While this card is the top card of your discard pile, any damage dealt to the monster by any source is increased by 1 WL.",
+        "keywords": [
+          "assist"
+        ],
+        "it": "Assist. Finche' e' in cima ai tuoi scarti, ogni danno inflitto al mostro da qualunque fonte aumenta di 1 per livello weapon.",
+        "art": "res://art/ljonar/action_178208.jpg",
+        "aura": {
+          "damage_to_monster": 1,
+          "scale": "weapon_level"
+        }
+      },
+      {
+        "id": 178209,
+        "name": "Immolate",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Choose another player to draw 1. You may suffer damage. If you do, all other players draw 1 instead.",
+        "effects": [
+          {
+            "op": "choose_one",
+            "options": [
+              {
+                "label": "Un altro giocatore pesca 1",
+                "effects": [
+                  {
+                    "op": "draw",
+                    "n": 1,
+                    "target": "choose_other"
+                  }
+                ]
+              },
+              {
+                "label": "Subisci danno: pescano tutti gli altri",
+                "effects": [
+                  {
+                    "op": "suffer_self"
+                  },
+                  {
+                    "op": "draw",
+                    "n": 1,
+                    "target": "others"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "it": "Scegli un altro giocatore: pesca 1. Puoi subire danno: in quel caso pescano 1 tutti gli altri.",
+        "art": "res://art/ljonar/action_178209.jpg"
+      },
+      {
+        "id": 178210,
+        "name": "Stamina Surge",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you discard this card to generate stamina for an attack, it generates 2 stamina. MF: Reduce the stamina cost of the next card you play in your sequence by 1.",
+        "stamina_bonus": {
+          "when": "paying_for",
+          "type": "attack",
+          "stamina": 2
+        },
+        "effects": [
+          {
+            "op": "cost_modifier",
+            "type": "any",
+            "n": -1,
+            "duration": "next_card",
+            "condition": "mastery_focused"
+          }
+        ],
+        "it": "Quando la scarti per generare stamina per un attack, ne genera 2. Con la mastery focused: riduci di 1 il costo della prossima carta.",
+        "art": "res://art/ljonar/action_178210.jpg"
+      },
+      {
+        "id": 178211,
+        "name": "Tempo",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": ">A: Remove 1 struggle.",
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "attack"
+            ],
+            "effects": [
+              {
+                "op": "remove_struggle",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Questa carta seguita da un attack: rimuovi 1 struggle.",
+        "art": "res://art/ljonar/action_178211.jpg"
+      },
+      {
+        "id": 178212,
+        "name": "Momentum",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "P>: Search your discard pile for an attack and add it to your hand.",
+        "abilities": [
+          {
+            "combo": [
+              "parry",
+              "this"
+            ],
+            "effects": [
+              {
+                "op": "search_discard",
+                "type": "attack",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "it": "Dopo un parry: cerca un attack nei tuoi scarti e mettilo in mano.",
+        "art": "res://art/ljonar/action_178212.jpg"
+      },
+      {
+        "id": 178213,
+        "name": "Feint",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you discard this card from your hand, draw 1.",
+        "on_discard": [
+          {
+            "op": "draw",
+            "n": 1
+          }
+        ],
+        "it": "Quando la scarti dalla mano, pesca 1.",
+        "art": "res://art/ljonar/action_178213.jpg"
+      },
+      {
+        "id": 178214,
+        "name": "Perseverance",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw 1.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1
+          }
+        ],
+        "it": "Pesca 1.",
+        "art": "res://art/ljonar/action_178214.jpg"
+      },
+      {
+        "id": 178215,
+        "name": "Agility",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "If you paid with a maneuver, draw 2.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2,
+            "condition": "paid_with_maneuver"
+          }
+        ],
+        "it": "Se hai pagato con un maneuver, pesca 2.",
+        "art": "res://art/ljonar/action_178215.jpg"
+      },
+      {
+        "id": 178216,
+        "name": "Anticipate",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When you would suffer damage from a behavior card effect, you may discard this card from your hand to prevent that damage.",
+        "out_of_turn": {
+          "trigger": "would_suffer_behavior",
+          "effects": [
+            {
+              "op": "prevent_damage"
+            }
+          ]
+        },
+        "it": "Quando subiresti danno per l'effetto di una behavior, puoi scartarla dalla mano per prevenirlo.",
+        "art": "res://art/ljonar/action_178216.jpg"
+      },
+      {
+        "id": 178217,
+        "name": "Push",
+        "type": "maneuver",
+        "cost": 2,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Opening: Draw 2.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2,
+            "condition": "opening"
+          }
+        ],
+        "it": "Opening: pesca 2.",
+        "art": "res://art/ljonar/action_178217.jpg"
+      },
+      {
+        "id": 178218,
+        "name": "Bulwark",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Increase the struggle this maneuver removes by 1. When another player would suffer damage and you are in the front sector, you may discard this card from your hand to prevent that damage. If you do, you and that player draw 1.",
+        "effects": [
+          {
+            "op": "maneuver_struggle_bonus",
+            "n": 1
+          }
+        ],
+        "out_of_turn": {
+          "trigger": "other_would_suffer",
+          "condition": "actor_in_front",
+          "effects": [
+            {
+              "op": "prevent_damage"
+            },
+            {
+              "op": "draw",
+              "n": 1
+            },
+            {
+              "op": "draw",
+              "n": 1,
+              "target": "victim"
+            }
+          ]
+        },
+        "it": "Aumenta di 1 lo struggle rimosso da questo maneuver. Quando un altro giocatore subirebbe danno e tu sei nel front, puoi scartarla dalla mano per prevenirlo: tu e lui pescate 1.",
+        "art": "res://art/ljonar/action_178218.jpg"
+      },
+      {
+        "id": 178219,
+        "name": "Counterattack",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": false,
+        "text": "When you suffer damage, you may discard this card from your hand to deal 3 WL damage.",
+        "out_of_turn": {
+          "trigger": "suffered_damage",
+          "who": "self",
+          "effects": [
+            {
+              "op": "deal_damage",
+              "n": 3,
+              "scale": "weapon_level"
+            }
+          ]
+        },
+        "it": "Quando subisci danno, puoi scartarla dalla mano per infliggere 3 danni per livello weapon.",
+        "art": "res://art/ljonar/action_178219.jpg"
+      },
+      {
+        "id": 178220,
+        "name": "Drawn to Danger",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Taunt. Increase the struggle this maneuver removes by 1.",
+        "keywords": [
+          "taunt"
+        ],
+        "effects": [
+          {
+            "op": "maneuver_struggle_bonus",
+            "n": 1
+          }
+        ],
+        "it": "Taunt. Aumenta di 1 lo struggle rimosso da questo maneuver.",
+        "art": "res://art/ljonar/action_178220.jpg"
+      },
+      {
+        "id": 178221,
+        "name": "Aggro Strike",
+        "type": "attack",
+        "cost": 2,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. Increase the damage this attack deals by 1 WL for each aggro card in your discard pile.",
+        "keywords": [
+          "assist"
+        ],
+        "effects": [
+          {
+            "op": "bonus_damage_per",
+            "n": 1,
+            "count": "aggro_in_discard",
+            "scale": "weapon_level"
+          }
+        ],
+        "it": "Assist. +1 danno per livello weapon per ogni carta aggro nei tuoi scarti.",
+        "art": "res://art/ljonar/action_178221.jpg"
+      },
+      {
+        "id": 178222,
+        "name": "Beyond Limits",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Taunt. You may suffer 1 WL damage. If you do, increase the damage this attack deals by 2 WL and choose a player to draw 1.",
+        "keywords": [
+          "taunt"
+        ],
+        "effects": [
+          {
+            "op": "choose_one",
+            "options": [
+              {
+                "label": "Niente",
+                "effects": []
+              },
+              {
+                "label": "Subisci per colpire piu' forte",
+                "effects": [
+                  {
+                    "op": "suffer_self",
+                    "n": 1,
+                    "scale": "weapon_level"
+                  },
+                  {
+                    "op": "bonus_damage",
+                    "n": 2,
+                    "scale": "weapon_level"
+                  },
+                  {
+                    "op": "draw",
+                    "n": 1,
+                    "target": "choose_any"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "it": "Taunt. Puoi subire 1 danno per livello weapon: se lo fai, +2 danni per livello e un giocatore a scelta pesca 1.",
+        "art": "res://art/ljonar/action_178222.jpg"
+      },
+      {
+        "id": 178223,
+        "name": "Shield Dance",
+        "type": "attack",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "While your mastery is focused, ignore the stamina cost of this card. P>: Increase the damage this attack deals by 3 WL.",
+        "free_if": {
+          "mastery_focused": true
+        },
+        "abilities": [
+          {
+            "combo": [
+              "parry",
+              "this"
+            ],
+            "effects": [
+              {
+                "op": "bonus_damage",
+                "n": 3,
+                "scale": "weapon_level"
+              }
+            ]
+          }
+        ],
+        "it": "Con la mastery focused, ignora il costo in stamina di questa carta. Dopo un parry: +3 danni per livello weapon.",
+        "art": "res://art/ljonar/action_178223.jpg"
+      }
+    ]
+  },
+  "thoreg": {
+    "name": "Thoreg",
+    "weapon_class": "hammer",
+    "hand_limit": 5,
+    "sequence_limit": 5,
+    "art": {
+      "board": "res://art/thoreg/thoreg_character_board.jpg",
+      "card_back": "res://art/thoreg/action_back.jpg",
+      "model": "res://models/thoreg.glb",
+      "portrait": {
+        "art": "res://art/thoreg/thoreg_character_board.jpg",
+        "region": [
+          0.48,
+          0.12,
+          0.3,
+          0.48
+        ]
+      }
+    },
+    "weapon": {
+      "id": 1806,
+      "name": "Hammer",
+      "level": 1,
+      "damage": 2,
+      "art": "res://art/thoreg/thoreg_base_hammer.jpg",
+      "composition": {
+        "attack": 6,
+        "maneuver": 6,
+        "parry": 6,
+        "dodge": 6
+      },
+      "text": "M: If you are in the front sector, increase the struggle the maneuver removes by 1.",
+      "combo": [
+        "maneuver"
+      ],
+      "condition": "actor_in_front",
+      "effects": [
+        {
+          "op": "maneuver_struggle_bonus",
+          "n": 1
+        }
+      ],
+      "it": "Dopo un maneuver: se sei nel settore front, aumenta di 1 lo struggle che quel maneuver rimuove."
+    },
+    "mastery": {
+      "id": 15661,
+      "name": "Massive Blow",
+      "focus": 2,
+      "art": "res://art/thoreg/card_15661.png",
+      "art_focused": "res://art/thoreg/card_15661_back.png",
+      "unfocused_text": "When you stun the monster, place a counter on this card.",
+      "unfocused_trigger": "stun",
+      "focused_text": "M: Deal 2 WL damage. MAA: Stun the monster.",
+      "focused_abilities": [
+        {
+          "combo": [
+            "maneuver"
+          ],
+          "effects": [
+            {
+              "op": "deal_damage",
+              "n": 2,
+              "scale": "weapon_level"
+            }
+          ]
+        },
+        {
+          "combo": [
+            "maneuver",
+            "attack",
+            "attack"
+          ],
+          "effects": [
+            {
+              "op": "inflict",
+              "status": "stun"
+            }
+          ]
+        }
+      ],
+      "it_unfocused": "Quando stordisci il mostro, metti un segnalino su questa carta.",
+      "it_focused": "Dopo un maneuver: infliggi 2 danni per livello weapon. Dopo maneuver, attack, attack: stordisci il mostro."
+    },
+    "armor": {
+      "name": "Base Armor",
+      "level": 1,
+      "health": 5,
+      "art": "res://art/thoreg/base_armor.jpg"
+    },
+    "helm": {
+      "name": "Base Helm",
+      "level": 1,
+      "health": 4,
+      "art": "res://art/thoreg/base_helm.jpg"
+    },
+    "potions": [
+      {
+        "name": "Alemore",
+        "level": 1,
+        "art": "res://art/thoreg/level_1_alemore.jpg",
+        "text": "Consume: Choose a player in your sector to heal 2. If the current attrition level is 1 or lower, that player heals 4 instead.",
+        "effects": [
+          {
+            "op": "heal_choose",
+            "n": 2,
+            "n_if_low_attrition": 4,
+            "scope": "sector"
+          }
+        ],
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition corrente e' 1 o meno, ne recupera 4."
+      }
+    ],
+    "deck": [
+      {
+        "id": 178300,
+        "name": "Bludgeon",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. Confuse the monster.",
+        "keywords": [
+          "assist"
+        ],
+        "effects": [
+          {
+            "op": "inflict",
+            "status": "confuse"
+          }
+        ],
+        "it": "Assist. Confondi il mostro.",
+        "art": "res://art/thoreg/action_178300.jpg"
+      },
+      {
+        "id": 178301,
+        "name": "Frontal Assault",
+        "type": "attack",
+        "cost": 2,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Choose a player to draw 1. If you are in the front sector, they draw 2 instead.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2,
+            "target": "choose_any",
+            "condition": "actor_in_front"
+          },
+          {
+            "op": "draw",
+            "n": 1,
+            "target": "choose_any",
+            "condition": "actor_not_in_front"
+          }
+        ],
+        "it": "Scegli un giocatore: pesca 1. Se sei nel settore front, ne pesca 2.",
+        "art": "res://art/thoreg/action_178301.jpg"
+      },
+      {
+        "id": 178302,
+        "name": "Disruption",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": true,
+        "text": "When another player plays two attacks in a row in their sequence, you may discard this card from your hand to stun the monster.",
+        "out_of_turn": {
+          "trigger": "other_combo",
+          "combo": [
+            "attack",
+            "attack"
+          ],
+          "effects": [
+            {
+              "op": "inflict",
+              "status": "stun"
+            }
+          ]
+        },
+        "it": "Quando un altro giocatore gioca due attack di fila nella sua sequenza, puoi scartare questa carta dalla mano per stordire il mostro.",
+        "art": "res://art/thoreg/action_178302.jpg"
+      },
+      {
+        "id": 178303,
+        "name": "Ironblast",
+        "type": "attack",
+        "cost": 3,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Increase the damage this attack deals by 2 WL. Opening: This attack inflicts vulnerable.",
+        "traits": [
+          "impetus"
+        ],
+        "effects": [
+          {
+            "op": "bonus_damage",
+            "n": 2,
+            "scale": "weapon_level"
+          },
+          {
+            "op": "inflict",
+            "status": "vulnerable",
+            "condition": "opening"
+          }
+        ],
+        "it": "Aumenta di 2 per livello weapon i danni di questo attacco. Opening: questo attacco infligge vulnerable.",
+        "art": "res://art/thoreg/action_178303.jpg"
+      },
+      {
+        "id": 178304,
+        "name": "Tenacity",
+        "type": "parry",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": false,
+        "text": "This card does not count towards your hand size limit.",
+        "passive": "ignores_hand_limit",
+        "it": "Questa carta non conta per il limite di carte in mano.",
+        "art": "res://art/thoreg/action_178304.jpg"
+      },
+      {
+        "id": 178305,
+        "name": "Iron Will",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Draw 1. If you paid with a maneuver, draw 2 instead.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 2,
+            "condition": "paid_with_maneuver"
+          },
+          {
+            "op": "draw",
+            "n": 1,
+            "condition": "not_paid_with_maneuver"
+          }
+        ],
+        "it": "Pesca 1. Se hai pagato con un maneuver, ne peschi 2.",
+        "art": "res://art/thoreg/action_178305.jpg"
+      },
+      {
+        "id": 178306,
+        "name": "Decisive Effort",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": ">A: Increase the damage the attack deals by 3 WL.",
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "attack"
+            ],
+            "effects": [
+              {
+                "op": "bonus_damage",
+                "n": 3,
+                "scale": "weapon_level"
+              }
+            ]
+          }
+        ],
+        "it": "Questa carta seguita da un attack: aumenta di 3 per livello weapon i danni dell'attacco.",
+        "art": "res://art/thoreg/action_178306.jpg"
+      },
+      {
+        "id": 178307,
+        "name": "Enrage",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Search your deck for an attack and add it to your hand. Then reshuffle your deck.",
+        "effects": [
+          {
+            "op": "search_deck",
+            "type": "attack",
+            "n": 1
+          }
+        ],
+        "it": "Cerca un attack nel mazzo e mettilo in mano, poi rimescola il mazzo.",
+        "art": "res://art/thoreg/action_178307.jpg"
+      },
+      {
+        "id": 178308,
+        "name": "Tackle",
+        "type": "parry",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When another player pays the stamina cost of a card, you may discard this card from your hand. If you do, reduce that stamina cost by 1 and that player's card gains stealth.",
+        "out_of_turn": {
+          "trigger": "other_pays_stamina",
+          "effects": [
+            {
+              "op": "discount_payment",
+              "n": 1
+            },
+            {
+              "op": "grant_stealth"
+            }
+          ]
+        },
+        "it": "Quando un altro giocatore paga il costo in stamina di una carta, puoi scartare questa carta dalla mano: quel costo cala di 1 e la sua carta guadagna stealth.",
+        "art": "res://art/thoreg/action_178308.jpg"
+      },
+      {
+        "id": 178309,
+        "name": "Endeavour",
+        "type": "parry",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. Recycle 2.",
+        "keywords": [
+          "assist"
+        ],
+        "effects": [
+          {
+            "op": "recycle",
+            "n": 2
+          }
+        ],
+        "it": "Assist. Recycle 2.",
+        "art": "res://art/thoreg/action_178309.jpg"
+      },
+      {
+        "id": 178310,
+        "name": "Stamina Boost",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Reduce the stamina cost of the next dodge you play in your sequence by 1. When you discard this card to generate stamina for an attack and your mastery is focused, it generates 4 stamina.",
+        "effects": [
+          {
+            "op": "cost_modifier",
+            "type": "dodge",
+            "n": -1,
+            "duration": "next_card"
+          }
+        ],
+        "stamina_bonus": {
+          "when": "paying_for",
+          "type": "attack",
+          "condition": "mastery_focused",
+          "stamina": 4
+        },
+        "it": "Riduci di 1 il costo del prossimo dodge della tua sequenza. Quando la scarti per generare stamina per un attack e la tua mastery e' focused, ne genera 4.",
+        "art": "res://art/thoreg/action_178310.jpg"
+      },
+      {
+        "id": 178311,
+        "name": "Whirlwind",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": true,
+        "text": "Assist. >MA: Increase the damage the attack deals by 3 WL.",
+        "keywords": [
+          "assist"
+        ],
+        "abilities": [
+          {
+            "combo": [
+              "this",
+              "maneuver",
+              "attack"
+            ],
+            "effects": [
+              {
+                "op": "bonus_damage",
+                "n": 3,
+                "scale": "weapon_level"
+              }
+            ]
+          }
+        ],
+        "it": "Assist. Questa carta seguita da un maneuver e un attack: aumenta di 3 per livello weapon i danni dell'attacco.",
+        "art": "res://art/thoreg/action_178311.jpg"
+      },
+      {
+        "id": 178312,
+        "name": "Perseverance",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Draw 1.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1
+          }
+        ],
+        "it": "Pesca 1.",
+        "art": "res://art/thoreg/action_178312.jpg"
+      },
+      {
+        "id": 178313,
+        "name": "Mighty Strain",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 3,
+        "aggro": false,
+        "text": "When you discard this card from your hand, take a strain token.",
+        "on_discard": [
+          {
+            "op": "strain",
+            "n": 1
+          }
+        ],
+        "it": "Quando scarti questa carta dalla mano, prendi un segnalino strain.",
+        "art": "res://art/thoreg/action_178313.jpg"
+      },
+      {
+        "id": 178314,
+        "name": "Leverage",
+        "type": "dodge",
+        "cost": 3,
+        "stamina": 2,
+        "aggro": false,
+        "text": "Draw cards equal to the current amount of struggle tokens on the monster (max: 5 cards).",
+        "effects": [
+          {
+            "op": "draw",
+            "n": "monster_struggle",
+            "max": 5
+          }
+        ],
+        "it": "Pesca tante carte quanti sono i segnalini struggle sul mostro (max 5).",
+        "art": "res://art/thoreg/action_178314.jpg"
+      },
+      {
+        "id": 178315,
+        "name": "Sharp Reflexes",
+        "type": "dodge",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When a behavior card is revealed, you may discard this card from your hand to immediately move without paying any stamina cost.",
+        "out_of_turn": {
+          "trigger": "behavior_revealed",
+          "effects": [
+            {
+              "op": "free_move_now"
+            }
+          ]
+        },
+        "it": "Quando viene rivelata una carta behavior, puoi scartare questa carta dalla mano per muoverti subito senza pagare stamina.",
+        "art": "res://art/thoreg/action_178315.jpg"
+      },
+      {
+        "id": 178316,
+        "name": "Evasive Action",
+        "type": "dodge",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Take a strain token unless your mastery is focused.",
+        "effects": [
+          {
+            "op": "strain",
+            "n": 1,
+            "condition": "mastery_not_focused"
+          }
+        ],
+        "it": "Prendi un segnalino strain a meno che la tua mastery non sia focused.",
+        "art": "res://art/thoreg/action_178316.jpg"
+      },
+      {
+        "id": 178317,
+        "name": "Charge",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Choose a player to draw 1.",
+        "effects": [
+          {
+            "op": "draw",
+            "n": 1,
+            "target": "choose_any"
+          }
+        ],
+        "it": "Scegli un giocatore: pesca 1.",
+        "art": "res://art/thoreg/action_178317.jpg"
+      },
+      {
+        "id": 178318,
+        "name": "Concussion",
+        "type": "maneuver",
+        "cost": 3,
+        "stamina": 3,
+        "aggro": false,
+        "text": "Stun the monster.",
+        "traits": [
+          "impetus"
+        ],
+        "effects": [
+          {
+            "op": "inflict",
+            "status": "stun"
+          }
+        ],
+        "it": "Stordisci il mostro.",
+        "art": "res://art/thoreg/action_178318.jpg"
+      },
+      {
+        "id": 178319,
+        "name": "Exhausting Strike",
+        "type": "maneuver",
+        "cost": 1,
+        "stamina": 1,
+        "aggro": false,
+        "text": "Assist. Increase the struggle this maneuver removes by 1.",
+        "keywords": [
+          "assist"
+        ],
+        "effects": [
+          {
+            "op": "maneuver_struggle_bonus",
+            "n": 1
+          }
+        ],
+        "it": "Assist. Aumenta di 1 lo struggle rimosso da questo maneuver.",
+        "art": "res://art/thoreg/action_178319.jpg"
+      },
+      {
+        "id": 178320,
+        "name": "Rapid Blow",
+        "type": "maneuver",
+        "cost": 0,
+        "stamina": 1,
+        "aggro": false,
+        "text": "When a behavior card is revealed, you may discard this card from your hand to cancel the effects of that card.",
+        "out_of_turn": {
+          "trigger": "behavior_revealed",
+          "effects": [
+            {
+              "op": "cancel_behavior"
+            }
+          ]
+        },
+        "it": "Quando viene rivelata una carta behavior, puoi scartare questa carta dalla mano per annullarne gli effetti.",
+        "art": "res://art/thoreg/action_178320.jpg"
+      },
+      {
+        "id": 178321,
+        "name": "Heavy Smash",
+        "type": "attack",
+        "cost": 2,
+        "stamina": 1,
+        "aggro": true,
+        "text": "Remove 1 struggle. MF: Remove 3 struggle instead.",
+        "effects": [
+          {
+            "op": "remove_struggle",
+            "n": 3,
+            "condition": "mastery_focused"
+          },
+          {
+            "op": "remove_struggle",
+            "n": 1,
+            "condition": "mastery_not_focused"
+          }
+        ],
+        "it": "Rimuovi 1 struggle. Con la mastery focused: ne rimuovi 3.",
+        "art": "res://art/thoreg/action_178321.jpg"
+      },
+      {
+        "id": 178322,
+        "name": "Sledgehammer",
+        "type": "attack",
+        "cost": 0,
+        "stamina": 2,
+        "aggro": true,
+        "text": "You can only play this card after a maneuver. Increase the damage this attack deals by X WL (max increase: 7 WL).",
+        "variable_cost": true,
+        "effects": [
+          {
+            "op": "bonus_damage_per",
+            "n": 1,
+            "count": "variable_payment",
+            "scale": "weapon_level",
+            "max": 7
+          }
+        ],
+        "it": "Puoi giocarla solo dopo un maneuver. Aumenta di X per livello weapon i danni dell'attacco (max 7).",
+        "art": "res://art/thoreg/action_178322.jpg",
+        "requires": {
+          "previous_in_sequence": "maneuver"
+        }
+      },
+      {
+        "id": 178323,
+        "name": "Knockout",
+        "type": "attack",
+        "cost": 2,
+        "stamina": 1,
+        "aggro": false,
+        "text": "A>: Stun the monster.",
+        "traits": [
+          "impetus"
+        ],
+        "abilities": [
+          {
+            "combo": [
+              "attack",
+              "this"
+            ],
+            "effects": [
+              {
+                "op": "inflict",
+                "status": "stun"
+              }
+            ]
+          }
+        ],
+        "it": "Dopo un attack: stordisci il mostro.",
+        "art": "res://art/thoreg/action_178323.jpg"
+      }
+    ]
+  }
+}

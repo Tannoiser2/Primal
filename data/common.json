@@ -1,0 +1,58 @@
+{
+  "_note": "Componenti condivisi. Valori attrition letti dalle carte originali del mazzo base (10 carte).",
+
+  "rules": {
+    "rounds": 10,
+    "hand_limit": 5,
+    "sequence_limit": 5,
+    "move_cost": 1,
+    "revive_cost": 2,
+    "stamina_token_max": 1,
+    "unleash_threshold_per_player": 3,
+    "unleash_leftover_per_player": 1,
+    "upkeep_struggle_per_player": 1,
+    "escalation_struggle": 1,
+    "behavior_slots": 3,
+    "assists_per_player_per_turn": 1,
+    "consume_per_round": 1
+  },
+
+  "attrition_deck": [
+    {"value": 2, "art": "res://art/common/attrition_00.jpg"},
+    {"value": 1, "art": "res://art/common/attrition_01.jpg"},
+    {"value": 3, "art": "res://art/common/attrition_02.jpg"},
+    {"value": 1, "art": "res://art/common/attrition_03.jpg"},
+    {"value": 2, "art": "res://art/common/attrition_04.jpg"},
+    {"value": 1, "art": "res://art/common/attrition_05.jpg"},
+    {"value": 0, "art": "res://art/common/attrition_06.jpg"},
+    {"value": 1, "art": "res://art/common/attrition_07.jpg"},
+    {"value": 1, "art": "res://art/common/attrition_08.jpg"},
+    {"value": 2, "art": "res://art/common/attrition_09.jpg"}
+  ],
+  "attrition_back": "res://art/common/attrition_00_back.jpg",
+  "battle_map": "res://art/common/battle_map.jpg",
+
+  "sectors": ["front", "flank_right", "rear", "flank_left"],
+
+  "reactions": {
+    "attack_played":     "Dopo che un giocatore gioca una carta attack nella propria sequenza.",
+    "maneuver_played":   "Dopo che un giocatore gioca una carta maneuver nella propria sequenza.",
+    "parry_played":      "Dopo che un giocatore gioca una carta parry nella propria sequenza.",
+    "dodge_played":      "Dopo che un giocatore gioca una carta dodge nella propria sequenza.",
+    "end_of_round":      "Alla fine del round.",
+    "threatened":        "Dopo che un giocatore diventa threatened.",
+    "turn_start_front":  "Quando un giocatore inizia il proprio turno nel settore front.",
+    "turn_start_flank":  "Quando un giocatore inizia il proprio turno in un settore flank.",
+    "turn_start_rear":   "Quando un giocatore inizia il proprio turno nel settore rear.",
+    "rampage":           "Quando si risolve un'altra carta behavior in gioco."
+  },
+
+  "terrain": {
+    "fire":      {"name": "Fire",      "text": "Quando un giocatore inizia il turno in questo settore, subisce burning."},
+    "rock":      {"name": "Rock",      "text": "Terreno di copertura."},
+    "brush":     {"name": "Brush",     "text": "Terreno di copertura."},
+    "cyricae":   {"name": "Cyricae",   "text": "Pianta curativa."},
+    "baethanis": {"name": "Baethanis", "text": "Pianta."},
+    "plateau":   {"name": "Plateau",   "text": "Altura."}
+  }
+}

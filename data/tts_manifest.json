@@ -1,0 +1,1660 @@
+{
+  "behavior_decks": {
+    "lv0": [
+      2316,
+      2315,
+      2313,
+      2312,
+      2310,
+      2308,
+      2311,
+      2309,
+      2314
+    ],
+    "lv1": [
+      2316,
+      2315,
+      2321,
+      14183,
+      2310,
+      2308,
+      14184,
+      2309,
+      2314
+    ],
+    "lv2": [
+      14186,
+      14177,
+      14175,
+      2302,
+      2321,
+      14174,
+      2309,
+      2308,
+      2310
+    ],
+    "lv3": [
+      14188,
+      2295,
+      2296,
+      14181,
+      14179,
+      2302,
+      14180,
+      2321,
+      2297
+    ]
+  },
+  "cards": {
+    "common/attrition/0": {
+      "image": "res://art/common/attrition_00.png",
+      "kind": "attrition"
+    },
+    "common/attrition/0/back": {
+      "image": "res://art/common/attrition_00_back.png",
+      "kind": "attrition"
+    },
+    "common/attrition/1": {
+      "image": "res://art/common/attrition_01.png",
+      "kind": "attrition"
+    },
+    "common/attrition/2": {
+      "image": "res://art/common/attrition_02.png",
+      "kind": "attrition"
+    },
+    "common/attrition/3": {
+      "image": "res://art/common/attrition_03.png",
+      "kind": "attrition"
+    },
+    "common/attrition/4": {
+      "image": "res://art/common/attrition_04.png",
+      "kind": "attrition"
+    },
+    "common/attrition/5": {
+      "image": "res://art/common/attrition_05.png",
+      "kind": "attrition"
+    },
+    "common/attrition/6": {
+      "image": "res://art/common/attrition_06.png",
+      "kind": "attrition"
+    },
+    "common/attrition/7": {
+      "image": "res://art/common/attrition_07.png",
+      "kind": "attrition"
+    },
+    "common/attrition/8": {
+      "image": "res://art/common/attrition_08.png",
+      "kind": "attrition"
+    },
+    "common/attrition/9": {
+      "image": "res://art/common/attrition_09.png",
+      "kind": "attrition"
+    },
+    "dareon/action/178100": {
+      "image": "res://art/dareon/action_178100.png",
+      "kind": "action",
+      "tts_id": 178100
+    },
+    "dareon/action/178101": {
+      "image": "res://art/dareon/action_178101.png",
+      "kind": "action",
+      "tts_id": 178101
+    },
+    "dareon/action/178102": {
+      "image": "res://art/dareon/action_178102.png",
+      "kind": "action",
+      "tts_id": 178102
+    },
+    "dareon/action/178103": {
+      "image": "res://art/dareon/action_178103.png",
+      "kind": "action",
+      "tts_id": 178103
+    },
+    "dareon/action/178104": {
+      "image": "res://art/dareon/action_178104.png",
+      "kind": "action",
+      "tts_id": 178104
+    },
+    "dareon/action/178105": {
+      "image": "res://art/dareon/action_178105.png",
+      "kind": "action",
+      "tts_id": 178105
+    },
+    "dareon/action/178106": {
+      "image": "res://art/dareon/action_178106.png",
+      "kind": "action",
+      "tts_id": 178106
+    },
+    "dareon/action/178107": {
+      "image": "res://art/dareon/action_178107.png",
+      "kind": "action",
+      "tts_id": 178107
+    },
+    "dareon/action/178108": {
+      "image": "res://art/dareon/action_178108.png",
+      "kind": "action",
+      "tts_id": 178108
+    },
+    "dareon/action/178109": {
+      "image": "res://art/dareon/action_178109.png",
+      "kind": "action",
+      "tts_id": 178109
+    },
+    "dareon/action/178110": {
+      "image": "res://art/dareon/action_178110.png",
+      "kind": "action",
+      "tts_id": 178110
+    },
+    "dareon/action/178111": {
+      "image": "res://art/dareon/action_178111.png",
+      "kind": "action",
+      "tts_id": 178111
+    },
+    "dareon/action/178112": {
+      "image": "res://art/dareon/action_178112.png",
+      "kind": "action",
+      "tts_id": 178112
+    },
+    "dareon/action/178113": {
+      "image": "res://art/dareon/action_178113.png",
+      "kind": "action",
+      "tts_id": 178113
+    },
+    "dareon/action/178114": {
+      "image": "res://art/dareon/action_178114.png",
+      "kind": "action",
+      "tts_id": 178114
+    },
+    "dareon/action/178115": {
+      "image": "res://art/dareon/action_178115.png",
+      "kind": "action",
+      "tts_id": 178115
+    },
+    "dareon/action/178116": {
+      "image": "res://art/dareon/action_178116.png",
+      "kind": "action",
+      "tts_id": 178116
+    },
+    "dareon/action/178117": {
+      "image": "res://art/dareon/action_178117.png",
+      "kind": "action",
+      "tts_id": 178117
+    },
+    "dareon/action/178118": {
+      "image": "res://art/dareon/action_178118.png",
+      "kind": "action",
+      "tts_id": 178118
+    },
+    "dareon/action/178119": {
+      "image": "res://art/dareon/action_178119.png",
+      "kind": "action",
+      "tts_id": 178119
+    },
+    "dareon/action/178121": {
+      "image": "res://art/dareon/action_178121.png",
+      "kind": "action",
+      "tts_id": 178121
+    },
+    "dareon/action/178122": {
+      "image": "res://art/dareon/action_178122.png",
+      "kind": "action",
+      "tts_id": 178122
+    },
+    "dareon/action/178123": {
+      "image": "res://art/dareon/action_178123.png",
+      "kind": "action",
+      "tts_id": 178123
+    },
+    "dareon/action/210300": {
+      "image": "res://art/dareon/action_210300.png",
+      "kind": "action",
+      "tts_id": 210300
+    },
+    "dareon/action/back": {
+      "image": "res://art/dareon/action_back.png"
+    },
+    "dareon/base_armor": {
+      "image": "res://art/dareon/base_armor.png",
+      "kind": "tile"
+    },
+    "dareon/base_helm": {
+      "image": "res://art/dareon/base_helm.png",
+      "kind": "tile"
+    },
+    "dareon/card_1806": {
+      "image": "res://art/dareon/card_1806.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "dareon/card_1806/back": {
+      "image": "res://art/dareon/card_1806_back.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "dareon/card_2105": {
+      "image": "res://art/dareon/card_2105.png",
+      "kind": "card",
+      "tts_id": 2105
+    },
+    "dareon/card_2105/back": {
+      "image": "res://art/dareon/card_2105_back.png",
+      "kind": "card",
+      "tts_id": 2105
+    },
+    "dareon/dareon_aid": {
+      "image": "res://art/dareon/dareon_aid.png",
+      "kind": "card",
+      "tts_id": 1800
+    },
+    "dareon/dareon_aid/back": {
+      "image": "res://art/dareon/dareon_aid_back.png",
+      "kind": "card",
+      "tts_id": 1800
+    },
+    "dareon/dareon_base_great_sword": {
+      "image": "res://art/dareon/dareon_base_great_sword.png",
+      "kind": "card",
+      "tts_id": 1856
+    },
+    "dareon/dareon_base_great_sword/back": {
+      "image": "res://art/dareon/dareon_base_great_sword_back.png",
+      "kind": "card",
+      "tts_id": 1856
+    },
+    "dareon/dareon_character_board": {
+      "image": "res://art/dareon/dareon_character_board.png",
+      "kind": "tile"
+    },
+    "dareon/level_1_alemore": {
+      "image": "res://art/dareon/level_1_alemore.png",
+      "kind": "tile"
+    },
+    "dareon/wound": {
+      "image": "res://art/dareon/wound.png",
+      "kind": "wound"
+    },
+    "dareon/wound/back": {
+      "image": "res://art/dareon/wound_back.png",
+      "kind": "wound"
+    },
+    "heleren/action/213400": {
+      "image": "res://art/heleren/action_213400.png",
+      "kind": "action",
+      "tts_id": 213400
+    },
+    "heleren/action/213600": {
+      "image": "res://art/heleren/action_213600.png",
+      "kind": "action",
+      "tts_id": 213600
+    },
+    "heleren/action/213800": {
+      "image": "res://art/heleren/action_213800.png",
+      "kind": "action",
+      "tts_id": 213800
+    },
+    "heleren/action/214000": {
+      "image": "res://art/heleren/action_214000.png",
+      "kind": "action",
+      "tts_id": 214000
+    },
+    "heleren/action/214600": {
+      "image": "res://art/heleren/action_214600.png",
+      "kind": "action",
+      "tts_id": 214600
+    },
+    "heleren/action/214800": {
+      "image": "res://art/heleren/action_214800.png",
+      "kind": "action",
+      "tts_id": 214800
+    },
+    "heleren/action/214900": {
+      "image": "res://art/heleren/action_214900.png",
+      "kind": "action",
+      "tts_id": 214900
+    },
+    "heleren/action/215000": {
+      "image": "res://art/heleren/action_215000.png",
+      "kind": "action",
+      "tts_id": 215000
+    },
+    "heleren/action/215100": {
+      "image": "res://art/heleren/action_215100.png",
+      "kind": "action",
+      "tts_id": 215100
+    },
+    "heleren/action/215200": {
+      "image": "res://art/heleren/action_215200.png",
+      "kind": "action",
+      "tts_id": 215200
+    },
+    "heleren/action/215300": {
+      "image": "res://art/heleren/action_215300.png",
+      "kind": "action",
+      "tts_id": 215300
+    },
+    "heleren/action/215400": {
+      "image": "res://art/heleren/action_215400.png",
+      "kind": "action",
+      "tts_id": 215400
+    },
+    "heleren/action/215500": {
+      "image": "res://art/heleren/action_215500.png",
+      "kind": "action",
+      "tts_id": 215500
+    },
+    "heleren/action/227900": {
+      "image": "res://art/heleren/action_227900.png",
+      "kind": "action",
+      "tts_id": 227900
+    },
+    "heleren/action/228000": {
+      "image": "res://art/heleren/action_228000.png",
+      "kind": "action",
+      "tts_id": 228000
+    },
+    "heleren/action/228100": {
+      "image": "res://art/heleren/action_228100.png",
+      "kind": "action",
+      "tts_id": 228100
+    },
+    "heleren/action/228200": {
+      "image": "res://art/heleren/action_228200.png",
+      "kind": "action",
+      "tts_id": 228200
+    },
+    "heleren/action/228300": {
+      "image": "res://art/heleren/action_228300.png",
+      "kind": "action",
+      "tts_id": 228300
+    },
+    "heleren/action/228400": {
+      "image": "res://art/heleren/action_228400.png",
+      "kind": "action",
+      "tts_id": 228400
+    },
+    "heleren/action/228500": {
+      "image": "res://art/heleren/action_228500.png",
+      "kind": "action",
+      "tts_id": 228500
+    },
+    "heleren/action/228600": {
+      "image": "res://art/heleren/action_228600.png",
+      "kind": "action",
+      "tts_id": 228600
+    },
+    "heleren/action/228700": {
+      "image": "res://art/heleren/action_228700.png",
+      "kind": "action",
+      "tts_id": 228700
+    },
+    "heleren/action/228900": {
+      "image": "res://art/heleren/action_228900.png",
+      "kind": "action",
+      "tts_id": 228900
+    },
+    "heleren/action/229000": {
+      "image": "res://art/heleren/action_229000.png",
+      "kind": "action",
+      "tts_id": 229000
+    },
+    "heleren/action/back": {
+      "image": "res://art/heleren/action_back.png"
+    },
+    "heleren/base_armor": {
+      "image": "res://art/heleren/base_armor.png",
+      "kind": "tile"
+    },
+    "heleren/base_helm": {
+      "image": "res://art/heleren/base_helm.png",
+      "kind": "tile"
+    },
+    "heleren/card_1806": {
+      "image": "res://art/heleren/card_1806.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "heleren/card_1806/back": {
+      "image": "res://art/heleren/card_1806_back.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "heleren/card_2278": {
+      "image": "res://art/heleren/card_2278.png",
+      "kind": "card",
+      "tts_id": 2278
+    },
+    "heleren/card_2278/back": {
+      "image": "res://art/heleren/card_2278_back.png",
+      "kind": "card",
+      "tts_id": 2278
+    },
+    "heleren/heleren_aid": {
+      "image": "res://art/heleren/heleren_aid.png",
+      "kind": "card",
+      "tts_id": 1801
+    },
+    "heleren/heleren_aid/back": {
+      "image": "res://art/heleren/heleren_aid_back.png",
+      "kind": "card",
+      "tts_id": 1801
+    },
+    "heleren/heleren_base_gunbow": {
+      "image": "res://art/heleren/heleren_base_gunbow.png",
+      "kind": "card",
+      "tts_id": 1857
+    },
+    "heleren/heleren_base_gunbow/back": {
+      "image": "res://art/heleren/heleren_base_gunbow_back.png",
+      "kind": "card",
+      "tts_id": 1857
+    },
+    "heleren/heleren_character_board": {
+      "image": "res://art/heleren/heleren_character_board.png",
+      "kind": "tile"
+    },
+    "heleren/level_1_alemore": {
+      "image": "res://art/heleren/level_1_alemore.png",
+      "kind": "tile"
+    },
+    "heleren/wound": {
+      "image": "res://art/heleren/wound.png",
+      "kind": "wound"
+    },
+    "heleren/wound/back": {
+      "image": "res://art/heleren/wound_back.png",
+      "kind": "wound"
+    },
+    "karah/action/207300": {
+      "image": "res://art/karah/action_207300.png",
+      "kind": "action",
+      "tts_id": 207300
+    },
+    "karah/action/208000": {
+      "image": "res://art/karah/action_208000.png",
+      "kind": "action",
+      "tts_id": 208000
+    },
+    "karah/action/208100": {
+      "image": "res://art/karah/action_208100.png",
+      "kind": "action",
+      "tts_id": 208100
+    },
+    "karah/action/208200": {
+      "image": "res://art/karah/action_208200.png",
+      "kind": "action",
+      "tts_id": 208200
+    },
+    "karah/action/208300": {
+      "image": "res://art/karah/action_208300.png",
+      "kind": "action",
+      "tts_id": 208300
+    },
+    "karah/action/208400": {
+      "image": "res://art/karah/action_208400.png",
+      "kind": "action",
+      "tts_id": 208400
+    },
+    "karah/action/208500": {
+      "image": "res://art/karah/action_208500.png",
+      "kind": "action",
+      "tts_id": 208500
+    },
+    "karah/action/208600": {
+      "image": "res://art/karah/action_208600.png",
+      "kind": "action",
+      "tts_id": 208600
+    },
+    "karah/action/208700": {
+      "image": "res://art/karah/action_208700.png",
+      "kind": "action",
+      "tts_id": 208700
+    },
+    "karah/action/208800": {
+      "image": "res://art/karah/action_208800.png",
+      "kind": "action",
+      "tts_id": 208800
+    },
+    "karah/action/208900": {
+      "image": "res://art/karah/action_208900.png",
+      "kind": "action",
+      "tts_id": 208900
+    },
+    "karah/action/209000": {
+      "image": "res://art/karah/action_209000.png",
+      "kind": "action",
+      "tts_id": 209000
+    },
+    "karah/action/209100": {
+      "image": "res://art/karah/action_209100.png",
+      "kind": "action",
+      "tts_id": 209100
+    },
+    "karah/action/209200": {
+      "image": "res://art/karah/action_209200.png",
+      "kind": "action",
+      "tts_id": 209200
+    },
+    "karah/action/209300": {
+      "image": "res://art/karah/action_209300.png",
+      "kind": "action",
+      "tts_id": 209300
+    },
+    "karah/action/209400": {
+      "image": "res://art/karah/action_209400.png",
+      "kind": "action",
+      "tts_id": 209400
+    },
+    "karah/action/209500": {
+      "image": "res://art/karah/action_209500.png",
+      "kind": "action",
+      "tts_id": 209500
+    },
+    "karah/action/209600": {
+      "image": "res://art/karah/action_209600.png",
+      "kind": "action",
+      "tts_id": 209600
+    },
+    "karah/action/209700": {
+      "image": "res://art/karah/action_209700.png",
+      "kind": "action",
+      "tts_id": 209700
+    },
+    "karah/action/209800": {
+      "image": "res://art/karah/action_209800.png",
+      "kind": "action",
+      "tts_id": 209800
+    },
+    "karah/action/209900": {
+      "image": "res://art/karah/action_209900.png",
+      "kind": "action",
+      "tts_id": 209900
+    },
+    "karah/action/210000": {
+      "image": "res://art/karah/action_210000.png",
+      "kind": "action",
+      "tts_id": 210000
+    },
+    "karah/action/210100": {
+      "image": "res://art/karah/action_210100.png",
+      "kind": "action",
+      "tts_id": 210100
+    },
+    "karah/action/210200": {
+      "image": "res://art/karah/action_210200.png",
+      "kind": "action",
+      "tts_id": 210200
+    },
+    "karah/action/back": {
+      "image": "res://art/karah/action_back.png"
+    },
+    "karah/base_armor": {
+      "image": "res://art/karah/base_armor.png",
+      "kind": "tile"
+    },
+    "karah/base_helm": {
+      "image": "res://art/karah/base_helm.png",
+      "kind": "tile"
+    },
+    "karah/card_1806": {
+      "image": "res://art/karah/card_1806.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "karah/card_1806/back": {
+      "image": "res://art/karah/card_1806_back.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "karah/card_2077": {
+      "image": "res://art/karah/card_2077.png",
+      "kind": "card",
+      "tts_id": 2077
+    },
+    "karah/card_2077/back": {
+      "image": "res://art/karah/card_2077_back.png",
+      "kind": "card",
+      "tts_id": 2077
+    },
+    "karah/karah_aid": {
+      "image": "res://art/karah/karah_aid.png",
+      "kind": "card",
+      "tts_id": 1802
+    },
+    "karah/karah_aid/back": {
+      "image": "res://art/karah/karah_aid_back.png",
+      "kind": "card",
+      "tts_id": 1802
+    },
+    "karah/karah_base_dual_blades": {
+      "image": "res://art/karah/karah_base_dual_blades.png",
+      "kind": "card",
+      "tts_id": 1858
+    },
+    "karah/karah_base_dual_blades/back": {
+      "image": "res://art/karah/karah_base_dual_blades_back.png",
+      "kind": "card",
+      "tts_id": 1858
+    },
+    "karah/karah_character_board": {
+      "image": "res://art/karah/karah_character_board.png",
+      "kind": "tile"
+    },
+    "karah/level_1_alemore": {
+      "image": "res://art/karah/level_1_alemore.png",
+      "kind": "tile"
+    },
+    "karah/wound": {
+      "image": "res://art/karah/wound.png",
+      "kind": "wound"
+    },
+    "karah/wound/back": {
+      "image": "res://art/karah/wound_back.png",
+      "kind": "wound"
+    },
+    "ljonar/action/178200": {
+      "image": "res://art/ljonar/action_178200.png",
+      "kind": "action",
+      "tts_id": 178200
+    },
+    "ljonar/action/178201": {
+      "image": "res://art/ljonar/action_178201.png",
+      "kind": "action",
+      "tts_id": 178201
+    },
+    "ljonar/action/178202": {
+      "image": "res://art/ljonar/action_178202.png",
+      "kind": "action",
+      "tts_id": 178202
+    },
+    "ljonar/action/178203": {
+      "image": "res://art/ljonar/action_178203.png",
+      "kind": "action",
+      "tts_id": 178203
+    },
+    "ljonar/action/178204": {
+      "image": "res://art/ljonar/action_178204.png",
+      "kind": "action",
+      "tts_id": 178204
+    },
+    "ljonar/action/178205": {
+      "image": "res://art/ljonar/action_178205.png",
+      "kind": "action",
+      "tts_id": 178205
+    },
+    "ljonar/action/178206": {
+      "image": "res://art/ljonar/action_178206.png",
+      "kind": "action",
+      "tts_id": 178206
+    },
+    "ljonar/action/178207": {
+      "image": "res://art/ljonar/action_178207.png",
+      "kind": "action",
+      "tts_id": 178207
+    },
+    "ljonar/action/178208": {
+      "image": "res://art/ljonar/action_178208.png",
+      "kind": "action",
+      "tts_id": 178208
+    },
+    "ljonar/action/178209": {
+      "image": "res://art/ljonar/action_178209.png",
+      "kind": "action",
+      "tts_id": 178209
+    },
+    "ljonar/action/178210": {
+      "image": "res://art/ljonar/action_178210.png",
+      "kind": "action",
+      "tts_id": 178210
+    },
+    "ljonar/action/178211": {
+      "image": "res://art/ljonar/action_178211.png",
+      "kind": "action",
+      "tts_id": 178211
+    },
+    "ljonar/action/178212": {
+      "image": "res://art/ljonar/action_178212.png",
+      "kind": "action",
+      "tts_id": 178212
+    },
+    "ljonar/action/178213": {
+      "image": "res://art/ljonar/action_178213.png",
+      "kind": "action",
+      "tts_id": 178213
+    },
+    "ljonar/action/178214": {
+      "image": "res://art/ljonar/action_178214.png",
+      "kind": "action",
+      "tts_id": 178214
+    },
+    "ljonar/action/178215": {
+      "image": "res://art/ljonar/action_178215.png",
+      "kind": "action",
+      "tts_id": 178215
+    },
+    "ljonar/action/178216": {
+      "image": "res://art/ljonar/action_178216.png",
+      "kind": "action",
+      "tts_id": 178216
+    },
+    "ljonar/action/178217": {
+      "image": "res://art/ljonar/action_178217.png",
+      "kind": "action",
+      "tts_id": 178217
+    },
+    "ljonar/action/178218": {
+      "image": "res://art/ljonar/action_178218.png",
+      "kind": "action",
+      "tts_id": 178218
+    },
+    "ljonar/action/178219": {
+      "image": "res://art/ljonar/action_178219.png",
+      "kind": "action",
+      "tts_id": 178219
+    },
+    "ljonar/action/178220": {
+      "image": "res://art/ljonar/action_178220.png",
+      "kind": "action",
+      "tts_id": 178220
+    },
+    "ljonar/action/178221": {
+      "image": "res://art/ljonar/action_178221.png",
+      "kind": "action",
+      "tts_id": 178221
+    },
+    "ljonar/action/178222": {
+      "image": "res://art/ljonar/action_178222.png",
+      "kind": "action",
+      "tts_id": 178222
+    },
+    "ljonar/action/178223": {
+      "image": "res://art/ljonar/action_178223.png",
+      "kind": "action",
+      "tts_id": 178223
+    },
+    "ljonar/action/back": {
+      "image": "res://art/ljonar/action_back.png"
+    },
+    "ljonar/base_armor": {
+      "image": "res://art/ljonar/base_armor.png",
+      "kind": "tile"
+    },
+    "ljonar/base_helm": {
+      "image": "res://art/ljonar/base_helm.png",
+      "kind": "tile"
+    },
+    "ljonar/card_15667": {
+      "image": "res://art/ljonar/card_15667.png",
+      "kind": "card",
+      "tts_id": 15667
+    },
+    "ljonar/card_15667/back": {
+      "image": "res://art/ljonar/card_15667_back.png",
+      "kind": "card",
+      "tts_id": 15667
+    },
+    "ljonar/card_1806": {
+      "image": "res://art/ljonar/card_1806.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "ljonar/card_1806/back": {
+      "image": "res://art/ljonar/card_1806_back.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "ljonar/level_1_alemore": {
+      "image": "res://art/ljonar/level_1_alemore.png",
+      "kind": "tile"
+    },
+    "ljonar/ljonar_aid": {
+      "image": "res://art/ljonar/ljonar_aid.png",
+      "kind": "card",
+      "tts_id": 1803
+    },
+    "ljonar/ljonar_aid/back": {
+      "image": "res://art/ljonar/ljonar_aid_back.png",
+      "kind": "card",
+      "tts_id": 1803
+    },
+    "ljonar/ljonar_base_sword_and_shield": {
+      "image": "res://art/ljonar/ljonar_base_sword_and_shield.png",
+      "kind": "card",
+      "tts_id": 1859
+    },
+    "ljonar/ljonar_base_sword_and_shield/back": {
+      "image": "res://art/ljonar/ljonar_base_sword_and_shield_back.png",
+      "kind": "card",
+      "tts_id": 1859
+    },
+    "ljonar/ljonar_character_board": {
+      "image": "res://art/ljonar/ljonar_character_board.png",
+      "kind": "tile"
+    },
+    "ljonar/wound": {
+      "image": "res://art/ljonar/wound.png",
+      "kind": "wound"
+    },
+    "ljonar/wound/back": {
+      "image": "res://art/ljonar/wound_back.png",
+      "kind": "wound"
+    },
+    "mirah/action/178400": {
+      "image": "res://art/mirah/action_178400.png",
+      "kind": "action",
+      "tts_id": 178400
+    },
+    "mirah/action/178401": {
+      "image": "res://art/mirah/action_178401.png",
+      "kind": "action",
+      "tts_id": 178401
+    },
+    "mirah/action/178402": {
+      "image": "res://art/mirah/action_178402.png",
+      "kind": "action",
+      "tts_id": 178402
+    },
+    "mirah/action/178403": {
+      "image": "res://art/mirah/action_178403.png",
+      "kind": "action",
+      "tts_id": 178403
+    },
+    "mirah/action/178404": {
+      "image": "res://art/mirah/action_178404.png",
+      "kind": "action",
+      "tts_id": 178404
+    },
+    "mirah/action/178405": {
+      "image": "res://art/mirah/action_178405.png",
+      "kind": "action",
+      "tts_id": 178405
+    },
+    "mirah/action/178406": {
+      "image": "res://art/mirah/action_178406.png",
+      "kind": "action",
+      "tts_id": 178406
+    },
+    "mirah/action/178407": {
+      "image": "res://art/mirah/action_178407.png",
+      "kind": "action",
+      "tts_id": 178407
+    },
+    "mirah/action/178408": {
+      "image": "res://art/mirah/action_178408.png",
+      "kind": "action",
+      "tts_id": 178408
+    },
+    "mirah/action/178409": {
+      "image": "res://art/mirah/action_178409.png",
+      "kind": "action",
+      "tts_id": 178409
+    },
+    "mirah/action/178410": {
+      "image": "res://art/mirah/action_178410.png",
+      "kind": "action",
+      "tts_id": 178410
+    },
+    "mirah/action/178411": {
+      "image": "res://art/mirah/action_178411.png",
+      "kind": "action",
+      "tts_id": 178411
+    },
+    "mirah/action/178412": {
+      "image": "res://art/mirah/action_178412.png",
+      "kind": "action",
+      "tts_id": 178412
+    },
+    "mirah/action/178413": {
+      "image": "res://art/mirah/action_178413.png",
+      "kind": "action",
+      "tts_id": 178413
+    },
+    "mirah/action/178414": {
+      "image": "res://art/mirah/action_178414.png",
+      "kind": "action",
+      "tts_id": 178414
+    },
+    "mirah/action/178415": {
+      "image": "res://art/mirah/action_178415.png",
+      "kind": "action",
+      "tts_id": 178415
+    },
+    "mirah/action/178416": {
+      "image": "res://art/mirah/action_178416.png",
+      "kind": "action",
+      "tts_id": 178416
+    },
+    "mirah/action/178417": {
+      "image": "res://art/mirah/action_178417.png",
+      "kind": "action",
+      "tts_id": 178417
+    },
+    "mirah/action/178418": {
+      "image": "res://art/mirah/action_178418.png",
+      "kind": "action",
+      "tts_id": 178418
+    },
+    "mirah/action/178419": {
+      "image": "res://art/mirah/action_178419.png",
+      "kind": "action",
+      "tts_id": 178419
+    },
+    "mirah/action/178420": {
+      "image": "res://art/mirah/action_178420.png",
+      "kind": "action",
+      "tts_id": 178420
+    },
+    "mirah/action/178421": {
+      "image": "res://art/mirah/action_178421.png",
+      "kind": "action",
+      "tts_id": 178421
+    },
+    "mirah/action/178422": {
+      "image": "res://art/mirah/action_178422.png",
+      "kind": "action",
+      "tts_id": 178422
+    },
+    "mirah/action/178423": {
+      "image": "res://art/mirah/action_178423.png",
+      "kind": "action",
+      "tts_id": 178423
+    },
+    "mirah/action/back": {
+      "image": "res://art/mirah/action_back.png"
+    },
+    "mirah/base_armor": {
+      "image": "res://art/mirah/base_armor.png",
+      "kind": "tile"
+    },
+    "mirah/base_helm": {
+      "image": "res://art/mirah/base_helm.png",
+      "kind": "tile"
+    },
+    "mirah/card_1806": {
+      "image": "res://art/mirah/card_1806.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "mirah/card_1806/back": {
+      "image": "res://art/mirah/card_1806_back.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "mirah/card_2115": {
+      "image": "res://art/mirah/card_2115.png",
+      "kind": "card",
+      "tts_id": 2115
+    },
+    "mirah/card_2115/back": {
+      "image": "res://art/mirah/card_2115_back.png",
+      "kind": "card",
+      "tts_id": 2115
+    },
+    "mirah/level_1_alemore": {
+      "image": "res://art/mirah/level_1_alemore.png",
+      "kind": "tile"
+    },
+    "mirah/mirah_aid": {
+      "image": "res://art/mirah/mirah_aid.png",
+      "kind": "card",
+      "tts_id": 1804
+    },
+    "mirah/mirah_aid/back": {
+      "image": "res://art/mirah/mirah_aid_back.png",
+      "kind": "card",
+      "tts_id": 1804
+    },
+    "mirah/mirah_base_great_bow": {
+      "image": "res://art/mirah/mirah_base_great_bow.png",
+      "kind": "card",
+      "tts_id": 1860
+    },
+    "mirah/mirah_base_great_bow/back": {
+      "image": "res://art/mirah/mirah_base_great_bow_back.png",
+      "kind": "card",
+      "tts_id": 1860
+    },
+    "mirah/mirah_character_board": {
+      "image": "res://art/mirah/mirah_character_board.png",
+      "kind": "tile"
+    },
+    "mirah/wound": {
+      "image": "res://art/mirah/wound.png",
+      "kind": "wound"
+    },
+    "mirah/wound/back": {
+      "image": "res://art/mirah/wound_back.png",
+      "kind": "wound"
+    },
+    "model/dareon/standee": {
+      "image": "res://art/models/dareon_standee.png"
+    },
+    "model/dygorax/diffuse": {
+      "image": "res://art/models/dygorax_diffuse.png"
+    },
+    "model/heleren/standee": {
+      "image": "res://art/models/heleren_standee.png"
+    },
+    "model/karah/standee": {
+      "image": "res://art/models/karah_standee.png"
+    },
+    "model/kharja/diffuse": {
+      "image": "res://art/models/kharja_diffuse.png"
+    },
+    "model/ljonar/standee": {
+      "image": "res://art/models/ljonar_standee.png"
+    },
+    "model/mirah/standee": {
+      "image": "res://art/models/mirah_standee.png"
+    },
+    "model/thoreg/standee": {
+      "image": "res://art/models/thoreg_standee.png"
+    },
+    "model/toramat/diffuse": {
+      "image": "res://art/models/toramat_diffuse.png"
+    },
+    "model/vyraxen/diffuse": {
+      "image": "res://art/models/vyraxen_diffuse.png"
+    },
+    "thoreg/action/178300": {
+      "image": "res://art/thoreg/action_178300.png",
+      "kind": "action",
+      "tts_id": 178300
+    },
+    "thoreg/action/178301": {
+      "image": "res://art/thoreg/action_178301.png",
+      "kind": "action",
+      "tts_id": 178301
+    },
+    "thoreg/action/178302": {
+      "image": "res://art/thoreg/action_178302.png",
+      "kind": "action",
+      "tts_id": 178302
+    },
+    "thoreg/action/178303": {
+      "image": "res://art/thoreg/action_178303.png",
+      "kind": "action",
+      "tts_id": 178303
+    },
+    "thoreg/action/178304": {
+      "image": "res://art/thoreg/action_178304.png",
+      "kind": "action",
+      "tts_id": 178304
+    },
+    "thoreg/action/178305": {
+      "image": "res://art/thoreg/action_178305.png",
+      "kind": "action",
+      "tts_id": 178305
+    },
+    "thoreg/action/178306": {
+      "image": "res://art/thoreg/action_178306.png",
+      "kind": "action",
+      "tts_id": 178306
+    },
+    "thoreg/action/178307": {
+      "image": "res://art/thoreg/action_178307.png",
+      "kind": "action",
+      "tts_id": 178307
+    },
+    "thoreg/action/178308": {
+      "image": "res://art/thoreg/action_178308.png",
+      "kind": "action",
+      "tts_id": 178308
+    },
+    "thoreg/action/178309": {
+      "image": "res://art/thoreg/action_178309.png",
+      "kind": "action",
+      "tts_id": 178309
+    },
+    "thoreg/action/178310": {
+      "image": "res://art/thoreg/action_178310.png",
+      "kind": "action",
+      "tts_id": 178310
+    },
+    "thoreg/action/178311": {
+      "image": "res://art/thoreg/action_178311.png",
+      "kind": "action",
+      "tts_id": 178311
+    },
+    "thoreg/action/178312": {
+      "image": "res://art/thoreg/action_178312.png",
+      "kind": "action",
+      "tts_id": 178312
+    },
+    "thoreg/action/178313": {
+      "image": "res://art/thoreg/action_178313.png",
+      "kind": "action",
+      "tts_id": 178313
+    },
+    "thoreg/action/178314": {
+      "image": "res://art/thoreg/action_178314.png",
+      "kind": "action",
+      "tts_id": 178314
+    },
+    "thoreg/action/178315": {
+      "image": "res://art/thoreg/action_178315.png",
+      "kind": "action",
+      "tts_id": 178315
+    },
+    "thoreg/action/178316": {
+      "image": "res://art/thoreg/action_178316.png",
+      "kind": "action",
+      "tts_id": 178316
+    },
+    "thoreg/action/178317": {
+      "image": "res://art/thoreg/action_178317.png",
+      "kind": "action",
+      "tts_id": 178317
+    },
+    "thoreg/action/178318": {
+      "image": "res://art/thoreg/action_178318.png",
+      "kind": "action",
+      "tts_id": 178318
+    },
+    "thoreg/action/178319": {
+      "image": "res://art/thoreg/action_178319.png",
+      "kind": "action",
+      "tts_id": 178319
+    },
+    "thoreg/action/178320": {
+      "image": "res://art/thoreg/action_178320.png",
+      "kind": "action",
+      "tts_id": 178320
+    },
+    "thoreg/action/178321": {
+      "image": "res://art/thoreg/action_178321.png",
+      "kind": "action",
+      "tts_id": 178321
+    },
+    "thoreg/action/178322": {
+      "image": "res://art/thoreg/action_178322.png",
+      "kind": "action",
+      "tts_id": 178322
+    },
+    "thoreg/action/178323": {
+      "image": "res://art/thoreg/action_178323.png",
+      "kind": "action",
+      "tts_id": 178323
+    },
+    "thoreg/action/back": {
+      "image": "res://art/thoreg/action_back.png"
+    },
+    "thoreg/base_armor": {
+      "image": "res://art/thoreg/base_armor.png",
+      "kind": "tile"
+    },
+    "thoreg/base_helm": {
+      "image": "res://art/thoreg/base_helm.png",
+      "kind": "tile"
+    },
+    "thoreg/card_15661": {
+      "image": "res://art/thoreg/card_15661.png",
+      "kind": "card",
+      "tts_id": 15661
+    },
+    "thoreg/card_15661/back": {
+      "image": "res://art/thoreg/card_15661_back.png",
+      "kind": "card",
+      "tts_id": 15661
+    },
+    "thoreg/card_1806": {
+      "image": "res://art/thoreg/card_1806.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "thoreg/card_1806/back": {
+      "image": "res://art/thoreg/card_1806_back.png",
+      "kind": "card",
+      "tts_id": 1806
+    },
+    "thoreg/level_1_alemore": {
+      "image": "res://art/thoreg/level_1_alemore.png",
+      "kind": "tile"
+    },
+    "thoreg/thoreg_aid": {
+      "image": "res://art/thoreg/thoreg_aid.png",
+      "kind": "card",
+      "tts_id": 1805
+    },
+    "thoreg/thoreg_aid/back": {
+      "image": "res://art/thoreg/thoreg_aid_back.png",
+      "kind": "card",
+      "tts_id": 1805
+    },
+    "thoreg/thoreg_base_hammer": {
+      "image": "res://art/thoreg/thoreg_base_hammer.png",
+      "kind": "card",
+      "tts_id": 1861
+    },
+    "thoreg/thoreg_base_hammer/back": {
+      "image": "res://art/thoreg/thoreg_base_hammer_back.png",
+      "kind": "card",
+      "tts_id": 1861
+    },
+    "thoreg/thoreg_character_board": {
+      "image": "res://art/thoreg/thoreg_character_board.png",
+      "kind": "tile"
+    },
+    "thoreg/wound": {
+      "image": "res://art/thoreg/wound.png",
+      "kind": "wound"
+    },
+    "thoreg/wound/back": {
+      "image": "res://art/thoreg/wound_back.png",
+      "kind": "wound"
+    },
+    "vyraxen/behavior/14174": {
+      "image": "res://art/vyraxen/behavior_14174.png",
+      "kind": "behavior",
+      "tts_id": 14174
+    },
+    "vyraxen/behavior/14174/back": {
+      "image": "res://art/vyraxen/behavior_14174_back.png",
+      "kind": "behavior",
+      "tts_id": 14174
+    },
+    "vyraxen/behavior/14175": {
+      "image": "res://art/vyraxen/behavior_14175.png",
+      "kind": "behavior",
+      "tts_id": 14175
+    },
+    "vyraxen/behavior/14175/back": {
+      "image": "res://art/vyraxen/behavior_14175_back.png",
+      "kind": "behavior",
+      "tts_id": 14175
+    },
+    "vyraxen/behavior/14177": {
+      "image": "res://art/vyraxen/behavior_14177.png",
+      "kind": "behavior",
+      "tts_id": 14177
+    },
+    "vyraxen/behavior/14177/back": {
+      "image": "res://art/vyraxen/behavior_14177_back.png",
+      "kind": "behavior",
+      "tts_id": 14177
+    },
+    "vyraxen/behavior/14179": {
+      "image": "res://art/vyraxen/behavior_14179.png",
+      "kind": "behavior",
+      "tts_id": 14179
+    },
+    "vyraxen/behavior/14179/back": {
+      "image": "res://art/vyraxen/behavior_14179_back.png",
+      "kind": "behavior",
+      "tts_id": 14179
+    },
+    "vyraxen/behavior/14180": {
+      "image": "res://art/vyraxen/behavior_14180.png",
+      "kind": "behavior",
+      "tts_id": 14180
+    },
+    "vyraxen/behavior/14180/back": {
+      "image": "res://art/vyraxen/behavior_14180_back.png",
+      "kind": "behavior",
+      "tts_id": 14180
+    },
+    "vyraxen/behavior/14181": {
+      "image": "res://art/vyraxen/behavior_14181.png",
+      "kind": "behavior",
+      "tts_id": 14181
+    },
+    "vyraxen/behavior/14181/back": {
+      "image": "res://art/vyraxen/behavior_14181_back.png",
+      "kind": "behavior",
+      "tts_id": 14181
+    },
+    "vyraxen/behavior/14183": {
+      "image": "res://art/vyraxen/behavior_14183.png",
+      "kind": "behavior",
+      "tts_id": 14183
+    },
+    "vyraxen/behavior/14183/back": {
+      "image": "res://art/vyraxen/behavior_14183_back.png",
+      "kind": "behavior",
+      "tts_id": 14183
+    },
+    "vyraxen/behavior/14184": {
+      "image": "res://art/vyraxen/behavior_14184.png",
+      "kind": "behavior",
+      "tts_id": 14184
+    },
+    "vyraxen/behavior/14184/back": {
+      "image": "res://art/vyraxen/behavior_14184_back.png",
+      "kind": "behavior",
+      "tts_id": 14184
+    },
+    "vyraxen/behavior/14186": {
+      "image": "res://art/vyraxen/behavior_14186.png",
+      "kind": "behavior",
+      "tts_id": 14186
+    },
+    "vyraxen/behavior/14186/back": {
+      "image": "res://art/vyraxen/behavior_14186_back.png",
+      "kind": "behavior",
+      "tts_id": 14186
+    },
+    "vyraxen/behavior/14188": {
+      "image": "res://art/vyraxen/behavior_14188.png",
+      "kind": "behavior",
+      "tts_id": 14188
+    },
+    "vyraxen/behavior/14188/back": {
+      "image": "res://art/vyraxen/behavior_14188_back.png",
+      "kind": "behavior",
+      "tts_id": 14188
+    },
+    "vyraxen/behavior/2295": {
+      "image": "res://art/vyraxen/behavior_2295.png",
+      "kind": "behavior",
+      "tts_id": 2295
+    },
+    "vyraxen/behavior/2295/back": {
+      "image": "res://art/vyraxen/behavior_2295_back.png",
+      "kind": "behavior",
+      "tts_id": 2295
+    },
+    "vyraxen/behavior/2296": {
+      "image": "res://art/vyraxen/behavior_2296.png",
+      "kind": "behavior",
+      "tts_id": 2296
+    },
+    "vyraxen/behavior/2296/back": {
+      "image": "res://art/vyraxen/behavior_2296_back.png",
+      "kind": "behavior",
+      "tts_id": 2296
+    },
+    "vyraxen/behavior/2297": {
+      "image": "res://art/vyraxen/behavior_2297.png",
+      "kind": "behavior",
+      "tts_id": 2297
+    },
+    "vyraxen/behavior/2297/back": {
+      "image": "res://art/vyraxen/behavior_2297_back.png",
+      "kind": "behavior",
+      "tts_id": 2297
+    },
+    "vyraxen/behavior/2302": {
+      "image": "res://art/vyraxen/behavior_2302.png",
+      "kind": "behavior",
+      "tts_id": 2302
+    },
+    "vyraxen/behavior/2302/back": {
+      "image": "res://art/vyraxen/behavior_2302_back.png",
+      "kind": "behavior",
+      "tts_id": 2302
+    },
+    "vyraxen/behavior/2308": {
+      "image": "res://art/vyraxen/behavior_2308.png",
+      "kind": "behavior",
+      "tts_id": 2308
+    },
+    "vyraxen/behavior/2308/back": {
+      "image": "res://art/vyraxen/behavior_2308_back.png",
+      "kind": "behavior",
+      "tts_id": 2308
+    },
+    "vyraxen/behavior/2309": {
+      "image": "res://art/vyraxen/behavior_2309.png",
+      "kind": "behavior",
+      "tts_id": 2309
+    },
+    "vyraxen/behavior/2309/back": {
+      "image": "res://art/vyraxen/behavior_2309_back.png",
+      "kind": "behavior",
+      "tts_id": 2309
+    },
+    "vyraxen/behavior/2310": {
+      "image": "res://art/vyraxen/behavior_2310.png",
+      "kind": "behavior",
+      "tts_id": 2310
+    },
+    "vyraxen/behavior/2310/back": {
+      "image": "res://art/vyraxen/behavior_2310_back.png",
+      "kind": "behavior",
+      "tts_id": 2310
+    },
+    "vyraxen/behavior/2311": {
+      "image": "res://art/vyraxen/behavior_2311.png",
+      "kind": "behavior",
+      "tts_id": 2311
+    },
+    "vyraxen/behavior/2311/back": {
+      "image": "res://art/vyraxen/behavior_2311_back.png",
+      "kind": "behavior",
+      "tts_id": 2311
+    },
+    "vyraxen/behavior/2312": {
+      "image": "res://art/vyraxen/behavior_2312.png",
+      "kind": "behavior",
+      "tts_id": 2312
+    },
+    "vyraxen/behavior/2312/back": {
+      "image": "res://art/vyraxen/behavior_2312_back.png",
+      "kind": "behavior",
+      "tts_id": 2312
+    },
+    "vyraxen/behavior/2313": {
+      "image": "res://art/vyraxen/behavior_2313.png",
+      "kind": "behavior",
+      "tts_id": 2313
+    },
+    "vyraxen/behavior/2313/back": {
+      "image": "res://art/vyraxen/behavior_2313_back.png",
+      "kind": "behavior",
+      "tts_id": 2313
+    },
+    "vyraxen/behavior/2314": {
+      "image": "res://art/vyraxen/behavior_2314.png",
+      "kind": "behavior",
+      "tts_id": 2314
+    },
+    "vyraxen/behavior/2314/back": {
+      "image": "res://art/vyraxen/behavior_2314_back.png",
+      "kind": "behavior",
+      "tts_id": 2314
+    },
+    "vyraxen/behavior/2315": {
+      "image": "res://art/vyraxen/behavior_2315.png",
+      "kind": "behavior",
+      "tts_id": 2315
+    },
+    "vyraxen/behavior/2315/back": {
+      "image": "res://art/vyraxen/behavior_2315_back.png",
+      "kind": "behavior",
+      "tts_id": 2315
+    },
+    "vyraxen/behavior/2316": {
+      "image": "res://art/vyraxen/behavior_2316.png",
+      "kind": "behavior",
+      "tts_id": 2316
+    },
+    "vyraxen/behavior/2316/back": {
+      "image": "res://art/vyraxen/behavior_2316_back.png",
+      "kind": "behavior",
+      "tts_id": 2316
+    },
+    "vyraxen/behavior/2321": {
+      "image": "res://art/vyraxen/behavior_2321.png",
+      "kind": "behavior",
+      "tts_id": 2321
+    },
+    "vyraxen/behavior/2321/back": {
+      "image": "res://art/vyraxen/behavior_2321_back.png",
+      "kind": "behavior",
+      "tts_id": 2321
+    },
+    "vyraxen/board": {
+      "image": "res://art/vyraxen/monster_board.png",
+      "kind": "board"
+    },
+    "vyraxen/objective/2320": {
+      "image": "res://art/vyraxen/objective_2320.png",
+      "kind": "objective",
+      "tts_id": 2320
+    },
+    "vyraxen/objective/2320/back": {
+      "image": "res://art/vyraxen/objective_2320_back.png",
+      "kind": "objective",
+      "tts_id": 2320
+    },
+    "vyraxen/peril/2300": {
+      "image": "res://art/vyraxen/peril_2300.png",
+      "kind": "peril",
+      "tts_id": 2300
+    },
+    "vyraxen/peril/2300/back": {
+      "image": "res://art/vyraxen/peril_2300_back.png",
+      "kind": "peril",
+      "tts_id": 2300
+    },
+    "vyraxen/peril/2322": {
+      "image": "res://art/vyraxen/peril_2322.png",
+      "kind": "peril",
+      "tts_id": 2322
+    },
+    "vyraxen/peril/2322/back": {
+      "image": "res://art/vyraxen/peril_2322_back.png",
+      "kind": "peril",
+      "tts_id": 2322
+    },
+    "vyraxen/peril/2323": {
+      "image": "res://art/vyraxen/peril_2323.png",
+      "kind": "peril",
+      "tts_id": 2323
+    },
+    "vyraxen/peril/2323/back": {
+      "image": "res://art/vyraxen/peril_2323_back.png",
+      "kind": "peril",
+      "tts_id": 2323
+    },
+    "vyraxen/stance/1/0": {
+      "image": "res://art/vyraxen/stance1_lv0.png",
+      "kind": "stance",
+      "level": 0,
+      "stance": 1
+    },
+    "vyraxen/stance/1/1": {
+      "image": "res://art/vyraxen/stance1_lv1.png",
+      "kind": "stance",
+      "level": 1,
+      "stance": 1
+    },
+    "vyraxen/stance/1/2": {
+      "image": "res://art/vyraxen/stance1_lv2.png",
+      "kind": "stance",
+      "level": 2,
+      "stance": 1
+    },
+    "vyraxen/stance/1/3": {
+      "image": "res://art/vyraxen/stance1_lv3.png",
+      "kind": "stance",
+      "level": 3,
+      "stance": 1
+    },
+    "vyraxen/stance/2/0": {
+      "image": "res://art/vyraxen/stance2_lv0.png",
+      "kind": "stance",
+      "level": 0,
+      "stance": 2
+    },
+    "vyraxen/stance/2/1": {
+      "image": "res://art/vyraxen/stance2_lv1.png",
+      "kind": "stance",
+      "level": 1,
+      "stance": 2
+    },
+    "vyraxen/stance/2/2": {
+      "image": "res://art/vyraxen/stance2_lv2.png",
+      "kind": "stance",
+      "level": 2,
+      "stance": 2
+    },
+    "vyraxen/stance/2/3": {
+      "image": "res://art/vyraxen/stance2_lv3.png",
+      "kind": "stance",
+      "level": 3,
+      "stance": 2
+    },
+    "vyraxen/stance/3/0": {
+      "image": "res://art/vyraxen/stance3_lv0.png",
+      "kind": "stance",
+      "level": 0,
+      "stance": 3
+    },
+    "vyraxen/stance/3/1": {
+      "image": "res://art/vyraxen/stance3_lv1.png",
+      "kind": "stance",
+      "level": 1,
+      "stance": 3
+    },
+    "vyraxen/stance/3/2": {
+      "image": "res://art/vyraxen/stance3_lv2.png",
+      "kind": "stance",
+      "level": 2,
+      "stance": 3
+    },
+    "vyraxen/stance/3/3": {
+      "image": "res://art/vyraxen/stance3_lv3.png",
+      "kind": "stance",
+      "level": 3,
+      "stance": 3
+    },
+    "vyraxen/stance/back/back": {
+      "image": "res://art/vyraxen/stance_back_back.png"
+    }
+  },
+  "missing": [
+    {
+      "key": "battle_board",
+      "url": "https://steamusercontent-a.akamaihd.net/ugc/868496425808310268/383523E82AF9E082DDB776F54C025C71A30E098F/"
+    }
+  ],
+  "scene": {
+    "battle_board": {
+      "kind": "model"
+    },
+    "dareon": {
+      "kind": "standee",
+      "texture": "res://art/models/dareon_standee.png"
+    },
+    "dygorax": {
+      "kind": "model",
+      "mesh": "res://models/dygorax.obj",
+      "texture": "res://art/models/dygorax_diffuse.png"
+    },
+    "heleren": {
+      "kind": "standee",
+      "texture": "res://art/models/heleren_standee.png"
+    },
+    "karah": {
+      "kind": "standee",
+      "texture": "res://art/models/karah_standee.png"
+    },
+    "kharja": {
+      "kind": "model",
+      "mesh": "res://models/kharja.obj",
+      "texture": "res://art/models/kharja_diffuse.png"
+    },
+    "ljonar": {
+      "kind": "standee",
+      "texture": "res://art/models/ljonar_standee.png"
+    },
+    "mirah": {
+      "kind": "standee",
+      "texture": "res://art/models/mirah_standee.png"
+    },
+    "thoreg": {
+      "kind": "standee",
+      "texture": "res://art/models/thoreg_standee.png"
+    },
+    "toramat": {
+      "kind": "model",
+      "mesh": "res://models/toramat.obj",
+      "texture": "res://art/models/toramat_diffuse.png"
+    },
+    "vyraxen": {
+      "kind": "model",
+      "mesh": "res://models/vyraxen.obj",
+      "texture": "res://art/models/vyraxen_diffuse.png"
+    }
+  }
+}

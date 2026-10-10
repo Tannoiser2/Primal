@@ -1,0 +1,1217 @@
+{
+  "_note": "Kharja. Numeri e testi letti dalle immagini delle carte, non dall'ordine del file di salvataggio. Vedi docs/kharja_struttura.md. Le 40 behavior del mod sono 20 carte distinte: la stessa versione ricompare nei mazzi dei livelli coperti dalla finestra di aggression (verificato sugli hash delle immagini, non a occhio). Due slot del salvataggio TTS puntano all'immagine sbagliata (mazzo 3 posizione 1, mazzo 4 posizione 2): sono stati ricostruiti, vedi la doc.",
+  "id": "kharja",
+  "name": "Kharja",
+  "element": "fire",
+  "art": {
+    "_note": "Miniatura GLB (Meshy) come per Vyraxen: e' quella che si vede sulla plancia. Restano il mesh e la texture del mod TTS come ripiego, con la scultura non dipinta.",
+    "behavior_back": "res://art/monsters/kharja/g1_00_retro.jpg",
+    "model": "res://models/kharja.glb",
+    "mesh": "res://models/kharja.obj",
+    "texture": "res://art/models/kharja_diffuse.jpg",
+    "triplanar": false,
+    "model_yaw": 90,
+    "portrait": {
+      "art": "res://art/monsters/kharja/sciolta_2.jpg",
+      "region": [
+        0.15,
+        0.0,
+        0.3,
+        0.42
+      ]
+    },
+    "board": "res://art/monsters/kharja/board.jpg"
+  },
+  "levels": {
+    "0": {
+      "health": 10,
+      "behavior_deck": [
+        43001,
+        43003,
+        43005,
+        43007,
+        43009,
+        43011,
+        43013,
+        43015,
+        43017,
+        43019
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 2,
+          "progression": 6,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 40101,
+          "objective": 40201,
+          "text": "At the start of round 1, each player exhausts a potion card.",
+          "it": "All'inizio del round 1, ogni giocatore esaurisce una carta pozione.",
+          "art": "res://art/monsters/kharja/sciolta_2.jpg",
+          "on_round_1": [
+            {
+              "op": "exhaust_potion",
+              "who": "all"
+            }
+          ]
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 3,
+          "progression": 2,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 40102,
+          "text": "When revealed: Place a fire terrain in each damaged sector on the board.",
+          "it": "Quando rivelata: piazza un terreno fire in ogni settore danneggiato della plancia.",
+          "art": "res://art/monsters/kharja/sciolta_2_stato3.jpg",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "each_damaged_sector"
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 5,
+          "damage": 1,
+          "exposed": [
+            "flank"
+          ],
+          "peril": 40103,
+          "text": "When revealed: Advance the round marker to 8. If it is already at 8 or beyond, Kharja gains 1 PP struggle.",
+          "it": "Quando rivelata: porta il segnalino round a 8. Se e' gia' a 8 o oltre, Kharja guadagna 1 struggle per giocatore.",
+          "art": "res://art/monsters/kharja/sciolta_2_stato2.jpg",
+          "on_reveal": [
+            {
+              "op": "advance_round_marker",
+              "to": 8,
+              "else": [
+                {
+                  "op": "monster_gain_struggle",
+                  "n": 1,
+                  "scale": "per_player"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "1": {
+      "health": 10,
+      "behavior_deck": [
+        43001,
+        43005,
+        43007,
+        43004,
+        43010,
+        43011,
+        43020,
+        43015,
+        43017,
+        43013
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 5,
+          "progression": 6,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 40101,
+          "objective": 40201,
+          "text": "At the start of round 1, each player exhausts a potion card.",
+          "it": "All'inizio del round 1, ogni giocatore esaurisce una carta pozione.",
+          "art": "res://art/monsters/kharja/sciolta_1.jpg",
+          "on_round_1": [
+            {
+              "op": "exhaust_potion",
+              "who": "all"
+            }
+          ]
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 7,
+          "progression": 2,
+          "damage": 1,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 40102,
+          "text": "When revealed: Place a fire terrain in each damaged sector on the board.",
+          "it": "Quando rivelata: piazza un terreno fire in ogni settore danneggiato della plancia.",
+          "art": "res://art/monsters/kharja/sciolta_1_stato2.jpg",
+          "on_reveal": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "each_damaged_sector"
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 12,
+          "damage": 1,
+          "exposed": [
+            "flank"
+          ],
+          "peril": 40103,
+          "text": "When revealed: Advance the round marker to 8. If it is already at 8 or beyond, Kharja gains 1 PP struggle.",
+          "it": "Quando rivelata: porta il segnalino round a 8. Se e' gia' a 8 o oltre, Kharja guadagna 1 struggle per giocatore.",
+          "art": "res://art/monsters/kharja/sciolta_1_stato3.jpg",
+          "on_reveal": [
+            {
+              "op": "advance_round_marker",
+              "to": 8,
+              "else": [
+                {
+                  "op": "monster_gain_struggle",
+                  "n": 1,
+                  "scale": "per_player"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "health": 10,
+      "behavior_deck": [
+        43002,
+        43017,
+        43006,
+        43004,
+        43007,
+        43010,
+        43012,
+        43020,
+        43015,
+        43013
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 10,
+          "progression": 7,
+          "damage": 2,
+          "exposed": [
+            "front",
+            "flank"
+          ],
+          "peril": 40101,
+          "objective": 40201,
+          "text": "At the start of round 1, each player exhausts a potion card.",
+          "it": "All'inizio del round 1, ogni giocatore esaurisce una carta pozione.",
+          "art": "res://art/monsters/kharja/sciolta_3.jpg",
+          "on_round_1": [
+            {
+              "op": "exhaust_potion",
+              "who": "all"
+            }
+          ]
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 16,
+          "progression": 2,
+          "damage": 2,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 40102,
+          "text": "When revealed: Place a counter on Kharja and a fire terrain in each damaged sector on the board.",
+          "it": "Quando rivelata: piazza un segnalino su Kharja e un terreno fire in ogni settore danneggiato.",
+          "art": "res://art/monsters/kharja/sciolta_3_stato2.jpg",
+          "on_reveal": [
+            {
+              "op": "monster_add_counter",
+              "n": 1
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "each_damaged_sector"
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 20,
+          "damage": 3,
+          "exposed": [
+            "flank"
+          ],
+          "peril": 40103,
+          "text": "When revealed: Advance the round marker to 8. If it is already at 8 or beyond, Kharja gains 1 PP struggle.",
+          "it": "Quando rivelata: porta il segnalino round a 8. Se e' gia' a 8 o oltre, Kharja guadagna 1 struggle per giocatore.",
+          "art": "res://art/monsters/kharja/sciolta_3_stato3.jpg",
+          "on_reveal": [
+            {
+              "op": "advance_round_marker",
+              "to": 8,
+              "else": [
+                {
+                  "op": "monster_gain_struggle",
+                  "n": 1,
+                  "scale": "per_player"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "health": 10,
+      "behavior_deck": [
+        43018,
+        43016,
+        43002,
+        43020,
+        43012,
+        43010,
+        43008,
+        43006,
+        43004,
+        43014
+      ],
+      "stances": [
+        {
+          "n": 1,
+          "toughness_per_player": 15,
+          "progression": 7,
+          "damage": 3,
+          "exposed": [
+            "front",
+            "flank"
+          ],
+          "peril": 401010,
+          "objective": 402010,
+          "text": "At the start of round 1, each player exhausts a potion card.",
+          "it": "All'inizio del round 1, ogni giocatore esaurisce una carta pozione.",
+          "art": "res://art/monsters/kharja/sciolta_4.jpg",
+          "on_round_1": [
+            {
+              "op": "exhaust_potion",
+              "who": "all"
+            }
+          ]
+        },
+        {
+          "n": 2,
+          "toughness_per_player": 25,
+          "progression": 2,
+          "damage": 3,
+          "exposed": [
+            "flank",
+            "rear"
+          ],
+          "peril": 401020,
+          "text": "When revealed: Place 2 counters on Kharja and a fire terrain in each damaged sector on the board. Players in those sectors suffer burning.",
+          "it": "Quando rivelata: piazza 2 segnalini su Kharja e un terreno fire in ogni settore danneggiato. I giocatori in quei settori subiscono burning.",
+          "art": "res://art/monsters/kharja/sciolta_4_stato2.jpg",
+          "on_reveal": [
+            {
+              "op": "monster_add_counter",
+              "n": 2
+            },
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "each_damaged_sector"
+            },
+            {
+              "op": "inflict_burning",
+              "who": "players_in_damaged_sectors"
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "toughness_per_player": 30,
+          "damage": 5,
+          "exposed": [
+            "flank"
+          ],
+          "peril": 401030,
+          "text": "When revealed: Advance the round marker to 8. If it is already at 8 or beyond, Kharja unleashes.",
+          "it": "Quando rivelata: porta il segnalino round a 8. Se e' gia' a 8 o oltre, Kharja unleashes.",
+          "art": "res://art/monsters/kharja/sciolta_4_stato3.jpg",
+          "on_reveal": [
+            {
+              "op": "advance_round_marker",
+              "to": 8,
+              "else": [
+                {
+                  "op": "unleash"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "behaviors": {
+    "43001": {
+      "name": "Fiery Mane",
+      "icon": "cerchio",
+      "reaction": "attack_played",
+      "refresh": 1,
+      "art": "res://art/monsters/kharja/g1_00_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_00_retro.jpg",
+      "text": "Kharja becomes vulnerable. The active player suffers DMG+X, where X is the number of counters on Kharja.",
+      "it": "Kharja diventa vulnerable. Il giocatore attivo subisce DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "effects": [
+        {
+          "op": "inflict",
+          "status": "vulnerable"
+        },
+        {
+          "op": "suffer",
+          "who": "active",
+          "damage_bonus": "monster_counters"
+        }
+      ]
+    },
+    "43002": {
+      "name": "Fiery Mane",
+      "icon": "M",
+      "reaction": "attack_played",
+      "refresh": 1,
+      "art": "res://art/monsters/kharja/g3_00_fronte.jpg",
+      "back": "res://art/monsters/kharja/g3_00_retro.jpg",
+      "text": "Kharja becomes vulnerable. The active player suffers DMG+X, where X is the number of counters on Kharja. That player suffers burning. Only resolve the boost effect of this card if Kharja is in Stance II or III.",
+      "it": "Kharja diventa vulnerable. Il giocatore attivo subisce DMG+X (X = segnalini su Kharja) e subisce burning. Risolvi il boost solo se Kharja e' in Stance II o III.",
+      "effects": [
+        {
+          "op": "inflict",
+          "status": "vulnerable"
+        },
+        {
+          "op": "suffer",
+          "who": "active",
+          "damage_bonus": "monster_counters"
+        },
+        {
+          "op": "inflict_burning",
+          "who": "active"
+        }
+      ],
+      "boost": {
+        "cost": 3,
+        "condition": "stance_2_or_3",
+        "text": "Place a fire terrain in each damaged sector on the board. Then remove damage from all sectors.",
+        "it": "Piazza un terreno fire in ogni settore danneggiato, poi rimuovi il damage da tutti i settori.",
+        "effects": [
+          {
+            "op": "place_terrain",
+            "terrain": "fire",
+            "where": "each_damaged_sector"
+          },
+          {
+            "op": "clear_sector_damage"
+          }
+        ]
+      }
+    },
+    "43003": {
+      "name": "Ember Dash",
+      "icon": "triplo",
+      "reaction": "turn_start_front",
+      "refresh": 5,
+      "art": "res://art/monsters/kharja/g1_01_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_01_retro.jpg",
+      "text": "The active player cannot be assisted this turn.",
+      "it": "Il giocatore attivo non puo' essere assistito in questo turno.",
+      "effects": [
+        {
+          "op": "no_assist",
+          "who": "active"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "The active player skips their movement phase this turn unless they reveal a dodge from their hand.",
+        "it": "Il giocatore attivo salta la fase movimento a meno che non riveli un dodge dalla mano.",
+        "effects": [
+          {
+            "op": "skip_movement",
+            "who": "active",
+            "unless_reveal": "dodge"
+          }
+        ]
+      }
+    },
+    "43004": {
+      "name": "Ember Dash",
+      "icon": "otto",
+      "reaction": "turn_start_front",
+      "refresh": 5,
+      "art": "res://art/monsters/kharja/g2_03_fronte.jpg",
+      "back": "res://art/monsters/kharja/g2_03_retro.jpg",
+      "text": "For the duration of this turn, the active player cannot be assisted and must use only dodge to generate stamina for movement.",
+      "it": "Per tutto questo turno il giocatore attivo non puo' essere assistito e puo' generare stamina per il movimento solo con dodge.",
+      "effects": [
+        {
+          "op": "no_assist",
+          "who": "active"
+        },
+        {
+          "op": "movement_payment_type",
+          "who": "active",
+          "type": "dodge"
+        }
+      ]
+    },
+    "43005": {
+      "name": "Terrifying Gaze",
+      "icon": "cerchio",
+      "reaction": "turn_start_front",
+      "refresh": 4,
+      "art": "res://art/monsters/kharja/g1_02_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_02_retro.jpg",
+      "text": "Kharja gains PP-1 struggle. The active player skips their turn unless another player discards an offensive card from their hand. If the active player is the only player standing, they must discard an offensive card from their hand instead.",
+      "it": "Kharja guadagna (giocatori-1) struggle. Il giocatore attivo salta il turno a meno che un altro giocatore non scarti una carta offensive dalla mano. Se e' l'unico giocatore in piedi, deve scartarla lui.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": "players_minus_1"
+        },
+        {
+          "op": "skip_turn",
+          "who": "active",
+          "unless_discard_kind": "offensive"
+        }
+      ]
+    },
+    "43006": {
+      "name": "Terrifying Gaze",
+      "icon": "M",
+      "reaction": "turn_start_front",
+      "refresh": 4,
+      "art": "res://art/monsters/kharja/g3_02_fronte.jpg",
+      "back": "res://art/monsters/kharja/g3_02_retro.jpg",
+      "text": "Kharja gains 1 PP struggle. The active player discards all attacks from their hand. If there are two or more players standing, the active player skips their turn unless another player discards an offensive card from their hand.",
+      "it": "Kharja guadagna 1 struggle per giocatore. Il giocatore attivo scarta tutti gli attack dalla mano. Se ci sono due o piu' giocatori in piedi, salta il turno a meno che un altro giocatore non scarti una carta offensive dalla mano.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "discard_all_of_type",
+          "who": "active",
+          "type": "attack"
+        },
+        {
+          "op": "skip_turn",
+          "who": "active",
+          "unless_discard_kind": "offensive",
+          "only_if_multiple": true
+        }
+      ]
+    },
+    "43007": {
+      "name": "Flaming Tails",
+      "icon": "psi",
+      "reaction": "turn_start_front",
+      "refresh": 4,
+      "art": "res://art/monsters/kharja/g1_03_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_03_retro.jpg",
+      "text": "Each player in the rear sector must either immediately move or suffer DMG+X, where X is the number of counters on Kharja.",
+      "it": "Ogni giocatore nel settore rear deve muoversi subito o subire DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "effects": [
+        {
+          "op": "move_or_suffer",
+          "who": "players_in_rear",
+          "damage_bonus": "monster_counters"
+        }
+      ]
+    },
+    "43008": {
+      "name": "Flaming Tails",
+      "icon": "V",
+      "reaction": "turn_start_front",
+      "refresh": 4,
+      "art": "res://art/monsters/kharja/g4_06_fronte.jpg",
+      "back": "res://art/monsters/kharja/g4_06_retro.jpg",
+      "text": "Each player in the rear sector must either immediately move or suffer DMG+X, where X is the number of counters on Kharja. Players who choose to move must discard a dodge from their hand to generate stamina for that movement.",
+      "it": "Ogni giocatore nel settore rear deve muoversi subito o subire DMG+X (X = segnalini su Kharja). Chi sceglie di muoversi deve scartare un dodge dalla mano per generare la stamina di quel movimento.",
+      "effects": [
+        {
+          "op": "move_or_suffer",
+          "who": "players_in_rear",
+          "damage_bonus": "monster_counters",
+          "payment_type": "dodge"
+        }
+      ]
+    },
+    "43009": {
+      "name": "Catlike Spring",
+      "icon": "triplo",
+      "reaction": "turn_start_rear",
+      "refresh": 2,
+      "tags": [
+        "claw"
+      ],
+      "art": "res://art/monsters/kharja/g1_04_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_04_retro.jpg",
+      "text": "Kharja turns to the active player.",
+      "it": "Kharja si gira verso il giocatore attivo.",
+      "effects": [
+        {
+          "op": "monster_turn_to",
+          "criteria": "active"
+        }
+      ],
+      "boost": {
+        "cost": 2,
+        "text": "The active player skips their movement phase this turn.",
+        "it": "Il giocatore attivo salta la fase movimento in questo turno.",
+        "effects": [
+          {
+            "op": "skip_movement",
+            "who": "active"
+          }
+        ]
+      }
+    },
+    "43010": {
+      "name": "Catlike Spring",
+      "icon": "otto",
+      "reaction": "turn_start_rear",
+      "refresh": 2,
+      "tags": [
+        "claw"
+      ],
+      "art": "res://art/monsters/kharja/g2_04_fronte.jpg",
+      "back": "res://art/monsters/kharja/g2_04_retro.jpg",
+      "text": "Kharja turns to the active player.",
+      "it": "Kharja si gira verso il giocatore attivo.",
+      "effects": [
+        {
+          "op": "monster_turn_to",
+          "criteria": "active"
+        }
+      ],
+      "boost": {
+        "cost": 2,
+        "text": "The active player skips their movement phase this turn and discards a parry from their hand.",
+        "it": "Il giocatore attivo salta la fase movimento e scarta un parry dalla mano.",
+        "effects": [
+          {
+            "op": "skip_movement",
+            "who": "active"
+          },
+          {
+            "op": "force_discard",
+            "who": "active",
+            "type": "parry"
+          }
+        ]
+      }
+    },
+    "43011": {
+      "name": "Rising Temperature",
+      "icon": "cerchio",
+      "reaction": "rampage",
+      "refresh": 5,
+      "rampage": true,
+      "art": "res://art/monsters/kharja/g1_05_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_05_retro.jpg",
+      "text": "Kharja gains 1 PP struggle. Stance I: Place a damage token in the front sector (max: 1 per sector).",
+      "it": "Kharja guadagna 1 struggle per giocatore. Stance I: piazza un segnalino damage nel settore front (max 1 per settore).",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "place_sector_damage",
+          "where": "front",
+          "condition": "stance_1"
+        }
+      ]
+    },
+    "43012": {
+      "name": "Rising Temperature",
+      "icon": "M",
+      "reaction": "rampage",
+      "refresh": 5,
+      "rampage": true,
+      "tags": [
+        "claw"
+      ],
+      "art": "res://art/monsters/kharja/g3_06_fronte.jpg",
+      "back": "res://art/monsters/kharja/g3_06_retro.jpg",
+      "text": "Kharja gains 1 PP struggle. Place a damage token in the front sector (max: 1 per sector). Stance III: Each player must either exhaust a potion card or discard a card from their hand.",
+      "it": "Kharja guadagna 1 struggle per giocatore. Piazza un segnalino damage nel settore front (max 1 per settore). Stance III: ogni giocatore deve esaurire una pozione o scartare una carta dalla mano.",
+      "effects": [
+        {
+          "op": "monster_gain_struggle",
+          "n": 1,
+          "scale": "per_player"
+        },
+        {
+          "op": "place_sector_damage",
+          "where": "front"
+        },
+        {
+          "op": "exhaust_potion_or_discard",
+          "who": "all",
+          "condition": "stance_3"
+        }
+      ]
+    },
+    "43013": {
+      "name": "Hellfire",
+      "icon": "psi",
+      "reaction": "two_offensive_played",
+      "refresh": 4,
+      "art": "res://art/monsters/kharja/g1_06_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_06_retro.jpg",
+      "text": "The active player suffers DMG unless they reveal a parry from their hand.",
+      "it": "Il giocatore attivo subisce DMG a meno che non riveli un parry dalla mano.",
+      "effects": [
+        {
+          "op": "suffer_unless_reveal",
+          "who": "active",
+          "type": "parry"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "The active player suffers DMG unless they discard a parry from their hand.",
+        "it": "Il giocatore attivo subisce DMG a meno che non scarti un parry dalla mano.",
+        "effects": [
+          {
+            "op": "suffer_unless_discard",
+            "who": "active",
+            "discard_type": "parry"
+          }
+        ]
+      }
+    },
+    "43014": {
+      "name": "Hellfire",
+      "icon": "V",
+      "reaction": "offensive_played",
+      "refresh": 4,
+      "tags": [
+        "claw"
+      ],
+      "art": "res://art/monsters/kharja/g4_09_fronte.jpg",
+      "back": "res://art/monsters/kharja/g4_09_retro.jpg",
+      "text": "Each player in the active player's sector suffers DMG unless they reveal a parry from their hand.",
+      "it": "Ogni giocatore nel settore del giocatore attivo subisce DMG a meno che non riveli un parry dalla mano.",
+      "effects": [
+        {
+          "op": "suffer_unless_reveal",
+          "who": "players_in_active_sector",
+          "type": "parry"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "Each player in the active player's sector suffers DMG unless they discard a parry from their hand.",
+        "it": "Ogni giocatore nel settore del giocatore attivo subisce DMG a meno che non scarti un parry dalla mano.",
+        "effects": [
+          {
+            "op": "suffer_unless_discard",
+            "who": "players_in_active_sector",
+            "discard_type": "parry"
+          }
+        ]
+      }
+    },
+    "43015": {
+      "name": "Onslaught",
+      "icon": "psi",
+      "reaction": "end_of_round",
+      "refresh": 3,
+      "tags": [
+        "claw"
+      ],
+      "art": "res://art/monsters/kharja/g1_07_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_07_retro.jpg",
+      "text": "Each player in the front and flank sectors suffers DMG unless they reveal a parry from their hand.",
+      "it": "Ogni giocatore nei settori front e flank subisce DMG a meno che non riveli un parry dalla mano.",
+      "effects": [
+        {
+          "op": "suffer_unless_reveal",
+          "who": "players_in_front_and_flank",
+          "type": "parry"
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "modifies_base": true,
+        "flags": {
+          "reveal_who": "aggro",
+          "reveal_n": 2
+        },
+        "text": "Enhancement: The aggro player must reveal 2 parries instead.",
+        "it": "Enhancement: il giocatore aggro deve invece rivelare 2 parry."
+      }
+    },
+    "43016": {
+      "name": "Onslaught",
+      "icon": "V",
+      "reaction": "end_of_round",
+      "refresh": 3,
+      "tags": [
+        "claw"
+      ],
+      "art": "res://art/monsters/kharja/g4_01_fronte.jpg",
+      "back": "res://art/monsters/kharja/g4_01_retro.jpg",
+      "text": "Each player in the front and flank sectors suffers DMG unless they reveal 2 parries from their hand.",
+      "it": "Ogni giocatore nei settori front e flank subisce DMG a meno che non riveli 2 parry dalla mano.",
+      "effects": [
+        {
+          "op": "suffer_unless_reveal",
+          "who": "players_in_front_and_flank",
+          "type": "parry",
+          "n": 2
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "All players discard a defensive card from their hand.",
+        "it": "Tutti i giocatori scartano una carta difensiva dalla mano.",
+        "effects": [
+          {
+            "op": "force_discard",
+            "who": "all",
+            "kind": "defensive"
+          }
+        ]
+      }
+    },
+    "43017": {
+      "name": "Spirit of the Woltyar",
+      "icon": "psi",
+      "reaction": "end_of_round",
+      "refresh": 6,
+      "art": "res://art/monsters/kharja/g1_08_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_08_retro.jpg",
+      "text": "Threatened players suffer DMG+X, where X is the number of counters on Kharja.",
+      "it": "I giocatori threatened subiscono DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "effects": [
+        {
+          "op": "suffer",
+          "who": "threatened_players",
+          "damage_bonus": "monster_counters"
+        }
+      ]
+    },
+    "43018": {
+      "name": "Spirit of the Woltyar",
+      "icon": "V",
+      "reaction": "end_of_round",
+      "refresh": 6,
+      "art": "res://art/monsters/kharja/g4_00_fronte.jpg",
+      "back": "res://art/monsters/kharja/g4_00_retro.jpg",
+      "text": "Threatened players suffer DMG+X, where X is the number of counters on Kharja. Those players suffer burning.",
+      "it": "I giocatori threatened subiscono DMG+X (X = segnalini su Kharja) e subiscono burning.",
+      "effects": [
+        {
+          "op": "suffer",
+          "who": "threatened_players",
+          "damage_bonus": "monster_counters"
+        },
+        {
+          "op": "inflict_burning",
+          "who": "threatened_players"
+        }
+      ]
+    },
+    "43019": {
+      "name": "Fire Paw",
+      "icon": "triplo",
+      "reaction": "player_moved",
+      "refresh": 6,
+      "art": "res://art/monsters/kharja/g1_09_fronte.jpg",
+      "back": "res://art/monsters/kharja/g1_09_retro.jpg",
+      "text": "Discard the top card of the behavior deck. If that card has claw, the active player suffers DMG.",
+      "it": "Scarta la prima carta del mazzo behavior. Se quella carta ha claw, il giocatore attivo subisce DMG.",
+      "effects": [
+        {
+          "op": "discard_top_behavior",
+          "tag": "claw",
+          "then": [
+            {
+              "op": "suffer",
+              "who": "active"
+            }
+          ]
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "text": "The active player becomes threatened.",
+        "it": "Il giocatore attivo diventa threatened.",
+        "effects": [
+          {
+            "op": "become_threatened",
+            "who": "active"
+          }
+        ]
+      }
+    },
+    "43020": {
+      "name": "Fire Paw",
+      "icon": "otto",
+      "reaction": "player_moved",
+      "refresh": 1,
+      "art": "res://art/monsters/kharja/g2_06_fronte.jpg",
+      "back": "res://art/monsters/kharja/g2_06_retro.jpg",
+      "text": "Discard the top card of the behavior deck. If that card has claw, the active player suffers DMG and becomes threatened.",
+      "it": "Scarta la prima carta del mazzo behavior. Se quella carta ha claw, il giocatore attivo subisce DMG e diventa threatened.",
+      "effects": [
+        {
+          "op": "discard_top_behavior",
+          "tag": "claw",
+          "then": [
+            {
+              "op": "suffer",
+              "who": "active"
+            },
+            {
+              "op": "become_threatened",
+              "who": "active"
+            }
+          ]
+        }
+      ],
+      "boost": {
+        "cost": 1,
+        "modifies_base": true,
+        "flags": {
+          "damage_multiplier": 2
+        },
+        "text": "Enhancement: The active player suffers DMGx2 instead of DMG.",
+        "it": "Enhancement: il giocatore attivo subisce DMGx2 invece di DMG."
+      }
+    }
+  },
+  "perils": {
+    "40101": {
+      "n": 1,
+      "stance": 1,
+      "name": "In the Clutches of Fire",
+      "art": "res://art/monsters/kharja/g5_02_fronte.jpg",
+      "text": "At the start of the round, discard the top card of the behavior deck. If that card has claw, players in the front sector suffer DMG.",
+      "it": "All'inizio del round scarta la prima carta del mazzo behavior. Se quella carta ha claw, chi e' nel settore front subisce DMG.",
+      "abilities": [
+        {
+          "trigger": "round_start",
+          "effects": [
+            {
+              "op": "discard_top_behavior",
+              "tag": "claw",
+              "then": [
+                {
+                  "op": "suffer",
+                  "who": "players_in_front"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "40102": {
+      "n": 2,
+      "stance": 2,
+      "name": "Burning Skin",
+      "immune": [
+        "blind"
+      ],
+      "art": "res://art/monsters/kharja/g5_01_fronte.jpg",
+      "text": "Immune to blind. When Kharja suffers a wound, place a counter on Kharja. When a player suffers attrition damage, that player suffers 1 additional damage for each counter on Kharja.",
+      "it": "Immune a blind. Quando Kharja subisce una ferita, piazza un segnalino su Kharja. Quando un giocatore subisce danno da attrition, ne subisce 1 in piu' per ogni segnalino su Kharja.",
+      "abilities": [
+        {
+          "trigger": "monster_wound",
+          "effects": [
+            {
+              "op": "monster_add_counter",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "trigger": "attrition_damage",
+          "per_counter": 1
+        }
+      ]
+    },
+    "40103": {
+      "n": 3,
+      "stance": 3,
+      "name": "Fireburst",
+      "immune": [
+        "blind"
+      ],
+      "art": "res://art/monsters/kharja/g5_00_fronte.jpg",
+      "text": "Immune to blind. When a player suffers attrition damage, that player suffers 1 additional damage for each counter on Kharja. At the end of the round, if Kharja's health is 1, all players suffer DMG+X, where X is the number of counters on Kharja.",
+      "it": "Immune a blind. Quando un giocatore subisce danno da attrition, ne subisce 1 in piu' per ogni segnalino su Kharja. Alla fine del round, se la salute di Kharja e' 1, tutti i giocatori subiscono DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "abilities": [
+        {
+          "trigger": "attrition_damage",
+          "per_counter": 1
+        },
+        {
+          "trigger": "end_of_round",
+          "condition": "monster_health_1",
+          "effects": [
+            {
+              "op": "suffer",
+              "who": "all",
+              "damage_bonus": "monster_counters"
+            }
+          ]
+        }
+      ]
+    },
+    "401010": {
+      "n": 1,
+      "stance": 1,
+      "name": "In the Clutches of Fire",
+      "aggression": "V",
+      "art": "res://art/monsters/kharja/g5_02_retro.jpg",
+      "text": "At the start of the round, discard the top card of the behavior deck. If that card has claw, players in the front sector suffer DMG.",
+      "it": "All'inizio del round scarta la prima carta del mazzo behavior. Se quella carta ha claw, chi e' nel settore front subisce DMG.",
+      "_note": "La faccia B ha lo stesso testo della A: cambia solo l'icona di aggression.",
+      "abilities": [
+        {
+          "trigger": "round_start",
+          "effects": [
+            {
+              "op": "discard_top_behavior",
+              "tag": "claw",
+              "then": [
+                {
+                  "op": "suffer",
+                  "who": "players_in_front"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "401020": {
+      "n": 2,
+      "stance": 2,
+      "name": "Burning Skin",
+      "aggression": "V",
+      "immune": [
+        "blind"
+      ],
+      "art": "res://art/monsters/kharja/g5_01_retro.jpg",
+      "text": "Immune to blind. When Kharja suffers a wound, place 2 counters on Kharja. When a player suffers attrition damage, that player suffers 1 additional damage for each counter on Kharja.",
+      "it": "Immune a blind. Quando Kharja subisce una ferita, piazza 2 segnalini su Kharja. Quando un giocatore subisce danno da attrition, ne subisce 1 in piu' per ogni segnalino su Kharja.",
+      "abilities": [
+        {
+          "trigger": "monster_wound",
+          "effects": [
+            {
+              "op": "monster_add_counter",
+              "n": 2
+            }
+          ]
+        },
+        {
+          "trigger": "attrition_damage",
+          "per_counter": 1
+        }
+      ]
+    },
+    "401030": {
+      "n": 3,
+      "stance": 3,
+      "name": "Fireburst",
+      "aggression": "V",
+      "immune": [
+        "blind"
+      ],
+      "art": "res://art/monsters/kharja/g5_00_retro.jpg",
+      "text": "Immune to blind. When a player suffers attrition damage, that player suffers 1 additional damage for each counter on Kharja. At the end of the round, if Kharja's health is 1, place a fire terrain in each sector and all players suffer DMG+X, where X is the number of counters on Kharja.",
+      "it": "Immune a blind. Quando un giocatore subisce danno da attrition, ne subisce 1 in piu' per ogni segnalino su Kharja. Alla fine del round, se la salute di Kharja e' 1, piazza un terreno fire in ogni settore e tutti i giocatori subiscono DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "abilities": [
+        {
+          "trigger": "attrition_damage",
+          "per_counter": 1
+        },
+        {
+          "trigger": "end_of_round",
+          "condition": "monster_health_1",
+          "effects": [
+            {
+              "op": "place_terrain",
+              "terrain": "fire",
+              "where": "each_sector"
+            },
+            {
+              "op": "suffer",
+              "who": "all",
+              "damage_bonus": "monster_counters"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "objectives": {
+    "40201": {
+      "name": "Keep Your Distance",
+      "stance": 1,
+      "permanent": true,
+      "max_counters": 3,
+      "art": "res://art/monsters/kharja/sciolta_0.jpg",
+      "text": "Permanent. After you play a dodge: you may place a counter on this card (max: 3 counters). If you do, immediately end your action phase and prevent attrition damage this turn.",
+      "it": "Permanente. Dopo che giochi un dodge: puoi mettere un segnalino su questa carta (max 3). Se lo fai, chiudi subito la fase azione e previeni il danno da attrition in questo turno.",
+      "abilities": [
+        {
+          "combo": [
+            "dodge"
+          ],
+          "effects": [
+            {
+              "op": "choose_one",
+              "options": [
+                {
+                  "label": "Continua il turno",
+                  "effects": []
+                },
+                {
+                  "label": "Keep Your Distance: metti un segnalino e chiudi la fase azione",
+                  "effects": [
+                    {
+                      "op": "add_counter",
+                      "n": 1,
+                      "max": 3
+                    },
+                    {
+                      "op": "prevent_attrition"
+                    },
+                    {
+                      "op": "end_action_phase"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "402010": {
+      "name": "Keep Your Distance",
+      "stance": 1,
+      "permanent": true,
+      "max_counters": 3,
+      "art": "res://art/monsters/kharja/sciolta_0_retro.jpg",
+      "text": "Permanent. After you play a dodge: you may place a counter on this card (max: 3 counters). If you do, immediately end your action phase, prevent attrition damage this turn, and Kharja gains 1 struggle.",
+      "it": "Permanente. Dopo che giochi un dodge: puoi mettere un segnalino su questa carta (max 3). Se lo fai, chiudi subito la fase azione, previeni il danno da attrition in questo turno e Kharja guadagna 1 struggle.",
+      "abilities": [
+        {
+          "combo": [
+            "dodge"
+          ],
+          "effects": [
+            {
+              "op": "choose_one",
+              "options": [
+                {
+                  "label": "Continua il turno",
+                  "effects": []
+                },
+                {
+                  "label": "Keep Your Distance: metti un segnalino e chiudi la fase azione",
+                  "effects": [
+                    {
+                      "op": "add_counter",
+                      "n": 1,
+                      "max": 3
+                    },
+                    {
+                      "op": "prevent_attrition"
+                    },
+                    {
+                      "op": "monster_gain_struggle",
+                      "n": 1
+                    },
+                    {
+                      "op": "end_action_phase"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "aggression": "V"
+    }
+  },
+  "expeditions": {
+    "1": {
+      "name": "Expedition 1",
+      "terrain": [
+        {
+          "type": "rock",
+          "sector": 2
+        },
+        {
+          "type": "rock",
+          "sector": 3
+        }
+      ]
+    },
+    "2": {
+      "name": "Expedition 2",
+      "terrain": [
+        {
+          "type": "rock",
+          "sector": 0
+        },
+        {
+          "type": "rock",
+          "sector": 1
+        },
+        {
+          "type": "cyricae",
+          "sector": 2
+        },
+        {
+          "type": "cyricae",
+          "sector": 3
+        }
+      ]
+    },
+    "_note": "Terreno iniziale letto dai diagrammi di setup del regolamento (Expedition, pp. 67-70). I settori sono relativi al fronte: 0 = front, poi in senso orario. Nel diagramma il fronte e' il settore in basso, quello indicato dal fregio al centro."
+  }
+}
