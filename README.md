@@ -5,7 +5,7 @@ una singola battaglia contro un mostro, senza campagna.
 
 - **Mostri:** tutti e sei — Vyraxen, Kharja, Dygorax, Toramat, Tarragua e Jekoros —
   con i quattro livelli di aggression (**0-3**), selezionabili in partita
-- **Cacciatori:** tutti e sei, con **costruzione del mazzo e forge**
+- **Cacciatori:** tutti e sei, con **costruzione del mazzo e forge**, Item compresi
 - **Motore:** Godot 4.7, GDScript
 - **Plancia:** 3D su un tavolo, con camera orbitale. Mouse: trascina col tasto destro
   (o centrale) per girare, rotella per lo zoom. **iPad**: un dito trascina e gira, due
@@ -266,6 +266,8 @@ python3 tools/build_loadouts.py     # equipaggiamento forgiabile e immagini dei 
 python3 tools/cutout_standees.py    # scontorna le figurine dei cacciatori (ripiego)
 python3 tools/optimize_art.py       # ridimensiona e converte in JPEG dove serve
 python3 tools/check_exposure.py     # rilegge i lati esposti dalle carte stance
+python3 tools/build_items.py        # gli Item della forge, dal primal_database.xlsm
+python3 tools/build_tarragua_jekoros.py  # i dati di Tarragua e Jekoros
 ```
 
 `check_exposure.py` non genera niente: **ricontrolla** una trascrizione fatta a
@@ -531,12 +533,6 @@ L'elenco completo di quello che manca, in ordine di peso, sta in
 - **Hardening, acceleration e charge non si vedono sul tavolo.** Sono gestiti dal motore
   e finiscono nel registro, ma la plancia 3D non li mostra. I segnalini dust ora
   sì: sono una foschia bassa sul settore, più densa a due segnalini.
-- **Lo slot Item non c'è.** Il regolamento prevede di scegliere anche un Item fra
-  gli accessori forgiabili, ma gli Item non sono fra i dati estratti
-  (`data/loadouts.json` ha weapon, armor, helm e pozioni): servono le righe degli
-  Item dal `primal_database.xlsm`.
-- **Le caselle del terreno di Tarragua e Jekoros sono provvisorie.** I pezzi sono
-  quelli del Regolamento (p.69-70), le caselle vanno confrontate col diagramma.
 - **Il database fan-made ha errori.** Dove immagini e database divergono, valgono
   le immagini. Corretti finora: i nomi *Sentinel* ed *Exhausting Defense* (Dareon,
   track C2) risultano scambiati, e la salute di *Totemic Plate* livello 2 manca —

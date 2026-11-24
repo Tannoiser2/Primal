@@ -357,6 +357,13 @@ def main():
               % (slug, len(hunter_out["weapons"]), len(hunter_out["masteries"]),
                  len(hunter_out["upgrades"])))
 
+    # Gli Item li aggiunge tools/build_items.py: si conservano.
+    try:
+        old = json.load(open(os.path.join(PROJECT, "data", "loadouts.json")))
+        if "item" in old.get("shared", {}):
+            out["shared"]["item"] = old["shared"]["item"]
+    except (OSError, ValueError):
+        pass
     with open(os.path.join(PROJECT, "data", "loadouts.json"), "w") as f:
         json.dump(out, f, indent=2, ensure_ascii=False)
 

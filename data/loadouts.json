@@ -4503,6 +4503,494 @@
         "text": "Consume: Skip the attrition phase this round.",
         "element": ""
       }
+    ],
+    "item": [
+      {
+        "name": "Coral Trident",
+        "level": 1,
+        "key": "coral_trident",
+        "value": 0,
+        "element": "Coral",
+        "text": "Your action cards are considered to have an additional stamina icon for the purpose of riding checks.",
+        "it": "Le tue carte azione contano un'icona stamina in più nei riding check."
+      },
+      {
+        "name": "Coral Trident",
+        "level": 2,
+        "key": "coral_trident",
+        "value": 4,
+        "element": "Coral",
+        "text": "When you deal damage to the monster through a riding check, increase that damage by 4.\nYour action cards are considered to have an additional stamina icon for the purpose of riding checks.",
+        "it": "Quando infliggi danni al mostro con un riding check, aumentali di 4. Le tue carte azione contano un'icona stamina in più nei riding check."
+      },
+      {
+        "name": "Coral Trident",
+        "level": 3,
+        "key": "coral_trident",
+        "value": 7,
+        "element": "Coral",
+        "text": "When you deal damage to the monster through a riding check, increase that damage by 7.\nYour action cards are considered to have an additional stamina icon for the purpose of riding checks.",
+        "it": "Quando infliggi danni al mostro con un riding check, aumentali di 7. Le tue carte azione contano un'icona stamina in più nei riding check."
+      },
+      {
+        "name": "Gauntlet of Shell Blade",
+        "level": 1,
+        "key": "shell_gauntlet",
+        "value": 3,
+        "element": "Coral",
+        "text": "When you avoid attrition damage, add the top card of your discard pile to your hand. If that card is A, deal 3 damage",
+        "it": "Quando eviti il danno da attrition, prendi in mano la carta in cima ai tuoi scarti. Se è un attack, infliggi 3 danni."
+      },
+      {
+        "name": "Gauntlet of Shell Blade",
+        "level": 2,
+        "key": "shell_gauntlet",
+        "value": 5,
+        "element": "Coral",
+        "text": "When you avoid attrition damage, add the top card of your discard pile to your hand. If that card is A, deal 5 damage",
+        "it": "Quando eviti il danno da attrition, prendi in mano la carta in cima ai tuoi scarti. Se è un attack, infliggi 5 danni."
+      },
+      {
+        "name": "Gauntlet of Shell Blade",
+        "level": 3,
+        "key": "shell_gauntlet",
+        "value": 7,
+        "element": "Coral",
+        "text": "When you avoid attrition damage, add the top card of your discard pile to your hand. If that card is offensive, deal 7 damage",
+        "it": "Quando eviti il danno da attrition, prendi in mano la carta in cima ai tuoi scarti. Se è offensive, infliggi 7 danni."
+      },
+      {
+        "name": "Crystal Spear",
+        "level": 1,
+        "key": "crystal_spear",
+        "value": 6,
+        "element": "Crystal",
+        "text": "Start: If you have MMM in your hand, you may discard one of those cards to deal 6 damage.",
+        "it": "Inizio turno: se hai tre maneuver in mano, puoi scartarne uno per infliggere 6 danni."
+      },
+      {
+        "name": "Crystal Spear",
+        "level": 2,
+        "key": "crystal_spear",
+        "value": 9,
+        "element": "Crystal",
+        "text": "Start: If you have MMM in your hand, you may discard one of those cards to deal 9 damage. If this inflicts a wound, inflict vulnerable.",
+        "it": "Inizio turno: se hai tre maneuver in mano, puoi scartarne uno per infliggere 9 danni. Se così infliggi una ferita, infliggi vulnerable."
+      },
+      {
+        "name": "Crystal Spear",
+        "level": 3,
+        "key": "crystal_spear",
+        "value": 12,
+        "element": "Crystal",
+        "text": "Start: If you have MMM in your hand, you may discard one of those cards to deal 12 damage. If this inflicts a wound, inflict vulnerable.",
+        "it": "Inizio turno: se hai tre maneuver in mano, puoi scartarne uno per infliggere 12 danni. Se così infliggi una ferita, infliggi vulnerable."
+      },
+      {
+        "name": "Shimmering Boots",
+        "level": 1,
+        "key": "shimmering_boots",
+        "value": 1,
+        "element": "Crystal",
+        "text": "When you move, you may name a color and then discard the top card of your deck. If that card matches the color named, ignore the movement cost.",
+        "it": "Quando ti muovi puoi nominare un colore e scartare la prima carta del mazzo: se è di quel colore, il movimento non costa nulla."
+      },
+      {
+        "name": "Shimmering Boots",
+        "level": 2,
+        "key": "shimmering_boots",
+        "value": 1,
+        "element": "Crystal",
+        "text": "Action: Move (max:once per turn).\nWhen you move, you may name a color and then discard the top card of your deck. If that card matches the color named, ignore the movement cost.",
+        "it": "Azione: muoviti (una volta per turno). Quando ti muovi puoi nominare un colore e scartare la prima carta del mazzo: se è di quel colore, il movimento non costa nulla."
+      },
+      {
+        "name": "Shimmering Boots",
+        "level": 3,
+        "key": "shimmering_boots",
+        "value": 2,
+        "element": "Crystal",
+        "text": "Action: Move (max:once per turn).\nWhen you move, you may name a color and then discard up 2 cards from the top of your deck. If at least one of the card matches the color named, ignore the movement cost.",
+        "it": "Azione: muoviti (una volta per turno). Quando ti muovi puoi nominare un colore e scartare fino a 2 carte dalla cima del mazzo: se almeno una è di quel colore, il movimento non costa nulla."
+      },
+      {
+        "name": "Feathered Coat",
+        "level": 1,
+        "key": "feathered_coat",
+        "value": 0,
+        "element": "Feather",
+        "text": "When you move,  if you are not the aggro player, you may reveal a D from your hand to ignore the movement cost.",
+        "it": "Quando ti muovi, se non sei il giocatore aggro, puoi rivelare un dodge dalla mano per non pagare il movimento."
+      },
+      {
+        "name": "Feathered Coat",
+        "level": 2,
+        "key": "feathered_coat",
+        "value": 0,
+        "element": "Feather",
+        "text": "When you move,  you may reveal a D from your hand to ignore the movement cost.",
+        "it": "Quando ti muovi puoi rivelare un dodge dalla mano per non pagare il movimento."
+      },
+      {
+        "name": "Feathered Coat",
+        "level": 3,
+        "key": "feathered_coat",
+        "value": 0,
+        "element": "Feather",
+        "text": "When you move,  you may reveal a D from your hand to ignore the movement cost.\nWhen you would trigger a behavior card with the front reaction, you may reveal DD from your hand. If you do, discard that behavior card instead and replenish its behavior slot (max: 1 per round).",
+        "it": "Quando ti muovi puoi rivelare un dodge dalla mano per non pagare il movimento. Quando innescheresti una behavior con la reazione del front, puoi rivelare due dodge: se lo fai, scarta quella behavior e rimpiazzala (al massimo una volta per round)."
+      },
+      {
+        "name": "Boomerang",
+        "level": 1,
+        "key": "boomerang",
+        "value": 1,
+        "element": "Feather",
+        "text": "At the end of your action phase, if the first and last cards in your sequence are D, deal 1 damage for each card in your sequence.",
+        "it": "A fine fase azione, se la prima e l'ultima carta della sequenza sono dodge, infliggi 1 danno per ogni carta della sequenza."
+      },
+      {
+        "name": "Boomerang",
+        "level": 2,
+        "key": "boomerang",
+        "value": 2,
+        "element": "Feather",
+        "text": "At the end of your action phase, if the first and last cards in your sequence are D, deal 2 damage for each card in your sequence.",
+        "it": "A fine fase azione, se la prima e l'ultima carta della sequenza sono dodge, infliggi 2 danni per ogni carta della sequenza."
+      },
+      {
+        "name": "Boomerang",
+        "level": 3,
+        "key": "boomerang",
+        "value": 3,
+        "element": "Feather",
+        "text": "At the end of your action phase, if the first and last cards in your sequence are D, deal 3 damage for each card in your sequence.",
+        "it": "A fine fase azione, se la prima e l'ultima carta della sequenza sono dodge, infliggi 3 danni per ogni carta della sequenza."
+      },
+      {
+        "name": "Woltyar Gauntlet",
+        "level": 1,
+        "key": "woltyar_gauntlet",
+        "value": 2,
+        "element": "Fire",
+        "text": "A: If you paid with Offense card, increase the damage the attack deals by 2.",
+        "it": "Su un attack: se l'hai pagato con una carta offensive, aumenta di 2 i danni dell'attacco."
+      },
+      {
+        "name": "Woltyar Gauntlet",
+        "level": 2,
+        "key": "woltyar_gauntlet",
+        "value": 4,
+        "element": "Fire",
+        "text": "A: If you paid with Offense card, increase the damage the attack deals by 4.",
+        "it": "Su un attack: se l'hai pagato con una carta offensive, aumenta di 4 i danni dell'attacco."
+      },
+      {
+        "name": "Woltyar Gauntlet",
+        "level": 3,
+        "key": "woltyar_gauntlet",
+        "value": 6,
+        "element": "Fire",
+        "text": "A: If you paid with Offense card, increase the damage the attack deals by 6.",
+        "it": "Su un attack: se l'hai pagato con una carta offensive, aumenta di 6 i danni dell'attacco."
+      },
+      {
+        "name": "Lava Buckler",
+        "level": 1,
+        "key": "lava_buckler",
+        "value": 1,
+        "element": "Fire",
+        "text": "Setup: Place 2 counters on this card.\nWhen you would suffer attrition damage, you may remove a counter from Lava Buckler and discard the top card of your deck. If that card is defensive, prevent that damage",
+        "it": "Setup: 2 segnalini su questa carta. Quando subiresti danno da attrition, puoi togliere un segnalino e scartare la prima carta del mazzo: se è defensive, il danno è prevenuto."
+      },
+      {
+        "name": "Lava Buckler",
+        "level": 2,
+        "key": "lava_buckler",
+        "value": 2,
+        "element": "Fire",
+        "text": "Setup: Place 2 counters on this card.\nWhen you would suffer damage, you may remove a counter from Lava Buckler and discard the top card of your deck. If that card is defensive, prevent that damage",
+        "it": "Setup: 2 segnalini su questa carta. Quando subiresti un danno, puoi togliere un segnalino e scartare la prima carta del mazzo: se è defensive, il danno è prevenuto."
+      },
+      {
+        "name": "Lava Buckler",
+        "level": 3,
+        "key": "lava_buckler",
+        "value": 3,
+        "element": "Fire",
+        "text": "Setup: Place 2 counters on this card.\nWhen you would suffer damage, you may remove a counter from Lava Buckler. If you do, discard a card either from your hand or from the top of your deck. If that card is defensive, prevent that damage",
+        "it": "Setup: 2 segnalini su questa carta. Quando subiresti un danno, puoi togliere un segnalino e scartare una carta dalla mano o dalla cima del mazzo: se è defensive, il danno è prevenuto."
+      },
+      {
+        "name": "Skeletal Spear",
+        "level": 1,
+        "key": "skeletal_spear",
+        "value": 7,
+        "element": "Horn",
+        "text": "When a behavior card is revealed, you may exhaust this card if you are in front sector. If you do, deal 7 damage and cancel the effects of that behavior card.",
+        "it": "Quando si rivela una behavior, se sei nel settore front puoi esaurire questa carta: infliggi 7 danni e annulla gli effetti di quella behavior."
+      },
+      {
+        "name": "Skeletal Spear",
+        "level": 2,
+        "key": "skeletal_spear",
+        "value": 15,
+        "element": "Horn",
+        "text": "When a behavior card is revealed, you may exhaust this card if you are in front sector. If you do, deal 15 damage and cancel the effects of that behavior card.",
+        "it": "Quando si rivela una behavior, se sei nel settore front puoi esaurire questa carta: infliggi 15 danni e annulla gli effetti di quella behavior."
+      },
+      {
+        "name": "Skeletal Spear",
+        "level": 3,
+        "key": "skeletal_spear",
+        "value": 20,
+        "element": "Horn",
+        "text": "When a behavior card is revealed, you may exhaust this card if you are in front sector. If you do, deal 20 damage and cancel the effects of that behavior card.",
+        "it": "Quando si rivela una behavior, se sei nel settore front puoi esaurire questa carta: infliggi 20 danni e annulla gli effetti di quella behavior."
+      },
+      {
+        "name": "Big Jaws",
+        "level": 1,
+        "key": "big_jaws",
+        "value": 2,
+        "element": "Horn",
+        "text": "When the monster turns to your sector, you may exhaust this card to deal 2 damage for each aggro card in your discard pile.",
+        "it": "Quando il mostro si gira verso il tuo settore, puoi esaurire questa carta per infliggere 2 danni per ogni carta aggro nei tuoi scarti."
+      },
+      {
+        "name": "Big Jaws",
+        "level": 2,
+        "key": "big_jaws",
+        "value": 4,
+        "element": "Horn",
+        "text": "When the monster turns to your sector, you may exhaust this card to deal 4 damage for each aggro card in your discard pile.",
+        "it": "Quando il mostro si gira verso il tuo settore, puoi esaurire questa carta per infliggere 4 danni per ogni carta aggro nei tuoi scarti."
+      },
+      {
+        "name": "Big Jaws",
+        "level": 3,
+        "key": "big_jaws",
+        "value": 6,
+        "element": "Horn",
+        "text": "When the monster turns to your sector, you may exhaust this card to deal 6 damage for each aggro card in your discard pile.",
+        "it": "Quando il mostro si gira verso il tuo settore, puoi esaurire questa carta per infliggere 6 danni per ogni carta aggro nei tuoi scarti."
+      },
+      {
+        "name": "Frozen boots",
+        "level": 1,
+        "key": "frozen_boots",
+        "value": 1,
+        "element": "Ice",
+        "text": "Ignore the effects of water and ice terrains.",
+        "it": "Ignora gli effetti dei terreni acqua e ghiaccio."
+      },
+      {
+        "name": "Frozen boots",
+        "level": 2,
+        "key": "frozen_boots",
+        "value": 2,
+        "element": "Ice",
+        "text": "Ignore the effects of water, ice and sand terrains.",
+        "it": "Ignora gli effetti dei terreni acqua, ghiaccio e sabbia."
+      },
+      {
+        "name": "Frozen boots",
+        "level": 3,
+        "key": "frozen_boots",
+        "value": 3,
+        "element": "Ice",
+        "text": "Ignore the effects of water, ice, sand and swamp terrains.",
+        "it": "Ignora gli effetti dei terreni acqua, ghiaccio, sabbia e palude."
+      },
+      {
+        "name": "Wristbow",
+        "level": 1,
+        "key": "wristbow",
+        "value": 1,
+        "element": "Ice",
+        "text": "Defensive: If you paid with M, deal 1 damage.",
+        "it": "Su una carta defensive: se l'hai pagata con un maneuver, infliggi 1 danno."
+      },
+      {
+        "name": "Wristbow",
+        "level": 2,
+        "key": "wristbow",
+        "value": 2,
+        "element": "Ice",
+        "text": "Defensive: If you paid with M, deal 2 damage.",
+        "it": "Su una carta defensive: se l'hai pagata con un maneuver, infliggi 2 danni."
+      },
+      {
+        "name": "Wristbow",
+        "level": 3,
+        "key": "wristbow",
+        "value": 3,
+        "element": "Ice",
+        "text": "Defensive: If you paid with M, deal 3 damage.",
+        "it": "Su una carta defensive: se l'hai pagata con un maneuver, infliggi 3 danni."
+      },
+      {
+        "name": "Iron Greaves",
+        "level": 1,
+        "key": "iron_greaves",
+        "value": 2,
+        "element": "Metal",
+        "text": "Your health value is increased by 2.\nWhen you are KO'd, exhaust this card.",
+        "it": "La tua salute aumenta di 2. Quando vai KO, esaurisci questa carta."
+      },
+      {
+        "name": "Iron Greaves",
+        "level": 2,
+        "key": "iron_greaves",
+        "value": 4,
+        "element": "Metal",
+        "text": "Your health value is increased by 4.\nWhen you are KO'd, exhaust this card.",
+        "it": "La tua salute aumenta di 4. Quando vai KO, esaurisci questa carta."
+      },
+      {
+        "name": "Iron Greaves",
+        "level": 3,
+        "key": "iron_greaves",
+        "value": 6,
+        "element": "Metal",
+        "text": "Your health value is increased by 6.\nWhen you are KO'd, exhaust this card.",
+        "it": "La tua salute aumenta di 6. Quando vai KO, esaurisci questa carta."
+      },
+      {
+        "name": "Explosive",
+        "level": 1,
+        "key": "explosive",
+        "value": 5,
+        "element": "Metal",
+        "text": "Start: You may exhaust this card to deal 5 damage. If this inflicts a wound, confuse the monster.",
+        "it": "Inizio turno: puoi esaurire questa carta per infliggere 5 danni. Se così infliggi una ferita, il mostro diventa confuse."
+      },
+      {
+        "name": "Explosive",
+        "level": 2,
+        "key": "explosive",
+        "value": 10,
+        "element": "Metal",
+        "text": "Start: You may exhaust this card to deal 10 damage. If this inflicts a wound, stun andconfuse the monster.",
+        "it": "Inizio turno: puoi esaurire questa carta per infliggere 10 danni. Se così infliggi una ferita, stordisci il mostro e rendilo confuse."
+      },
+      {
+        "name": "Explosive",
+        "level": 3,
+        "key": "explosive",
+        "value": 15,
+        "element": "Metal",
+        "text": "Start: You may exhaust this card to deal 15 damage. If this inflicts a wound, stun andconfuse the monster.",
+        "it": "Inizio turno: puoi esaurire questa carta per infliggere 15 danni. Se così infliggi una ferita, stordisci il mostro e rendilo confuse."
+      },
+      {
+        "name": "Electric Whip",
+        "level": 1,
+        "key": "electric_whip",
+        "value": 0,
+        "element": "Thunder",
+        "text": "When a behavior card is revealed, you may discard a M from your hand to increase its boost cost by 1.",
+        "it": "Quando si rivela una behavior, puoi scartare un maneuver dalla mano per aumentare di 1 il costo del suo boost."
+      },
+      {
+        "name": "Electric Whip",
+        "level": 2,
+        "key": "electric_whip",
+        "value": 3,
+        "element": "Thunder",
+        "text": "When a behavior card is revealed, you may discard a M from your hand to increase its boost cost by 1. If you do, deal 3 damage.",
+        "it": "Quando si rivela una behavior, puoi scartare un maneuver dalla mano per aumentare di 1 il costo del suo boost. Se lo fai, infliggi 3 danni."
+      },
+      {
+        "name": "Electric Whip",
+        "level": 3,
+        "key": "electric_whip",
+        "value": 3,
+        "element": "Thunder",
+        "text": "When a behavior card is revealed, you may discard a M from your hand to increase its boost cost by 1. If you do, deal 3 damage for each M in your discard pile.",
+        "it": "Quando si rivela una behavior, puoi scartare un maneuver dalla mano per aumentare di 1 il costo del suo boost. Se lo fai, infliggi 3 danni per ogni maneuver nei tuoi scarti."
+      },
+      {
+        "name": "Electric Dagger",
+        "level": 1,
+        "key": "electric_dagger",
+        "value": 0,
+        "element": "Thunder",
+        "text": "When you avoid attrition damage, you may choose and discard a behavior card in play. If you do, replanish its behavior slot with the top card of the behavior deck.",
+        "it": "Quando eviti il danno da attrition, puoi scartare una behavior in gioco e rimpiazzarla con la prima del mazzo behavior."
+      },
+      {
+        "name": "Electric Dagger",
+        "level": 2,
+        "key": "electric_dagger",
+        "value": 4,
+        "element": "Thunder",
+        "text": "When you avoid attrition damage, deal 4 damage. Then you may choose and discard a behavior card in play. If you do, replanish its behavior slot with the top card of the behavior deck.",
+        "it": "Quando eviti il danno da attrition, infliggi 4 danni. Poi puoi scartare una behavior in gioco e rimpiazzarla con la prima del mazzo behavior."
+      },
+      {
+        "name": "Electric Dagger",
+        "level": 3,
+        "key": "electric_dagger",
+        "value": 4,
+        "element": "Thunder",
+        "text": "When you avoid attrition damage, deal 4 damage for each defensive in your sequence. Then you may choose and discard a behavior card in play. If you do, replanish its behavior slot with the top card of the behavior deck.",
+        "it": "Quando eviti il danno da attrition, infliggi 4 danni per ogni carta defensive nella tua sequenza. Poi puoi scartare una behavior in gioco e rimpiazzarla con la prima del mazzo behavior."
+      },
+      {
+        "name": "Bloodseeker",
+        "level": 1,
+        "key": "bloodseeker",
+        "value": 1,
+        "element": "Venom",
+        "text": "When you avoid attrition damage, deal 1 damage for each A in your discard pile.",
+        "it": "Quando eviti il danno da attrition, infliggi 1 danno per ogni attack nei tuoi scarti."
+      },
+      {
+        "name": "Bloodseeker",
+        "level": 2,
+        "key": "bloodseeker",
+        "value": 2,
+        "element": "Venom",
+        "text": "When you avoid attrition damage, deal 2 damage for each A in your discard pile.",
+        "it": "Quando eviti il danno da attrition, infliggi 2 danni per ogni attack nei tuoi scarti."
+      },
+      {
+        "name": "Bloodseeker",
+        "level": 3,
+        "key": "bloodseeker",
+        "value": 3,
+        "element": "Venom",
+        "text": "When you avoid attrition damage, deal 3 damage for each A in your discard pile.",
+        "it": "Quando eviti il danno da attrition, infliggi 3 danni per ogni attack nei tuoi scarti."
+      },
+      {
+        "name": "Blackspin",
+        "level": 1,
+        "key": "blackspin",
+        "value": 4,
+        "element": "Venom",
+        "text": "When you empty your deck, you may reveal a D from your hand to deal 4 damage.",
+        "it": "Quando esaurisci il mazzo, puoi rivelare un dodge dalla mano per infliggere 4 danni."
+      },
+      {
+        "name": "Blackspin",
+        "level": 2,
+        "key": "blackspin",
+        "value": 5,
+        "element": "Venom",
+        "text": "When you empty your deck, deal 5 damage for each D in your hand.",
+        "it": "Quando esaurisci il mazzo, infliggi 5 danni per ogni dodge in mano."
+      },
+      {
+        "name": "Blackspin",
+        "level": 3,
+        "key": "blackspin",
+        "value": 7,
+        "element": "Venom",
+        "text": "When you empty your deck, deal 7 damage for each D in your hand. If this inflicts a wound, inflicts vulnerable.",
+        "it": "Quando esaurisci il mazzo, infliggi 7 danni per ogni dodge in mano. Se così infliggi una ferita, infliggi vulnerable."
+      }
     ]
   }
 }

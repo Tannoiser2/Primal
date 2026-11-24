@@ -41,6 +41,7 @@ func _ready() -> void:
 	await _test_tarragua()
 	await _test_jekoros()
 	await _test_dazed_and_stamina()
+	await _test_items()
 
 	if _failures == 0:
 		print("\n=== tutti i test passati ===")
@@ -1577,3 +1578,58 @@ func _test_dazed_and_stamina() -> void:
 			break
 	q.hand.append(costly)
 	_check("una carta da sola non si paga", g2.why_not_playable(q, costly), "stamina insufficiente")
+
+
+func _item(name: String, level: int) -> Dictionary:
+	for it in Db.loadouts.get("shared", {}).get("item", []):
+		if String(it.get("name", "")) == name and int(it.get("level", 0)) == level:
+			return it
+	return {}
+
+
+## Slot Item: 54 carte (18 oggetti per 3 livelli), e alcuni effetti a campione.
+func _test_items() -> void:
+	print("Item")
+	_check("54 item nei dati", Db.loadouts.get("shared", {}).get("item", []).size(), 54)
+	_check("18 per livello", Db.loadout_options("dareon", 2)["items"].size(), 18)
+	var g := await _arena()
+	var p := g.active_player()
+	var base := p.max_health()
+	p.loadout["item"] = _item("Iron Greaves", 2)
+	_check("Iron Greaves +4 salute", p.max_health() - base, 4)
+	await g._knock_out(p)
+	_check("KO: Iron Greaves esaurite", p.item_exhausted, true)
+
+	var g2 := await _arena()
+	var q := g2.active_player()
+	q.loadout["item"] = _item("Boomerang", 3)
+	var dodge := -1
+	for card in Db.hunter("dareon").get("deck", []):
+		if String(card.get("type", "")) == "dodge":
+			dodge = int(card["id"])
+			break
+	q.sequence.append(dodge)
+	q.sequence.append(dodge)
+	var hp := g2.monster_health
+	var sd := g2.stance_damage
+	await g2.end_action_phase()
+	_check("Boomerang: 3 danni per 2 carte", _damage_taken(g2, hp, sd) >= 6, true)
+
+	var g3 := await _arena()
+	var r := g3.active_player()
+	r.loadout["item"] = _item("Lava Buckler", 1)
+	r.item_counters = 2
+	r.deck.push_front(dodge)
+	r.damage = 0
+	await g3._suffer(r, 3, "attrition")
+	_check("Lava Buckler con un dodge in cima previene", r.damage, 0)
+	_check("e consuma un segnalino", r.item_counters, 1)
+	await g3._suffer(r, 3, "behavior")
+	_check("al livello 1 solo contro l'attrition", r.damage, 3)
+
+	var g4 := await _arena()
+	var t := g4.active_player()
+	t.loadout["item"] = _item("Frozen boots", 1)
+	g4.terrain[t.position] = ["water"]
+	_check("Frozen boots: l'acqua non accorcia la sequenza",
+		g4.sequence_limit_of(t), t.sequence_limit())

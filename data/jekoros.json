@@ -1,5 +1,5 @@
 {
- "_note": "Jekoros. Trascritto dalle immagini con tools/build_tarragua_jekoros.py: vedi docs/jekoros_struttura.md. Le stance avanzano solo col tracciato charge, non con la salute. Terreno delle Expedition: pezzi dal Regolamento, caselle provvisorie.",
+ "_note": "Jekoros. Trascritto dalle immagini con tools/build_tarragua_jekoros.py: vedi docs/jekoros_struttura.md. Le stance avanzano solo col tracciato charge, non con la salute. Terreno delle Expedition dai diagrammi del Regolamento (p.76).",
  "id": "jekoros",
  "name": "Jekoros",
  "element": "lightning",
@@ -39,29 +39,29 @@
   }
  },
  "expeditions": {
-  "_note": "Pezzi dal Regolamento; posizioni provvisorie, da confrontare col diagramma.",
+  "_note": "Letto dai diagrammi del Regolamento (p.76). Settori relativi al fronte: 0 = front (in basso nel diagramma), 1 = a sinistra, 2 = in alto, 3 = a destra.",
   "1": {
    "name": "Expedition 1",
    "terrain": [
+    {
+     "type": "water",
+     "sector": 1
+    },
     {
      "type": "rock",
      "sector": 1
     },
     {
      "type": "rock",
+     "sector": 2
+    },
+    {
+     "type": "water",
      "sector": 3
     },
     {
      "type": "baethanis",
-     "sector": 2
-    },
-    {
-     "type": "water",
-     "sector": 0
-    },
-    {
-     "type": "water",
-     "sector": 2
+     "sector": 3
     }
    ]
   },
@@ -70,15 +70,15 @@
    "terrain": [
     {
      "type": "rock",
+     "sector": 0
+    },
+    {
+     "type": "water",
      "sector": 1
     },
     {
      "type": "rock",
-     "sector": 3
-    },
-    {
-     "type": "cyricae",
-     "sector": 0
+     "sector": 1
     },
     {
      "type": "cyricae",
@@ -86,10 +86,10 @@
     },
     {
      "type": "water",
-     "sector": 1
+     "sector": 3
     },
     {
-     "type": "water",
+     "type": "cyricae",
      "sector": 3
     }
    ]

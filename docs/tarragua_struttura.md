@@ -68,4 +68,4 @@ round 1.
 ## Expedition
 
 Pezzi dal Regolamento: Expedition 1 plateau, 2 rock, baethanis; Expedition 2
-plateau, 2 rock, 2 fog. Le caselle nei dati sono provvisorie.
+plateau, 2 rock, 2 fog. Caselle lette dal diagramma del Regolamento (p.78).

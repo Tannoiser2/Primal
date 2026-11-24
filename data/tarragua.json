@@ -1,5 +1,5 @@
 {
- "_note": "Tarragua. Trascritto dalle immagini con tools/build_tarragua_jekoros.py: vedi docs/tarragua_struttura.md. Terreno delle Expedition dal Regolamento (p.69-70): i pezzi sono quelli del libro, le caselle sono provvisorie.",
+ "_note": "Tarragua. Trascritto dalle immagini con tools/build_tarragua_jekoros.py: vedi docs/tarragua_struttura.md. Terreno delle Expedition dai diagrammi del Regolamento (p.78).",
  "id": "tarragua",
  "name": "Tarragua",
  "element": "earth",
@@ -22,25 +22,25 @@
   }
  },
  "expeditions": {
-  "_note": "Pezzi dal Regolamento; posizioni provvisorie, da confrontare col diagramma.",
+  "_note": "Letto dai diagrammi del Regolamento (p.78). Settori relativi al fronte: 0 = front (in basso nel diagramma), 1 = a sinistra, 2 = in alto, 3 = a destra.",
   "1": {
    "name": "Expedition 1",
    "terrain": [
     {
-     "type": "plateau",
-     "sector": 2
+     "type": "rock",
+     "sector": 0
     },
     {
      "type": "rock",
      "sector": 1
     },
     {
-     "type": "rock",
-     "sector": 3
+     "type": "plateau",
+     "sector": 2
     },
     {
      "type": "baethanis",
-     "sector": 0
+     "sector": 3
     }
    ]
   },
@@ -49,11 +49,15 @@
    "terrain": [
     {
      "type": "plateau",
-     "sector": 2
+     "sector": 1
+    },
+    {
+     "type": "fog",
+     "sector": 1
     },
     {
      "type": "rock",
-     "sector": 1
+     "sector": 2
     },
     {
      "type": "rock",
@@ -61,11 +65,7 @@
     },
     {
      "type": "fog",
-     "sector": 0
-    },
-    {
-     "type": "fog",
-     "sector": 2
+     "sector": 3
     }
    ]
   }

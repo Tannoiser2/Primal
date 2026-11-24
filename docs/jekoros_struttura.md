@@ -67,4 +67,4 @@ attivo è nel front Jekoros guadagna 1 struggle.
 ## Expedition
 
 Pezzi dal Regolamento: Expedition 1 2 rock, baethanis, 2 water; Expedition 2 2 rock,
-2 cyricae, 2 water. Le caselle nei dati sono provvisorie.
+2 cyricae, 2 water. Caselle lette dal diagramma del Regolamento (p.76).

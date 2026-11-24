@@ -63,6 +63,8 @@ var _card_zoom: TextureRect
 ## Sul tocco non c'e' il passaggio del mouse: il primo tocco solleva la carta
 ## per leggerla, il secondo la gioca.
 var _touch_mode := false
+## Shimmering Boots: dopo il pulsante si sceglie la casella sulla plancia.
+var _item_moving := false
 var _touch_pick := -1
 
 # --- pannello di scelta ---
@@ -1278,6 +1280,7 @@ func _replay(acts: Array) -> void:
 			"play": await game.play_card(int(v))
 			"move": await game.move(int(v))
 			"endact": await game.end_action_phase()
+			"imove": await game.item_move(int(v))
 			"fcons": await game.finish_consume_phase()
 			"cons": await game.consume(game.players[int(v[0])], int(v[1]))
 			"assist": await game.assist(game.players[int(v[0])], int(v[1]))
@@ -1583,6 +1586,14 @@ func _hunter_card(p: PrimalPlayer) -> Control:
 		tokens.add_child(_labelled(_aggro_badge(), "ha il segnalino aggro"))
 	_hunter_badges(p, tokens)
 	col.add_child(tokens)
+	# L'item della forge: nel mod non ha un'immagine, si mostra col nome.
+	var it: Dictionary = p.loadout.get("item", {})
+	if not it.is_empty():
+		var tag := _badge(("%s  %d" % [String(it.get("name", "")).to_upper(), int(it.get("level", 1))])
+			+ ("  (esaurito)" if p.item_exhausted else "")
+			+ ("  segnalini %d" % p.item_counters if p.item_is("lava_buckler") else ""),
+			Color(0.25, 0.22, 0.30) if p.item_exhausted else Color(0.40, 0.27, 0.16))
+		col.add_child(_labelled(tag, Db.card_text(it)))
 	return box
 
 
@@ -2294,6 +2305,12 @@ func _refresh_actions() -> void:
 		PrimalGame.Phase.ACTION:
 			_actions_row.add_child(_button("Termina fase Azione",
 				func(): call_deferred("_do_end_action")))
+			if game.can_item_move(game.active_player()):
+				_actions_row.add_child(_button(
+					"Scegli la casella..." if _item_moving else "Muoviti (Shimmering Boots)",
+					func():
+						_item_moving = not _item_moving
+						_refresh_actions()))
 			for other in game.players:
 				if other == game.active_player() or other.ko or other.assisted_this_turn:
 					continue
@@ -2371,6 +2388,13 @@ func _do_move(to_position: int) -> void:
 	_refresh()
 
 
+func _do_item_move(to_position: int) -> void:
+	_record("imove", to_position)
+	if not await game.item_move(to_position):
+		_on_log("[color=#ff8080]Non puoi muoverti lì.[/color]")
+	_refresh()
+
+
 func _do_end_action() -> void:
 	_record("endact", 0)
 	await game.end_action_phase()
@@ -2445,6 +2469,10 @@ func _sequence_panel_visible() -> bool:
 # =====================================================================
 
 func _on_sector_clicked(position: int) -> void:
+	if _item_moving and game.phase == PrimalGame.Phase.ACTION and not _choice_panel.visible:
+		_item_moving = false
+		call_deferred("_do_item_move", position)
+		return
 	if game.phase != PrimalGame.Phase.MOVEMENT or _choice_panel.visible:
 		return
 	if position == game.active_player().position:

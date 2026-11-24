@@ -67,6 +67,9 @@ func _ready() -> void:
 ## salute, e il mazzo che rispetta la composizione della weapon. Serve a misurare
 ## i livelli alti nelle condizioni previste dal regolamento (p.66), cioe' con la
 ## forge, non col mazzo starter.
+## Ogni dotazione prende l'item successivo: cosi' in un giro passano tutti e 18.
+var _item_turn := 0
+
 func _loadouts_for(level: int, party: Array = PARTY) -> Dictionary:
 	if level == 0:
 		return {}
@@ -107,8 +110,16 @@ func _loadouts_for(level: int, party: Array = PARTY) -> Dictionary:
 			"helm": _toughest(options["helm"]),
 			"upgrades": picked,
 			"deck": deck,
+			"item": _next_item(options["items"]),
 		}
 	return out
+
+
+func _next_item(items: Array) -> Dictionary:
+	if items.is_empty():
+		return {}
+	_item_turn += 1
+	return items[_item_turn % items.size()]
 
 
 func _toughest(items: Array) -> Dictionary:

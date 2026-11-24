@@ -308,22 +308,21 @@ def tarragua():
     }
     return {
         "_note": "Tarragua. Trascritto dalle immagini con tools/build_tarragua_jekoros.py: vedi "
-                 "docs/tarragua_struttura.md. Terreno delle Expedition dal Regolamento (p.69-70): "
-                 "i pezzi sono quelli del libro, le caselle sono provvisorie.",
+                 "docs/tarragua_struttura.md. Terreno delle Expedition dai diagrammi del Regolamento (p.78).",
         "id": T, "name": "Tarragua", "element": "earth",
         "acceleration": {"max_per_player": 1},
         "art": {"behavior_back": art(T, "g2_00_retro"), "model": "res://models/tarragua.glb",
                 "model_yaw": 180, "board": art(T, "board"),
                 "portrait": {"art": art(T, "sciolta_1"), "region": [0.3, 0.0, 0.32, 0.45]}},
         "expeditions": {
-            "_note": "Pezzi dal Regolamento; posizioni provvisorie, da confrontare col diagramma.",
+            "_note": "Letto dai diagrammi del Regolamento (p.78). Settori relativi al fronte: 0 = front (in basso nel diagramma), 1 = a sinistra, 2 = in alto, 3 = a destra.",
             "1": {"name": "Expedition 1", "terrain": [
-                {"type": "plateau", "sector": 2}, {"type": "rock", "sector": 1},
-                {"type": "rock", "sector": 3}, {"type": "baethanis", "sector": 0}]},
+                {"type": "rock", "sector": 0}, {"type": "rock", "sector": 1},
+                {"type": "plateau", "sector": 2}, {"type": "baethanis", "sector": 3}]},
             "2": {"name": "Expedition 2", "terrain": [
-                {"type": "plateau", "sector": 2}, {"type": "rock", "sector": 1},
-                {"type": "rock", "sector": 3}, {"type": "fog", "sector": 0},
-                {"type": "fog", "sector": 2}]},
+                {"type": "plateau", "sector": 1}, {"type": "fog", "sector": 1},
+                {"type": "rock", "sector": 2}, {"type": "rock", "sector": 3},
+                {"type": "fog", "sector": 3}]},
         },
         "levels": levels, "behaviors": behaviors, "perils": perils, "objectives": objectives,
     }
@@ -574,7 +573,7 @@ def jekoros():
     return {
         "_note": "Jekoros. Trascritto dalle immagini con tools/build_tarragua_jekoros.py: vedi "
                  "docs/jekoros_struttura.md. Le stance avanzano solo col tracciato charge, non con "
-                 "la salute. Terreno delle Expedition: pezzi dal Regolamento, caselle provvisorie.",
+                 "la salute. Terreno delle Expedition dai diagrammi del Regolamento (p.76).",
         "id": J, "name": "Jekoros", "element": "lightning",
         "charge": {"max": 3},
         "attrition": {"_note": "Le cinque carte attrition di Jekoros prendono il posto delle "
@@ -589,15 +588,15 @@ def jekoros():
                 "model_yaw": 180, "board": art(J, "board"),
                 "portrait": {"art": art(J, "sciolta_2"), "region": [0.2, 0.0, 0.32, 0.45]}},
         "expeditions": {
-            "_note": "Pezzi dal Regolamento; posizioni provvisorie, da confrontare col diagramma.",
+            "_note": "Letto dai diagrammi del Regolamento (p.76). Settori relativi al fronte: 0 = front (in basso nel diagramma), 1 = a sinistra, 2 = in alto, 3 = a destra.",
             "1": {"name": "Expedition 1", "terrain": [
-                {"type": "rock", "sector": 1}, {"type": "rock", "sector": 3},
-                {"type": "baethanis", "sector": 2}, {"type": "water", "sector": 0},
-                {"type": "water", "sector": 2}]},
+                {"type": "water", "sector": 1}, {"type": "rock", "sector": 1},
+                {"type": "rock", "sector": 2}, {"type": "water", "sector": 3},
+                {"type": "baethanis", "sector": 3}]},
             "2": {"name": "Expedition 2", "terrain": [
-                {"type": "rock", "sector": 1}, {"type": "rock", "sector": 3},
-                {"type": "cyricae", "sector": 0}, {"type": "cyricae", "sector": 2},
-                {"type": "water", "sector": 1}, {"type": "water", "sector": 3}]},
+                {"type": "rock", "sector": 0}, {"type": "water", "sector": 1},
+                {"type": "rock", "sector": 1}, {"type": "cyricae", "sector": 2},
+                {"type": "water", "sector": 3}, {"type": "cyricae", "sector": 3}]},
         },
         "levels": levels, "behaviors": behaviors, "perils": perils, "objectives": objectives,
     }

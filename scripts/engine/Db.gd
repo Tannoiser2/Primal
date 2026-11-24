@@ -142,6 +142,7 @@ func loadout_options(hunter_id: String, level: int) -> Dictionary:
 		"armor": _by_level(shared.get("armor", []), forge_level),
 		"helm": _by_level(shared.get("helm", []), forge_level),
 		"potions": _by_level(shared.get("potion", []), forge_level),
+		"items": _by_level(shared.get("item", []), forge_level),
 		"masteries": h.get("masteries", []),
 		"upgrades": upgrades_for(hunter_id),
 		"upgrade_slots": int(loadouts.get("upgrades_per_level", {}).get(str(level), 0)),

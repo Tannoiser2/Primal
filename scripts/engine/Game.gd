@@ -251,6 +251,8 @@ func setup(hunter_ids: Array, aggression_level: int = 0, seed_value: int = 0,
 		_shuffle(p.deck)
 		for potion in p.loadout.get("potions", Db.hunter(p.id).get("potions", [])):
 			p.potions.append(potion)
+		if p.item_is("lava_buckler"):
+			p.item_counters = 2
 		players.append(p)
 
 	var lv := Db.monster_level(level)
@@ -550,6 +552,8 @@ func _begin_turn() -> void:
 
 	# Objective che si offre a inizio turno (Crash on the Rocks di Toramat).
 	await _offer_turn_start_objective(p)
+	# Item con «Start:» (Crystal Spear, Explosive).
+	await _item_turn_start(p)
 
 	# Precision Draw: inizio turno, se e' la carta in cima agli scarti.
 	if not p.discard.is_empty() and p.discard[0] == 178402:
@@ -650,8 +654,8 @@ func move(to_position: int) -> bool:
 	var free := not p.free_next.is_empty() and p.free_next.any(func(f): return f.has("free_move"))
 	var move_cost := p.move_cost_override if p.move_cost_override >= 0 \
 		else int(Db.rules().get("move_cost", 1))
-	# Sand: uscire dalla sabbia costa una stamina in piu'.
-	if has_terrain(p.position, "sand"):
+	# Sand: uscire dalla sabbia costa una stamina in piu' (Frozen Boots dal liv. 2 la ignorano).
+	if has_terrain(p.position, "sand") and not _item_ignores(p, "sand"):
 		move_cost += 1
 	# Alcune carte modificano il costo di movimento mentre sono in cima agli scarti
 	# (es. Lateral Move di Dareon).
@@ -662,6 +666,9 @@ func move(to_position: int) -> bool:
 				for effect in ability.get("effects", []):
 					if String(effect.get("op", "")) == "set_move_cost":
 						move_cost = int(effect.get("n", 0))
+	# Feathered Coat e Shimmering Boots possono rendere gratuito il movimento.
+	if not free and await _item_free_move(p):
+		free = true
 	if not free:
 		# Ember Dash: in questo turno la stamina del movimento si genera solo
 		# scartando una carta del tipo indicato.
@@ -756,9 +763,18 @@ func play_card(card_id: int) -> bool:
 	# Tutte le abilita' innescate da questa carta sono simultanee: si risolvono
 	# per priorita' e, a parita', nell'ordine scelto dal giocatore (p.24 e p.35).
 	await _resolve_simultaneous(_collect_card_triggers(p, card, blank), p)
+	# Woltyar Gauntlet: attack pagato con una carta offensive, piu' danni.
+	if p.item_is("woltyar_gauntlet") and String(card.get("type", "")) == "attack" \
+			and (_paid_with(p, "attack") or _paid_with(p, "maneuver")) and cost > 0:
+		_pending_bonus_damage += p.item_value()
+		_log("Woltyar Gauntlet: +%d danni all'attacco." % p.item_value())
 	# Solo dopo si applica l'effetto legato al colore della carta, cosi' i bonus
 	# ai danni raccolti dalle abilita' entrano nell'attacco (p.21).
 	await _resolve_color_effect(p, card)
+	# Wristbow: carta defensive pagata con un maneuver.
+	if p.item_is("wristbow") and Db.is_defensive(String(card.get("type", ""))) \
+			and _paid_with(p, "maneuver") and cost > 0:
+		await _item_deal(p, p.item_value(), "Wristbow")
 
 	var stealth := _stealth_cards.has(card_id)
 	if stealth:
@@ -870,6 +886,12 @@ func end_action_phase() -> void:
 				_log("  %s." % Db.action(cid).get("name", "?"))
 				await _run_effects(ability.get("effects", []), p, {})
 
+	# Boomerang: prima e ultima carta della sequenza sono dodge.
+	if p.item_is("boomerang") and p.sequence.size() >= 1 \
+			and String(Db.action(p.sequence[0]).get("type", "")) == "dodge" \
+			and String(Db.action(p.sequence[-1]).get("type", "")) == "dodge":
+		await _item_deal(p, p.item_value() * p.sequence.size(), "Boomerang")
+
 	phase = Phase.ATTRITION
 	await _attrition_check(p)
 
@@ -953,6 +975,7 @@ func _attrition_check(p: PrimalPlayer) -> void:
 	# attrition se non lo subisce, sia perche' ha retto sia perche' qualcosa lo
 	# ha prevenuto. Le carte che aspettano quel momento scattano qui.
 	if int(outcome["damage"]) == 0:
+		await _item_attrition_avoided(p)
 		for cid in p.sequence.duplicate():
 			for ability in Db.action(cid).get("abilities", []):
 				if String(ability.get("trigger", "")) == "attrition_avoided":
@@ -1817,6 +1840,9 @@ func _resolve_behavior(slot: int) -> void:
 	# Plateau: chi e' lassu' puo' saltare in groppa e annullare la carta.
 	if not reaction_ctx.get("cancelled", false):
 		await _ride_offered(reaction_ctx)
+	# Item che reagiscono a una behavior rivelata.
+	if not reaction_ctx.get("cancelled", false):
+		await _item_behavior_revealed(b, reaction_ctx)
 
 	# Peril: reazione alla rivelazione (es. firestorm).
 	await _trigger_perils("behavior_revealed", b)
@@ -1830,7 +1856,7 @@ func _resolve_behavior(slot: int) -> void:
 	# Alcuni boost si risolvono solo in certe stance (Fiery Mane ad aggression 2+).
 	if boost.has("condition") and not _effect_condition_met(boost, null):
 		boost = {}
-	var cost := int(boost.get("cost", 0))
+	var cost := int(boost.get("cost", 0)) + int(reaction_ctx.get("boost_extra", 0))
 	var boosted := not boost.is_empty() and struggle >= cost
 
 	# Alcuni boost (le "Enhancement" delle carte ad aggression alta) non aggiungono
@@ -1887,6 +1913,255 @@ func _resolve_behavior(slot: int) -> void:
 		behavior_triggered[slot] = false
 		await _check_enter_play(slot)
 	_emit()
+
+
+# =====================================================================
+#  ITEM (slot della forge)
+# =====================================================================
+
+## Danno inflitto da un item. Restituisce true se ha causato una ferita.
+func _item_deal(p: PrimalPlayer, amount: int, label: String) -> bool:
+	if amount <= 0 or finished:
+		return false
+	var before := monster_health
+	_log("%s: %s infligge %d danni." % [label, p.name, amount])
+	blow.emit(p.id, "monster", amount)
+	await deal_damage_to_monster(amount)
+	return monster_health < before
+
+
+func _item_ignores(p: PrimalPlayer, terrain_type: String) -> bool:
+	if not p.item_is("frozen_boots"):
+		return false
+	var lv := p.item_level()
+	match terrain_type:
+		"water", "ice": return true
+		"sand": return lv >= 2
+		"swamp": return lv >= 3
+	return false
+
+
+## «Start:» — Crystal Spear ed Explosive, all'inizio del proprio turno.
+func _item_turn_start(p: PrimalPlayer) -> void:
+	if p.item_is("crystal_spear") and _cards_of_kind_in_hand(p, "maneuver") >= 3:
+		if await _ask({"kind": "confirm", "player": p.seat, "default": true,
+				"prompt": "%s: scarti un maneuver (Crystal Spear) per infliggere %d danni?" % [p.name, p.item_value()]}):
+			if await _discard_of_type(p, "maneuver", "Crystal Spear"):
+				var wound := await _item_deal(p, p.item_value(), "Crystal Spear")
+				if wound and p.item_level() >= 2:
+					await _inflict_on_monster("vulnerable", p)
+	elif p.item_is("explosive"):
+		if await _ask({"kind": "confirm", "player": p.seat, "default": false,
+				"prompt": "%s: esaurisci Explosive per infliggere %d danni?" % [p.name, p.item_value()]}):
+			p.item_exhausted = true
+			var level_e := int(p.loadout.get("item", {}).get("level", 1))
+			var value_e := int(p.loadout.get("item", {}).get("value", 0))
+			var before := monster_health
+			_log("Explosive: %s infligge %d danni." % [p.name, value_e])
+			blow.emit(p.id, "monster", value_e)
+			await deal_damage_to_monster(value_e)
+			if monster_health < before:
+				if level_e >= 2:
+					await _inflict_on_monster("stun", p)
+				await _inflict_on_monster("confuse", p)
+
+
+## Feathered Coat (rivela un dodge) e Shimmering Boots (indovina il colore):
+## il movimento non costa stamina. Restituisce true se e' gratis.
+func _item_free_move(p: PrimalPlayer) -> bool:
+	if p.item_is("feathered_coat") and _cards_of_kind_in_hand(p, "dodge") > 0 \
+			and (p.item_level() >= 2 or aggro_index != p.seat):
+		if await _ask({"kind": "confirm", "player": p.seat, "default": true,
+				"prompt": "%s: riveli un dodge (Feathered Coat) per muoverti gratis?" % p.name}):
+			_log("Feathered Coat: %s rivela un dodge e si muove gratis." % p.name)
+			return true
+	if p.item_is("shimmering_boots") and not (p.deck.is_empty() and p.discard.is_empty()):
+		var colours: Array[String] = ["Non provare", "Rosso (attack)", "Blu (maneuver)",
+			"Giallo (parry)", "Verde (dodge)"]
+		var pick: int = await _ask({"kind": "order", "player": p.seat, "options": colours,
+			"prompt": "%s (Shimmering Boots): nomina un colore e scopri la prima carta del mazzo" % p.name})
+		if pick <= 0:
+			return false
+		var want: String = ["", "attack", "maneuver", "parry", "dodge"][pick]
+		var hit := false
+		for i in p.item_value():
+			if p.deck.is_empty():
+				await _deck_emptied(p)
+			if p.deck.is_empty():
+				break
+			var top: int = p.deck.pop_front()
+			p.discard.push_front(top)
+			_log("Shimmering Boots: %s scopre %s." % [p.name, Db.action(top).get("name", "?")])
+			if String(Db.action(top).get("type", "")) == want:
+				hit = true
+				break
+		if hit:
+			_log("Il colore e' giusto: movimento gratis.")
+			return true
+	return false
+
+
+## Shimmering Boots (liv. 2+): «Azione: muoviti», una volta per turno.
+func can_item_move(p: PrimalPlayer) -> bool:
+	return phase == Phase.ACTION and p.item_is("shimmering_boots") and p.item_level() >= 2 \
+		and not p.item_move_used and not p.ko
+
+
+func item_move(to_position: int) -> bool:
+	var p := active_player()
+	if not can_item_move(p) or not _is_adjacent(p.position, to_position):
+		return false
+	var free := await _item_free_move(p)
+	var cost := int(Db.rules().get("move_cost", 1))
+	if has_terrain(p.position, "sand") and not _item_ignores(p, "sand"):
+		cost += 1
+	if not free and not await _pay_stamina(p, cost, -1, "movimento"):
+		return false
+	p.item_move_used = true
+	p.position = to_position
+	p.threatened = false
+	_log("%s si sposta nel settore %s (Shimmering Boots)." % [p.name, sector_of(to_position)])
+	if has_terrain(p.position, "fog"):
+		p.threatened = true
+		_queue_reaction("threatened")
+	_queue_reaction("player_moved")
+	await _resolve_reactions()
+	_emit()
+	return true
+
+
+## Quando si evita il danno da attrition: Shell Blade, Electric Dagger, Bloodseeker.
+func _item_attrition_avoided(p: PrimalPlayer) -> void:
+	var lv := p.item_level()
+	if p.item_is("shell_gauntlet") and not p.discard.is_empty():
+		var cid: int = p.discard.pop_front()
+		p.hand.append(cid)
+		var ty := String(Db.action(cid).get("type", ""))
+		_log("Gauntlet of Shell Blade: %s riprende %s." % [p.name, Db.action(cid).get("name", "?")])
+		if ty == "attack" or (lv >= 3 and Db.is_offensive(ty)):
+			await _item_deal(p, p.item_value(), "Gauntlet of Shell Blade")
+	elif p.item_is("bloodseeker"):
+		var attacks := 0
+		for cid in p.discard:
+			if String(Db.action(cid).get("type", "")) == "attack":
+				attacks += 1
+		await _item_deal(p, p.item_value() * attacks, "Bloodseeker")
+	elif p.item_is("electric_dagger"):
+		if lv == 2:
+			await _item_deal(p, 4, "Electric Dagger")
+		elif lv >= 3:
+			await _item_deal(p, 4 * p.defensive_in_sequence(), "Electric Dagger")
+		var slots: Array[int] = []
+		for slot in 3:
+			if behavior_slots[slot] >= 0:
+				slots.append(slot)
+		if slots.is_empty() or finished:
+			return
+		var options: Array[String] = ["Nessuna"]
+		for slot in slots:
+			options.append(String(Db.behavior(behavior_slots[slot]).get("name", "?")))
+		var pick: int = await _ask({"kind": "order", "player": p.seat, "options": options,
+			"prompt": "%s (Electric Dagger): scarti una behavior in gioco?" % p.name})
+		if pick > 0:
+			var slot_d := slots[pick - 1]
+			behavior_discard.push_front(behavior_slots[slot_d])
+			_log("Electric Dagger: %s scarta %s." % [p.name, options[pick]])
+			behavior_slots[slot_d] = await _draw_behavior()
+			behavior_triggered[slot_d] = false
+			await _check_enter_play(slot_d)
+
+
+## Lava Buckler: un segnalino e la prima carta del mazzo (o della mano, liv. 3)
+## per provare a prevenire un danno. Al livello 1 solo il danno da attrition.
+func _lava_buckler(p: PrimalPlayer, amount: int, reason: String) -> bool:
+	if not p.item_is("lava_buckler") or p.item_counters <= 0:
+		return false
+	var lv := p.item_level()
+	if lv == 1 and reason != "attrition":
+		return false
+	if not await _ask({"kind": "confirm", "player": p.seat, "default": true,
+			"prompt": "%s: usi Lava Buckler (%d segnalini) contro %d danni?" % [p.name, p.item_counters, amount]}):
+		return false
+	p.item_counters -= 1
+	var card := -1
+	if lv >= 3 and not p.hand.is_empty():
+		var picked: Array = await _ask({"kind": "cards", "player": p.seat, "cards": p.hand.duplicate(),
+			"min": 0, "max": 1,
+			"prompt": "%s: scegli una carta dalla mano da scartare, o nessuna per scoprire la prima del mazzo" % p.name})
+		if not picked.is_empty():
+			card = int(picked[0])
+			await _discard_from_hand(p, card)
+	if card < 0:
+		if p.deck.is_empty():
+			await _deck_emptied(p)
+		if not p.deck.is_empty():
+			card = p.deck.pop_front()
+			p.discard.push_front(card)
+	if card >= 0 and Db.is_defensive(String(Db.action(card).get("type", ""))):
+		_log("Lava Buckler: %s scarta %s e previene il danno." % [p.name, Db.action(card).get("name", "?")])
+		return true
+	_log("Lava Buckler: nessuna carta defensive, il danno arriva.")
+	return false
+
+
+## Behavior rivelata: Skeletal Spear, Electric Whip, Feathered Coat (liv. 3).
+var _feathered_round: Dictionary = {}
+
+func _item_behavior_revealed(b: Dictionary, reaction_ctx: Dictionary) -> void:
+	for q in players:
+		if q.ko or q.out_of_game:
+			continue
+		if q.item_is("skeletal_spear") and sector_of(q.position) == "front":
+			if await _ask({"kind": "confirm", "player": q.seat, "default": false,
+					"prompt": "%s: esaurisci Skeletal Spear (%d danni e annulli %s)?" % [q.name, q.item_value(), b.get("name", "")]}):
+				var value_s := q.item_value()
+				q.item_exhausted = true
+				reaction_ctx["cancelled"] = true
+				_log("Skeletal Spear: %s annulla %s." % [q.name, b.get("name", "")])
+				blow.emit(q.id, "monster", value_s)
+				await deal_damage_to_monster(value_s)
+				return
+		if q.item_is("feathered_coat") and q.item_level() >= 3 \
+				and "turn_start_front" in String(b.get("reaction", "")).split("|") \
+				and _feathered_round.get(q.seat, -1) != round_no \
+				and _cards_of_kind_in_hand(q, "dodge") >= 2:
+			if await _ask({"kind": "confirm", "player": q.seat, "default": true,
+					"prompt": "%s: riveli due dodge (Feathered Coat) per scartare %s?" % [q.name, b.get("name", "")]}):
+				_feathered_round[q.seat] = round_no
+				reaction_ctx["cancelled"] = true
+				_log("Feathered Coat: %s scarta %s prima che reagisca." % [q.name, b.get("name", "")])
+				return
+		if q.item_is("electric_whip") and b.has("boost") and _cards_of_kind_in_hand(q, "maneuver") > 0:
+			if await _ask({"kind": "confirm", "player": q.seat, "default": true,
+					"prompt": "%s: scarti un maneuver (Electric Whip) per alzare di 1 il costo del boost?" % q.name}):
+				if await _discard_of_type(q, "maneuver", "Electric Whip"):
+					reaction_ctx["boost_extra"] = int(reaction_ctx.get("boost_extra", 0)) + 1
+					var lv := q.item_level()
+					if lv == 2:
+						await _item_deal(q, 3, "Electric Whip")
+					elif lv >= 3:
+						var maneuvers := 0
+						for cid in q.discard:
+							if String(Db.action(cid).get("type", "")) == "maneuver":
+								maneuvers += 1
+						await _item_deal(q, 3 * maneuvers, "Electric Whip")
+
+
+## Blackspin: quando si esaurisce il mazzo.
+func _blackspin(p: PrimalPlayer) -> void:
+	if not p.item_is("blackspin"):
+		return
+	var dodges := _cards_of_kind_in_hand(p, "dodge")
+	if dodges == 0:
+		return
+	if p.item_level() == 1:
+		if await _ask({"kind": "confirm", "player": p.seat, "default": true,
+				"prompt": "%s: riveli un dodge (Blackspin) per infliggere 4 danni?" % p.name}):
+			await _item_deal(p, 4, "Blackspin")
+		return
+	var wound := await _item_deal(p, p.item_value() * dodges, "Blackspin")
+	if wound and p.item_level() >= 3:
+		await _inflict_on_monster("vulnerable", p)
 
 
 func _daze(t: PrimalPlayer) -> void:
@@ -1979,12 +2254,17 @@ func _ride_offered(reaction_ctx: Dictionary) -> void:
 			top = q.deck.pop_front()
 			icons = int(Db.action(top).get("stamina", 0))
 			q.discard.push_front(top)
+		if q.item_is("coral_trident"):
+			icons += 1
 		_log("Riding check: attrition %d contro %d icone stamina (%s)." % [value, icons,
 			Db.action(top).get("name", "nessuna carta") if top >= 0 else "nessuna carta"])
 		if icons >= value:
 			_log("Riding check riuscito.")
-			await deal_damage_to_monster(weapon_damage_of(q))
-			blow.emit(q.id, "monster", weapon_damage_of(q))
+			var ride_damage := weapon_damage_of(q)
+			if q.item_is("coral_trident"):
+				ride_damage += q.item_value()
+			await deal_damage_to_monster(ride_damage)
+			blow.emit(q.id, "monster", ride_damage)
 			var dest: int = await _ask({
 				"kind": "sector",
 				"prompt": "%s: dove atterri?" % q.name,
@@ -3998,6 +4278,7 @@ func _deck_emptied(p: PrimalPlayer) -> void:
 			_log("  -> %s è ora FOCUSED!" % m.get("name", "?"))
 	elif p.mastery_focused and p.id == "mirah":
 		await deal_damage_to_monster(5 * p.weapon_level())
+	await _blackspin(p)
 	await _suffer(p, p.weapon_level(), "fatigue")
 	if p.burning:
 		p.burning = false
@@ -4038,6 +4319,8 @@ func _refill_hand(p: PrimalPlayer) -> void:
 
 func _suffer(p: PrimalPlayer, amount: int, reason: String) -> void:
 	if amount <= 0 or p.ko or p.out_of_game:
+		return
+	if await _lava_buckler(p, amount, reason):
 		return
 	# Carte che possono annullare il colpo. Sono tre offerte diverse perche' le
 	# carte distinguono: Anticipate para solo le behavior, Bulwark para il colpo
@@ -4103,6 +4386,9 @@ func _heal(p: PrimalPlayer, amount: int) -> void:
 
 func _knock_out(p: PrimalPlayer) -> void:
 	_log("%s è messo KO!" % p.name)
+	if p.item_is("iron_greaves"):
+		p.item_exhausted = true
+		_log("Iron Greaves di %s si esauriscono." % p.name)
 	var was_active := p == active_player()
 	p.damage = 0
 	p.stamina_token = 0
@@ -4646,6 +4932,20 @@ func _turn_monster_to(position: int, reason: String) -> void:
 	_queue_reaction("monster_turned")
 	# E anche una carta in mano: Disengage di Karah ripesca la mano piena.
 	await _out_of_turn_offered("monster_turned", {})
+	# Big Jaws: chi sta nel settore verso cui si gira il mostro.
+	for q in players:
+		if q.ko or q.out_of_game or q.position != position or not q.item_is("big_jaws"):
+			continue
+		var aggro_cards := 0
+		for cid in q.discard:
+			if bool(Db.action(cid).get("aggro", false)):
+				aggro_cards += 1
+		if aggro_cards == 0:
+			continue
+		if await _ask({"kind": "confirm", "player": q.seat, "default": true,
+				"prompt": "%s: esaurisci Big Jaws per infliggere %d danni?" % [q.name, q.item_value() * aggro_cards]}):
+			q.item_exhausted = true
+			await _item_deal(q, q.item_value() * aggro_cards, "Big Jaws")
 	_emit()
 
 
@@ -4666,7 +4966,7 @@ func has_terrain(pos: int, type: String) -> bool:
 
 ## Limite di sequenza del giocatore, con il terreno Water che lo abbassa a 3.
 func sequence_limit_of(p: PrimalPlayer) -> int:
-	if has_terrain(p.position, "water"):
+	if has_terrain(p.position, "water") and not _item_ignores(p, "water"):
 		return 3 + p.sequence_limit_bonus
 	return p.sequence_limit()
 

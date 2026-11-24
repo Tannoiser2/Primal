@@ -73,6 +73,11 @@ var double_next_battle_dance: bool = false
 ## Dazed (Glossario): il prossimo maneuver giocato e' blank — toglie lo struggle
 ## ma il suo testo si ignora. Poi il segnalino si scarta.
 var dazed: bool = false
+## Item (slot della forge): esaurito = blank per il resto dello scenario.
+var item_exhausted: bool = false
+var item_counters: int = 0
+## Shimmering Boots: il movimento dell'azione si usa una volta per turno.
+var item_move_used: bool = false
 ## Plateau: la miniatura sta sopra la tessera (ci si sale a fine turno).
 var on_plateau: bool = false
 ## Brush: nascosto nel brush, col turno in pausa.
@@ -104,8 +109,30 @@ func base_weapon_damage() -> int:
 	return int(weapon().get("damage", 0)) + weapon_damage_bonus
 
 
+## L'item scelto, se c'e' e non e' esaurito: {} altrimenti.
+func item() -> Dictionary:
+	if item_exhausted:
+		return {}
+	return loadout.get("item", {})
+
+
+func item_is(key: String) -> bool:
+	return String(item().get("key", "")) == key
+
+
+func item_level() -> int:
+	return int(item().get("level", 1))
+
+
+func item_value() -> int:
+	return int(item().get("value", 0))
+
+
 func max_health() -> int:
 	var total := 0
+	# Iron Greaves: salute in piu' finche' non vanno esaurite.
+	if item_is("iron_greaves"):
+		total += item_value()
 	if not armor_depleted:
 		total += int(loadout.get("armor", data().get("armor", {})).get("health", 0))
 	if not helm_depleted:
@@ -247,6 +274,7 @@ func clear_turn_modifiers() -> void:
 	pending_next_card = {}
 	weapon_damage_bonus = 0
 	bullets_spent_this_turn = 0
+	item_move_used = false
 	double_next_battle_dance = false
 
 

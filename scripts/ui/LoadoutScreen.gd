@@ -46,6 +46,7 @@ func setup(ids: Array, aggression_level: int) -> void:
 			"armor": (options["armor"][0] if not options["armor"].is_empty() else {}),
 			"helm": (options["helm"][0] if not options["helm"].is_empty() else {}),
 			"mastery": (options["masteries"][0] if not options["masteries"].is_empty() else {}),
+			"item": {},
 			"upgrades": [],
 			"deck": [],
 			"potions": [],
@@ -57,7 +58,7 @@ func setup(ids: Array, aggression_level: int) -> void:
 
 func _ready() -> void:
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.07, 0.07, 0.09)
+	style.bg_color = Tema.INK
 	style.set_content_margin_all(18)
 	add_theme_stylebox_override("panel", style)
 
@@ -131,6 +132,21 @@ func _refresh() -> void:
 	gear.add_child(_equipment_row(options["helm"], "helm", func(item): return _health_label(item)))
 	_body.add_child(gear)
 
+	_body.add_child(_section("Item  (uno, facoltativo: un oggetto della forge del tuo livello)"))
+	var none_item := Button.new()
+	none_item.text = "Nessun item"
+	none_item.toggle_mode = true
+	none_item.button_pressed = choice.get("item", {}).is_empty()
+	none_item.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	none_item.pressed.connect(func():
+		_choices[_current]["item"] = {}
+		_refresh())
+	var items_box := VBoxContainer.new()
+	items_box.add_child(none_item)
+	items_box.add_child(_equipment_row(options["items"], "item", func(item):
+		return "%s  —  %s" % [item.get("name", "?"), Db.card_text(item)]))
+	_body.add_child(items_box)
+
 	_body.add_child(_section("Mastery"))
 	_body.add_child(_equipment_row(options["masteries"], "mastery", func(item):
 		return "%s  (%s)" % [item.get("name", "?"), item.get("track", "S")]))
@@ -155,11 +171,7 @@ func _refresh() -> void:
 
 
 func _section(text: String) -> Label:
-	var l := Label.new()
-	l.text = text
-	l.add_theme_font_size_override("font_size", 14)
-	l.add_theme_color_override("font_color", Color(0.85, 0.72, 0.45))
-	return l
+	return Tema.title(text.to_upper(), 22)
 
 
 ## Il database fan-made ha qualche valore di salute mancante: quelle carte

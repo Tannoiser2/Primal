@@ -4,19 +4,15 @@ Elenco unico di quello che manca, in ordine di quanto pesa sul gioco.
 
 Stato al 24 novembre 2026: **6 mostri su 6**, **6 cacciatori su 6**, tutte le 144
 carte azione e i 120 potenziamenti con il loro effetto; test delle regole, 480
-partite automatiche e 16 partite salvate e rigiocate identiche.
+partite automatiche (con gli Item) e 16 partite salvate e rigiocate identiche.
 
 ## 1. Regole e dati
 
-- **Lo slot Item**: il regolamento prevede di scegliere anche un Item fra gli
-  accessori forgiabili. Mancano i dati: le righe degli Item stanno nel
-  `primal_database.xlsm`, che non è nel repository. Con quel file
-  `tools/build_loadouts.py` può estrarle come fa con weapon, armor e helm.
-- **Le caselle del terreno di Tarragua e Jekoros** sono provvisorie: i pezzi sono
-  quelli del Regolamento (p.69-70), le posizioni vanno lette dai diagrammi.
 - Il **plateau di Toramat**: la sua Stance III dice di rimuoverlo, ma nei due
   setup Expedition di Toramat il plateau non c'è. Ora il plateau esiste (Tarragua),
   quindi la regola funziona dove serve.
+- Gli **Item** non hanno immagini (nel mod non ci sono carte singole): come armor e
+  helm della forge si mostrano col nome e il testo.
 
 ## 2. Interfaccia
 
@@ -37,6 +33,9 @@ partite automatiche e 16 partite salvate e rigiocate identiche.
 - Peril e objective **permanenti** restano in gioco quando la stance avanza.
 - `why_not_playable` non conta più la carta che stai giocando fra le fonti di stamina.
 - Salvataggio su Firebase e ripresa con un codice.
+- **Slot Item**: i 18 oggetti della forge nei tre livelli, dal `primal_database.xlsm`
+  (`tools/build_items.py`), con tutti gli effetti nel motore.
+- Terreno delle Expedition di Tarragua e Jekoros letto dai diagrammi del Regolamento.
 - Pubblicazione solo su richiesta, con controllo dei glifi e test delle regole.
 
 ## Fuori perimetro
