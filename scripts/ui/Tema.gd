@@ -127,6 +127,20 @@ static func theme() -> Theme:
 		t.set_font("font", type, bold_font())
 		t.set_font_size("font_size", type, 16)
 
+	# --- campi di testo
+	var field := StyleBoxFlat.new()
+	field.bg_color = Color(0.05, 0.04, 0.04)
+	field.border_color = Color(0.45, 0.32, 0.24)
+	field.set_border_width_all(1)
+	field.set_corner_radius_all(2)
+	field.set_content_margin_all(8)
+	var field_focus := field.duplicate()
+	field_focus.border_color = RUST
+	t.set_stylebox("normal", "LineEdit", field)
+	t.set_stylebox("focus", "LineEdit", field_focus)
+	t.set_color("font_color", "LineEdit", BONE)
+	t.set_color("font_placeholder_color", "LineEdit", Color(0.45, 0.41, 0.37))
+
 	# --- pannelli
 	t.set_stylebox("panel", "PanelContainer", panel_style())
 	t.set_stylebox("panel", "Panel", panel_style())

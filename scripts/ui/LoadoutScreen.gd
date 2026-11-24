@@ -124,7 +124,7 @@ func _refresh() -> void:
 		return "%s  —  %d danni,  %s" % [item.get("name", "?"), int(item.get("damage", 0)),
 			_composition_label(item.get("composition", {}))]))
 
-	_body.add_child(_section("Armor e Helm  (la loro salute e' la tua)"))
+	_body.add_child(_section("Armor e Helm  (la loro salute è la tua)"))
 	var gear := HBoxContainer.new()
 	gear.add_theme_constant_override("separation", 20)
 	gear.add_child(_equipment_row(options["armor"], "armor", func(item): return _health_label(item)))

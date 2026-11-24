@@ -6,7 +6,7 @@ config_version=5
 [application]
 
 config/name="Primal Digital"
-config/description="Modalita' Expedition: Dareon e Mirah contro Vyraxen."
+config/description="Modalità Expedition: da 2 a 4 cacciatori contro uno dei sei mostri."
 run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 

@@ -437,7 +437,7 @@
           ]
         }
       ],
-      "it": "Il giocatore attivo subisce DMG a meno che non scarti un dodge dalla mano. Se l'obiettivo Hit the Tail e' stato completato questa carta non ha effetto e va rimossa dal gioco."
+      "it": "Il giocatore attivo subisce DMG a meno che non scarti un dodge dalla mano. Se l'obiettivo Hit the Tail è stato completato questa carta non ha effetto e va rimossa dal gioco."
     },
     "2311": {
       "name": "Aggression",
@@ -639,7 +639,7 @@
         },
         "it": "Enhancement: chi sceglie di muoversi deve generare la stamina scartando un dodge dalla mano."
       },
-      "it": "Ogni giocatore nel settore front deve muoversi subito oppure subire DMG. Poi Vyraxen si gira verso il giocatore con meno carte difensive in mano. Se quel giocatore e' threatened, subisce DMG."
+      "it": "Ogni giocatore nel settore front deve muoversi subito oppure subire DMG. Poi Vyraxen si gira verso il giocatore con meno carte difensive in mano. Se quel giocatore è threatened, subisce DMG."
     },
     "14177": {
       "name": "Blazing Assault",
@@ -666,7 +666,7 @@
         },
         "it": "Enhancement: l'effetto colpisce tutti i giocatori nel settore del giocatore attivo."
       },
-      "it": "Il giocatore attivo scarta le prime 2 carte del mazzo. Subisce DMG a meno che fra quelle non ci sia una parry. Se e' threatened, ripeti l'effetto una volta."
+      "it": "Il giocatore attivo scarta le prime 2 carte del mazzo. Subisce DMG a meno che fra quelle non ci sia una parry. Se è threatened, ripeti l'effetto una volta."
     },
     "14186": {
       "name": "Sudden Blaze",
@@ -687,7 +687,7 @@
       "tags": [
         "firestorm"
       ],
-      "it": "Il giocatore attivo scarta le prime 2 carte del mazzo. Subisce DMG a meno che fra quelle non ci sia una parry. Se e' threatened, ripeti l'effetto una volta."
+      "it": "Il giocatore attivo scarta le prime 2 carte del mazzo. Subisce DMG a meno che fra quelle non ci sia una parry. Se è threatened, ripeti l'effetto una volta."
     },
     "2302": {
       "name": "Smoldering Breath",
@@ -739,7 +739,7 @@
           ]
         }
       ],
-      "it": "Ogni giocatore nel settore rear subisce DMGx2 a meno che non scarti un dodge dalla mano. Se l'obiettivo Hit the Tail e' stato completato questa carta non ha effetto e va rimossa dal gioco."
+      "it": "Ogni giocatore nel settore rear subisce DMGx2 a meno che non scarti un dodge dalla mano. Se l'obiettivo Hit the Tail è stato completato questa carta non ha effetto e va rimossa dal gioco."
     },
     "2296": {
       "name": "Thunderous Growl",
@@ -819,7 +819,7 @@
           ]
         }
       ],
-      "it": "Alla fine del round, se il giocatore aggro e' threatened, piazza un terreno fire nel settore front."
+      "it": "Alla fine del round, se il giocatore aggro è threatened, piazza un terreno fire nel settore front."
     },
     "2300": {
       "name": "Wall of Flames",

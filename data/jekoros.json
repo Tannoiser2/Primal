@@ -472,7 +472,7 @@
    "reaction": "defensive_played|threatened",
    "refresh": 3,
    "text": "The active player reveals a random card from their hand. If that card is an offensive card, they discard it. Otherwise, Jekoros gains PP-1 struggle.",
-   "it": "Il giocatore attivo rivela una carta a caso dalla mano: se e' offensive la scarta, altrimenti Jekoros guadagna (giocatori-1) struggle.",
+   "it": "Il giocatore attivo rivela una carta a caso dalla mano: se è offensive la scarta, altrimenti Jekoros guadagna (giocatori-1) struggle.",
    "effects": [
     {
      "op": "reveal_random",
@@ -499,7 +499,7 @@
    "reaction": "defensive_played|threatened",
    "refresh": 3,
    "text": "The active player reveals a random card from their hand. If that card is an attack, they discard it. Otherwise, Jekoros gains PP-1 struggle.",
-   "it": "Il giocatore attivo rivela una carta a caso dalla mano: se e' un attack la scarta, altrimenti Jekoros guadagna (giocatori-1) struggle.",
+   "it": "Il giocatore attivo rivela una carta a caso dalla mano: se è un attack la scarta, altrimenti Jekoros guadagna (giocatori-1) struggle.",
    "effects": [
     {
      "op": "reveal_random",
@@ -526,7 +526,7 @@
    "reaction": "threatened",
    "refresh": 2,
    "text": "The active player reveals a random card from their hand. If that card is a defensive card, they discard it.",
-   "it": "Il giocatore attivo rivela una carta a caso dalla mano: se e' defensive la scarta.",
+   "it": "Il giocatore attivo rivela una carta a caso dalla mano: se è defensive la scarta.",
    "effects": [
     {
      "op": "reveal_random",
@@ -655,7 +655,7 @@
    "reaction": "empty_hand",
    "refresh": 2,
    "text": "If the active player is in a sector with a water terrain, they suffer DMG unless they discard a random card from their hand.",
-   "it": "Se il giocatore attivo e' in un settore con acqua, subisce DMG a meno che non scarti una carta a caso dalla mano.",
+   "it": "Se il giocatore attivo è in un settore con acqua, subisce DMG a meno che non scarti una carta a caso dalla mano.",
    "effects": [
     {
      "op": "suffer_unless_discard_random",
@@ -719,7 +719,7 @@
    "reaction": "end_of_round",
    "refresh": 5,
    "text": "Each player in the rear sector suffers DMG+1 unless they reveal a dodge from their hand. If there are no players in the rear sector, players in the flank sectors are targeted instead.",
-   "it": "Ogni giocatore nel settore rear subisce DMG+1 a meno che non riveli un dodge dalla mano. Se nel rear non c'e' nessuno, i bersagli sono i giocatori nei flank.",
+   "it": "Ogni giocatore nel settore rear subisce DMG+1 a meno che non riveli un dodge dalla mano. Se nel rear non c'è nessuno, i bersagli sono i giocatori nei flank.",
    "effects": [
     {
      "op": "suffer_unless_reveal",
@@ -736,7 +736,7 @@
    "reaction": "end_of_round",
    "refresh": 5,
    "text": "Each player in the rear sector suffers DMG+1 unless they reveal 2 dodges from their hand. If there are no players in the rear sector, players in the flank sectors are targeted instead.",
-   "it": "Ogni giocatore nel settore rear subisce DMG+1 a meno che non riveli 2 dodge dalla mano. Se nel rear non c'e' nessuno, i bersagli sono i giocatori nei flank.",
+   "it": "Ogni giocatore nel settore rear subisce DMG+1 a meno che non riveli 2 dodge dalla mano. Se nel rear non c'è nessuno, i bersagli sono i giocatori nei flank.",
    "effects": [
     {
      "op": "suffer_unless_reveal",
@@ -754,7 +754,7 @@
    "reaction": "end_of_round",
    "refresh": 5,
    "text": "If the charge level is 2 or higher, all players become dazed. If a player is already dazed, they discard a card from their hand.",
-   "it": "Se il livello di charge e' 2 o piu', tutti i giocatori diventano dazed; chi lo e' gia' scarta una carta dalla mano.",
+   "it": "Se il livello di charge è 2 o più, tutti i giocatori diventano dazed; chi lo è già scarta una carta dalla mano.",
    "effects": [
     {
      "op": "daze_all",
@@ -770,7 +770,7 @@
    "reaction": "end_of_round",
    "refresh": 5,
    "text": "If the charge level is 2 or higher, all players become dazed. If a player is already dazed, they discard a random card from their hand.",
-   "it": "Se il livello di charge e' 2 o piu', tutti i giocatori diventano dazed; chi lo e' gia' scarta una carta a caso dalla mano.",
+   "it": "Se il livello di charge è 2 o più, tutti i giocatori diventano dazed; chi lo è già scarta una carta a caso dalla mano.",
    "effects": [
     {
      "op": "daze_all",
@@ -789,7 +789,7 @@
    "name": "Incessant Echo",
    "permanent": true,
    "text": "Permanent. Jekoros is unstoppable.",
-   "it": "Permanente. Jekoros e' unstoppable.",
+   "it": "Permanente. Jekoros è unstoppable.",
    "unstoppable": true,
    "art": "res://art/monsters/jekoros/g5_01_fronte.jpg"
   },
@@ -799,7 +799,7 @@
    "name": "Incessant Echo",
    "permanent": true,
    "text": "Permanent. Jekoros is unstoppable.",
-   "it": "Permanente. Jekoros e' unstoppable.",
+   "it": "Permanente. Jekoros è unstoppable.",
    "unstoppable": true,
    "art": "res://art/monsters/jekoros/g5_01_retro.jpg"
   },
@@ -811,7 +811,7 @@
    "immune_blind": true,
    "art": "res://art/monsters/jekoros/g5_02_retro.jpg",
    "text": "Permanent. Immune to blind. When Jekoros suffers a wound, it gains 1 PP struggle. Unleash: Increase the charge level by 1. A player in a sector with a rock terrain may remove that terrain from the game to prevent unleash damage in that sector.",
-   "it": "Permanente. Immune a blind. Quando Jekoros subisce una ferita guadagna 1 per giocatore struggle. Unleash: il livello di charge aumenta di 1. Un giocatore in un settore con una roccia puo' rimuoverla dal gioco per evitare il danno dell'unleash in quel settore.",
+   "it": "Permanente. Immune a blind. Quando Jekoros subisce una ferita guadagna 1 per giocatore struggle. Unleash: il livello di charge aumenta di 1. Un giocatore in un settore con una roccia può rimuoverla dal gioco per evitare il danno dell'unleash in quel settore.",
    "rock_stops_unleash": true,
    "abilities": [
     {
@@ -843,7 +843,7 @@
    "immune_blind": true,
    "art": "res://art/monsters/jekoros/g5_02_fronte.jpg",
    "text": "Permanent. Immune to blind. When Jekoros suffers a wound, it gains PP-1 struggle. Unleash: Increase the charge level by 1. A player in a sector with a rock terrain may remove that terrain from the game to prevent unleash damage in that sector.",
-   "it": "Permanente. Immune a blind. Quando Jekoros subisce una ferita guadagna (giocatori-1) struggle. Unleash: il livello di charge aumenta di 1. Un giocatore in un settore con una roccia puo' rimuoverla dal gioco per evitare il danno dell'unleash in quel settore.",
+   "it": "Permanente. Immune a blind. Quando Jekoros subisce una ferita guadagna (giocatori-1) struggle. Unleash: il livello di charge aumenta di 1. Un giocatore in un settore con una roccia può rimuoverla dal gioco per evitare il danno dell'unleash in quel settore.",
    "rock_stops_unleash": true,
    "abilities": [
     {
@@ -872,7 +872,7 @@
    "name": "High Tension",
    "art": "res://art/monsters/jekoros/g5_00_fronte.jpg",
    "text": "When a player suffers attrition damage, if the charge level is 2 or more, that player suffers DMGx2 instead of DMG.",
-   "it": "Quando un giocatore subisce danno da attrition, se il livello di charge e' 2 o piu' subisce DMGx2 invece di DMG.",
+   "it": "Quando un giocatore subisce danno da attrition, se il livello di charge è 2 o più subisce DMGx2 invece di DMG.",
    "attrition_double_at_charge": 2
   },
   "471030": {
@@ -881,7 +881,7 @@
    "name": "High Tension",
    "art": "res://art/monsters/jekoros/g5_00_retro.jpg",
    "text": "When a player suffers attrition damage, if the charge level is 1 or more, that player suffers DMGx2 instead of DMG.",
-   "it": "Quando un giocatore subisce danno da attrition, se il livello di charge e' 1 o piu' subisce DMGx2 invece di DMG.",
+   "it": "Quando un giocatore subisce danno da attrition, se il livello di charge è 1 o più subisce DMGx2 invece di DMG.",
    "attrition_double_at_charge": 1
   }
  },
@@ -892,7 +892,7 @@
    "permanent": true,
    "art": "res://art/monsters/jekoros/sciolta_0.jpg",
    "text": "Permanent. At the start of each player's turn, a player in the front sector may discard an offensive card from their hand to either inflict vulnerable or reduce the charge level by 1.",
-   "it": "Permanente. All'inizio del turno di ogni giocatore, un giocatore nel settore front puo' scartare una carta offensive dalla mano per infliggere vulnerable oppure ridurre di 1 il livello di charge.",
+   "it": "Permanente. All'inizio del turno di ogni giocatore, un giocatore nel settore front può scartare una carta offensive dalla mano per infliggere vulnerable oppure ridurre di 1 il livello di charge.",
    "abilities": [
     {
      "trigger": "turn_start_front_discard",
@@ -906,7 +906,7 @@
    "permanent": true,
    "art": "res://art/monsters/jekoros/sciolta_0_retro.jpg",
    "text": "Permanent. At the start of each player's turn, a player in the front sector may discard an attack from their hand to either inflict vulnerable or reduce the charge level by 1.",
-   "it": "Permanente. All'inizio del turno di ogni giocatore, un giocatore nel settore front puo' scartare un attack dalla mano per infliggere vulnerable oppure ridurre di 1 il livello di charge.",
+   "it": "Permanente. All'inizio del turno di ogni giocatore, un giocatore nel settore front può scartare un attack dalla mano per infliggere vulnerable oppure ridurre di 1 il livello di charge.",
    "abilities": [
     {
      "trigger": "turn_start_front_discard",

@@ -92,7 +92,7 @@
             "scope": "sector"
           }
         ],
-        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition corrente e' 1 o meno, ne recupera 4."
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition corrente è 1 o meno, ne recupera 4."
       }
     ],
     "deck": [
@@ -543,7 +543,7 @@
             "duration": "next_card"
           }
         ],
-        "it": "Se la prossima carta della sequenza e' un attack, riduci di 1 il suo costo in stamina."
+        "it": "Se la prossima carta della sequenza è un attack, riduci di 1 il suo costo in stamina."
       },
       {
         "id": 178123,
@@ -673,7 +673,7 @@
             "scope": "sector"
           }
         ],
-        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition corrente e' 1 o meno, ne recupera 4."
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition corrente è 1 o meno, ne recupera 4."
       }
     ],
     "deck": [
@@ -750,7 +750,7 @@
             ]
           }
         ],
-        "it": "Assist. All'inizio del tuo turno, se questa carta e' in cima ai tuoi scarti, pesca 2."
+        "it": "Assist. All'inizio del tuo turno, se questa carta è in cima ai tuoi scarti, pesca 2."
       },
       {
         "id": 178403,
@@ -955,7 +955,7 @@
             "n": 1
           }
         ],
-        "it": "Puoi giocarla solo dopo un attack. La prossima volta che ripristini la mano, pesca 1 in piu'."
+        "it": "Puoi giocarla solo dopo un attack. La prossima volta che ripristini la mano, pesca 1 in più."
       },
       {
         "id": 178413,
@@ -1016,7 +1016,7 @@
             "duration": "next_of_type"
           }
         ],
-        "it": "Il prossimo attack della sequenza guadagna Stealth. Mentre questa carta e' in cima agli scarti, previeni il danno da attrition che subiresti.",
+        "it": "Il prossimo attack della sequenza guadagna Stealth. Mentre questa carta è in cima agli scarti, previeni il danno da attrition che subiresti.",
         "prevents_attrition_on_top": true
       },
       {
@@ -1030,7 +1030,7 @@
           "assist"
         ],
         "text": "Assist. While this card is the top card of your discard pile, it counts as a dodge in your sequence for the attrition check.",
-        "it": "Assist. Mentre questa carta e' in cima agli scarti, conta come dodge nella tua sequenza per il check di attrition.",
+        "it": "Assist. Mentre questa carta è in cima agli scarti, conta come dodge nella tua sequenza per il check di attrition.",
         "counts_as_defensive_on_top": true
       },
       {
@@ -1305,7 +1305,7 @@
             "scope": "sector"
           }
         ],
-        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition e' 1 o meno, ne recupera 4."
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition è 1 o meno, ne recupera 4."
       }
     ],
     "deck": [
@@ -1318,7 +1318,7 @@
         "aggro": false,
         "text": "You may spend a bullet. If you do, confuse the monster or increase the struggle this maneuver removes by 2.",
         "art": "res://art/heleren/action_213400.jpg",
-        "it": "Puoi spendere un bullet: se lo fai, confondi il mostro oppure questo maneuver rimuove 2 struggle in piu'.",
+        "it": "Puoi spendere un bullet: se lo fai, confondi il mostro oppure questo maneuver rimuove 2 struggle in più.",
         "effects": [
           {
             "op": "spend_bullets",
@@ -1338,7 +1338,7 @@
                     ]
                   },
                   {
-                    "label": "Rimuovi 2 struggle in piu'",
+                    "label": "Rimuovi 2 struggle in più",
                     "effects": [
                       {
                         "op": "maneuver_struggle_bonus",
@@ -1402,7 +1402,7 @@
         "aggro": false,
         "text": "Draw X where X is your bullet track level.",
         "art": "res://art/heleren/action_214000.jpg",
-        "it": "Pesca X, dove X e' il livello del tuo tracciato bullet.",
+        "it": "Pesca X, dove X è il livello del tuo tracciato bullet.",
         "effects": [
           {
             "op": "draw",
@@ -1437,7 +1437,7 @@
         "aggro": false,
         "text": "Assist. While this card is the top card of your discard pile, it counts as a dodge in your sequence for the attrition check.",
         "art": "res://art/heleren/action_214800.jpg",
-        "it": "Assist. Mentre e' in cima ai tuoi scarti conta come un dodge nella sequenza per il check di attrition.",
+        "it": "Assist. Mentre è in cima ai tuoi scarti conta come un dodge nella sequenza per il check di attrition.",
         "keywords": [
           "assist"
         ],
@@ -1615,7 +1615,7 @@
         "aggro": true,
         "text": "Spend any number of bullets to increase the damage this attack deals by 2 WL for each bullet spent this way.",
         "art": "res://art/heleren/action_227900.jpg",
-        "it": "Spendi quanti bullet vuoi: questo attacco infligge 2 danni per livello weapon in piu' per ognuno.",
+        "it": "Spendi quanti bullet vuoi: questo attacco infligge 2 danni per livello weapon in più per ognuno.",
         "effects": [
           {
             "op": "spend_bullets",
@@ -1641,7 +1641,7 @@
         "aggro": false,
         "text": "Draw 1. If your bullet track level is 1 or higher, draw 2 instead.",
         "art": "res://art/heleren/action_228000.jpg",
-        "it": "Pesca 1. Se il tracciato bullet e' a 1 o piu', pesca 2.",
+        "it": "Pesca 1. Se il tracciato bullet è a 1 o più, pesca 2.",
         "effects": [
           {
             "op": "draw",
@@ -1775,7 +1775,7 @@
         "aggro": true,
         "text": "You may spend a bullet to increase the damage this attack deals by 3 WL.",
         "art": "res://art/heleren/action_228600.jpg",
-        "it": "Puoi spendere un bullet: questo attacco infligge 3 danni per livello weapon in piu'.",
+        "it": "Puoi spendere un bullet: questo attacco infligge 3 danni per livello weapon in più.",
         "effects": [
           {
             "op": "spend_bullets",
@@ -1800,7 +1800,7 @@
         "aggro": true,
         "text": "You may spend 3 bullets. If you do, stun the monster and increase the damage this attack deals by 4 WL. Another player can generate stamina to help you pay for this card.",
         "art": "res://art/heleren/action_228700.jpg",
-        "it": "Puoi spendere 3 bullet: se lo fai, stordisci il mostro e questo attacco infligge 4 danni per livello weapon in piu'. Un altro giocatore puo' generare stamina per aiutarti a pagarla.",
+        "it": "Puoi spendere 3 bullet: se lo fai, stordisci il mostro e questo attacco infligge 4 danni per livello weapon in più. Un altro giocatore può generare stamina per aiutarti a pagarla.",
         "effects": [
           {
             "op": "spend_bullets",
@@ -1829,7 +1829,7 @@
         "aggro": false,
         "text": "The next attack you play this turn gains stealth. While this card is the top card of your discard pile, prevent any attrition damage you would suffer.",
         "art": "res://art/heleren/action_228900.jpg",
-        "it": "Il prossimo attack che giochi in questo turno guadagna stealth. Mentre e' in cima ai tuoi scarti, previene il danno da attrition che subiresti.",
+        "it": "Il prossimo attack che giochi in questo turno guadagna stealth. Mentre è in cima ai tuoi scarti, previene il danno da attrition che subiresti.",
         "prevents_attrition_on_top": true,
         "effects": [
           {
@@ -1983,7 +1983,7 @@
             "scope": "sector"
           }
         ],
-        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition e' 1 o meno, ne recupera 4."
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition è 1 o meno, ne recupera 4."
       }
     ],
     "deck": [
@@ -2339,7 +2339,7 @@
             "free_if_type": "attack"
           }
         ],
-        "it": "Pesca 1. Se e' un attack, puoi giocarlo come carta successiva senza pagarne la stamina.",
+        "it": "Pesca 1. Se è un attack, puoi giocarlo come carta successiva senza pagarne la stamina.",
         "art": "res://art/karah/action_209300.jpg"
       },
       {
@@ -2510,7 +2510,7 @@
         "free_if": {
           "sequence_at_least": 3
         },
-        "it": "Se hai 3 o piu' carte in sequenza, puoi giocarla senza pagarne la stamina.",
+        "it": "Se hai 3 o più carte in sequenza, puoi giocarla senza pagarne la stamina.",
         "art": "res://art/karah/action_210200.jpg"
       }
     ]
@@ -2598,7 +2598,7 @@
         }
       ],
       "it_unfocused": "Dopo parry e attack: metti un segnalino su questa carta.",
-      "it_focused": "Dopo un parry: infliggi 2 danni per livello weapon. Dopo parry e attack: l'attacco fa 3 per livello in piu'."
+      "it_focused": "Dopo un parry: infliggi 2 danni per livello weapon. Dopo parry e attack: l'attacco fa 3 per livello in più."
     },
     "armor": {
       "name": "Base Armor",
@@ -2626,7 +2626,7 @@
             "scope": "sector"
           }
         ],
-        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition e' 1 o meno, ne recupera 4."
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition è 1 o meno, ne recupera 4."
       }
     ],
     "deck": [
@@ -2692,7 +2692,7 @@
         "stamina": 1,
         "aggro": true,
         "text": "Choose another player. Increase the damage this attack deals by 1 WL for each attack in that player's discard pile. If this attack inflicts a wound, inflict vulnerable.",
-        "it": "Scegli un altro giocatore: questo attacco infligge 1 danno per livello weapon in piu' per ogni attack nei suoi scarti. Se infligge una ferita, infligge vulnerable.",
+        "it": "Scegli un altro giocatore: questo attacco infligge 1 danno per livello weapon in più per ogni attack nei suoi scarti. Se infligge una ferita, infligge vulnerable.",
         "art": "res://art/ljonar/action_178202.jpg",
         "effects": [
           {
@@ -2721,7 +2721,7 @@
         "keywords": [
           "taunt"
         ],
-        "it": "Taunt. Mentre e' in cima ai tuoi scarti, le weapon di tutti gli altri giocatori infliggono 1 danno per livello in piu'.",
+        "it": "Taunt. Mentre è in cima ai tuoi scarti, le weapon di tutti gli altri giocatori infliggono 1 danno per livello in più.",
         "art": "res://art/ljonar/action_178203.jpg",
         "aura": {
           "weapon_for_others": 1,
@@ -2831,7 +2831,7 @@
         "keywords": [
           "assist"
         ],
-        "it": "Assist. Finche' e' in cima ai tuoi scarti, ogni danno inflitto al mostro da qualunque fonte aumenta di 1 per livello weapon.",
+        "it": "Assist. Finche' è in cima ai tuoi scarti, ogni danno inflitto al mostro da qualunque fonte aumenta di 1 per livello weapon.",
         "art": "res://art/ljonar/action_178208.jpg",
         "aura": {
           "damage_to_monster": 1,
@@ -3163,7 +3163,7 @@
                 "effects": []
               },
               {
-                "label": "Subisci per colpire piu' forte",
+                "label": "Subisci per colpire più forte",
                 "effects": [
                   {
                     "op": "suffer_self",
@@ -3328,7 +3328,7 @@
             "scope": "sector"
           }
         ],
-        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition corrente e' 1 o meno, ne recupera 4."
+        "it": "Consume: scegli un giocatore nel tuo settore che recupera 2. Se il livello di attrition corrente è 1 o meno, ne recupera 4."
       }
     ],
     "deck": [
@@ -3571,7 +3571,7 @@
           "condition": "mastery_focused",
           "stamina": 4
         },
-        "it": "Riduci di 1 il costo del prossimo dodge della tua sequenza. Quando la scarti per generare stamina per un attack e la tua mastery e' focused, ne genera 4.",
+        "it": "Riduci di 1 il costo del prossimo dodge della tua sequenza. Quando la scarti per generare stamina per un attack e la tua mastery è focused, ne genera 4.",
         "art": "res://art/thoreg/action_178310.jpg"
       },
       {

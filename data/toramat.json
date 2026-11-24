@@ -583,7 +583,7 @@
       "art": "res://art/monsters/toramat/g1_02_fronte.jpg",
       "back": "res://art/monsters/toramat/g1_02_retro.jpg",
       "text": "Toramat turns to the player with the highest number of aggro cards in their hand. That player suffers DMG unless they reveal a dodge from their hand.",
-      "it": "Toramat si gira verso il giocatore con piu' carte aggro in mano. Quel giocatore subisce DMG a meno che non riveli un dodge dalla mano.",
+      "it": "Toramat si gira verso il giocatore con più carte aggro in mano. Quel giocatore subisce DMG a meno che non riveli un dodge dalla mano.",
       "effects": [
         {
           "op": "monster_turn_to",
@@ -604,7 +604,7 @@
       "art": "res://art/monsters/toramat/g6_02_fronte.jpg",
       "back": "res://art/monsters/toramat/g1_02_retro.jpg",
       "text": "Toramat turns to the player with the highest number of aggro cards in their hand. That player suffers DMG unless they reveal 2 dodges from their hand.",
-      "it": "Toramat si gira verso il giocatore con piu' carte aggro in mano. Quel giocatore subisce DMG a meno che non riveli 2 dodge dalla mano.",
+      "it": "Toramat si gira verso il giocatore con più carte aggro in mano. Quel giocatore subisce DMG a meno che non riveli 2 dodge dalla mano.",
       "effects": [
         {
           "op": "monster_turn_to",
@@ -625,7 +625,7 @@
       "art": "res://art/monsters/toramat/g3_04_fronte.jpg",
       "back": "res://art/monsters/toramat/g1_03_retro.jpg",
       "text": "Increase the hardening level by 1. Then if Toramat is hardened, it gains PP-1 struggle.",
-      "it": "Aumenta il livello di hardening di 1. Poi, se Toramat e' hardened, guadagna (giocatori-1) struggle.",
+      "it": "Aumenta il livello di hardening di 1. Poi, se Toramat è hardened, guadagna (giocatori-1) struggle.",
       "effects": [
         {
           "op": "hardening",
@@ -657,7 +657,7 @@
       "art": "res://art/monsters/toramat/g1_03_fronte.jpg",
       "back": "res://art/monsters/toramat/g1_03_retro.jpg",
       "text": "Increase the hardening level by 1. Then if Toramat is hardened, it gains PP-1 struggle. The active player suffers DMG unless they have a dodge in their sequence.",
-      "it": "Aumenta il livello di hardening di 1. Poi, se Toramat e' hardened, guadagna (giocatori-1) struggle. Il giocatore attivo subisce DMG a meno che non abbia un dodge nella sequenza.",
+      "it": "Aumenta il livello di hardening di 1. Poi, se Toramat è hardened, guadagna (giocatori-1) struggle. Il giocatore attivo subisce DMG a meno che non abbia un dodge nella sequenza.",
       "effects": [
         {
           "op": "hardening",
@@ -682,7 +682,7 @@
       "art": "res://art/monsters/toramat/g1_04_fronte.jpg",
       "back": "res://art/monsters/toramat/g1_04_retro.jpg",
       "text": "Each player in the rear sector suffers DMG unless they reveal a dodge. If there are no players in the rear sector, players in the flank sectors are targeted instead.",
-      "it": "Ogni giocatore nel settore rear subisce DMG a meno che non riveli un dodge. Se non c'e' nessuno nel rear, i bersagli sono i giocatori nei settori flank.",
+      "it": "Ogni giocatore nel settore rear subisce DMG a meno che non riveli un dodge. Se non c'è nessuno nel rear, i bersagli sono i giocatori nei settori flank.",
       "effects": [
         {
           "op": "suffer_unless_reveal",
@@ -698,7 +698,7 @@
       "art": "res://art/monsters/toramat/g4_04_fronte.jpg",
       "back": "res://art/monsters/toramat/g1_04_retro.jpg",
       "text": "Each player in the rear sector suffers DMG unless they discard a dodge. If there are no players in the rear sector, players in the flank sectors are targeted instead.",
-      "it": "Ogni giocatore nel settore rear subisce DMG a meno che non scarti un dodge. Se non c'e' nessuno nel rear, i bersagli sono i giocatori nei settori flank.",
+      "it": "Ogni giocatore nel settore rear subisce DMG a meno che non scarti un dodge. Se non c'è nessuno nel rear, i bersagli sono i giocatori nei settori flank.",
       "effects": [
         {
           "op": "suffer_unless_discard",
@@ -709,7 +709,7 @@
       "boost": {
         "cost": 1,
         "text": "Place a dust token in each sector where at least one player was targeted (max: 2 dust tokens per sector).",
-        "it": "Piazza un segnalino dust in ogni settore dove almeno un giocatore e' stato bersagliato (max 2 per settore).",
+        "it": "Piazza un segnalino dust in ogni settore dove almeno un giocatore è stato bersagliato (max 2 per settore).",
         "effects": [
           {
             "op": "place_dust",
@@ -725,7 +725,7 @@
       "art": "res://art/monsters/toramat/g3_08_fronte.jpg",
       "back": "res://art/monsters/toramat/g1_05_retro.jpg",
       "text": "If there is a rock terrain in the rear sector, remove it. Each player in that sector suffers DMG unless they reveal a dodge from their hand.",
-      "it": "Se c'e' un terreno rock nel settore rear, rimuovilo. Ogni giocatore in quel settore subisce DMG a meno che non riveli un dodge dalla mano.",
+      "it": "Se c'è un terreno rock nel settore rear, rimuovilo. Ogni giocatore in quel settore subisce DMG a meno che non riveli un dodge dalla mano.",
       "effects": [
         {
           "op": "remove_terrain",
@@ -767,7 +767,7 @@
       "art": "res://art/monsters/toramat/g1_06_fronte.jpg",
       "back": "res://art/monsters/toramat/g1_06_retro.jpg",
       "text": "Increase the hardening level by 1 unless the aggro player discards a maneuver from their hand. Then if Toramat is hardened, it gains PP-1 struggle.",
-      "it": "Aumenta il livello di hardening di 1 a meno che il giocatore aggro non scarti un maneuver dalla mano. Poi, se Toramat e' hardened, guadagna (giocatori-1) struggle.",
+      "it": "Aumenta il livello di hardening di 1 a meno che il giocatore aggro non scarti un maneuver dalla mano. Poi, se Toramat è hardened, guadagna (giocatori-1) struggle.",
       "effects": [
         {
           "op": "hardening",
@@ -791,7 +791,7 @@
       "art": "res://art/monsters/toramat/g6_06_fronte.jpg",
       "back": "res://art/monsters/toramat/g1_06_retro.jpg",
       "text": "Increase the hardening level by 1 unless all players discard a maneuver from their hand. Then if Toramat is hardened, it gains 1 PP struggle.",
-      "it": "Aumenta il livello di hardening di 1 a meno che tutti i giocatori non scartino un maneuver dalla mano. Poi, se Toramat e' hardened, guadagna 1 struggle per giocatore.",
+      "it": "Aumenta il livello di hardening di 1 a meno che tutti i giocatori non scartino un maneuver dalla mano. Poi, se Toramat è hardened, guadagna 1 struggle per giocatore.",
       "effects": [
         {
           "op": "hardening",
@@ -1056,7 +1056,7 @@
       "permanent": true,
       "art": "res://art/monsters/toramat/sciolta_6.jpg",
       "text": "Permanent. At the start of a player's turn, that player may reveal 2 aggro cards from their hand. If they do, place a counter on this card. When there are 1 PP counters on this card, remove this card from the game and place Crashing Charge on top of the behavior deck.",
-      "it": "Permanente. All'inizio del turno di un giocatore, quel giocatore puo' rivelare 2 carte aggro dalla mano. Se lo fa, metti un segnalino su questa carta. Quando ci sono tanti segnalini quanti i giocatori, rimuovi questa carta dal gioco e metti Crashing Charge in cima al mazzo behavior.",
+      "it": "Permanente. All'inizio del turno di un giocatore, quel giocatore può rivelare 2 carte aggro dalla mano. Se lo fa, metti un segnalino su questa carta. Quando ci sono tanti segnalini quanti i giocatori, rimuovi questa carta dal gioco e metti Crashing Charge in cima al mazzo behavior.",
       "abilities": [
         {
           "trigger": "turn_start",

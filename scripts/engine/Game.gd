@@ -162,7 +162,14 @@ var _stealth_cards: Array[int] = []
 ##   kind "confirm" -> bool
 ##   kind "sector"  -> int, la casella scelta fra `options`
 ##   kind "order"   -> int, l'indice dell'effetto da risolvere per primo
+## Risposte gia' date, da riusare in ordine quando si riprende una partita
+## salvata: il registro delle mosse viene rigiocato senza chiedere niente.
+var replay_answers: Array = []
+
+
 func _ask(request: Dictionary) -> Variant:
+	if not replay_answers.is_empty():
+		return replay_answers.pop_front()
 	if auto_resolve:
 		return _auto_answer(request)
 	pending_choice = request
@@ -346,7 +353,7 @@ func begin_round() -> void:
 		return
 	round_no += 1
 	if round_no > int(Db.rules().get("rounds", 10)):
-		_end_scenario(false, "Il round 10 e' terminato: i cacciatori non reggono piu' lo scontro.")
+		_end_scenario(false, "Il round 10 è terminato: i cacciatori non reggono più lo scontro.")
 		return
 	_log("--- Round %d ---" % round_no)
 	monster_damage_bonus = 0
@@ -472,7 +479,7 @@ func _begin_turn() -> void:
 	if p.ko:
 		if not p.ko_flipped:
 			p.ko_flipped = true
-			_log("%s e' KO: gira il segnalino e passa il turno." % p.name)
+			_log("%s è KO: gira il segnalino e passa il turno." % p.name)
 			await _advance_turn()
 			return
 		# Rise
@@ -486,7 +493,7 @@ func _begin_turn() -> void:
 	for pid in blinded_perils.keys():
 		if int(blinded_perils[pid]) == p.seat:
 			blinded_perils.erase(pid)
-			_log("%s torna attiva: il blind e' scaduto." % Db.peril(int(pid)).get("name", "La peril"))
+			_log("%s torna attiva: il blind è scaduto." % Db.peril(int(pid)).get("name", "La peril"))
 	p.clear_turn_modifiers()
 	p.sequence.clear()
 	_used_this_turn.clear()
@@ -631,7 +638,7 @@ func move(to_position: int) -> bool:
 			_log("%s resta fermo e diventa threatened." % p.name)
 			_queue_reaction("threatened")
 		else:
-			_log("%s resta fermo (gia' threatened)." % p.name)
+			_log("%s resta fermo (già threatened)." % p.name)
 			_queue_reaction("threatened")
 		phase = Phase.ACTION
 		await _resolve_reactions()
@@ -744,7 +751,7 @@ func play_card(card_id: int) -> bool:
 	if p.dazed and String(card.get("type", "")) == "maneuver":
 		p.dazed = false
 		blank = true
-		_log("%s e' dazed: %s e' blank (toglie solo lo struggle)." % [p.name, card.get("name", "?")])
+		_log("%s è dazed: %s è blank (toglie solo lo struggle)." % [p.name, card.get("name", "?")])
 
 	# Tutte le abilita' innescate da questa carta sono simultanee: si risolvono
 	# per priorita' e, a parita', nell'ordine scelto dal giocatore (p.24 e p.35).
@@ -926,7 +933,7 @@ func _attrition_check(p: PrimalPlayer) -> void:
 	if defensive < worst:
 		# Long Range in cima agli scarti previene il danno da attrition.
 		if p.attrition_prevented:
-			_log("Il danno da attrition e' prevenuto da un effetto in gioco.")
+			_log("Il danno da attrition è prevenuto da un effetto in gioco.")
 			outcome["prevented_by"] = "un effetto in gioco"
 		elif not p.discard.is_empty() and bool(
 				Db.action(p.discard[0]).get("prevents_attrition_on_top", false)):
@@ -983,7 +990,7 @@ func _end_turn() -> void:
 			_log("%s sale sul plateau." % p.name)
 	# Wildmaw: chi finisce il turno threatened dentro le fauci ci lascia qualcosa.
 	if not p.ko and not p.out_of_game and p.threatened and has_terrain(p.position, "wildmaw"):
-		_log("%s e' threatened nel wildmaw." % p.name)
+		_log("%s è threatened nel wildmaw." % p.name)
 		await _suffer(p, p.weapon_level(), "wildmaw")
 	if not p.ko:
 		# 1. scartare la sequenza (l'ultima giocata finisce in cima agli scarti)
@@ -1076,13 +1083,13 @@ func _requirements_met(p: PrimalPlayer, card: Dictionary) -> bool:
 ## Il controllo sta qui e non nell'interfaccia: e' una regola, non una comodita'.
 func why_not_playable(p: PrimalPlayer, card_id: int) -> String:
 	if phase != Phase.ACTION:
-		return "non e' la fase Azione"
+		return "non è la fase Azione"
 	if not p.hand.has(card_id):
-		return "la carta non e' in mano"
+		return "la carta non è in mano"
 	if p.sequence.size() >= sequence_limit_of(p):
 		return "sequenza al limite (%d carte)" % sequence_limit_of(p)
 	if has_terrain(p.position, "fire"):
-		return "c'e' del fuoco nel tuo settore: non puoi giocare carte"
+		return "c'è del fuoco nel tuo settore: non puoi giocare carte"
 	var card := Db.action(card_id)
 	# Regolamento p.21: le attack si giocano solo da un settore su un lato esposto.
 	if String(card.get("type", "")) == "attack" \
@@ -1098,7 +1105,7 @@ func why_not_playable(p: PrimalPlayer, card_id: int) -> String:
 	if bool(req.get("not_aggro_player", false)) and aggro_index == p.seat:
 		return "non puoi giocarla mentre hai il segnalino aggro"
 	if not p.is_free(card_id) and not _chain_free(p, card_id) \
-			and p.available_stamina(String(card.get("type", ""))) < cost_of(p, card_id):
+			and p.available_stamina(String(card.get("type", "")), card_id) < cost_of(p, card_id):
 		return "stamina insufficiente"
 	return ""
 
@@ -1283,7 +1290,7 @@ func _resolve_pending(item: Dictionary) -> void:
 			if p.mastery_counters >= int(m.get("focus", 1)):
 				p.mastery_focused = true
 				p.mastery_counters = 0
-				_log("  -> %s e' ora FOCUSED!" % m.get("name", "?"))
+				_log("  -> %s è ora FOCUSED!" % m.get("name", "?"))
 				await _run_effects(
 					m.get("focused_effects", []).filter(func(e): return not e.has("trigger")), p, {})
 		"behavior":
@@ -1356,7 +1363,7 @@ func _perform_attack(p: PrimalPlayer, card: Dictionary) -> void:
 		# girare il mostro. Caso raro (2 volte su 60 partite) ma reale, quindi
 		# va detto nel registro invece di sparire in un warning che il
 		# giocatore non vede mai.
-		_log("L'attacco di %s non va a segno: il settore %s non e' piu' esposto."
+		_log("L'attacco di %s non va a segno: il settore %s non è più esposto."
 			% [p.name, sector_of(p.position)])
 		_pending_bonus_damage = 0
 		return
@@ -1476,7 +1483,7 @@ func _wound_monster(n: int) -> void:
 		monster_wounded_this_turn = true
 		_log("%s subisce una ferita (salute %d)." % [monster_name(), monster_health])
 		if monster_health <= 0:
-			_end_scenario(true, "%s e' stato abbattuto!" % monster_name())
+			_end_scenario(true, "%s è stato abbattuto!" % monster_name())
 			return
 		# Peril Burning Skin (Kharja): ogni ferita lascia un segnalino.
 		await _trigger_perils("monster_wound")
@@ -1611,7 +1618,7 @@ func _change_charge(delta: int, set_to: int = -1) -> void:
 	if charge_level >= top and before < top:
 		var full: Array = current_stance().get("on_charge_full", [])
 		if not full.is_empty():
-			_log("Il tracciato charge e' pieno!")
+			_log("Il tracciato charge è pieno!")
 			await _run_effects(full, null, {})
 
 
@@ -1709,7 +1716,7 @@ func _unleash() -> void:
 			if use:
 				terrain[p.position].erase("rock")
 				sheltered.append(p.position)
-				_log("%s sacrifica la roccia: il settore %s e' al riparo."
+				_log("%s sacrifica la roccia: il settore %s è al riparo."
 					% [p.name, sector_of(p.position)])
 	for p in players:
 		if not p.ko and not p.out_of_game and not sheltered.has(p.position):
@@ -1846,7 +1853,7 @@ func _resolve_behavior(slot: int) -> void:
 			await _remove_struggle(cost, "boost di %s" % b.get("name", "?"))
 			if monster_confused:
 				monster_confused = false
-				_log("  Confuse: il boost viene annullato (il costo e' pagato lo stesso).")
+				_log("  Confuse: il boost viene annullato (il costo è pagato lo stesso).")
 			else:
 				_log("  Boost: %s" % Db.card_text(boost))
 				await _run_effects(boost.get("effects", []), null, ctx)
@@ -1885,7 +1892,7 @@ func _resolve_behavior(slot: int) -> void:
 func _daze(t: PrimalPlayer) -> void:
 	if not t.dazed:
 		t.dazed = true
-		_log("%s diventa dazed: il prossimo maneuver sara' blank." % t.name)
+		_log("%s diventa dazed: il prossimo maneuver sarà blank." % t.name)
 
 
 ## Un altro giocatore puo' scartare una carta per evitare qualcosa al giocatore
@@ -1950,7 +1957,7 @@ func _ride_offered(reaction_ctx: Dictionary) -> void:
 			continue
 		var ride: bool = await _ask({
 			"kind": "confirm",
-			"prompt": "%s e' sul plateau: salta in groppa al mostro (annulla la behavior e fai il riding check)?" % q.name,
+			"prompt": "%s è sul plateau: salta in groppa al mostro (annulla la behavior e fai il riding check)?" % q.name,
 			"player": q.seat,
 			"default": true,
 		})
@@ -2142,7 +2149,7 @@ func _reload(p: PrimalPlayer, n: int) -> void:
 	var before := p.bullets
 	p.bullets = mini(p.bullets + n, p.bullet_max())
 	if p.bullets == before:
-		_log("%s ha gia' il tracciato bullet pieno." % p.name)
+		_log("%s ha già il tracciato bullet pieno." % p.name)
 	else:
 		_log("%s fa reload: %d bullet." % [p.name, p.bullets])
 	# Arbitraggio: Precision Reload dice «quando fai reload», e l'istruzione c'e'
@@ -3011,7 +3018,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 			if hardened() and not was:
 				_log("%s diventa HARDENED." % monster_name())
 			elif was and not hardened():
-				_log("%s non e' piu' hardened." % monster_name())
+				_log("%s non è più hardened." % monster_name())
 
 		"place_dust":
 			var spots: Array[int] = []
@@ -3030,7 +3037,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 				_: spots.append(monster_facing)
 			for spot in spots:
 				if dust[spot] >= 2:
-					_log("Il settore %s ha gia' 2 segnalini dust." % sector_of(spot))
+					_log("Il settore %s ha già 2 segnalini dust." % sector_of(spot))
 				else:
 					dust[spot] += 1
 					_log("Segnalino dust nel settore %s (%d)." % [sector_of(spot), dust[spot]])
@@ -3043,7 +3050,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 					"kind": String(e.get("kind", "defensive")),
 					"damage": _damage_from(e, ctx),
 				}
-				_log("%s dovra' giocare una carta %s o subire %d danni."
+				_log("%s dovrà giocare una carta %s o subire %d danni."
 					% [t.name, t.pending_next_card["kind"], t.pending_next_card["damage"]])
 
 		"suffer_halved_on_discard":
@@ -3079,7 +3086,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 
 		"unstoppable":
 			unstoppable_until_round_end = true
-			_log("%s e' unstoppable fino a fine round." % monster_name())
+			_log("%s è unstoppable fino a fine round." % monster_name())
 
 		"charge":
 			if e.has("set"):
@@ -3093,7 +3100,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 
 		"all_players_ko":
 			_log("Tutti i cacciatori sono KO!")
-			_end_scenario(false, "Il tracciato charge e' pieno: %s travolge tutti i cacciatori." % monster_name())
+			_end_scenario(false, "Il tracciato charge è pieno: %s travolge tutti i cacciatori." % monster_name())
 
 		"discard_attrition":
 			for i in int(e.get("n", 1)):
@@ -3217,7 +3224,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 
 		"daze_all":
 			if charge_level < int(e.get("min_charge", 0)):
-				_log("Il livello di charge e' %d: nessun effetto." % charge_level)
+				_log("Il livello di charge è %d: nessun effetto." % charge_level)
 				return
 			for t in await _targets("all", actor):
 				if t.dazed:
@@ -3225,7 +3232,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 						continue
 					if bool(e.get("random", false)):
 						var cid_d: int = t.hand[rng.randi_range(0, t.hand.size() - 1)]
-						_log("%s e' gia' dazed: scarta a caso %s." % [t.name, Db.action(cid_d).get("name", "?")])
+						_log("%s è già dazed: scarta a caso %s." % [t.name, Db.action(cid_d).get("name", "?")])
 						await _discard_from_hand(t, cid_d)
 					else:
 						await _discard_any_one(t)
@@ -3286,7 +3293,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 		"no_assist":
 			for t in await _targets(String(e.get("who", "active")), actor):
 				t.can_be_assisted = false
-				_log("%s non puo' essere assistito in questo turno." % t.name)
+				_log("%s non può essere assistito in questo turno." % t.name)
 
 		"skip_movement":
 			for t in await _targets(String(e.get("who", "active")), actor):
@@ -3308,7 +3315,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 			var pos := monster_facing if String(e.get("where", "front")) == "front" \
 				else active_player().position
 			if sector_damage[pos] > 0:
-				_log("Il settore %s ha gia' un segnalino damage." % sector_of(pos))
+				_log("Il settore %s ha già un segnalino damage." % sector_of(pos))
 			else:
 				sector_damage[pos] = 1
 				_log("Segnalino damage nel settore %s." % sector_of(pos))
@@ -3342,7 +3349,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 		"discard_top_behavior":
 			var top_id := await _draw_behavior()
 			if top_id < 0:
-				_log("Il mazzo behavior e' vuoto: niente da scartare.")
+				_log("Il mazzo behavior è vuoto: niente da scartare.")
 			else:
 				var top_card := Db.behavior(top_id)
 				behavior_discard.push_front(top_id)
@@ -3445,7 +3452,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 				if moved:
 					t.position = dest
 					t.threatened = false
-					_log("%s e' costretto a muoversi nel settore %s." % [t.name, sector_of(dest)])
+					_log("%s è costretto a muoversi nel settore %s." % [t.name, sector_of(dest)])
 					_queue_reaction("player_moved")
 				else:
 					await _suffer(t, _damage_from(e, ctx), "behavior")
@@ -3988,7 +3995,7 @@ func _deck_emptied(p: PrimalPlayer) -> void:
 		if p.mastery_counters >= int(m.get("focus", 1)):
 			p.mastery_focused = true
 			p.mastery_counters = 0
-			_log("  -> %s e' ora FOCUSED!" % m.get("name", "?"))
+			_log("  -> %s è ora FOCUSED!" % m.get("name", "?"))
 	elif p.mastery_focused and p.id == "mirah":
 		await deal_damage_to_monster(5 * p.weapon_level())
 	await _suffer(p, p.weapon_level(), "fatigue")
@@ -4095,7 +4102,7 @@ func _heal(p: PrimalPlayer, amount: int) -> void:
 
 
 func _knock_out(p: PrimalPlayer) -> void:
-	_log("%s e' messo KO!" % p.name)
+	_log("%s è messo KO!" % p.name)
 	var was_active := p == active_player()
 	p.damage = 0
 	p.stamina_token = 0
@@ -4121,7 +4128,7 @@ func _knock_out(p: PrimalPlayer) -> void:
 		p.helm_depleted = true
 	if p.armor_depleted and p.helm_depleted:
 		p.out_of_game = true
-		_log("%s e' fuori dallo scenario: equipaggiamento esaurito." % p.name)
+		_log("%s è fuori dallo scenario: equipaggiamento esaurito." % p.name)
 	p.ko = true
 	p.ko_flipped = false
 	await _turn_monster_to(players[aggro_index].position, "KO")
@@ -4199,12 +4206,12 @@ func _mill(p: PrimalPlayer, n: int) -> Array[int]:
 ## Applica al mostro uno stato del glossario.
 func _inflict_on_monster(status: String, actor: PrimalPlayer) -> void:
 	if hardened() and status in ["vulnerable", "stun", "confuse"]:
-		_log("  %s e' hardened: %s non ha effetto." % [monster_name(), status])
+		_log("  %s è hardened: %s non ha effetto." % [monster_name(), status])
 		return
 	match status:
 		"vulnerable":
 			if monster_vulnerable:
-				_log("  %s e' gia' vulnerable." % monster_name())
+				_log("  %s è già vulnerable." % monster_name())
 			else:
 				monster_vulnerable = true
 				_log("  %s diventa vulnerable." % monster_name())
@@ -4222,7 +4229,7 @@ func _inflict_on_monster(status: String, actor: PrimalPlayer) -> void:
 				_log("  Nessuna peril in gioco da accecare.")
 				return
 			if blinded_perils.has(pid):
-				_log("  La peril e' gia' blind.")
+				_log("  La peril è già blind.")
 				return
 			blinded_perils[pid] = actor.seat if actor else active_player().seat
 			_log("  %s diventa blank (blind)." % Db.peril(pid).get("name", "La peril"))
@@ -4234,7 +4241,7 @@ func _inflict_on_monster(status: String, actor: PrimalPlayer) -> void:
 			# Glossario p.107: il mostro si gira dove vuole chi lo confonde, e il
 			# prossimo boost viene annullato (il costo si paga lo stesso).
 			if monster_confused:
-				_log("  %s e' gia' confuse." % monster_name())
+				_log("  %s è già confuse." % monster_name())
 			else:
 				monster_confused = true
 				_log("  %s diventa confuse." % monster_name())
@@ -4268,7 +4275,7 @@ func _mastery_trigger(p: PrimalPlayer, trigger: String) -> void:
 	if p.mastery_counters >= int(m.get("focus", 1)):
 		p.mastery_focused = true
 		p.mastery_counters = 0
-		_log("%s e' ora focalizzata." % m.get("name", "?"))
+		_log("%s è ora focalizzata." % m.get("name", "?"))
 
 
 func _stun_monster(actor: PrimalPlayer) -> void:
@@ -4522,7 +4529,7 @@ func _skip_turn(e: Dictionary, actor: PrimalPlayer) -> void:
 ## Chi ha gia' il segnalino scarta invece le prime 5 carte del mazzo.
 func _inflict_burning(p: PrimalPlayer) -> void:
 	if p.burning:
-		_log("%s e' gia' burning: scarta 5 carte." % p.name)
+		_log("%s è già burning: scarta 5 carte." % p.name)
 		await _mill(p, 5)
 	else:
 		p.burning = true
@@ -4738,7 +4745,7 @@ func _attrition_level() -> int:
 ## Wailing Roar (Tarragua) aspetta il momento in cui il mazzo attrition finisce.
 func _after_attrition_draw() -> void:
 	if attrition_deck.is_empty():
-		_log("Il mazzo attrition e' esaurito.")
+		_log("Il mazzo attrition è esaurito.")
 		await _trigger_perils("attrition_deck_emptied")
 
 

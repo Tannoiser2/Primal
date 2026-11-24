@@ -78,6 +78,15 @@ var _choice_request: Dictionary = {}
 var _choice_selection: Array[int] = []
 
 var _level: int = 0
+# --- salvataggio su Firebase: la partita e' seme + registro delle mosse ---
+var _seed: int = 0
+var _acts: Array = []
+var _sent: int = 0
+var _room: String = ""
+var _replaying := false
+var _resume_code := ""
+var _net: PrimalNet
+var _save_button: Button
 var _loadout_screen: LoadoutScreen
 var _loadouts: Dictionary = {}
 var _party: Array = ["dareon", "mirah"]
@@ -123,11 +132,14 @@ func _ask_party() -> void:
 		get_tree().quit()
 		return
 	var picked: Array = await splash.start_requested
-	_party = picked[0]
-	_monster = String(picked[1])
-	_level = picked[2]
-	if picked.size() > 3:
-		_expedition = String(picked[3])
+	if picked.size() > 3 and String(picked[3]).begins_with("RESUME:"):
+		_resume_code = String(picked[3]).substr(7).strip_edges().to_upper()
+	else:
+		_party = picked[0]
+		_monster = String(picked[1])
+		_level = picked[2]
+		if picked.size() > 3:
+			_expedition = String(picked[3])
 	splash.queue_free()
 	for title in _windows:
 		(_windows[title] as Window).show()
@@ -167,13 +179,23 @@ func _ready() -> void:
 			elif a.begins_with("--level="):
 				_level = int(a.substr(8))
 
+	_net = PrimalNet.new()
+	add_child(_net)
+	var saved_acts: Array = []
+	if _resume_code != "":
+		saved_acts = await _load_saved(_resume_code)
+
 	game.monster_id = _monster
 	game.expedition = _expedition
 	board.spawn_monster(_monster)
 	for h in _party:
 		board.spawn_hunter(h)
 
-	await game.setup(_party, _level, 0, _loadouts)
+	if _seed == 0:
+		_seed = randi_range(1, 2000000000)
+	await game.setup(_party, _level, _seed, _loadouts)
+	if not saved_acts.is_empty():
+		await _replay(saved_acts)
 	_refresh()
 
 	if "--test-pay-token" in args:
@@ -233,7 +255,7 @@ func _test_payment() -> void:
 	_on_hand_card(target)
 	for i in 20:
 		await get_tree().process_frame
-	print("modalita' pagamento attiva: ", _pending_play >= 0,
+	print("modalità pagamento attiva: ", _pending_play >= 0,
 		" | costo richiesto: ", _pay_request.get("cost", "-"))
 
 	# Sceglie le carte da scartare finche' il costo non e' coperto.
@@ -255,7 +277,7 @@ func _test_payment() -> void:
 	for i in 40:
 		await get_tree().process_frame
 	print("RISULTATO -> carte sul tavolo: ", p.sequence.size(),
-		" | la carta giocata e' in sequenza: ", p.sequence.has(target))
+		" | la carta giocata è in sequenza: ", p.sequence.has(target))
 	get_tree().quit()
 
 
@@ -343,7 +365,7 @@ func _test_pay_with_token() -> void:
 		if _pending_play >= 0:
 			break
 	if _pending_play < 0:
-		push_error("il pagamento non e' stato chiesto")
+		push_error("il pagamento non è stato chiesto")
 		get_tree().quit()
 		return
 
@@ -361,7 +383,7 @@ func _test_pay_with_token() -> void:
 			if _pending_play < 0 and p.sequence.has(target):
 				break
 		if p.sequence.has(target) and p.stamina_token == 0:
-			print("=== ok: la carta e' stata giocata pagando col segnalino ===")
+			print("=== ok: la carta è stata giocata pagando col segnalino ===")
 		else:
 			push_error("FALLITO: sequenza %s, segnalini %d" % [p.sequence, p.stamina_token])
 	get_tree().quit()
@@ -402,7 +424,7 @@ func _advance_until(target: String) -> void:
 			return
 		_respond(game._auto_answer(_choice_request))
 	if target != "":
-		push_error("il pannello '%s' non e' comparso" % target)
+		push_error("il pannello '%s' non è comparso" % target)
 
 
 ## Paga scartando le prime carte utili: serve solo alle prove automatiche.
@@ -664,6 +686,12 @@ func _build_top_bar() -> void:
 		_sequence_closed_by_hand = _sequence_window.visible
 		_sequence_window.visible = not _sequence_window.visible)
 	top.add_child(seq_toggle)
+
+	_save_button = Button.new()
+	_save_button.text = "Salva"
+	_save_button.tooltip_text = "Salva la partita online: si riprende da qualunque dispositivo col codice"
+	_save_button.pressed.connect(func(): call_deferred("_save_online"))
+	top.add_child(_save_button)
 
 	_log_toggle = Button.new()
 	_log_toggle.text = "Registro"
@@ -1143,7 +1171,121 @@ func _respond(result: Variant) -> void:
 
 
 func _deliver_answer(result: Variant) -> void:
+	_record("ans", result)
 	game.answer(result)
+
+
+# =====================================================================
+#  SALVATAGGIO (Firebase)
+# =====================================================================
+
+## Ogni comando e ogni risposta finisce nel registro: con lo stesso seme, rigiocarli
+## nello stesso ordine ricostruisce la stessa identica partita.
+func _record(kind: String, value: Variant) -> void:
+	if _replaying:
+		return
+	_acts.append({"s": 0, "k": kind, "v": value})
+
+
+## Salva: la prima volta crea la stanza (il codice), poi manda le mosse nuove.
+func _save_online() -> void:
+	if _save_button != null:
+		_save_button.disabled = true
+		_save_button.text = "Salvo..."
+	var ok := true
+	if _room == "":
+		_room = await _net.create_room("Primal", [0])
+		ok = _room != ""
+		if ok:
+			ok = await _net.start_room(_room, {
+				"monster": _monster, "expedition": _expedition, "level": _level,
+				"party": _party, "loadouts": _loadouts, "seed": _seed, "v": 1,
+			})
+	while ok and _sent < _acts.size():
+		ok = await _net.post_act(_room, _sent, _acts[_sent])
+		if ok:
+			_sent += 1
+	if ok:
+		_on_log("[color=#9fd08a]Partita salvata. Codice per riprenderla: [b]%s[/b][/color]" % _room)
+	else:
+		_on_log("[color=#ff8080]Salvataggio non riuscito: %s[/color]" % _net.last_error)
+		if _sent == 0:
+			_room = ""
+	if _save_button != null:
+		_save_button.disabled = false
+		_save_button.text = "Salva  %s" % _room if _room != "" else "Salva"
+
+
+## Legge una partita salvata e prepara gruppo, mostro e livello. Restituisce le
+## mosse da rigiocare (vuoto se il codice non esiste).
+func _load_saved(code: String) -> Array:
+	var room: Dictionary = await _net.room(code)
+	var g: Dictionary = room.get("game", {}) if room.get("game") is Dictionary else {}
+	if g.is_empty():
+		_on_log("[color=#ff8080]Nessuna partita salvata col codice %s (%s).[/color]"
+			% [code, _net.last_error])
+		return []
+	_monster = String(g.get("monster", _monster))
+	_expedition = String(g.get("expedition", "1"))
+	_level = int(g.get("level", 0))
+	_party = []
+	for h in g.get("party", []):
+		_party.append(String(h))
+	_loadouts = _as_ints(g.get("loadouts", {})) if g.get("loadouts") is Dictionary else {}
+	_seed = int(g.get("seed", 0))
+	var acts: Array = await _net.get_acts(code)
+	_room = code
+	_acts = _as_ints(acts)
+	_sent = _acts.size()
+	return _acts.duplicate()
+
+
+## JSON restituisce i numeri come decimali: nel motore servono interi.
+func _as_ints(v: Variant) -> Variant:
+	if v is float and v == floorf(v):
+		return int(v)
+	if v is Array:
+		var out := []
+		for x in v:
+			out.append(_as_ints(x))
+		return out
+	if v is Dictionary:
+		var d := {}
+		for k in v:
+			d[k] = _as_ints(v[k])
+		return d
+	return v
+
+
+## Rigioca il registro: ogni comando con, davanti, le risposte che ha avuto.
+func _replay(acts: Array) -> void:
+	_replaying = true
+	board.set_process(false)
+	var i := 0
+	while i < acts.size():
+		var act: Dictionary = acts[i]
+		i += 1
+		var kind := String(act.get("k", ""))
+		if kind == "ans":
+			continue
+		var answers: Array = []
+		while i < acts.size() and String(acts[i].get("k", "")) == "ans":
+			answers.append(acts[i].get("v"))
+			i += 1
+		game.replay_answers = answers
+		var v: Variant = act.get("v")
+		match kind:
+			"play": await game.play_card(int(v))
+			"move": await game.move(int(v))
+			"endact": await game.end_action_phase()
+			"fcons": await game.finish_consume_phase()
+			"cons": await game.consume(game.players[int(v[0])], int(v[1]))
+			"assist": await game.assist(game.players[int(v[0])], int(v[1]))
+			"revive": await game.revive(game.players[int(v)])
+		game.replay_answers = []
+	board.set_process(true)
+	_replaying = false
+	_on_log("[color=#9fd08a]Partita %s ripresa: %d mosse rigiocate.[/color]" % [_room, acts.size()])
 
 
 # =====================================================================
@@ -1186,6 +1328,15 @@ func _refresh_status() -> void:
 		"unleash a %d struggle" % threshold))
 	if game.monster_vulnerable:
 		icons.add_child(_labelled(_token("vulnerable", -1, 30), "vulnerable"))
+	if game.current_shield() > 0:
+		icons.add_child(_labelled(_badge("SHIELD %d" % game.current_shield(), Color(0.30, 0.36, 0.42)),
+			"shield: toglie %d a ogni fonte di danno" % game.current_shield()))
+	if Db.monster(game.monster_id).has("charge"):
+		icons.add_child(_labelled(_badge("CHARGE %d/3" % game.charge_level, Color(0.42, 0.26, 0.55)),
+			"tracciato charge: a 3 succede quanto scritto sulla stance"))
+	if game.is_unstoppable():
+		icons.add_child(_labelled(_badge("UNSTOPPABLE", Color(0.55, 0.18, 0.15)),
+			"ogni behavior innescata gli da' 1 struggle"))
 	var face: TextureRect = box.get_meta("face")
 	face.mouse_filter = Control.MOUSE_FILTER_STOP
 	face.tooltip_text = "Clicca per aprire o chiudere la scheda del mostro"
@@ -1218,8 +1369,8 @@ func _refresh_track() -> void:
 
 	var order := _turn_order()
 	var here := _track_position()
-	var steps: Array = [{"label": "Consume", "tip": "Ogni cacciatore può bere una pozione."},
-		{"label": "%s: upkeep" % game.monster_name(),
+	var steps: Array = [{"label": "Pozioni", "tip": "Fase Consume: ogni cacciatore può bere una pozione."},
+		{"label": "%s si prepara" % game.monster_name(),
 		 "tip": "Il mostro rinnova le carte reazione e guadagna struggle."}]
 	for i in order.size():
 		var q: PrimalPlayer = order[i]
@@ -1430,6 +1581,7 @@ func _hunter_card(p: PrimalPlayer) -> Control:
 		tokens.add_child(_labelled(_token("depleted", -1, 22), "equipaggiamento esaurito"))
 	if game.aggro_index == p.seat:
 		tokens.add_child(_labelled(_aggro_badge(), "ha il segnalino aggro"))
+	_hunter_badges(p, tokens)
 	col.add_child(tokens)
 	return box
 
@@ -1448,24 +1600,45 @@ func _mini_card(art_path: String, tip: String) -> Control:
 
 
 func _aggro_badge() -> Control:
+	return _badge("AGGRO", Color(0.72, 0.20, 0.18))
+
+
+## Targhetta di testo per gli stati che non hanno un segnalino nel mod
+## (dazed, plateau, brush, shield, charge): testo semplice, niente simboli.
+func _badge(text: String, colour: Color) -> Control:
 	var badge := Label.new()
-	badge.text = "AGGRO"
-	badge.custom_minimum_size = Vector2(50, 22)
+	badge.text = text
+	badge.custom_minimum_size = Vector2(maxf(50.0, text.length() * 9.0 + 14.0), 22)
 	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	badge.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	badge.add_theme_font_size_override("font_size", 12)
 	badge.add_theme_color_override("font_color", Color.WHITE)
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.72, 0.20, 0.18)
-	style.set_corner_radius_all(4)
+	style.bg_color = colour
+	style.set_corner_radius_all(3)
+	style.content_margin_left = 6
+	style.content_margin_right = 6
 	badge.add_theme_stylebox_override("normal", style)
 	return badge
 
 
+## Gli stati del cacciatore senza segnalino proprio.
+func _hunter_badges(q: PrimalPlayer, icons: Control) -> void:
+	if q.dazed:
+		icons.add_child(_labelled(_badge("DAZED", Color(0.36, 0.30, 0.55)),
+			"dazed: il prossimo maneuver giocato sarà blank"))
+	if q.on_plateau:
+		icons.add_child(_labelled(_badge("PLATEAU", Color(0.40, 0.33, 0.22)),
+			"sul plateau: alla prossima behavior può saltare in groppa"))
+	if q.hiding:
+		icons.add_child(_labelled(_badge("NEL BRUSH", Color(0.22, 0.38, 0.24)),
+			"nascosto nel brush: il suo turno è in pausa"))
+
+
 func _phase_name() -> String:
 	match game.phase:
-		PrimalGame.Phase.CONSUME: return "Consume"
-		PrimalGame.Phase.UPKEEP: return "Upkeep del mostro"
+		PrimalGame.Phase.CONSUME: return "Pozioni"
+		PrimalGame.Phase.UPKEEP: return "Preparazione del mostro"
 		PrimalGame.Phase.MOVEMENT: return "Movimento"
 		PrimalGame.Phase.ACTION: return "Azione"
 		PrimalGame.Phase.ATTRITION: return "Attrition"
@@ -1599,6 +1772,9 @@ func _monster_board_view() -> Control:
 	elif game.acceleration > 0:
 		holder.add_child(_board_marker(TRACK2_X, TRACK2_Y,
 			clampi(game.acceleration, 1, 3), Color(1.0, 0.78, 0.3)))
+	elif game.charge_level > 0:
+		holder.add_child(_board_marker(TRACK2_X, TRACK2_Y,
+			clampi(game.charge_level, 1, 3), Color(0.75, 0.55, 1.0)))
 	return holder
 
 
@@ -1620,13 +1796,18 @@ func _refresh_behaviors() -> void:
 	var stance := game.current_stance()
 	_monster_box.add_child(_card_slot("Stance %s" % ["I", "II", "III"][game.stance_index],
 		String(stance.get("art", "")), MONSTER_CARD_W))
-	if stance.has("peril"):
-		var peril := Db.peril(int(stance["peril"]))
-		_monster_box.add_child(_card_slot("Peril", String(peril.get("art", "")),
-			MONSTER_CARD_W, "%s\n%s" % [peril.get("name", ""), Db.card_text(peril)]))
-	if stance.has("objective"):
-		var obj := Db.objective(int(stance["objective"]))
-		var counters := int(game.objective_counters.get(int(stance["objective"]), 0))
+	# Tutte le peril in gioco: anche le permanenti delle stance passate.
+	for pid in game.active_perils():
+		var peril := Db.peril(pid)
+		var blind := not game._peril_active(pid)
+		var slot := _card_slot("Peril" + ("  (blind)" if blind else ""), String(peril.get("art", "")),
+			MONSTER_CARD_W, "%s\n%s" % [peril.get("name", ""), Db.card_text(peril)])
+		if blind:
+			slot.modulate = Color(0.55, 0.55, 0.6)
+		_monster_box.add_child(slot)
+	for oid in game.active_objectives():
+		var obj := Db.objective(oid)
+		var counters := int(game.objective_counters.get(oid, 0))
 		_monster_box.add_child(_card_slot(
 			"Obiettivo" + ("  (%d)" % counters if counters > 0 else ""),
 			String(obj.get("art", "")), MONSTER_CARD_W,
@@ -1761,6 +1942,7 @@ func _refresh_party() -> void:
 			icons.add_child(_labelled(_token("depleted", -1, 28), "equipaggiamento esaurito"))
 		if game.aggro_index == q.seat:
 			icons.add_child(_labelled(_aggro_badge(), "ha il segnalino aggro"))
+		_hunter_badges(q, icons)
 
 		# Il ritratto apre l'inventario del personaggio.
 		var face: TextureRect = box.get_meta("face")
@@ -2098,7 +2280,7 @@ func _refresh_actions() -> void:
 	_prompt.text = _phase_prompt()
 	match game.phase:
 		PrimalGame.Phase.CONSUME:
-			_actions_row.add_child(_button("Salta la fase Consume",
+			_actions_row.add_child(_button("Niente pozioni",
 				func(): call_deferred("_do_finish_consume")))
 			var p := game.active_player()
 			for i in p.potions.size():
@@ -2107,7 +2289,7 @@ func _refresh_actions() -> void:
 					func(): call_deferred("_do_consume", idx)))
 		PrimalGame.Phase.MOVEMENT:
 			# Ci si sposta cliccando la casella sulla plancia: si vede dove si va.
-			_actions_row.add_child(_button("Resta fermo (diventa threatened)",
+			_actions_row.add_child(_button("Resta fermo (diventi threatened)",
 				func(): call_deferred("_do_move", -1)))
 		PrimalGame.Phase.ACTION:
 			_actions_row.add_child(_button("Termina fase Azione",
@@ -2141,7 +2323,7 @@ func _phase_prompt() -> String:
 	var p := game.active_player()
 	match game.phase:
 		PrimalGame.Phase.CONSUME:
-			return "[b]Consume[/b] — bevi una pozione o passa. " \
+			return "[b]Pozioni[/b] — bevi una pozione o passa. " \
 				+ "[color=#8a8580]Poi tocca a %s.[/color]" % game.monster_name()
 		PrimalGame.Phase.UPKEEP:
 			return "[b]%s[/b] — rinnova le reazioni e accumula struggle." % game.monster_name()
@@ -2177,37 +2359,44 @@ func _button(text: String, action: Callable) -> Button:
 func _do_play(card_id: int) -> void:
 	if game.phase != PrimalGame.Phase.ACTION:
 		return
+	_record("play", card_id)
 	if not await game.play_card(card_id):
 		_on_log("[color=#ff8080]Non puoi giocare questa carta ora.[/color]")
 	_refresh()
 
 
 func _do_move(to_position: int) -> void:
+	_record("move", to_position)
 	await game.move(to_position)
 	_refresh()
 
 
 func _do_end_action() -> void:
+	_record("endact", 0)
 	await game.end_action_phase()
 	_refresh()
 
 
 func _do_finish_consume() -> void:
+	_record("fcons", 0)
 	await game.finish_consume_phase()
 	_refresh()
 
 
 func _do_consume(index: int) -> void:
+	_record("cons", [game.active_player().seat, index])
 	await game.consume(game.active_player(), index)
 	_refresh()
 
 
 func _do_assist(seat: int, card_id: int) -> void:
+	_record("assist", [seat, card_id])
 	await game.assist(game.players[seat], card_id)
 	_refresh()
 
 
 func _do_revive(seat: int) -> void:
+	_record("revive", seat)
 	await game.revive(game.players[seat])
 	_refresh()
 
@@ -2216,7 +2405,11 @@ func _do_restart() -> void:
 	_log_lines.clear()
 	_log_view.clear()
 	game.expedition = _expedition
-	await game.setup(_party, _level, 0, _loadouts)
+	_seed = randi_range(1, 2000000000)
+	_acts.clear()
+	_sent = 0
+	_room = ""
+	await game.setup(_party, _level, _seed, _loadouts)
 	_refresh()
 
 

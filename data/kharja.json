@@ -89,7 +89,7 @@
           ],
           "peril": 40103,
           "text": "When revealed: Advance the round marker to 8. If it is already at 8 or beyond, Kharja gains 1 PP struggle.",
-          "it": "Quando rivelata: porta il segnalino round a 8. Se e' gia' a 8 o oltre, Kharja guadagna 1 struggle per giocatore.",
+          "it": "Quando rivelata: porta il segnalino round a 8. Se è già a 8 o oltre, Kharja guadagna 1 struggle per giocatore.",
           "art": "res://art/monsters/kharja/sciolta_2_stato2.jpg",
           "on_reveal": [
             {
@@ -173,7 +173,7 @@
           ],
           "peril": 40103,
           "text": "When revealed: Advance the round marker to 8. If it is already at 8 or beyond, Kharja gains 1 PP struggle.",
-          "it": "Quando rivelata: porta il segnalino round a 8. Se e' gia' a 8 o oltre, Kharja guadagna 1 struggle per giocatore.",
+          "it": "Quando rivelata: porta il segnalino round a 8. Se è già a 8 o oltre, Kharja guadagna 1 struggle per giocatore.",
           "art": "res://art/monsters/kharja/sciolta_1_stato3.jpg",
           "on_reveal": [
             {
@@ -261,7 +261,7 @@
           ],
           "peril": 40103,
           "text": "When revealed: Advance the round marker to 8. If it is already at 8 or beyond, Kharja gains 1 PP struggle.",
-          "it": "Quando rivelata: porta il segnalino round a 8. Se e' gia' a 8 o oltre, Kharja guadagna 1 struggle per giocatore.",
+          "it": "Quando rivelata: porta il segnalino round a 8. Se è già a 8 o oltre, Kharja guadagna 1 struggle per giocatore.",
           "art": "res://art/monsters/kharja/sciolta_3_stato3.jpg",
           "on_reveal": [
             {
@@ -353,7 +353,7 @@
           ],
           "peril": 401030,
           "text": "When revealed: Advance the round marker to 8. If it is already at 8 or beyond, Kharja unleashes.",
-          "it": "Quando rivelata: porta il segnalino round a 8. Se e' gia' a 8 o oltre, Kharja unleashes.",
+          "it": "Quando rivelata: porta il segnalino round a 8. Se è già a 8 o oltre, Kharja unleashes.",
           "art": "res://art/monsters/kharja/sciolta_4_stato3.jpg",
           "on_reveal": [
             {
@@ -379,7 +379,7 @@
       "art": "res://art/monsters/kharja/g1_00_fronte.jpg",
       "back": "res://art/monsters/kharja/g1_00_retro.jpg",
       "text": "Kharja becomes vulnerable. The active player suffers DMG+X, where X is the number of counters on Kharja.",
-      "it": "Kharja diventa vulnerable. Il giocatore attivo subisce DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "it": "Kharja diventa vulnerable. Il giocatore attivo subisce DMG+X, dove X è il numero di segnalini su Kharja.",
       "effects": [
         {
           "op": "inflict",
@@ -400,7 +400,7 @@
       "art": "res://art/monsters/kharja/g3_00_fronte.jpg",
       "back": "res://art/monsters/kharja/g3_00_retro.jpg",
       "text": "Kharja becomes vulnerable. The active player suffers DMG+X, where X is the number of counters on Kharja. That player suffers burning. Only resolve the boost effect of this card if Kharja is in Stance II or III.",
-      "it": "Kharja diventa vulnerable. Il giocatore attivo subisce DMG+X (X = segnalini su Kharja) e subisce burning. Risolvi il boost solo se Kharja e' in Stance II o III.",
+      "it": "Kharja diventa vulnerable. Il giocatore attivo subisce DMG+X (X = segnalini su Kharja) e subisce burning. Risolvi il boost solo se Kharja è in Stance II o III.",
       "effects": [
         {
           "op": "inflict",
@@ -441,7 +441,7 @@
       "art": "res://art/monsters/kharja/g1_01_fronte.jpg",
       "back": "res://art/monsters/kharja/g1_01_retro.jpg",
       "text": "The active player cannot be assisted this turn.",
-      "it": "Il giocatore attivo non puo' essere assistito in questo turno.",
+      "it": "Il giocatore attivo non può essere assistito in questo turno.",
       "effects": [
         {
           "op": "no_assist",
@@ -469,7 +469,7 @@
       "art": "res://art/monsters/kharja/g2_03_fronte.jpg",
       "back": "res://art/monsters/kharja/g2_03_retro.jpg",
       "text": "For the duration of this turn, the active player cannot be assisted and must use only dodge to generate stamina for movement.",
-      "it": "Per tutto questo turno il giocatore attivo non puo' essere assistito e puo' generare stamina per il movimento solo con dodge.",
+      "it": "Per tutto questo turno il giocatore attivo non può essere assistito e può generare stamina per il movimento solo con dodge.",
       "effects": [
         {
           "op": "no_assist",
@@ -490,7 +490,7 @@
       "art": "res://art/monsters/kharja/g1_02_fronte.jpg",
       "back": "res://art/monsters/kharja/g1_02_retro.jpg",
       "text": "Kharja gains PP-1 struggle. The active player skips their turn unless another player discards an offensive card from their hand. If the active player is the only player standing, they must discard an offensive card from their hand instead.",
-      "it": "Kharja guadagna (giocatori-1) struggle. Il giocatore attivo salta il turno a meno che un altro giocatore non scarti una carta offensive dalla mano. Se e' l'unico giocatore in piedi, deve scartarla lui.",
+      "it": "Kharja guadagna (giocatori-1) struggle. Il giocatore attivo salta il turno a meno che un altro giocatore non scarti una carta offensive dalla mano. Se è l'unico giocatore in piedi, deve scartarla lui.",
       "effects": [
         {
           "op": "monster_gain_struggle",
@@ -511,7 +511,7 @@
       "art": "res://art/monsters/kharja/g3_02_fronte.jpg",
       "back": "res://art/monsters/kharja/g3_02_retro.jpg",
       "text": "Kharja gains 1 PP struggle. The active player discards all attacks from their hand. If there are two or more players standing, the active player skips their turn unless another player discards an offensive card from their hand.",
-      "it": "Kharja guadagna 1 struggle per giocatore. Il giocatore attivo scarta tutti gli attack dalla mano. Se ci sono due o piu' giocatori in piedi, salta il turno a meno che un altro giocatore non scarti una carta offensive dalla mano.",
+      "it": "Kharja guadagna 1 struggle per giocatore. Il giocatore attivo scarta tutti gli attack dalla mano. Se ci sono due o più giocatori in piedi, salta il turno a meno che un altro giocatore non scarti una carta offensive dalla mano.",
       "effects": [
         {
           "op": "monster_gain_struggle",
@@ -539,7 +539,7 @@
       "art": "res://art/monsters/kharja/g1_03_fronte.jpg",
       "back": "res://art/monsters/kharja/g1_03_retro.jpg",
       "text": "Each player in the rear sector must either immediately move or suffer DMG+X, where X is the number of counters on Kharja.",
-      "it": "Ogni giocatore nel settore rear deve muoversi subito o subire DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "it": "Ogni giocatore nel settore rear deve muoversi subito o subire DMG+X, dove X è il numero di segnalini su Kharja.",
       "effects": [
         {
           "op": "move_or_suffer",
@@ -816,7 +816,7 @@
       "art": "res://art/monsters/kharja/g1_08_fronte.jpg",
       "back": "res://art/monsters/kharja/g1_08_retro.jpg",
       "text": "Threatened players suffer DMG+X, where X is the number of counters on Kharja.",
-      "it": "I giocatori threatened subiscono DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "it": "I giocatori threatened subiscono DMG+X, dove X è il numero di segnalini su Kharja.",
       "effects": [
         {
           "op": "suffer",
@@ -922,7 +922,7 @@
       "name": "In the Clutches of Fire",
       "art": "res://art/monsters/kharja/g5_02_fronte.jpg",
       "text": "At the start of the round, discard the top card of the behavior deck. If that card has claw, players in the front sector suffer DMG.",
-      "it": "All'inizio del round scarta la prima carta del mazzo behavior. Se quella carta ha claw, chi e' nel settore front subisce DMG.",
+      "it": "All'inizio del round scarta la prima carta del mazzo behavior. Se quella carta ha claw, chi è nel settore front subisce DMG.",
       "abilities": [
         {
           "trigger": "round_start",
@@ -950,7 +950,7 @@
       ],
       "art": "res://art/monsters/kharja/g5_01_fronte.jpg",
       "text": "Immune to blind. When Kharja suffers a wound, place a counter on Kharja. When a player suffers attrition damage, that player suffers 1 additional damage for each counter on Kharja.",
-      "it": "Immune a blind. Quando Kharja subisce una ferita, piazza un segnalino su Kharja. Quando un giocatore subisce danno da attrition, ne subisce 1 in piu' per ogni segnalino su Kharja.",
+      "it": "Immune a blind. Quando Kharja subisce una ferita, piazza un segnalino su Kharja. Quando un giocatore subisce danno da attrition, ne subisce 1 in più per ogni segnalino su Kharja.",
       "abilities": [
         {
           "trigger": "monster_wound",
@@ -976,7 +976,7 @@
       ],
       "art": "res://art/monsters/kharja/g5_00_fronte.jpg",
       "text": "Immune to blind. When a player suffers attrition damage, that player suffers 1 additional damage for each counter on Kharja. At the end of the round, if Kharja's health is 1, all players suffer DMG+X, where X is the number of counters on Kharja.",
-      "it": "Immune a blind. Quando un giocatore subisce danno da attrition, ne subisce 1 in piu' per ogni segnalino su Kharja. Alla fine del round, se la salute di Kharja e' 1, tutti i giocatori subiscono DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "it": "Immune a blind. Quando un giocatore subisce danno da attrition, ne subisce 1 in più per ogni segnalino su Kharja. Alla fine del round, se la salute di Kharja è 1, tutti i giocatori subiscono DMG+X, dove X è il numero di segnalini su Kharja.",
       "abilities": [
         {
           "trigger": "attrition_damage",
@@ -1002,7 +1002,7 @@
       "aggression": "V",
       "art": "res://art/monsters/kharja/g5_02_retro.jpg",
       "text": "At the start of the round, discard the top card of the behavior deck. If that card has claw, players in the front sector suffer DMG.",
-      "it": "All'inizio del round scarta la prima carta del mazzo behavior. Se quella carta ha claw, chi e' nel settore front subisce DMG.",
+      "it": "All'inizio del round scarta la prima carta del mazzo behavior. Se quella carta ha claw, chi è nel settore front subisce DMG.",
       "_note": "La faccia B ha lo stesso testo della A: cambia solo l'icona di aggression.",
       "abilities": [
         {
@@ -1032,7 +1032,7 @@
       ],
       "art": "res://art/monsters/kharja/g5_01_retro.jpg",
       "text": "Immune to blind. When Kharja suffers a wound, place 2 counters on Kharja. When a player suffers attrition damage, that player suffers 1 additional damage for each counter on Kharja.",
-      "it": "Immune a blind. Quando Kharja subisce una ferita, piazza 2 segnalini su Kharja. Quando un giocatore subisce danno da attrition, ne subisce 1 in piu' per ogni segnalino su Kharja.",
+      "it": "Immune a blind. Quando Kharja subisce una ferita, piazza 2 segnalini su Kharja. Quando un giocatore subisce danno da attrition, ne subisce 1 in più per ogni segnalino su Kharja.",
       "abilities": [
         {
           "trigger": "monster_wound",
@@ -1059,7 +1059,7 @@
       ],
       "art": "res://art/monsters/kharja/g5_00_retro.jpg",
       "text": "Immune to blind. When a player suffers attrition damage, that player suffers 1 additional damage for each counter on Kharja. At the end of the round, if Kharja's health is 1, place a fire terrain in each sector and all players suffer DMG+X, where X is the number of counters on Kharja.",
-      "it": "Immune a blind. Quando un giocatore subisce danno da attrition, ne subisce 1 in piu' per ogni segnalino su Kharja. Alla fine del round, se la salute di Kharja e' 1, piazza un terreno fire in ogni settore e tutti i giocatori subiscono DMG+X, dove X e' il numero di segnalini su Kharja.",
+      "it": "Immune a blind. Quando un giocatore subisce danno da attrition, ne subisce 1 in più per ogni segnalino su Kharja. Alla fine del round, se la salute di Kharja è 1, piazza un terreno fire in ogni settore e tutti i giocatori subiscono DMG+X, dove X è il numero di segnalini su Kharja.",
       "abilities": [
         {
           "trigger": "attrition_damage",

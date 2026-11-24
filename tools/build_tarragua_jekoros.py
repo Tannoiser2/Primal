@@ -3,13 +3,13 @@
 
 Le carte sono state lette una per una dalle immagini estratte dal mod TTS
 (art/monsters/<mostro>/). Qui sta la trascrizione, in forma di dati: rifare il
-file e' rilanciare lo script.
+file è rilanciare lo script.
 
 Come sono stati ricavati i livelli: le carte identiche fra i quattro mazzi
 behavior sono state riconosciute per immagine (differenza media dei pixel zero);
 il glifo aggression in alto a sinistra di ogni carta (ordine ≢ ⊕ Ψ 8 M V, come
 per gli altri mostri) dice a quali livelli appartiene, e la finestra scorrevole
-di p.60 (L0 = A,B,C ... L3 = D,E,F) e' univoca per entrambi i mostri.
+di p.60 (L0 = A,B,C ... L3 = D,E,F) è univoca per entrambi i mostri.
 
 Reazione e refresh sono stampati sul **retro** di ogni behavior: icona al centro,
 refresh in basso a sinistra.
@@ -89,14 +89,14 @@ T_CARDS = {
                       {"op": "monster_damage_bonus", "n": 3, "duration": "round"}]),
     3: dict(name="Rampaging Horns", reaction="attack_played", refresh=5,
             text="Tarragua turns to the active player. That player may immediately move.",
-            it="Tarragua si gira verso il giocatore attivo. Quel giocatore puo' muoversi subito.",
+            it="Tarragua si gira verso il giocatore attivo. Quel giocatore può muoversi subito.",
             effects=[{"op": "monster_turn_to", "criteria": "active"},
                      {"op": "offer_move", "who": "active"}]),
     11: dict(name="Rampaging Horns", reaction="attack_played", refresh=5,
              text="Tarragua turns to the active player. That player suffers DMG unless they "
                   "immediately move. The cost of this movement is increased by 1.",
              it="Tarragua si gira verso il giocatore attivo. Quel giocatore subisce DMG a meno che "
-                "non si muova subito; quel movimento costa 1 stamina in piu'.",
+                "non si muova subito; quel movimento costa 1 stamina in più.",
              effects=[{"op": "monster_turn_to", "criteria": "active"},
                       {"op": "move_or_suffer", "who": "active", "extra_cost": 1}]),
     4: dict(name="Crushing Horns", reaction="turn_start_flank", refresh=5,
@@ -262,7 +262,7 @@ def tarragua():
                    "text": "Permanent. When the attrition deck is emptied, Tarragua gains 1 PP "
                            "struggle and is unstoppable until the end of the round.",
                    "it": "Permanente. Quando il mazzo attrition si esaurisce, Tarragua guadagna 1 "
-                         "struggle per giocatore ed e' unstoppable fino alla fine del round.",
+                         "struggle per giocatore ed è unstoppable fino alla fine del round.",
                    "abilities": [{"trigger": "attrition_deck_emptied", "effects": [
                        {"op": "monster_gain_struggle", "n": 1, "scale": "per_player"},
                        {"op": "unstoppable", "duration": "round"}]}]},
@@ -288,7 +288,7 @@ def tarragua():
                           "revealed, the active player may discard an attack from their hand. "
                           "If they do, cancel the effects of that behavior card and inflict vulnerable.",
                   "it": "Permanente. Quando viene rivelata una behavior con la reazione del "
-                        "settore front, il giocatore attivo puo' scartare un attack dalla mano: "
+                        "settore front, il giocatore attivo può scartare un attack dalla mano: "
                         "se lo fa, annulla gli effetti di quella behavior e infliggi vulnerable.",
                   "abilities": [{"trigger": "behavior_revealed", "reaction": "turn_start_front",
                                  "discard_type": "attack",
@@ -300,7 +300,7 @@ def tarragua():
                            "revealed, the active player may discard an attack from their hand. "
                            "If they do, cancel the effects of that behavior card.",
                    "it": "Permanente. Quando viene rivelata una behavior con la reazione del "
-                         "settore front, il giocatore attivo puo' scartare un attack dalla mano: "
+                         "settore front, il giocatore attivo può scartare un attack dalla mano: "
                          "se lo fa, annulla gli effetti di quella behavior.",
                    "abilities": [{"trigger": "behavior_revealed", "reaction": "turn_start_front",
                                   "discard_type": "attack",
@@ -353,7 +353,7 @@ J_CARDS = {
     1: dict(name="Haunting Echoes", reaction=DEF_OR_THR, refresh=3,
             text="The active player reveals a random card from their hand. If that card is an "
                  "offensive card, they discard it. Otherwise, Jekoros gains PP-1 struggle.",
-            it="Il giocatore attivo rivela una carta a caso dalla mano: se e' offensive la scarta, "
+            it="Il giocatore attivo rivela una carta a caso dalla mano: se è offensive la scarta, "
                "altrimenti Jekoros guadagna (giocatori-1) struggle.",
             effects=[{"op": "reveal_random", "who": "active", "kind": "offensive",
                       "match": [{"op": "discard_revealed"}],
@@ -361,7 +361,7 @@ J_CARDS = {
     9: dict(name="Haunting Echoes", reaction=DEF_OR_THR, refresh=3,
             text="The active player reveals a random card from their hand. If that card is an "
                  "attack, they discard it. Otherwise, Jekoros gains PP-1 struggle.",
-            it="Il giocatore attivo rivela una carta a caso dalla mano: se e' un attack la scarta, "
+            it="Il giocatore attivo rivela una carta a caso dalla mano: se è un attack la scarta, "
                "altrimenti Jekoros guadagna (giocatori-1) struggle.",
             effects=[{"op": "reveal_random", "who": "active", "type": "attack",
                       "match": [{"op": "discard_revealed"}],
@@ -369,7 +369,7 @@ J_CARDS = {
     2: dict(name="Electric Spark", reaction="threatened", refresh=2,
             text="The active player reveals a random card from their hand. If that card is a "
                  "defensive card, they discard it.",
-            it="Il giocatore attivo rivela una carta a caso dalla mano: se e' defensive la scarta.",
+            it="Il giocatore attivo rivela una carta a caso dalla mano: se è defensive la scarta.",
             effects=[{"op": "reveal_random", "who": "active", "kind": "defensive",
                       "match": [{"op": "discard_revealed"}]}]),
     11: dict(name="Electric Spark", reaction="threatened", refresh=2,
@@ -409,7 +409,7 @@ J_CARDS = {
     5: dict(name="Electrocution", reaction="empty_hand", refresh=2,
             text="If the active player is in a sector with a water terrain, they suffer DMG "
                  "unless they discard a random card from their hand.",
-            it="Se il giocatore attivo e' in un settore con acqua, subisce DMG a meno che non "
+            it="Se il giocatore attivo è in un settore con acqua, subisce DMG a meno che non "
                "scarti una carta a caso dalla mano.",
             effects=[{"op": "suffer_unless_discard_random", "who": "active_in_water"}]),
     17: dict(name="Electrocution", reaction="empty_hand", refresh=2,
@@ -434,7 +434,7 @@ J_CARDS = {
                  "their hand. If there are no players in the rear sector, players in the flank "
                  "sectors are targeted instead.",
             it="Ogni giocatore nel settore rear subisce DMG+1 a meno che non riveli un dodge dalla "
-               "mano. Se nel rear non c'e' nessuno, i bersagli sono i giocatori nei flank.",
+               "mano. Se nel rear non c'è nessuno, i bersagli sono i giocatori nei flank.",
             effects=[{"op": "suffer_unless_reveal", "who": "players_in_rear_or_flank",
                       "type": "dodge", "damage_bonus": 1}]),
     13: dict(name="Killer Tail", reaction="end_of_round", refresh=5,
@@ -442,25 +442,25 @@ J_CARDS = {
                   "their hand. If there are no players in the rear sector, players in the flank "
                   "sectors are targeted instead.",
              it="Ogni giocatore nel settore rear subisce DMG+1 a meno che non riveli 2 dodge dalla "
-                "mano. Se nel rear non c'e' nessuno, i bersagli sono i giocatori nei flank.",
+                "mano. Se nel rear non c'è nessuno, i bersagli sono i giocatori nei flank.",
              effects=[{"op": "suffer_unless_reveal", "who": "players_in_rear_or_flank",
                        "type": "dodge", "n": 2, "damage_bonus": 1}]),
     8: dict(name="Insane Buzz", reaction="end_of_round", refresh=5,
             text="If the charge level is 2 or higher, all players become dazed. If a player is "
                  "already dazed, they discard a card from their hand.",
-            it="Se il livello di charge e' 2 o piu', tutti i giocatori diventano dazed; chi lo e' "
-               "gia' scarta una carta dalla mano.",
+            it="Se il livello di charge è 2 o più, tutti i giocatori diventano dazed; chi lo è "
+               "già scarta una carta dalla mano.",
             effects=[{"op": "daze_all", "min_charge": 2, "random": False}]),
     10: dict(name="Insane Buzz", reaction="end_of_round", refresh=5,
              text="If the charge level is 2 or higher, all players become dazed. If a player is "
                   "already dazed, they discard a random card from their hand.",
-             it="Se il livello di charge e' 2 o piu', tutti i giocatori diventano dazed; chi lo e' "
-                "gia' scarta una carta a caso dalla mano.",
+             it="Se il livello di charge è 2 o più, tutti i giocatori diventano dazed; chi lo è "
+                "già scarta una carta a caso dalla mano.",
              effects=[{"op": "daze_all", "min_charge": 2, "random": True}]),
 }
 
 # mazzi per livello (gruppi estratti 1, 2, 3, 4). Nel gruppo 2 il mod ha una
-# carta in meno: e' Electric Spark della versione D, presente nei gruppi 3 e 4.
+# carta in meno: è Electric Spark della versione D, presente nei gruppi 3 e 4.
 J_DECKS = {
     "0": [0, 1, 2, 3, 4, 5, 6, 7, 8],
     "1": [0, 9, 3, 4, 5, 7, 10, 6, 11],
@@ -517,13 +517,13 @@ def jekoros():
         }
     echo = {"n": 1, "stance": 1, "name": "Incessant Echo", "permanent": True,
             "text": "Permanent. Jekoros is unstoppable.",
-            "it": "Permanente. Jekoros e' unstoppable.", "unstoppable": True}
+            "it": "Permanente. Jekoros è unstoppable.", "unstoppable": True}
     horn_text = ("Permanent. Immune to blind. When Jekoros suffers a wound, it gains %s struggle. "
                  "Unleash: Increase the charge level by 1. A player in a sector with a rock terrain "
                  "may remove that terrain from the game to prevent unleash damage in that sector.")
     horn_it = ("Permanente. Immune a blind. Quando Jekoros subisce una ferita guadagna %s struggle. "
                "Unleash: il livello di charge aumenta di 1. Un giocatore in un settore con una roccia "
-               "puo' rimuoverla dal gioco per evitare il danno dell'unleash in quel settore.")
+               "può rimuoverla dal gioco per evitare il danno dell'unleash in quel settore.")
     perils = {
         "47101": dict(echo, art=art(J, "g5_01_fronte")),
         "471010": dict(echo, art=art(J, "g5_01_retro")),
@@ -547,19 +547,19 @@ def jekoros():
                   "text": "When a player suffers attrition damage, if the charge level is 2 or "
                           "more, that player suffers DMGx2 instead of DMG.",
                   "it": "Quando un giocatore subisce danno da attrition, se il livello di charge "
-                        "e' 2 o piu' subisce DMGx2 invece di DMG.",
+                        "è 2 o più subisce DMGx2 invece di DMG.",
                   "attrition_double_at_charge": 2},
         "471030": {"n": 3, "stance": 3, "name": "High Tension", "art": art(J, "g5_00_retro"),
                    "text": "When a player suffers attrition damage, if the charge level is 1 or "
                            "more, that player suffers DMGx2 instead of DMG.",
                    "it": "Quando un giocatore subisce danno da attrition, se il livello di charge "
-                         "e' 1 o piu' subisce DMGx2 invece di DMG.",
+                         "è 1 o più subisce DMGx2 invece di DMG.",
                    "attrition_double_at_charge": 1},
     }
     strike = ("Permanent. At the start of each player's turn, a player in the front sector may "
               "discard %s from their hand to either inflict vulnerable or reduce the charge level by 1.")
     strike_it = ("Permanente. All'inizio del turno di ogni giocatore, un giocatore nel settore front "
-                 "puo' scartare %s dalla mano per infliggere vulnerable oppure ridurre di 1 il "
+                 "può scartare %s dalla mano per infliggere vulnerable oppure ridurre di 1 il "
                  "livello di charge.")
     objectives = {
         "47201": {"name": "Strike to the Heart", "stance": 2, "permanent": True,

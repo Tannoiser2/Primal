@@ -479,7 +479,7 @@
    "reaction": "attack_played",
    "refresh": 5,
    "text": "Tarragua turns to the active player. That player may immediately move.",
-   "it": "Tarragua si gira verso il giocatore attivo. Quel giocatore puo' muoversi subito.",
+   "it": "Tarragua si gira verso il giocatore attivo. Quel giocatore può muoversi subito.",
    "effects": [
     {
      "op": "monster_turn_to",
@@ -498,7 +498,7 @@
    "reaction": "attack_played",
    "refresh": 5,
    "text": "Tarragua turns to the active player. That player suffers DMG unless they immediately move. The cost of this movement is increased by 1.",
-   "it": "Tarragua si gira verso il giocatore attivo. Quel giocatore subisce DMG a meno che non si muova subito; quel movimento costa 1 stamina in piu'.",
+   "it": "Tarragua si gira verso il giocatore attivo. Quel giocatore subisce DMG a meno che non si muova subito; quel movimento costa 1 stamina in più.",
    "effects": [
     {
      "op": "monster_turn_to",
@@ -720,7 +720,7 @@
    "permanent": true,
    "art": "res://art/monsters/tarragua/g1_01_retro.jpg",
    "text": "Permanent. When the attrition deck is emptied, Tarragua gains 1 PP struggle and is unstoppable until the end of the round.",
-   "it": "Permanente. Quando il mazzo attrition si esaurisce, Tarragua guadagna 1 struggle per giocatore ed e' unstoppable fino alla fine del round.",
+   "it": "Permanente. Quando il mazzo attrition si esaurisce, Tarragua guadagna 1 struggle per giocatore ed è unstoppable fino alla fine del round.",
    "abilities": [
     {
      "trigger": "attrition_deck_emptied",
@@ -765,7 +765,7 @@
    "permanent": true,
    "art": "res://art/monsters/tarragua/sciolta_0.jpg",
    "text": "Permanent. When a behavior card with the front sector reaction is revealed, the active player may discard an attack from their hand. If they do, cancel the effects of that behavior card and inflict vulnerable.",
-   "it": "Permanente. Quando viene rivelata una behavior con la reazione del settore front, il giocatore attivo puo' scartare un attack dalla mano: se lo fa, annulla gli effetti di quella behavior e infliggi vulnerable.",
+   "it": "Permanente. Quando viene rivelata una behavior con la reazione del settore front, il giocatore attivo può scartare un attack dalla mano: se lo fa, annulla gli effetti di quella behavior e infliggi vulnerable.",
    "abilities": [
     {
      "trigger": "behavior_revealed",
@@ -789,7 +789,7 @@
    "permanent": true,
    "art": "res://art/monsters/tarragua/sciolta_0_retro.jpg",
    "text": "Permanent. When a behavior card with the front sector reaction is revealed, the active player may discard an attack from their hand. If they do, cancel the effects of that behavior card.",
-   "it": "Permanente. Quando viene rivelata una behavior con la reazione del settore front, il giocatore attivo puo' scartare un attack dalla mano: se lo fa, annulla gli effetti di quella behavior.",
+   "it": "Permanente. Quando viene rivelata una behavior con la reazione del settore front, il giocatore attivo può scartare un attack dalla mano: se lo fa, annulla gli effetti di quella behavior.",
    "abilities": [
     {
      "trigger": "behavior_revealed",

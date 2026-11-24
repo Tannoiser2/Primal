@@ -3,10 +3,18 @@
 Versione digitale di *Primal: The Awakening* limitata alla **modalità Expedition**:
 una singola battaglia contro un mostro, senza campagna.
 
-- **Mostri:** Vyraxen, Kharja, Dygorax e Toramat — tutti e quattro i livelli di aggression (**0-3**), selezionabili in partita
+- **Mostri:** tutti e sei — Vyraxen, Kharja, Dygorax, Toramat, Tarragua e Jekoros —
+  con i quattro livelli di aggression (**0-3**), selezionabili in partita
 - **Cacciatori:** tutti e sei, con **costruzione del mazzo e forge**
 - **Motore:** Godot 4.7, GDScript
-- **Plancia:** 3D con camera orbitale (trascina col tasto destro o centrale, rotella per lo zoom)
+- **Plancia:** 3D su un tavolo, con camera orbitale. Mouse: trascina col tasto destro
+  (o centrale) per girare, rotella per lo zoom. **iPad**: un dito trascina e gira, due
+  dita pizzicano per lo zoom, ruotano per girare e scorrono per spostare la plancia
+- **Grafica:** tema inchiostro e ruggine come le carte, titoli in Teko e testi in
+  Barlow Semi Condensed (font liberi, licenze in `fonts/`); nessun simbolo fuori dai
+  font — lo verifica `tools/controlla_glifi.py`
+- **Salvataggio:** pulsante *Salva* — la partita finisce su Firebase con un codice di 4
+  lettere, e si riprende da qualunque dispositivo dalla schermata iniziale
 - **Miniature:** modelli 3D GLB per i cacciatori, per tutti e quattro i mostri e
   per i terreni che sono oggetti; fuoco, dust, acqua e sabbia sono procedurali
 - **Colpi:** chi attacca scatta avanti, chi incassa trema, e un anello segna chi
@@ -15,15 +23,17 @@ una singola battaglia contro un mostro, senza campagna.
 ## Come si avvia
 
 ```bash
-godot --path PrimalDigital scenes/Main.tscn
+godot --path . scenes/Main.tscn
 ```
 
 Collaudo automatico, test mirati sulle regole e strumento di misura:
 
 ```bash
-godot --headless --path PrimalDigital scenes/SmokeTest.tscn    # 360 partite: 4 mostri x 4 livelli, piu' due giri per cacciatore
-godot --headless --path PrimalDigital scenes/RulesTest.tscn    # 237 controlli sulle regole
-godot --headless --path PrimalDigital scenes/Diagnostics.tscn  # conta cosa succede in partita
+godot --headless --path . scenes/SmokeTest.tscn    # 360 partite: 4 mostri x 4 livelli, piu' due giri per cacciatore
+godot --headless --path . scenes/RulesTest.tscn    # 237 controlli sulle regole
+godot --headless --path . scenes/Diagnostics.tscn  # conta cosa succede in partita
+godot --headless --path . scenes/ReplayTest.tscn   # salva e riprende: la partita rigiocata deve essere identica
+python3 tools/controlla_glifi.py                     # ogni carattere a schermo esiste nei font
 ```
 
 `Diagnostics.tscn` non usa sonde nel motore: conta dal registro di gioco, che è
@@ -34,19 +44,19 @@ Screenshot di sviluppo: `--shot-choice` avanza fino al pannello di pagamento,
 `--shot-order` costruisce una sequenza con due abilità simultanee.
 
 ```bash
-godot --path PrimalDigital scenes/Main.tscn -- --shot
-godot --path PrimalDigital scenes/Main.tscn -- --shot-choice
-godot --path PrimalDigital scenes/Main.tscn -- --shot-order
-godot --path PrimalDigital scenes/Main.tscn -- --shot-turn
-godot --path PrimalDigital scenes/Main.tscn -- --shot-reaction
-godot --path PrimalDigital scenes/Main.tscn -- --shot-attrition
-godot --path PrimalDigital scenes/Main.tscn -- --shot-facing --facing=1 --monster=kharja
-godot --path PrimalDigital scenes/Main.tscn -- --shot-terrain --no-windows
-godot --path PrimalDigital scenes/Main.tscn -- --shot-blow --no-windows
-godot --path PrimalDigital scenes/Main.tscn -- --shot --monster=kharja
-godot --path PrimalDigital scenes/Main.tscn -- --shot --no-windows
-godot --path PrimalDigital scenes/Main.tscn -- --party=thoreg,dareon --shot
-godot --path PrimalDigital scenes/Main.tscn -- --test-pay-token
+godot --path . scenes/Main.tscn -- --shot
+godot --path . scenes/Main.tscn -- --shot-choice
+godot --path . scenes/Main.tscn -- --shot-order
+godot --path . scenes/Main.tscn -- --shot-turn
+godot --path . scenes/Main.tscn -- --shot-reaction
+godot --path . scenes/Main.tscn -- --shot-attrition
+godot --path . scenes/Main.tscn -- --shot-facing --facing=1 --monster=kharja
+godot --path . scenes/Main.tscn -- --shot-terrain --no-windows
+godot --path . scenes/Main.tscn -- --shot-blow --no-windows
+godot --path . scenes/Main.tscn -- --shot --monster=kharja
+godot --path . scenes/Main.tscn -- --shot --no-windows
+godot --path . scenes/Main.tscn -- --party=thoreg,dareon --shot
+godot --path . scenes/Main.tscn -- --test-pay-token
 ```
 
 `--shot-turn` porta la partita dentro il turno del primo cacciatore, con carte
@@ -77,8 +87,11 @@ flottanti prima dello scatto, per fotografare la plancia.
 ## Versione web
 
 Si gioca nel browser su https://tannoiser2.github.io/Primal/ ed è nella
-[ludoteca](https://tannoiser2.github.io/). La pubblica l'azione `.github/workflows/pages.yml`
-a ogni aggiornamento del ramo `main`.
+[ludoteca](https://tannoiser2.github.io/). La pubblica l'azione `.github/workflows/pages.yml`,
+**solo quando lo si chiede**: dalla scheda Actions → *Pubblica* → *Run workflow*, oppure con un
+commit sul ramo `main` il cui messaggio contiene `[pubblica]`. Prima di esportare l'azione
+controlla i glifi e fa girare i test delle regole; con i segreti Cloudflare pubblica anche sulla
+ludoteca privata (`tools/pubblica_cloudflare.py`), senza non fa nulla.
 
 Gli sculti originali arrivano a due milioni di triangoli e le immagini sono importate senza
 perdita: esportati così fanno un pacchetto da 1,2 GB, troppo per un browser. Prima di
@@ -94,7 +107,7 @@ desktop. Nel browser Godot usa il renderer Compatibility (WebGL 2) al posto di F
 ## Esportare l'app macOS
 
 ```bash
-godot --headless --path PrimalDigital --export-release "macOS" PrimalDigital.app
+godot --headless --path . --export-release "macOS" PrimalDigital.app
 codesign --force --deep --sign - PrimalDigital.app     # firma locale, basta per uso personale
 cp -R PrimalDigital.app "/Applications/Primal Digital.app"
 ```
@@ -510,26 +523,38 @@ L'elenco completo di quello che manca, in ordine di peso, sta in
 [`docs/da_fare.md`](docs/da_fare.md). Qui restano i limiti strutturali.
 
 - **Hotseat.** Le scelte che toccano a un altro giocatore compaiono nello stesso
-  schermo, indicando di chi è la decisione. Non c'è ancora rete né schermate separate.
+  schermo, indicando di chi è la decisione. La rete serve solo al salvataggio.
 - **Il mesh TTS del mostro è solo un ripiego.** Resta nei dati come riserva
   (`mesh` + `texture`, con `triplanar` dove le UV non corrispondono), ma con le
   miniature GLB non viene più usato: Board3D preferisce sempre il GLB.
 
-- **Hardening e acceleration non si vedono sul tavolo.** Sono gestiti dal motore
+- **Hardening, acceleration e charge non si vedono sul tavolo.** Sono gestiti dal motore
   e finiscono nel registro, ma la plancia 3D non li mostra. I segnalini dust ora
   sì: sono una foschia bassa sul settore, più densa a due segnalini.
-- **Brush e plateau non si possono usare.** Sono gli unici due terreni con una
-  regola che riscrive l'ordine di turno — nascondersi nel brush mette in pausa il
-  proprio turno, salire sul plateau permette di annullare le behavior con un
-  *riding check* — e il motore non sa ancora mettere un turno in pausa. Gli altri
-  nove terreni funzionano.
 - **Lo slot Item non c'è.** Il regolamento prevede di scegliere anche un Item fra
-  gli accessori forgiabili: i dati ci sono, ma offrire uno slot che non fa nulla
-  sarebbe peggio che ometterlo.
+  gli accessori forgiabili, ma gli Item non sono fra i dati estratti
+  (`data/loadouts.json` ha weapon, armor, helm e pozioni): servono le righe degli
+  Item dal `primal_database.xlsm`.
+- **Le caselle del terreno di Tarragua e Jekoros sono provvisorie.** I pezzi sono
+  quelli del Regolamento (p.69-70), le caselle vanno confrontate col diagramma.
 - **Il database fan-made ha errori.** Dove immagini e database divergono, valgono
   le immagini. Corretti finora: i nomi *Sentinel* ed *Exhausting Defense* (Dareon,
   track C2) risultano scambiati, e la salute di *Totemic Plate* livello 2 manca —
   quella carta resta visibile ma non selezionabile invece di mostrare uno 0 falso.
+
+## Salvataggio e ripresa
+
+La partita non si fotografa: si **registra**. Il seme casuale, il gruppo, il mostro, il
+livello, la dotazione e poi ogni comando (carta giocata, movimento, fine fase...) e
+ogni risposta ai pannelli, in ordine. Rigiocando il registro su un motore nuovo con lo
+stesso seme si ottiene la stessa identica partita — `ReplayTest.tscn` lo verifica
+confrontando il registro di gioco riga per riga.
+
+Su Firebase (progetto condiviso della ludoteca, radice `primal/rooms`) ogni partita
+salvata è una stanza col suo codice di 4 lettere: `game` tiene i dati di partenza,
+`acts/<n>` le mosse. Usa la regola generica `$game/rooms` già presente nel database,
+quindi non servono regole nuove. *Salva* manda solo le mosse nuove; *Riprendi*, nella
+schermata iniziale, legge la stanza e rigioca tutto.
 
 ## Come estendere
 

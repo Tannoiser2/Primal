@@ -25,7 +25,7 @@ const MONSTER_NAMES := {
 	"toramat": "Toramat", "dygorax": "Dygorax",
 	"tarragua": "Tarragua", "jekoros": "Jekoros",
 }
-const ELEMENT_NAMES := {"fire": "fuoco", "earth": "terra", "water": "acqua", "ice": "ghiaccio"}
+const ELEMENT_NAMES := {"fire": "fuoco", "earth": "terra", "water": "acqua", "ice": "ghiaccio", "lightning": "fulmine"}
 
 const CARD := Color(0.10, 0.08, 0.075)
 const CARD_ON := Color(0.27, 0.13, 0.07)
@@ -191,7 +191,7 @@ func _refresh() -> void:
 	_footer.bbcode_enabled = true
 	_footer.fit_content = true
 	_footer.autowrap_mode = TextServer.AUTOWRAP_OFF
-	_footer.custom_minimum_size = Vector2(520, 26)
+	_footer.custom_minimum_size = Vector2(420, 26)
 	_footer.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	tail.add_child(_footer)
 	_start = Button.new()
@@ -212,7 +212,32 @@ func _refresh() -> void:
 	_start.pressed.connect(func():
 		start_requested.emit(_chosen.duplicate(), _monster, _level, _expedition))
 	tail.add_child(_start)
+	# Riprendere una partita salvata online: basta il codice di 4 lettere.
+	var spacer := Control.new()
+	spacer.custom_minimum_size = Vector2(30, 0)
+	tail.add_child(spacer)
+	var resume := HBoxContainer.new()
+	resume.add_theme_constant_override("separation", 8)
+	tail.add_child(resume)
+	var code := LineEdit.new()
+	code.placeholder_text = "codice"
+	code.tooltip_text = "Il codice di 4 lettere di una partita salvata"
+	code.max_length = 4
+	code.custom_minimum_size = Vector2(110, 52)
+	code.add_theme_font_override("font", Tema.title_font())
+	code.add_theme_font_size_override("font_size", 26)
+	resume.add_child(code)
+	var go := Button.new()
+	go.text = "Riprendi"
+	go.tooltip_text = "Riprendi la partita salvata con questo codice"
+	go.custom_minimum_size = Vector2(0, 52)
+	go.pressed.connect(func():
+		if code.text.strip_edges().length() == 4:
+			start_requested.emit([], "", 0, "RESUME:" + code.text.strip_edges().to_upper()))
+	resume.add_child(go)
 	_update_footer()
+
+
 
 
 # ------------------------------------------------------------------ tessere
@@ -224,7 +249,7 @@ func _hunter_tile(id: String) -> Control:
 		HUNTER_WEAPONS.get(id, ""),
 		_portrait_of(Db.hunter(id).get("art", {})),
 		picked, ready,
-		"Mancano i dati delle sue carte: non e' ancora giocabile.")
+		"Mancano i dati delle sue carte: non è ancora giocabile.")
 	if ready:
 		(tile.get_meta("button") as BaseButton).pressed.connect(func():
 			if id in _chosen:
@@ -242,7 +267,7 @@ func _monster_tile(id: String) -> Control:
 	var tile := _tile(MONSTER_NAMES.get(id, id),
 		ELEMENT_NAMES.get(element, element),
 		_portrait_of(data.get("art", {})), id == _monster, ready,
-		"Mancano stance, behavior e peril: non e' ancora giocabile.")
+		"Mancano stance, behavior e peril: non è ancora giocabile.")
 	if ready:
 		(tile.get_meta("button") as BaseButton).pressed.connect(func():
 			_monster = id
@@ -402,7 +427,7 @@ func _update_footer() -> void:
 		# piu' su non avrebbe da cosa scegliere.
 		for id in _chosen:
 			if Db.loadout_options(id, _level)["weapons"].is_empty():
-				problem = "%s non ha ancora la forge: puo' giocare solo al livello 0." \
+				problem = "%s non ha ancora la forge: può giocare solo al livello 0." \
 					% HUNTER_NAMES.get(id, id)
 				break
 	if problem != "":

@@ -52,7 +52,7 @@
           ]
         }
       ],
-      "it": "Assist. Mentre questa carta e' in cima ai tuoi scarti, il costo in stamina dei tuoi movimenti scende a 0."
+      "it": "Assist. Mentre questa carta è in cima ai tuoi scarti, il costo in stamina dei tuoi movimenti scende a 0."
     },
     {
       "id": 3213400,
@@ -153,7 +153,7 @@
           "condition": "critical_health"
         }
       ],
-      "it": "Se la tua salute e' critica, aumenta di 5xWL i danni di questo attacco."
+      "it": "Se la tua salute è critica, aumenta di 5xWL i danni di questo attacco."
     },
     {
       "id": 3213500,
@@ -175,7 +175,7 @@
           "condition": "critical_health"
         }
       ],
-      "it": "Se la tua salute e' critica, pesca fino al limite della tua mano +1."
+      "it": "Se la tua salute è critica, pesca fino al limite della tua mano +1."
     },
     {
       "id": 3214200,
@@ -492,7 +492,7 @@
           ]
         }
       ],
-      "it": "Aumenta di 1 lo struggle rimosso da questo maneuver. Mentre una carta difensiva e' in cima ai tuoi scarti, conta per il check di attrition di questo turno."
+      "it": "Aumenta di 1 lo struggle rimosso da questo maneuver. Mentre una carta difensiva è in cima ai tuoi scarti, conta per il check di attrition di questo turno."
     },
     {
       "id": 3212900,
@@ -645,7 +645,7 @@
           "free": true
         }
       ],
-      "it": "Scarta la prima carta del mazzo. Se e' un attack, puoi giocarla come carta successiva della sequenza senza pagarne il costo in stamina."
+      "it": "Scarta la prima carta del mazzo. Se è un attack, puoi giocarla come carta successiva della sequenza senza pagarne il costo in stamina."
     },
     {
       "id": 4214000,
@@ -930,7 +930,7 @@
           "kind": "offensive"
         }
       ],
-      "it": "Finisher. Scarta X carte dalla cima del mazzo. Infliggi il danno base della tua weapon per ogni carta offensiva scartata cosi'."
+      "it": "Finisher. Scarta X carte dalla cima del mazzo. Infliggi il danno base della tua weapon per ogni carta offensiva scartata così."
     },
     {
       "id": 4214100,
@@ -1229,7 +1229,7 @@
       "traits": [],
       "text": "While this card is the top card of your discard pile, it count as a P in your sequence for the attrition deck.",
       "art": "res://art/thoreg/upgrade_212800.jpg",
-      "it": "Mentre e' in cima ai tuoi scarti conta come un parry nella sequenza per il check di attrition.",
+      "it": "Mentre è in cima ai tuoi scarti conta come un parry nella sequenza per il check di attrition.",
       "counts_as_defensive_on_top": true
     },
     {
@@ -1295,7 +1295,7 @@
       "traits": [],
       "text": "↓A: If you are in the front sector, stun the monster and increase the damage the attack deals by 2WL.",
       "art": "res://art/thoreg/upgrade_216300.jpg",
-      "it": "Questa carta seguita da un attack: se sei nel settore front, stordisci il mostro e l'attacco infligge 2 danni per livello weapon in piu'.",
+      "it": "Questa carta seguita da un attack: se sei nel settore front, stordisci il mostro e l'attacco infligge 2 danni per livello weapon in più.",
       "abilities": [
         {
           "combo": [
@@ -1539,7 +1539,7 @@
       "traits": [],
       "text": "When you discard this card from your hand to generate stamina,  your weapon gets +2WL damage until the end of the turn.",
       "art": "res://art/thoreg/upgrade_216400.jpg",
-      "it": "Quando la scarti per generare stamina, la tua weapon ottiene 2 danni per livello in piu' fino a fine turno.",
+      "it": "Quando la scarti per generare stamina, la tua weapon ottiene 2 danni per livello in più fino a fine turno.",
       "abilities": [
         {
           "trigger": "discarded_for_stamina",
@@ -1622,7 +1622,7 @@
           "condition": "paid_at_least_6"
         }
       ],
-      "it": "Finisher. Aumenta di X per livello weapon i danni (max 7). Se paghi 6 o piu', confondi il mostro."
+      "it": "Finisher. Aumenta di X per livello weapon i danni (max 7). Se paghi 6 o più, confondi il mostro."
     },
     {
       "id": 6206800,
@@ -1689,7 +1689,7 @@
       "traits": [],
       "text": "If the top card of your discard pile is a A, you may play that card as the next card in your sequence witouth paing its stamina cost.",
       "art": "res://art/karah/upgrade_206300.jpg",
-      "it": "Se la carta in cima ai tuoi scarti e' un attack, puoi giocarla come carta successiva senza pagarne la stamina.",
+      "it": "Se la carta in cima ai tuoi scarti è un attack, puoi giocarla come carta successiva senza pagarne la stamina.",
       "effects": [
         {
           "op": "play_from_discard",
@@ -1733,7 +1733,7 @@
       "traits": [],
       "text": "↓A: Draw 1. If you draw a A this way, draw 1 additional card.",
       "art": "res://art/karah/upgrade_205500.jpg",
-      "it": "Questa carta seguita da un attack: pesca 1, e se peschi un attack pesca 1 in piu'.",
+      "it": "Questa carta seguita da un attack: pesca 1, e se peschi un attack pesca 1 in più.",
       "abilities": [
         {
           "combo": [
@@ -2011,7 +2011,7 @@
               ]
             },
             {
-              "label": "Rimuovi 1 struggle in piu'",
+              "label": "Rimuovi 1 struggle in più",
               "effects": [
                 {
                   "op": "maneuver_struggle_bonus",
@@ -2264,7 +2264,7 @@
           "count": "own_damage"
         }
       ],
-      "it": "Questo attacco infligge tanti danni in piu' quanti ne hai addosso."
+      "it": "Questo attacco infligge tanti danni in più quanti ne hai addosso."
     },
     {
       "id": 7212900,
@@ -2335,7 +2335,7 @@
           "n": -1
         }
       },
-      "it": "Assist. Mentre e' in cima ai tuoi scarti, gli attack che giocano gli altri costano 1 stamina in meno."
+      "it": "Assist. Mentre è in cima ai tuoi scarti, gli attack che giocano gli altri costano 1 stamina in meno."
     },
     {
       "id": 7213000,
@@ -2608,7 +2608,7 @@
           "type": "parry"
         }
       ],
-      "it": "Questo attacco infligge 1 danno per livello weapon in piu' per ogni parry nei tuoi scarti."
+      "it": "Questo attacco infligge 1 danno per livello weapon in più per ogni parry nei tuoi scarti."
     },
     {
       "id": 7213700,
@@ -2703,7 +2703,7 @@
       "take_damage_instead": {
         "scope": "sector"
       },
-      "it": "Assist. Quando un altro giocatore nel tuo settore subirebbe danno, se questa carta e' in cima ai tuoi scarti puoi incassarlo tu al posto suo."
+      "it": "Assist. Quando un altro giocatore nel tuo settore subirebbe danno, se questa carta è in cima ai tuoi scarti puoi incassarlo tu al posto suo."
     },
     {
       "id": 8217100,
@@ -2931,7 +2931,7 @@
       "traits": [],
       "text": "Spend any number of bullets. For each bullet spent this way, draw 1 and increase the struggle this maneuver removes by 1.",
       "art": "res://art/heleren/upgrade_217700.jpg",
-      "it": "Spendi quanti bullet vuoi: per ognuno pesca 1 e questo maneuver rimuove 1 struggle in piu'.",
+      "it": "Spendi quanti bullet vuoi: per ognuno pesca 1 e questo maneuver rimuove 1 struggle in più.",
       "effects": [
         {
           "op": "spend_bullets",
@@ -3036,7 +3036,7 @@
       "traits": [],
       "text": "Assist. At the start of your movement phase, if you have 7 cards or more in your hand, you may reveal this card from your hand. If you do, your weapon gets +3 damage until the end of the turn.",
       "art": "res://art/heleren/upgrade_216900.jpg",
-      "it": "Assist. All'inizio della tua fase movimento, se hai 7 o piu' carte in mano puoi rivelarla: la tua weapon ottiene +3 danni fino a fine turno.",
+      "it": "Assist. All'inizio della tua fase movimento, se hai 7 o più carte in mano puoi rivelarla: la tua weapon ottiene +3 danni fino a fine turno.",
       "keywords": [
         "assist"
       ],
@@ -3113,7 +3113,7 @@
       "traits": [],
       "text": "Your weapon gets +3 damage until the end of this turn. If your bullet track level is 3, your weapon gets +5 damage instead.",
       "art": "res://art/heleren/upgrade_216700.jpg",
-      "it": "La tua weapon ottiene +3 danni fino a fine turno; se il tracciato bullet e' a 3, ne ottiene +5.",
+      "it": "La tua weapon ottiene +3 danni fino a fine turno; se il tracciato bullet è a 3, ne ottiene +5.",
       "effects": [
         {
           "op": "weapon_damage_bonus",

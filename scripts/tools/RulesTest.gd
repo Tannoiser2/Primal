@@ -38,6 +38,9 @@ func _ready() -> void:
 	await _test_last_three()
 	await _test_monster_boards()
 	await _test_shield()
+	await _test_tarragua()
+	await _test_jekoros()
+	await _test_dazed_and_stamina()
 
 	if _failures == 0:
 		print("\n=== tutti i test passati ===")
@@ -113,7 +116,7 @@ func _test_weapon_combo_applies_immediately() -> void:
 
 ## Con due abilita' simultanee il motore deve chiedere l'ordine.
 func _test_order_is_asked_when_simultaneous() -> void:
-	print("Due abilita' simultanee")
+	print("Due abilità simultanee")
 	var g := PrimalGame.new()
 	g.auto_resolve = true
 	await g.setup(["dareon", "mirah"], 0, 7)
@@ -352,7 +355,7 @@ func _test_monster_states() -> void:
 	var g3 := await _arena()
 	var pid := int(g3.current_stance()["peril"])
 	await g3._inflict_on_monster("blind", g3.active_player())
-	_check("la peril e' accecata", g3.blinded_perils.has(pid), true)
+	_check("la peril è accecata", g3.blinded_perils.has(pid), true)
 	var before := g3.journal.size()
 	await g3._trigger_perils("end_of_round")
 	var fired := false
@@ -366,7 +369,7 @@ func _test_monster_states() -> void:
 	g4.auto_resolve = true
 	await g4.setup(["dareon", "mirah"], 0, 3)
 	await g4._inflict_on_monster("stun", g4.active_player())
-	_check("una behavior e' stordita", g4.stunned_behaviors.size(), 1)
+	_check("una behavior è stordita", g4.stunned_behaviors.size(), 1)
 
 
 ## Kharja: quello che il mostro ha di suo e Vyraxen non aveva — segnalini sul
@@ -418,7 +421,7 @@ func _test_kharja() -> void:
 	g2.monster_counters = 0
 	await g2._wound_monster(1)
 	_check("la ferita lascia un segnalino", g2.monster_counters, 1)
-	_check("l'attrition pesa un danno in piu' per segnalino", g2._peril_attrition_bonus(), 1)
+	_check("l'attrition pesa un danno in più per segnalino", g2._peril_attrition_bonus(), 1)
 
 	# Le carte che chiedono di rivelare non tolgono niente dalla mano: o ce l'hai,
 	# e non succede nulla, o incassi.
@@ -560,7 +563,7 @@ func _test_dygorax() -> void:
 	for i in 3:
 		await g._run_effect({"op": "hardening", "n": 1}, null, {})
 	_check("tre incrementi", g.hardening, 3)
-	_check("ora e' hardened", g.hardened(), true)
+	_check("ora è hardened", g.hardened(), true)
 	await g._run_effect({"op": "hardening", "n": 5}, null, {})
 	_check("il tracciato si ferma a 3", g.hardening, 3)
 
@@ -581,7 +584,7 @@ func _test_dygorax() -> void:
 	g2.monster_health = int(g2.current_stance()["progression"]) + 1
 	await g2.deal_damage_to_monster(g2.current_toughness() + 5)
 	_check("Resistant: niente riporto sulla stance nuova", g2.stance_damage, 0)
-	_check("ed e' avanzato di stance", g2.stance_index, 1)
+	_check("ed è avanzato di stance", g2.stance_index, 1)
 
 	# Dust: massimo 2 per settore e disrupt sull'attrition.
 	var g3 := await _dygorax_arena(0)
@@ -678,7 +681,7 @@ func _test_toramat() -> void:
 	_check("si parte da acceleration 0", g.acceleration, 0)
 	for i in 5:
 		await g._run_effect({"op": "acceleration", "n": 1}, null, {})
-	_check("il tetto e' 1 per giocatore", g.acceleration, g.players.size())
+	_check("il tetto è 1 per giocatore", g.acceleration, g.players.size())
 	g.struggle = 0
 	g.round_no = 2
 	await g._monster_upkeep()
@@ -717,7 +720,7 @@ func _test_toramat() -> void:
 	g4.behavior_slots = [-1, -1, -1]
 	g4.stance_index = 2
 	await g4._apply_stance_on_reveal(false)
-	_check("Out of Control e' in cima al mazzo", g4.behavior_deck[0], 45019)
+	_check("Out of Control è in cima al mazzo", g4.behavior_deck[0], 45019)
 	var before := g4.journal.size()
 	g4.behavior_slots[0] = await g4._draw_behavior()
 	await g4._check_enter_play(0)
@@ -731,7 +734,7 @@ func _test_toramat() -> void:
 	# giocatori l'objective se ne va e mette Crashing Charge in cima.
 	var g5 := await _toramat_arena(0)
 	var oid := int(g5.current_stance()["objective"])
-	_check("l'objective di Stance I e' Crash on the Rocks",
+	_check("l'objective di Stance I è Crash on the Rocks",
 		Db.objective(oid).get("name", ""), "Crash on the Rocks")
 	var p5: PrimalPlayer = g5.active_player()
 	p5.hand.clear()
@@ -806,7 +809,7 @@ func _test_thoreg() -> void:
 	g2.auto_resolve = true
 	await g2.setup(["thoreg", "dareon"], 0, 9)
 	await g2._inflict_on_monster("confuse", g2.active_player())
-	_check("il mostro e' confuse", g2.monster_confused, true)
+	_check("il mostro è confuse", g2.monster_confused, true)
 	g2.round_no = 1
 	await g2.begin_round()
 	_check("a inizio round il confuse decade", g2.monster_confused, false)
@@ -834,10 +837,10 @@ func _test_thoreg() -> void:
 	p4.hand.clear()
 	p4.hand.append(178322)
 	p4.stamina_token = 3
-	_check("Sledgehammer da sola non si puo' giocare",
+	_check("Sledgehammer da sola non si può giocare",
 		g4.why_not_playable(p4, 178322) != "", true)
 	p4.sequence.append(178317)                 # Charge (maneuver)
-	_check("dopo un maneuver si puo'", g4.why_not_playable(p4, 178322), "")
+	_check("dopo un maneuver si può", g4.why_not_playable(p4, 178322), "")
 
 
 ## Terreni: adesso i segnalini dello scenario non sono solo scenografia.
@@ -864,7 +867,7 @@ func _test_terrain() -> void:
 
 	# Il fuoco dura un round: rosso, poi giallo, poi via.
 	await g._end_round()
-	_check("dopo un round il fuoco e' quasi spento", g.terrain[pos], ["fire_spent"])
+	_check("dopo un round il fuoco è quasi spento", g.terrain[pos], ["fire_spent"])
 	await g._end_round()
 	_check("dopo due round il fuoco sparisce", g.terrain[pos], [])
 
@@ -926,7 +929,7 @@ func _test_terrain() -> void:
 	p8.threatened = true
 	g8.terrain[p8.position] = ["wildmaw"]
 	await g8._end_turn()
-	_check("il wildmaw morde chi e' threatened", p8.damage, p8.weapon_level())
+	_check("il wildmaw morde chi è threatened", p8.damage, p8.weapon_level())
 
 	# Rock: si consuma per evitare il danno da attrition.
 	var g9 := await _arena()
@@ -961,7 +964,7 @@ func _test_karah() -> void:
 
 	# Chain: Twist (dodge, costo 1) e' gratis se segue un attack.
 	p.hand.append(210100)
-	_check("senza attack prima non c'e' chain", g._chain_free(p, 210100), false)
+	_check("senza attack prima non c'è chain", g._chain_free(p, 210100), false)
 	p.sequence.append(207300)                  # Airblade (attack)
 	_check("dopo un attack la chain scatta", g._chain_free(p, 210100), true)
 
@@ -1021,7 +1024,7 @@ func _test_ljonar() -> void:
 	g.choice_required.disconnect(answer_yes)
 	_check("il taunt sposta l'aggro", g.aggro_index, 1)
 	_check("e gira il mostro verso chi provoca", g.monster_facing, lj.position)
-	_check("la carta e' stata scartata", lj.hand.has(178220), false)
+	_check("la carta è stata scartata", lj.hand.has(178220), false)
 
 	# Resilience: si rivela (resta in mano) e si pesca 1.
 	var g2 := await _arena()
@@ -1099,7 +1102,7 @@ func _test_exposed_sides() -> void:
 	_check("Vyraxen Stance I: dal flank niente attack",
 		g.why_not_playable(p, 178101), "sei su un lato protetto: non puoi giocare attack")
 	p.position = g.monster_facing                          # front, esposto
-	_check("dal front si puo'", g.why_not_playable(p, 178101), "")
+	_check("dal front si può", g.why_not_playable(p, 178101), "")
 
 
 ## Ogni `out_of_turn` scritto nei dati deve avere qualcuno che lo innesca. Tre
@@ -1151,8 +1154,8 @@ func _test_divert() -> void:
 	g.choice_required.connect(yes)
 	await g._resolve_behavior(0)
 	g.choice_required.disconnect(yes)
-	_check("la carta e' stata scartata", k.hand.has(208700), false)
-	_check("e Karah e' passata dall'altra parte", k.position, posmod(before + 2, 4))
+	_check("la carta è stata scartata", k.hand.has(208700), false)
+	_check("e Karah è passata dall'altra parte", k.position, posmod(before + 2, 4))
 
 
 ## Heleren: bullet, Reload, Ignite, defense token e la stamina che cambia valore
@@ -1314,7 +1317,7 @@ func _test_notice_before_question() -> void:
 	await g._resolve_behavior(0)
 	g.choice_required.disconnect(answer)
 
-	_check("il primo riquadro e' la behavior", seen[0] if not seen.is_empty() else "-", "notice")
+	_check("il primo riquadro è la behavior", seen[0] if not seen.is_empty() else "-", "notice")
 	var confirm_at := seen.find("confirm")
 	_check("la domanda arriva dopo", confirm_at > 0, true)
 
@@ -1373,7 +1376,7 @@ func _test_ljonar_upgrades() -> void:
 	g.choice_required.disconnect(yes)
 	g.auto_resolve = true
 	_check("lo struggle non arriva", g.struggle, 0)
-	_check("e Sacrifice e' stata scartata", lj.hand.has(7214000), false)
+	_check("e Sacrifice è stata scartata", lj.hand.has(7214000), false)
 
 	# Shield Wall: dalla cima degli scarti incassa al posto del compagno.
 	lj.discard.push_front(7214300)             # Shield Wall
@@ -1418,7 +1421,7 @@ func _test_last_three() -> void:
 	var offensive := Db.is_offensive(String(Db.action(208000).get("type", "")))
 	if offensive:
 		_check("Returning Blade torna in mano", ka.hand.has(6206800), true)
-		_check("e non e' piu' negli scarti", ka.discard.has(6206800), false)
+		_check("e non è più negli scarti", ka.discard.has(6206800), false)
 
 	# --- Battle dance: Double Strike vale due maneuver, Dancing Shield uno.
 	_check("Double Strike vale due maneuver",
@@ -1453,7 +1456,7 @@ func _test_last_three() -> void:
 func _test_monster_boards() -> void:
 	print("Plance mostro")
 	var missing: Array[String] = []
-	for id in ["vyraxen", "kharja", "dygorax", "toramat"]:
+	for id in ["vyraxen", "kharja", "dygorax", "toramat", "tarragua", "jekoros"]:
 		var art := String(Db.monster(id).get("art", {}).get("board", ""))
 		if art == "" or not ResourceLoader.exists(art):
 			missing.append(id)
@@ -1477,7 +1480,7 @@ func _test_shield() -> void:
 	hp = g.monster_health
 	sd = g.stance_damage
 	await g.deal_damage_to_monster(1)
-	_check("un colpo piu' piccolo dello shield non passa", _damage_taken(g, hp, sd), 0)
+	_check("un colpo più piccolo dello shield non passa", _damage_taken(g, hp, sd), 0)
 
 	# Con vulnerable: prima raddoppia, poi lo shield toglie la sua parte.
 	g.monster_vulnerable = true
@@ -1486,3 +1489,91 @@ func _test_shield() -> void:
 	await g.deal_damage_to_monster(3)
 	_check("vulnerable raddoppia e poi lo shield toglie", _damage_taken(g, hp, sd), 4)
 	stance.erase("shield")
+
+
+func _monster_arena(monster: String, level := 0) -> PrimalGame:
+	var g := PrimalGame.new()
+	g.auto_resolve = true
+	g.monster_id = monster
+	await g.setup(["dareon", "mirah"], level, 7)
+	g.behavior_slots = [-1, -1, -1]
+	g.terrain = [[], [], [], []]
+	g.phase = PrimalGame.Phase.ACTION
+	return g
+
+
+## Tarragua: shield stampato piu' quello di turno, peril e objective permanenti.
+func _test_tarragua() -> void:
+	print("Tarragua")
+	var g := await _monster_arena("tarragua")
+	_check("shield della Stance I", g.current_shield(), 1)
+	await g._run_effects([{"op": "shield_bonus", "n": 1}], null, {})
+	_check("Metal Skin lo porta a 2", g.current_shield(), 2)
+	var hp := g.monster_health
+	var sd := g.stance_damage
+	await g.deal_damage_to_monster(3)
+	_check("3 danni contro shield 2", _damage_taken(g, hp, sd), 1)
+	_check("ha subito danni nel turno", g.monster_damaged_this_turn, true)
+	g.stance_index = 2
+	_check("in Stance III resta Wailing Roar (permanente)", g.active_perils(), [46101, 46103] as Array[int])
+	_check("e Slash to the Throat (permanente)", g.active_objectives(), [46201] as Array[int])
+	# Unscratchable: con 1 struggle per giocatore le weapon sono blank.
+	g.struggle = 2
+	_check("weapon blank col mostro carico", g.weapons_blank(), true)
+	g.struggle = 1
+	_check("non ancora con meno struggle", g.weapons_blank(), false)
+
+
+## Jekoros: il tracciato charge fa avanzare le stance, a 3 in Stance III e' finita.
+func _test_jekoros() -> void:
+	print("Jekoros")
+	var g := await _monster_arena("jekoros")
+	_check("unstoppable da subito (Incessant Echo)", g.is_unstoppable(), true)
+	_check("due peril in Stance I", g.active_perils().size(), 2)
+	await g._run_effects([{"op": "charge", "n": 3}], null, {})
+	_check("charge pieno: Stance II", g.stance_index, 1)
+	_check("e charge azzerato", g.charge_level, 0)
+	_check("la salute non fa avanzare", g.current_stance().has("progression"), false)
+	g.stance_index = 2
+	await g._run_effects([{"op": "charge", "n": 3}], null, {})
+	_check("in Stance III tutti KO: partita persa", [g.finished, g.victory], [true, false])
+	var b := Db.behavior(47002)
+	_check("reazione doppia: defensive o threatened",
+		"threatened" in String(b.get("reaction", "")).split("|"), true)
+	# High Tension raddoppia il danno da attrition col charge alto.
+	var g2 := await _monster_arena("jekoros")
+	g2.stance_index = 2
+	g2.charge_level = 2
+	_check("High Tension: attrition x2", g2._attrition_multiplier(), 2)
+
+
+## Dazed: il prossimo maneuver e' blank. why_not_playable non conta la carta
+## che stai giocando fra quelle che possono pagarla.
+func _test_dazed_and_stamina() -> void:
+	print("Dazed e stamina")
+	var g := await _arena()
+	var p := g.active_player()
+	p.dazed = true
+	var maneuver := -1
+	for cid in Db.hunter("dareon").get("deck", []):
+		var c: Dictionary = cid
+		if String(c.get("type", "")) == "maneuver" and int(c.get("cost", 0)) == 0:
+			maneuver = int(c["id"])
+			break
+	if maneuver >= 0:
+		p.hand.append(maneuver)
+		g.struggle = 2
+		await g.play_card(maneuver)
+		_check("il maneuver consuma il dazed", p.dazed, false)
+		_check("e toglie lo struggle", g.struggle < 2, true)
+	var g2 := await _arena()
+	var q := g2.active_player()
+	q.stamina_token = 0
+	var costly := -1
+	for card in Db.hunter("dareon").get("deck", []):
+		var c2: Dictionary = card
+		if int(c2.get("cost", 0)) >= 1 and int(c2.get("stamina", 0)) >= 1:
+			costly = int(c2["id"])
+			break
+	q.hand.append(costly)
+	_check("una carta da sola non si paga", g2.why_not_playable(q, costly), "stamina insufficiente")

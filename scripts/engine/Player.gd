@@ -189,9 +189,13 @@ func stamina_of(card_id: int, paying_for: String = "") -> int:
 
 
 ## Stamina totale generabile scartando tutte le carte in mano.
-func available_stamina(paying_for: String = "") -> int:
+## Stamina che si puo' generare adesso. `excluding` e' la carta che si sta
+## giocando: non puo' pagare se stessa, quindi non va contata.
+func available_stamina(paying_for: String = "", excluding: int = -1) -> int:
 	var total := stamina_token
 	for cid in hand:
+		if cid == excluding:
+			continue
 		total += stamina_of(cid, paying_for)
 	return total
 

@@ -570,7 +570,7 @@
       "art": "res://art/monsters/dygorax/g1_04_fronte.jpg",
       "back": "res://art/monsters/dygorax/g1_04_retro.jpg",
       "text": "The monster's ivory skin thickens until it becomes harder than stone.",
-      "it": "La pelle d'avorio del mostro si ispessisce finche' diventa piu' dura della pietra.",
+      "it": "La pelle d'avorio del mostro si ispessisce finché diventa più dura della pietra.",
       "effects": [],
       "boost": {
         "cost": 2,
@@ -592,7 +592,7 @@
       "art": "res://art/monsters/dygorax/g2_05_fronte.jpg",
       "back": "res://art/monsters/dygorax/g2_05_retro.jpg",
       "text": "The monster's ivory skin thickens until it becomes harder than stone.",
-      "it": "La pelle d'avorio del mostro si ispessisce finche' diventa piu' dura della pietra.",
+      "it": "La pelle d'avorio del mostro si ispessisce finché diventa più dura della pietra.",
       "effects": [],
       "boost": {
         "cost": 2,
@@ -852,7 +852,7 @@
         "rear"
       ],
       "text": "While Dygorax is hardened, the rear side is the only exposed side.",
-      "it": "Mentre Dygorax e' hardened, il lato rear e' l'unico esposto.",
+      "it": "Mentre Dygorax è hardened, il lato rear è l'unico esposto.",
       "abilities": []
     },
     "441010": {
@@ -863,7 +863,7 @@
       "permanent": true,
       "art": "res://art/monsters/dygorax/g5_02_retro.jpg",
       "text": "Permanent. When a player suffers attrition damage, increase the hardening level by 1. Then if Dygorax is hardened, it gains 1 struggle.",
-      "it": "Permanente. Quando un giocatore subisce danno da attrition, aumenta il livello di hardening di 1. Poi, se Dygorax e' hardened, guadagna 1 struggle.",
+      "it": "Permanente. Quando un giocatore subisce danno da attrition, aumenta il livello di hardening di 1. Poi, se Dygorax è hardened, guadagna 1 struggle.",
       "abilities": [
         {
           "trigger": "attrition_damage",
@@ -889,7 +889,7 @@
       "permanent": true,
       "art": "res://art/monsters/dygorax/g5_01_retro.jpg",
       "text": "Permanent. At the start of the round, increase the hardening level by 1. Then if Dygorax is hardened, it gets DMG+1 until the end of this round.",
-      "it": "Permanente. All'inizio del round aumenta il livello di hardening di 1. Poi, se Dygorax e' hardened, ottiene DMG+1 fino alla fine del round.",
+      "it": "Permanente. All'inizio del round aumenta il livello di hardening di 1. Poi, se Dygorax è hardened, ottiene DMG+1 fino alla fine del round.",
       "abilities": [
         {
           "trigger": "round_start",
@@ -923,7 +923,7 @@
         9
       ],
       "text": "Infuriate 2/6/9. While Dygorax is hardened, the rear side is the only exposed side.",
-      "it": "Infuriate 2/6/9. Mentre Dygorax e' hardened, il lato rear e' l'unico esposto.",
+      "it": "Infuriate 2/6/9. Mentre Dygorax è hardened, il lato rear è l'unico esposto.",
       "abilities": []
     }
   },

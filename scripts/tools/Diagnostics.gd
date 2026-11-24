@@ -39,7 +39,7 @@ func _tally(journal: Array, t: Dictionary) -> void:
 		elif " infligge " in s and " danni" in s:
 			t["attacks"] += 1
 			t["damage"] += int(s.split(" infligge ")[1].split(" ")[0])
-		elif "non e' su un lato esposto" in s:
+		elif "non è su un lato esposto" in s:
 			t["wasted"] += 1
 		elif "subisce una ferita" in s:
 			t["wounds"] += 1
