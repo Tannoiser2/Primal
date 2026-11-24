@@ -55,20 +55,82 @@ func _ready() -> void:
 func _build_environment() -> void:
 	var env := WorldEnvironment.new()
 	var e := Environment.new()
-	e.background_mode = Environment.BG_COLOR
-	e.background_color = Color(0.05, 0.05, 0.07)
+	# Cielo d'inchiostro: dal nero in alto al bruno caldo all'orizzonte, cosi'
+	# la plancia non galleggia nel vuoto.
+	var sky_mat := ProceduralSkyMaterial.new()
+	sky_mat.sky_top_color = Color(0.035, 0.03, 0.03)
+	sky_mat.sky_horizon_color = Color(0.16, 0.11, 0.08)
+	sky_mat.ground_horizon_color = Color(0.16, 0.11, 0.08)
+	sky_mat.ground_bottom_color = Color(0.03, 0.025, 0.02)
+	sky_mat.sun_angle_max = 0.0
+	var sky := Sky.new()
+	sky.sky_material = sky_mat
+	e.background_mode = Environment.BG_SKY
+	e.sky = sky
+	# Luce morbida: ambiente caldo e tenue, sole basso, niente bianchi bruciati.
 	e.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	e.ambient_light_color = Color(0.55, 0.52, 0.5)
-	e.ambient_light_energy = 0.8
+	e.ambient_light_color = Color(0.62, 0.56, 0.50)
+	e.ambient_light_energy = 0.55
 	e.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	e.tonemap_white = 1.6
+	e.fog_enabled = true
+	e.fog_light_color = Color(0.10, 0.075, 0.06)
+	e.fog_density = 0.012
+	e.fog_sky_affect = 0.0
 	env.environment = e
 	add_child(env)
 
 	var key := DirectionalLight3D.new()
 	key.rotation_degrees = Vector3(-55, -35, 0)
-	key.light_energy = 1.4
+	key.light_energy = 0.95
+	key.light_color = Color(1.0, 0.93, 0.84)
 	key.shadow_enabled = true
+	key.shadow_opacity = 0.7
 	add_child(key)
+	# Controluce fredda e debole: stacca le miniature dal fondo senza bruciarle.
+	var rim := DirectionalLight3D.new()
+	rim.rotation_degrees = Vector3(-30, 150, 0)
+	rim.light_energy = 0.3
+	rim.light_color = Color(0.70, 0.76, 0.90)
+	add_child(rim)
+
+
+## Il tavolo su cui poggia la plancia: legno scurissimo, con la plancia in
+## rilievo come un cartone spesso. Senza, la mappa sembrava sospesa nel nulla.
+func _build_table(width: float, depth: float) -> void:
+	var slab := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	box.size = Vector3(width + 0.3, 0.18, depth + 0.3)
+	slab.mesh = box
+	slab.position = Vector3(0, -0.095, 0)
+	var edge := StandardMaterial3D.new()
+	edge.albedo_color = Color(0.11, 0.08, 0.06)
+	edge.roughness = 0.9
+	slab.material_override = edge
+	add_child(slab)
+
+	var table := MeshInstance3D.new()
+	var plane := PlaneMesh.new()
+	plane.size = Vector2(80, 80)
+	table.mesh = plane
+	table.position = Vector3(0, -0.19, 0)
+	var wood := StandardMaterial3D.new()
+	var noise := FastNoiseLite.new()
+	noise.noise_type = FastNoiseLite.TYPE_CELLULAR
+	noise.frequency = 0.02
+	var tex := NoiseTexture2D.new()
+	tex.noise = noise
+	tex.width = 512
+	tex.height = 512
+	tex.seamless = true
+	var ramp := Gradient.new()
+	ramp.colors = PackedColorArray([Color(0.06, 0.045, 0.035), Color(0.16, 0.11, 0.075)])
+	tex.color_ramp = ramp
+	wood.albedo_texture = tex
+	wood.uv1_scale = Vector3(6, 6, 1)
+	wood.roughness = 0.85
+	table.material_override = wood
+	add_child(table)
 
 
 func _build_board() -> void:
@@ -82,6 +144,7 @@ func _build_board() -> void:
 		aspect = float(tex.get_width()) / float(maxi(tex.get_height(), 1))
 	quad.size = Vector2(BOARD_SIZE * aspect, BOARD_SIZE)
 	plane.mesh = quad
+	_build_table(BOARD_SIZE * aspect, BOARD_SIZE)
 	mat.roughness = 0.95
 	plane.material_override = mat
 	add_child(plane)
@@ -114,7 +177,9 @@ func _build_board() -> void:
 		area.input_ray_pickable = true
 		var index := i
 		area.input_event.connect(func(_c, event, _pos, _n, _s):
-			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			# Al rilascio, e solo se non si stava trascinando la vista col dito.
+			if event is InputEventMouseButton and not event.pressed \
+					and event.button_index == MOUSE_BUTTON_LEFT and _touch_travel <= 8.0:
 				sector_clicked.emit(index))
 		# Serve vedere dove si sta andando prima di cliccare: la casella sotto il
 		# puntatore si accende e si solleva.
@@ -820,8 +885,63 @@ func _play_blow(attacker_id: String, target_id: String, amount: int) -> void:
 
 # ------------------------------------------------------------- camera orbit
 
+## Mouse: trascina col tasto destro (o centrale, o Maiusc+sinistro) per girare,
+## rotella per lo zoom; sul trackpad pizzico e scorrimento a due dita.
+## Tocco (iPad): un dito trascina e gira la vista, due dita pizzicano per lo
+## zoom, ruotano per girare e scorrono insieme per spostare la plancia.
+## Un tocco breve resta un clic: serve per scegliere le caselle.
+var _touches: Dictionary = {}          ## indice dito -> posizione
+var _touch_travel := 0.0
+var _pan := Vector3.ZERO
+
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			_touches[event.index] = event.position
+			if _touches.size() == 1:
+				_touch_travel = 0.0
+		else:
+			_touches.erase(event.index)
+		return
+	if event is InputEventScreenDrag:
+		if not _touches.has(event.index):
+			_touches[event.index] = event.position
+		if _touches.size() == 1:
+			_touch_travel += event.relative.length()
+			# Sotto qualche pixel e' un tocco, non un trascinamento.
+			if _touch_travel > 8.0:
+				_orbit(event.relative)
+		elif _touches.size() >= 2:
+			var keys := _touches.keys()
+			var other: Vector2 = _touches[keys[1] if keys[0] == event.index else keys[0]]
+			var before: Vector2 = _touches[event.index]
+			var after: Vector2 = event.position
+			# Pizzico: quanto cambia la distanza fra le dita.
+			var d0 := before.distance_to(other)
+			var d1 := after.distance_to(other)
+			if d0 > 1.0 and d1 > 1.0:
+				_distance = clampf(_distance * d0 / d1, 6.0, 30.0)
+			# Rotazione: quanto gira il segmento fra le dita.
+			var turn := (after - other).angle() - (before - other).angle()
+			turn = wrapf(turn, -PI, PI)
+			_yaw -= turn
+			# Spostamento: meta' del movimento di questo dito (l'altro fa il resto).
+			_pan_by(event.relative * 0.5)
+			_update_camera()
+		_touches[event.index] = event.position
+		return
+	if event is InputEventMagnifyGesture:
+		_distance = clampf(_distance / event.factor, 6.0, 30.0)
+		_update_camera()
+		return
+	if event is InputEventPanGesture:
+		_pan_by(-event.delta * 8.0)
+		_update_camera()
+		return
 	if event is InputEventMouseButton:
+		# I clic finti generati dal tocco non girano la camera.
+		if event.device == InputEvent.DEVICE_ID_EMULATION:
+			return
 		if event.button_index == MOUSE_BUTTON_MIDDLE or \
 		   (event.button_index == MOUSE_BUTTON_LEFT and Input.is_key_pressed(KEY_SHIFT)) or \
 		   event.button_index == MOUSE_BUTTON_RIGHT:
@@ -833,9 +953,24 @@ func _unhandled_input(event: InputEvent) -> void:
 			_distance = clampf(_distance + 1.0, 6.0, 30.0)
 			_update_camera()
 	elif event is InputEventMouseMotion and _dragging:
-		_yaw -= event.relative.x * 0.008
-		_pitch = clampf(_pitch - event.relative.y * 0.006, -1.45, -0.15)
-		_update_camera()
+		_orbit(event.relative)
+
+
+func _orbit(relative: Vector2) -> void:
+	_yaw -= relative.x * 0.008
+	_pitch = clampf(_pitch - relative.y * 0.006, -1.45, -0.15)
+	_update_camera()
+
+
+## Sposta il punto guardato sul piano del tavolo, nel verso del trascinamento.
+func _pan_by(relative: Vector2) -> void:
+	var right := Vector3(cos(_yaw), 0.0, -sin(_yaw))
+	var forward := Vector3(sin(_yaw), 0.0, cos(_yaw))
+	var k := _distance * 0.0016
+	_pan -= right * relative.x * k
+	_pan -= forward * relative.y * k
+	_pan.x = clampf(_pan.x, -6.0, 6.0)
+	_pan.z = clampf(_pan.z, -6.0, 6.0)
 
 
 func _update_camera() -> void:
@@ -845,8 +980,8 @@ func _update_camera() -> void:
 		cos(_pitch) * sin(_yaw),
 		-sin(_pitch),
 		cos(_pitch) * cos(_yaw)) * _distance
-	camera.position = offset
-	camera.look_at(Vector3.ZERO, Vector3.UP)
+	camera.position = _pan + offset
+	camera.look_at(_pan, Vector3.UP)
 
 
 # --------------------------------------------------- carte giocate sul tavolo

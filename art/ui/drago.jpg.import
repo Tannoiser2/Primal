@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj3658ifcek70"
-path="res://.godot/imported/counter.png-935ba71ec8ce9cb534f4341098ef17ab.ctex"
+uid="uid://qt12rmfk84lc"
+path="res://.godot/imported/drago.jpg-f524ec65e0935c762d48c5a8dd767418.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tokens/counter.png"
-dest_files=["res://.godot/imported/counter.png-935ba71ec8ce9cb534f4341098ef17ab.ctex"]
+source_file="res://art/ui/drago.jpg"
+dest_files=["res://.godot/imported/drago.jpg-f524ec65e0935c762d48c5a8dd767418.ctex"]
 
 [params]
 

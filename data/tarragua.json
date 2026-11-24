@@ -1,0 +1,807 @@
+{
+ "_note": "Tarragua. Trascritto dalle immagini con tools/build_tarragua_jekoros.py: vedi docs/tarragua_struttura.md. Terreno delle Expedition dal Regolamento (p.69-70): i pezzi sono quelli del libro, le caselle sono provvisorie.",
+ "id": "tarragua",
+ "name": "Tarragua",
+ "element": "earth",
+ "acceleration": {
+  "max_per_player": 1
+ },
+ "art": {
+  "behavior_back": "res://art/monsters/tarragua/g2_00_retro.jpg",
+  "model": "res://models/tarragua.glb",
+  "model_yaw": 180,
+  "board": "res://art/monsters/tarragua/board.jpg",
+  "portrait": {
+   "art": "res://art/monsters/tarragua/sciolta_1.jpg",
+   "region": [
+    0.3,
+    0.0,
+    0.32,
+    0.45
+   ]
+  }
+ },
+ "expeditions": {
+  "_note": "Pezzi dal Regolamento; posizioni provvisorie, da confrontare col diagramma.",
+  "1": {
+   "name": "Expedition 1",
+   "terrain": [
+    {
+     "type": "plateau",
+     "sector": 2
+    },
+    {
+     "type": "rock",
+     "sector": 1
+    },
+    {
+     "type": "rock",
+     "sector": 3
+    },
+    {
+     "type": "baethanis",
+     "sector": 0
+    }
+   ]
+  },
+  "2": {
+   "name": "Expedition 2",
+   "terrain": [
+    {
+     "type": "plateau",
+     "sector": 2
+    },
+    {
+     "type": "rock",
+     "sector": 1
+    },
+    {
+     "type": "rock",
+     "sector": 3
+    },
+    {
+     "type": "fog",
+     "sector": 0
+    },
+    {
+     "type": "fog",
+     "sector": 2
+    }
+   ]
+  }
+ },
+ "levels": {
+  "0": {
+   "health": 10,
+   "behavior_deck": [
+    46008,
+    46008,
+    46003,
+    46004,
+    46014,
+    46005,
+    46015,
+    46016,
+    46001
+   ],
+   "stances": [
+    {
+     "n": 1,
+     "toughness_per_player": 2,
+     "damage": 1,
+     "exposed": [
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_1.jpg",
+     "progression": 6,
+     "shield": 1,
+     "resistant": true,
+     "peril": 46101,
+     "text": "Resistant. Shield 1."
+    },
+    {
+     "n": 2,
+     "toughness_per_player": 3,
+     "damage": 1,
+     "exposed": [
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_1_stato2.jpg",
+     "progression": 3,
+     "shield": 1,
+     "resistant": true,
+     "objective": 46201,
+     "on_reveal": [
+      {
+       "op": "acceleration",
+       "n": 1
+      }
+     ],
+     "text": "Resistant. Shield 1. When revealed: Tarragua gains 1 acceleration."
+    },
+    {
+     "n": 3,
+     "toughness_per_player": 4,
+     "damage": 2,
+     "exposed": [
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_1_stato3.jpg",
+     "shield": 2,
+     "peril": 46103,
+     "text": "Shield 2."
+    }
+   ]
+  },
+  "1": {
+   "health": 10,
+   "behavior_deck": [
+    46001,
+    46002,
+    46003,
+    46004,
+    46005,
+    46006,
+    46007,
+    46008,
+    46008
+   ],
+   "stances": [
+    {
+     "n": 1,
+     "toughness_per_player": 6,
+     "damage": 1,
+     "exposed": [
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_2.jpg",
+     "progression": 6,
+     "shield": 1,
+     "resistant": true,
+     "peril": 46101,
+     "text": "Resistant. Shield 1."
+    },
+    {
+     "n": 2,
+     "toughness_per_player": 7,
+     "damage": 1,
+     "exposed": [
+      "flank"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_2_stato2.jpg",
+     "progression": 3,
+     "shield": 1,
+     "resistant": true,
+     "objective": 46201,
+     "on_reveal": [
+      {
+       "op": "acceleration",
+       "n": 1
+      }
+     ],
+     "text": "Resistant. Shield 1. When revealed: Tarragua gains 1 acceleration."
+    },
+    {
+     "n": 3,
+     "toughness_per_player": 8,
+     "damage": 2,
+     "exposed": [
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_2_stato3.jpg",
+     "shield": 2,
+     "peril": 46103,
+     "text": "Shield 2."
+    }
+   ]
+  },
+  "2": {
+   "health": 10,
+   "behavior_deck": [
+    46009,
+    46009,
+    46007,
+    46005,
+    46006,
+    46004,
+    46011,
+    46001,
+    46002
+   ],
+   "stances": [
+    {
+     "n": 1,
+     "toughness_per_player": 10,
+     "damage": 2,
+     "exposed": [
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_3.jpg",
+     "progression": 6,
+     "shield": 2,
+     "resistant": true,
+     "peril": 46101,
+     "text": "Resistant. Shield 2."
+    },
+    {
+     "n": 2,
+     "toughness_per_player": 14,
+     "damage": 3,
+     "exposed": [
+      "flank"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_3_stato2.jpg",
+     "progression": 3,
+     "shield": 2,
+     "resistant": true,
+     "objective": 46201,
+     "on_reveal": [
+      {
+       "op": "acceleration",
+       "n": 1
+      }
+     ],
+     "text": "Resistant. Shield 2. When revealed: Tarragua gains 1 acceleration."
+    },
+    {
+     "n": 3,
+     "toughness_per_player": 18,
+     "damage": 4,
+     "exposed": [
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_3_stato3.jpg",
+     "shield": 3,
+     "peril": 46103,
+     "text": "Shield 3."
+    }
+   ]
+  },
+  "3": {
+   "health": 10,
+   "behavior_deck": [
+    46009,
+    46009,
+    46007,
+    46010,
+    46011,
+    46012,
+    46006,
+    46013,
+    46002
+   ],
+   "stances": [
+    {
+     "n": 1,
+     "toughness_per_player": 16,
+     "damage": 3,
+     "exposed": [
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_3_retro.jpg",
+     "progression": 6,
+     "shield": 3,
+     "resistant": true,
+     "peril": 461010,
+     "on_round_1": [
+      {
+       "op": "remove_attrition_card",
+       "value": 0
+      }
+     ],
+     "text": "Resistant. Shield 3. At the start of round 1, search the attrition deck for a card with attrition value of 0 and remove that card from the game. Then shuffle the attrition deck."
+    },
+    {
+     "n": 2,
+     "toughness_per_player": 18,
+     "damage": 4,
+     "exposed": [
+      "flank"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_3_stato2_retro.jpg",
+     "progression": 3,
+     "shield": 3,
+     "resistant": true,
+     "objective": 462010,
+     "on_reveal": [
+      {
+       "op": "acceleration",
+       "n": 1
+      }
+     ],
+     "text": "Resistant. Shield 3. When revealed: Tarragua gains 1 acceleration."
+    },
+    {
+     "n": 3,
+     "toughness_per_player": 22,
+     "damage": 5,
+     "exposed": [
+      "flank"
+     ],
+     "art": "res://art/monsters/tarragua/sciolta_3_stato3_retro.jpg",
+     "shield": 4,
+     "peril": 461030,
+     "on_reveal": [
+      {
+       "op": "acceleration",
+       "n": 1
+      }
+     ],
+     "text": "Shield 4. When revealed: Tarragua gains 1 acceleration."
+    }
+   ]
+  }
+ },
+ "behaviors": {
+  "46001": {
+   "name": "Metal Skin",
+   "reaction": "turn_start_front",
+   "refresh": 7,
+   "text": "Tarragua's shield value is increased by 1 until the end of this turn.",
+   "it": "Lo shield di Tarragua aumenta di 1 fino alla fine di questo turno.",
+   "effects": [
+    {
+     "op": "shield_bonus",
+     "n": 1
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g2_00_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g2_00_retro.jpg"
+  },
+  "46013": {
+   "name": "Arkeum Skin",
+   "reaction": "turn_start_front",
+   "refresh": 7,
+   "text": "Tarragua's shield value is increased by 4 until the end of this turn.",
+   "it": "Lo shield di Tarragua aumenta di 4 fino alla fine di questo turno.",
+   "effects": [
+    {
+     "op": "shield_bonus",
+     "n": 4
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g3_07_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g3_07_retro.jpg"
+  },
+  "46002": {
+   "name": "Spidery Grasp",
+   "reaction": "turn_start_front",
+   "refresh": 4,
+   "text": "The active player becomes dazed and skips their movement phase this turn unless another player in either the same sector or an adjacent one discards an offensive card from their hand.",
+   "it": "Il giocatore attivo diventa dazed e salta la fase movimento di questo turno, a meno che un altro giocatore nello stesso settore o in uno adiacente scarti una carta offensive dalla mano.",
+   "effects": [
+    {
+     "op": "skip_movement_unless_help",
+     "who": "active",
+     "kind": "offensive",
+     "dazed": true
+    }
+   ],
+   "boost": {
+    "cost": 1,
+    "text": "The active player suffers DMG unless they reveal a number of dodges from their hand equal to the current attrition level.",
+    "it": "Il giocatore attivo subisce DMG a meno che non riveli dalla mano tanti dodge quanto il livello di attrition attuale.",
+    "effects": [
+     {
+      "op": "suffer_unless_reveal",
+      "who": "active",
+      "type": "dodge",
+      "n": "attrition_level"
+     }
+    ]
+   },
+   "art": "res://art/monsters/tarragua/g2_01_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g2_01_retro.jpg"
+  },
+  "46016": {
+   "name": "Spidery Grasp",
+   "reaction": "turn_start_front",
+   "refresh": 4,
+   "text": "The active player skips their movement phase this turn unless another player in either the same sector or an adjacent one discards an offensive card from their hand.",
+   "it": "Il giocatore attivo salta la fase movimento di questo turno, a meno che un altro giocatore nello stesso settore o in uno adiacente scarti una carta offensive dalla mano.",
+   "effects": [
+    {
+     "op": "skip_movement_unless_help",
+     "who": "active",
+     "kind": "offensive"
+    }
+   ],
+   "boost": {
+    "cost": 1,
+    "text": "The active player suffers DMG unless they reveal a dodge from their hand.",
+    "it": "Il giocatore attivo subisce DMG a meno che non riveli un dodge dalla mano.",
+    "effects": [
+     {
+      "op": "suffer_unless_reveal",
+      "who": "active",
+      "type": "dodge"
+     }
+    ]
+   },
+   "art": "res://art/monsters/tarragua/g5_07_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g5_07_retro.jpg"
+  },
+  "46003": {
+   "name": "Rumbling Stomp",
+   "reaction": "dodge_played",
+   "refresh": 1,
+   "text": "Tarragua gains PP-1 struggle and gets DMG+1 until the end of the round.",
+   "it": "Tarragua guadagna (giocatori-1) struggle e ottiene DMG+1 fino alla fine del round.",
+   "effects": [
+    {
+     "op": "monster_gain_struggle",
+     "n": "players_minus_1"
+    },
+    {
+     "op": "monster_damage_bonus",
+     "n": 1,
+     "duration": "round"
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g2_02_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g2_02_retro.jpg"
+  },
+  "46011": {
+   "name": "Rumbling Stomp",
+   "reaction": "dodge_played",
+   "refresh": 1,
+   "text": "The active player becomes threatened. Tarragua gains 1 PP struggle and gets DMG+3 until the end of the round.",
+   "it": "Il giocatore attivo diventa threatened. Tarragua guadagna 1 struggle per giocatore e ottiene DMG+3 fino alla fine del round.",
+   "effects": [
+    {
+     "op": "become_threatened",
+     "who": "active"
+    },
+    {
+     "op": "monster_gain_struggle",
+     "n": 1,
+     "scale": "per_player"
+    },
+    {
+     "op": "monster_damage_bonus",
+     "n": 3,
+     "duration": "round"
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g3_04_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g3_04_retro.jpg"
+  },
+  "46004": {
+   "name": "Rampaging Horns",
+   "reaction": "attack_played",
+   "refresh": 5,
+   "text": "Tarragua turns to the active player. That player may immediately move.",
+   "it": "Tarragua si gira verso il giocatore attivo. Quel giocatore puo' muoversi subito.",
+   "effects": [
+    {
+     "op": "monster_turn_to",
+     "criteria": "active"
+    },
+    {
+     "op": "offer_move",
+     "who": "active"
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g2_03_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g2_03_retro.jpg"
+  },
+  "46012": {
+   "name": "Rampaging Horns",
+   "reaction": "attack_played",
+   "refresh": 5,
+   "text": "Tarragua turns to the active player. That player suffers DMG unless they immediately move. The cost of this movement is increased by 1.",
+   "it": "Tarragua si gira verso il giocatore attivo. Quel giocatore subisce DMG a meno che non si muova subito; quel movimento costa 1 stamina in piu'.",
+   "effects": [
+    {
+     "op": "monster_turn_to",
+     "criteria": "active"
+    },
+    {
+     "op": "move_or_suffer",
+     "who": "active",
+     "extra_cost": 1
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g3_05_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g3_05_retro.jpg"
+  },
+  "46005": {
+   "name": "Crushing Horns",
+   "reaction": "turn_start_flank",
+   "refresh": 5,
+   "text": "If Tarragua suffered damage this turn, each player in the front and flank sectors suffers DMG unless they reveal 2 dodges from their hand.",
+   "it": "Se Tarragua ha subito danni in questo turno, ogni giocatore nei settori front e flank subisce DMG a meno che non riveli 2 dodge dalla mano.",
+   "effects": [
+    {
+     "op": "suffer_unless_reveal",
+     "who": "players_in_front_and_flank",
+     "type": "dodge",
+     "n": 2,
+     "condition": "monster_damaged_this_turn"
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g2_04_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g2_04_retro.jpg"
+  },
+  "46010": {
+   "name": "Crushing Horns",
+   "reaction": "turn_start_flank",
+   "refresh": 5,
+   "text": "If Tarragua suffered damage this turn, each player suffers DMG unless they reveal 2 dodges from their hand.",
+   "it": "Se Tarragua ha subito danni in questo turno, ogni giocatore subisce DMG a meno che non riveli 2 dodge dalla mano.",
+   "effects": [
+    {
+     "op": "suffer_unless_reveal",
+     "who": "all",
+     "type": "dodge",
+     "n": 2,
+     "condition": "monster_damaged_this_turn"
+    }
+   ],
+   "boost": {
+    "cost": 1,
+    "text": "Discard the top 3 cards of the attrition deck.",
+    "it": "Scarta le prime 3 carte del mazzo attrition.",
+    "effects": [
+     {
+      "op": "discard_attrition",
+      "n": 3
+     }
+    ]
+   },
+   "art": "res://art/monsters/tarragua/g3_03_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g3_03_retro.jpg"
+  },
+  "46006": {
+   "name": "Indomitable Charge",
+   "reaction": "end_of_round",
+   "refresh": 4,
+   "text": "Each player in the front sector suffers DMGx2 unless they reveal 2 dodges from their hand. If a player does reveal those cards, they must immediately move without paying any stamina cost.",
+   "it": "Ogni giocatore nel settore front subisce DMGx2 a meno che non riveli 2 dodge dalla mano. Chi li rivela deve muoversi subito, senza pagare stamina.",
+   "effects": [
+    {
+     "op": "suffer_unless_reveal",
+     "who": "players_in_front",
+     "type": "dodge",
+     "n": 2,
+     "damage_multiplier": 2,
+     "on_reveal": [
+      {
+       "op": "free_move_now",
+       "who": "self",
+       "forced": true
+      }
+     ]
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g2_05_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g2_05_retro.jpg"
+  },
+  "46015": {
+   "name": "Indomitable Charge",
+   "reaction": "end_of_round",
+   "refresh": 4,
+   "text": "Each player in the front sector suffers DMG unless they reveal 2 dodges from their hand. If a player does reveal those cards, they must immediately move without paying any stamina cost.",
+   "it": "Ogni giocatore nel settore front subisce DMG a meno che non riveli 2 dodge dalla mano. Chi li rivela deve muoversi subito, senza pagare stamina.",
+   "effects": [
+    {
+     "op": "suffer_unless_reveal",
+     "who": "players_in_front",
+     "type": "dodge",
+     "n": 2,
+     "on_reveal": [
+      {
+       "op": "free_move_now",
+       "who": "self",
+       "forced": true
+      }
+     ]
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g5_06_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g5_06_retro.jpg"
+  },
+  "46007": {
+   "name": "Aggressive Posture",
+   "reaction": "rampage",
+   "refresh": 6,
+   "rampage": true,
+   "text": "Tarragua gains 1 struggle for each player in the front sector.",
+   "it": "Tarragua guadagna 1 struggle per ogni giocatore nel settore front.",
+   "effects": [
+    {
+     "op": "monster_gain_struggle",
+     "n": 1,
+     "per_target": "players_in_front"
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g2_06_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g2_06_retro.jpg"
+  },
+  "46014": {
+   "name": "Aggressive Posture",
+   "reaction": "rampage",
+   "refresh": 6,
+   "rampage": true,
+   "text": "Tarragua gains PP-1 struggle.",
+   "it": "Tarragua guadagna (giocatori-1) struggle.",
+   "effects": [
+    {
+     "op": "monster_gain_struggle",
+     "n": "players_minus_1"
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g5_04_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g5_04_retro.jpg"
+  },
+  "46008": {
+   "name": "Hammer Tail",
+   "reaction": "monster_turned",
+   "refresh": 3,
+   "text": "Each player in the rear sector suffers DMG unless they discard a dodge from their hand. Each threatened player in the flank sectors suffers DMG unless they reveal a dodge from their hand.",
+   "it": "Ogni giocatore nel settore rear subisce DMG a meno che non scarti un dodge dalla mano. Ogni giocatore threatened nei settori flank subisce DMG a meno che non riveli un dodge dalla mano.",
+   "effects": [
+    {
+     "op": "suffer_unless_discard",
+     "who": "players_in_rear",
+     "discard_type": "dodge"
+    },
+    {
+     "op": "suffer_unless_reveal",
+     "who": "threatened_in_flank",
+     "type": "dodge"
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g2_07_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g2_07_retro.jpg"
+  },
+  "46009": {
+   "name": "Hammer Tail",
+   "reaction": "monster_turned",
+   "refresh": 3,
+   "text": "Threatened players in the flank and rear sectors suffer DMG+1. Threatened players in the flank sectors suffer another DMG+1 unless they reveal a dodge from their hand. Each other player in the flank and rear sectors suffers DMG unless they discard a dodge from their hand.",
+   "it": "I giocatori threatened nei settori flank e rear subiscono DMG+1. Quelli threatened nei flank subiscono un altro DMG+1 a meno che non rivelino un dodge dalla mano. Ogni altro giocatore nei settori flank e rear subisce DMG a meno che non scarti un dodge dalla mano.",
+   "effects": [
+    {
+     "op": "suffer",
+     "who": "threatened_in_flank_rear",
+     "damage_bonus": 1
+    },
+    {
+     "op": "suffer_unless_reveal",
+     "who": "threatened_in_flank",
+     "type": "dodge",
+     "damage_bonus": 1
+    },
+    {
+     "op": "suffer_unless_discard",
+     "who": "unthreatened_in_flank_rear",
+     "discard_type": "dodge"
+    }
+   ],
+   "art": "res://art/monsters/tarragua/g3_00_fronte.jpg",
+   "back": "res://art/monsters/tarragua/g3_00_retro.jpg"
+  }
+ },
+ "perils": {
+  "46101": {
+   "n": 1,
+   "stance": 1,
+   "name": "Wailing Roar",
+   "permanent": true,
+   "art": "res://art/monsters/tarragua/g1_01_fronte.jpg",
+   "text": "Permanent. When the attrition deck is emptied, Tarragua gains 1 PP struggle.",
+   "it": "Permanente. Quando il mazzo attrition si esaurisce, Tarragua guadagna 1 struggle per giocatore.",
+   "abilities": [
+    {
+     "trigger": "attrition_deck_emptied",
+     "effects": [
+      {
+       "op": "monster_gain_struggle",
+       "n": 1,
+       "scale": "per_player"
+      }
+     ]
+    }
+   ]
+  },
+  "461010": {
+   "n": 1,
+   "stance": 1,
+   "name": "Wailing Roar",
+   "permanent": true,
+   "art": "res://art/monsters/tarragua/g1_01_retro.jpg",
+   "text": "Permanent. When the attrition deck is emptied, Tarragua gains 1 PP struggle and is unstoppable until the end of the round.",
+   "it": "Permanente. Quando il mazzo attrition si esaurisce, Tarragua guadagna 1 struggle per giocatore ed e' unstoppable fino alla fine del round.",
+   "abilities": [
+    {
+     "trigger": "attrition_deck_emptied",
+     "effects": [
+      {
+       "op": "monster_gain_struggle",
+       "n": 1,
+       "scale": "per_player"
+      },
+      {
+       "op": "unstoppable",
+       "duration": "round"
+      }
+     ]
+    }
+   ]
+  },
+  "46103": {
+   "n": 3,
+   "stance": 3,
+   "name": "Unscratchable",
+   "art": "res://art/monsters/tarragua/g1_00_fronte.jpg",
+   "text": "While Tarragua has 1 PP or more struggle, all weapon cards are considered to be blank (ignore the ability text on those cards).",
+   "it": "Finche' Tarragua ha almeno 1 struggle per giocatore, tutte le carte weapon sono blank (se ne ignora il testo).",
+   "weapons_blank_at_struggle_per_player": 1
+  },
+  "461030": {
+   "n": 3,
+   "stance": 3,
+   "name": "Unscratchable",
+   "art": "res://art/monsters/tarragua/g1_00_retro.jpg",
+   "text": "While Tarragua has 1 PP or more struggle, its shield value is increased to 6 and all weapon cards are considered to be blank.",
+   "it": "Finche' Tarragua ha almeno 1 struggle per giocatore, il suo shield sale a 6 e tutte le carte weapon sono blank.",
+   "weapons_blank_at_struggle_per_player": 1,
+   "shield_at_struggle": 6
+  }
+ },
+ "objectives": {
+  "46201": {
+   "name": "Slash to the Throat",
+   "stance": 2,
+   "permanent": true,
+   "art": "res://art/monsters/tarragua/sciolta_0.jpg",
+   "text": "Permanent. When a behavior card with the front sector reaction is revealed, the active player may discard an attack from their hand. If they do, cancel the effects of that behavior card and inflict vulnerable.",
+   "it": "Permanente. Quando viene rivelata una behavior con la reazione del settore front, il giocatore attivo puo' scartare un attack dalla mano: se lo fa, annulla gli effetti di quella behavior e infliggi vulnerable.",
+   "abilities": [
+    {
+     "trigger": "behavior_revealed",
+     "reaction": "turn_start_front",
+     "discard_type": "attack",
+     "effects": [
+      {
+       "op": "cancel_behavior"
+      },
+      {
+       "op": "inflict",
+       "status": "vulnerable"
+      }
+     ]
+    }
+   ]
+  },
+  "462010": {
+   "name": "Slash to the Throat",
+   "stance": 2,
+   "permanent": true,
+   "art": "res://art/monsters/tarragua/sciolta_0_retro.jpg",
+   "text": "Permanent. When a behavior card with the front sector reaction is revealed, the active player may discard an attack from their hand. If they do, cancel the effects of that behavior card.",
+   "it": "Permanente. Quando viene rivelata una behavior con la reazione del settore front, il giocatore attivo puo' scartare un attack dalla mano: se lo fa, annulla gli effetti di quella behavior.",
+   "abilities": [
+    {
+     "trigger": "behavior_revealed",
+     "reaction": "turn_start_front",
+     "discard_type": "attack",
+     "effects": [
+      {
+       "op": "cancel_behavior"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

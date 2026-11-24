@@ -1,0 +1,918 @@
+{
+ "_note": "Jekoros. Trascritto dalle immagini con tools/build_tarragua_jekoros.py: vedi docs/jekoros_struttura.md. Le stance avanzano solo col tracciato charge, non con la salute. Terreno delle Expedition: pezzi dal Regolamento, caselle provvisorie.",
+ "id": "jekoros",
+ "name": "Jekoros",
+ "element": "lightning",
+ "charge": {
+  "max": 3
+ },
+ "attrition": {
+  "_note": "Le cinque carte attrition di Jekoros prendono il posto delle cinque di valore 1 del mazzo comune.",
+  "replace_value": 1,
+  "count": 5,
+  "card": {
+   "value": 1,
+   "art": "res://art/monsters/jekoros/g6_00_fronte.jpg",
+   "text": "When revealed: If the active player is in the front sector, Jekoros gains 1 struggle.",
+   "on_reveal": [
+    {
+     "op": "monster_gain_struggle",
+     "n": 1,
+     "condition": "active_in_front"
+    }
+   ]
+  }
+ },
+ "art": {
+  "behavior_back": "res://art/monsters/jekoros/g1_00_retro.jpg",
+  "model": "res://models/jekoros.glb",
+  "model_yaw": 180,
+  "board": "res://art/monsters/jekoros/board.jpg",
+  "portrait": {
+   "art": "res://art/monsters/jekoros/sciolta_2.jpg",
+   "region": [
+    0.2,
+    0.0,
+    0.32,
+    0.45
+   ]
+  }
+ },
+ "expeditions": {
+  "_note": "Pezzi dal Regolamento; posizioni provvisorie, da confrontare col diagramma.",
+  "1": {
+   "name": "Expedition 1",
+   "terrain": [
+    {
+     "type": "rock",
+     "sector": 1
+    },
+    {
+     "type": "rock",
+     "sector": 3
+    },
+    {
+     "type": "baethanis",
+     "sector": 2
+    },
+    {
+     "type": "water",
+     "sector": 0
+    },
+    {
+     "type": "water",
+     "sector": 2
+    }
+   ]
+  },
+  "2": {
+   "name": "Expedition 2",
+   "terrain": [
+    {
+     "type": "rock",
+     "sector": 1
+    },
+    {
+     "type": "rock",
+     "sector": 3
+    },
+    {
+     "type": "cyricae",
+     "sector": 0
+    },
+    {
+     "type": "cyricae",
+     "sector": 2
+    },
+    {
+     "type": "water",
+     "sector": 1
+    },
+    {
+     "type": "water",
+     "sector": 3
+    }
+   ]
+  }
+ },
+ "levels": {
+  "0": {
+   "health": 10,
+   "behavior_deck": [
+    47001,
+    47002,
+    47003,
+    47004,
+    47005,
+    47006,
+    47007,
+    47008,
+    47009
+   ],
+   "stances": [
+    {
+     "n": 1,
+     "toughness_per_player": 2,
+     "damage": 1,
+     "exposed": [
+      "front",
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_2.jpg",
+     "peril": 47101,
+     "perils": [
+      47101,
+      47102
+     ],
+     "on_charge_full": [
+      {
+       "op": "charge",
+       "set": 0
+      },
+      {
+       "op": "advance_stance"
+      }
+     ],
+     "text": "When the charge level reaches 3, reset it to 0 and advance to Stance II."
+    },
+    {
+     "n": 2,
+     "toughness_per_player": 4,
+     "damage": 1,
+     "exposed": [
+      "front",
+      "flank"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_2_stato2.jpg",
+     "objective": 47201,
+     "on_charge_full": [
+      {
+       "op": "charge",
+       "set": 0
+      },
+      {
+       "op": "advance_stance"
+      }
+     ],
+     "text": "When the charge level reaches 3, reset it to 0 and advance to Stance III."
+    },
+    {
+     "n": 3,
+     "toughness_per_player": 5,
+     "damage": 1,
+     "exposed": [
+      "front",
+      "flank"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_2_stato3.jpg",
+     "peril": 47103,
+     "on_charge_full": [
+      {
+       "op": "all_players_ko"
+      }
+     ],
+     "text": "When the charge level reaches 3, all players are KO'd."
+    }
+   ]
+  },
+  "1": {
+   "health": 10,
+   "behavior_deck": [
+    47001,
+    47010,
+    47004,
+    47005,
+    47006,
+    47008,
+    47011,
+    47007,
+    47012
+   ],
+   "stances": [
+    {
+     "n": 1,
+     "toughness_per_player": 7,
+     "damage": 1,
+     "exposed": [
+      "front",
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_1.jpg",
+     "peril": 47101,
+     "perils": [
+      47101,
+      47102
+     ],
+     "on_charge_full": [
+      {
+       "op": "charge",
+       "set": 0
+      },
+      {
+       "op": "advance_stance"
+      }
+     ],
+     "text": "When the charge level reaches 3, reset it to 0 and advance to Stance II."
+    },
+    {
+     "n": 2,
+     "toughness_per_player": 8,
+     "damage": 1,
+     "exposed": [
+      "front",
+      "flank"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_1_stato2.jpg",
+     "objective": 47201,
+     "on_charge_full": [
+      {
+       "op": "charge",
+       "set": 0
+      },
+      {
+       "op": "advance_stance"
+      }
+     ],
+     "text": "When the charge level reaches 3, reset it to 0 and advance to Stance III."
+    },
+    {
+     "n": 3,
+     "toughness_per_player": 12,
+     "damage": 1,
+     "exposed": [
+      "front",
+      "flank"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_1_stato3.jpg",
+     "peril": 47103,
+     "on_charge_full": [
+      {
+       "op": "all_players_ko"
+      }
+     ],
+     "text": "When the charge level reaches 3, all players are KO'd."
+    }
+   ]
+  },
+  "2": {
+   "health": 10,
+   "behavior_deck": [
+    47001,
+    47010,
+    47012,
+    47004,
+    47013,
+    47006,
+    47014,
+    47011,
+    47015
+   ],
+   "stances": [
+    {
+     "n": 1,
+     "toughness_per_player": 12,
+     "damage": 2,
+     "exposed": [
+      "front",
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_4.jpg",
+     "peril": 47101,
+     "perils": [
+      47101,
+      47102
+     ],
+     "on_charge_full": [
+      {
+       "op": "charge",
+       "set": 0
+      },
+      {
+       "op": "advance_stance"
+      }
+     ],
+     "text": "At the start of round 1, increase the charge level by 1. When the charge level reaches 3, reset it to 0 and advance to Stance II.",
+     "on_round_1": [
+      {
+       "op": "charge",
+       "n": 1
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "toughness_per_player": 17,
+     "damage": 2,
+     "exposed": [
+      "front",
+      "flank"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_4_stato2.jpg",
+     "objective": 47201,
+     "on_charge_full": [
+      {
+       "op": "charge",
+       "set": 0
+      },
+      {
+       "op": "advance_stance"
+      }
+     ],
+     "text": "When the charge level reaches 3, reset it to 0 and advance to Stance III."
+    },
+    {
+     "n": 3,
+     "toughness_per_player": 22,
+     "damage": 2,
+     "exposed": [
+      "front",
+      "flank"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_4_stato3.jpg",
+     "peril": 47103,
+     "on_charge_full": [
+      {
+       "op": "all_players_ko"
+      }
+     ],
+     "text": "When the charge level reaches 3, all players are KO'd."
+    }
+   ]
+  },
+  "3": {
+   "health": 10,
+   "behavior_deck": [
+    47016,
+    47010,
+    47012,
+    47017,
+    47013,
+    47018,
+    47011,
+    47014,
+    47015
+   ],
+   "stances": [
+    {
+     "n": 1,
+     "toughness_per_player": 20,
+     "damage": 3,
+     "exposed": [
+      "front",
+      "flank",
+      "rear"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_3.jpg",
+     "peril": 471010,
+     "perils": [
+      471010,
+      471020
+     ],
+     "on_charge_full": [
+      {
+       "op": "charge",
+       "set": 0
+      },
+      {
+       "op": "advance_stance"
+      }
+     ],
+     "text": "At the start of round 1, increase the charge level by 1. When the charge level reaches 3, reset it to 0 and advance to Stance II.",
+     "on_round_1": [
+      {
+       "op": "charge",
+       "n": 1
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "toughness_per_player": 25,
+     "damage": 3,
+     "exposed": [
+      "front",
+      "flank"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_3_stato2.jpg",
+     "objective": 472010,
+     "on_charge_full": [
+      {
+       "op": "charge",
+       "set": 0
+      },
+      {
+       "op": "advance_stance"
+      }
+     ],
+     "text": "When the charge level reaches 3, reset it to 0 and advance to Stance III."
+    },
+    {
+     "n": 3,
+     "toughness_per_player": 30,
+     "damage": 3,
+     "exposed": [
+      "front",
+      "flank"
+     ],
+     "art": "res://art/monsters/jekoros/sciolta_3_stato3.jpg",
+     "peril": 471030,
+     "on_charge_full": [
+      {
+       "op": "all_players_ko"
+      }
+     ],
+     "text": "When the charge level reaches 3, all players are KO'd."
+    }
+   ]
+  }
+ },
+ "behaviors": {
+  "47001": {
+   "name": "Unfathomable Shadows",
+   "reaction": "turn_start_front",
+   "refresh": 5,
+   "text": "The active player discards 2 random cards from their hand and then draws 2.",
+   "it": "Il giocatore attivo scarta 2 carte a caso dalla mano, poi ne pesca 2.",
+   "effects": [
+    {
+     "op": "discard_random",
+     "who": "active",
+     "n": 2
+    },
+    {
+     "op": "draw",
+     "target": "active",
+     "n": 2
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g1_00_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g1_00_retro.jpg"
+  },
+  "47016": {
+   "name": "Creeping Shadows",
+   "reaction": "turn_start_front",
+   "refresh": 5,
+   "text": "The active player must recycle all offensive cards in their hand.",
+   "it": "Il giocatore attivo deve riciclare tutte le carte offensive che ha in mano.",
+   "effects": [
+    {
+     "op": "recycle_all_of_kind",
+     "who": "active",
+     "kind": "offensive"
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g4_00_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g4_00_retro.jpg"
+  },
+  "47002": {
+   "name": "Haunting Echoes",
+   "reaction": "defensive_played|threatened",
+   "refresh": 3,
+   "text": "The active player reveals a random card from their hand. If that card is an offensive card, they discard it. Otherwise, Jekoros gains PP-1 struggle.",
+   "it": "Il giocatore attivo rivela una carta a caso dalla mano: se e' offensive la scarta, altrimenti Jekoros guadagna (giocatori-1) struggle.",
+   "effects": [
+    {
+     "op": "reveal_random",
+     "who": "active",
+     "kind": "offensive",
+     "match": [
+      {
+       "op": "discard_revealed"
+      }
+     ],
+     "else": [
+      {
+       "op": "monster_gain_struggle",
+       "n": "players_minus_1"
+      }
+     ]
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g1_01_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g1_01_retro.jpg"
+  },
+  "47010": {
+   "name": "Haunting Echoes",
+   "reaction": "defensive_played|threatened",
+   "refresh": 3,
+   "text": "The active player reveals a random card from their hand. If that card is an attack, they discard it. Otherwise, Jekoros gains PP-1 struggle.",
+   "it": "Il giocatore attivo rivela una carta a caso dalla mano: se e' un attack la scarta, altrimenti Jekoros guadagna (giocatori-1) struggle.",
+   "effects": [
+    {
+     "op": "reveal_random",
+     "who": "active",
+     "type": "attack",
+     "match": [
+      {
+       "op": "discard_revealed"
+      }
+     ],
+     "else": [
+      {
+       "op": "monster_gain_struggle",
+       "n": "players_minus_1"
+      }
+     ]
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g2_01_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g2_01_retro.jpg"
+  },
+  "47003": {
+   "name": "Electric Spark",
+   "reaction": "threatened",
+   "refresh": 2,
+   "text": "The active player reveals a random card from their hand. If that card is a defensive card, they discard it.",
+   "it": "Il giocatore attivo rivela una carta a caso dalla mano: se e' defensive la scarta.",
+   "effects": [
+    {
+     "op": "reveal_random",
+     "who": "active",
+     "kind": "defensive",
+     "match": [
+      {
+       "op": "discard_revealed"
+      }
+     ]
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g1_02_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g1_02_retro.jpg"
+  },
+  "47012": {
+   "name": "Electric Spark",
+   "reaction": "threatened",
+   "refresh": 2,
+   "text": "The active player discards a defensive card from their hand.",
+   "it": "Il giocatore attivo scarta una carta defensive dalla mano.",
+   "effects": [
+    {
+     "op": "force_discard",
+     "who": "active",
+     "kind": "defensive"
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g3_02_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g3_02_retro.jpg"
+  },
+  "47004": {
+   "name": "Sting",
+   "reaction": "rampage",
+   "refresh": 4,
+   "rampage": true,
+   "text": "Each player in the flank and rear sectors suffers DMG unless they reveal 2 dodges from their hand.",
+   "it": "Ogni giocatore nei settori flank e rear subisce DMG a meno che non riveli 2 dodge dalla mano.",
+   "effects": [
+    {
+     "op": "suffer_unless_reveal",
+     "who": "players_in_flank_and_rear",
+     "type": "dodge",
+     "n": 2
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g1_03_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g1_03_retro.jpg"
+  },
+  "47017": {
+   "name": "Sting",
+   "reaction": "rampage",
+   "refresh": 4,
+   "rampage": true,
+   "text": "Each player in the rear and flank sectors suffers DMG+1 unless they reveal 2 dodges from their hand.",
+   "it": "Ogni giocatore nei settori rear e flank subisce DMG+1 a meno che non riveli 2 dodge dalla mano.",
+   "effects": [
+    {
+     "op": "suffer_unless_reveal",
+     "who": "players_in_flank_and_rear",
+     "type": "dodge",
+     "n": 2,
+     "damage_bonus": 1
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g4_03_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g4_03_retro.jpg"
+  },
+  "47005": {
+   "name": "Retaliation",
+   "reaction": "turn_start_flank",
+   "refresh": 4,
+   "text": "If Jekoros suffered a wound this turn, the active player suffers DMG. Otherwise, Jekoros gains PP-1 struggle.",
+   "it": "Se Jekoros ha subito una ferita in questo turno, il giocatore attivo subisce DMG; altrimenti Jekoros guadagna (giocatori-1) struggle.",
+   "effects": [
+    {
+     "op": "if",
+     "test": "monster_wounded_this_turn",
+     "then": [
+      {
+       "op": "suffer",
+       "who": "active"
+      }
+     ],
+     "else": [
+      {
+       "op": "monster_gain_struggle",
+       "n": "players_minus_1"
+      }
+     ]
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g1_04_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g1_04_retro.jpg"
+  },
+  "47013": {
+   "name": "Retaliation",
+   "reaction": "turn_start_flank",
+   "refresh": 4,
+   "text": "If Jekoros suffered a wound this turn, the active player suffers DMG. Otherwise, Jekoros gains 1 PP struggle.",
+   "it": "Se Jekoros ha subito una ferita in questo turno, il giocatore attivo subisce DMG; altrimenti Jekoros guadagna 1 struggle per giocatore.",
+   "effects": [
+    {
+     "op": "if",
+     "test": "monster_wounded_this_turn",
+     "then": [
+      {
+       "op": "suffer",
+       "who": "active"
+      }
+     ],
+     "else": [
+      {
+       "op": "monster_gain_struggle",
+       "n": 1,
+       "scale": "per_player"
+      }
+     ]
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g3_04_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g3_04_retro.jpg"
+  },
+  "47006": {
+   "name": "Electrocution",
+   "reaction": "empty_hand",
+   "refresh": 2,
+   "text": "If the active player is in a sector with a water terrain, they suffer DMG unless they discard a random card from their hand.",
+   "it": "Se il giocatore attivo e' in un settore con acqua, subisce DMG a meno che non scarti una carta a caso dalla mano.",
+   "effects": [
+    {
+     "op": "suffer_unless_discard_random",
+     "who": "active_in_water"
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g1_05_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g1_05_retro.jpg"
+  },
+  "47018": {
+   "name": "Electrocution",
+   "reaction": "empty_hand",
+   "refresh": 2,
+   "text": "Each player in a sector with a water terrain suffers DMG unless they discard a random card from their hand.",
+   "it": "Ogni giocatore in un settore con acqua subisce DMG a meno che non scarti una carta a caso dalla mano.",
+   "effects": [
+    {
+     "op": "suffer_unless_discard_random",
+     "who": "players_in_water"
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g4_05_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g4_05_retro.jpg"
+  },
+  "47007": {
+   "name": "Heart Seeker",
+   "reaction": "aggro_played",
+   "refresh": 3,
+   "text": "Jekoros immediately turns to the active player unless another player discards a maneuver from their hand.",
+   "it": "Jekoros si gira subito verso il giocatore attivo, a meno che un altro giocatore scarti un maneuver dalla mano.",
+   "effects": [
+    {
+     "op": "turn_unless_other_discards",
+     "type": "maneuver"
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g1_06_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g1_06_retro.jpg"
+  },
+  "47015": {
+   "name": "Heart Seeker",
+   "reaction": "aggro_played",
+   "refresh": 3,
+   "text": "Jekoros immediately turns to the active player. That player becomes threatened.",
+   "it": "Jekoros si gira subito verso il giocatore attivo, che diventa threatened.",
+   "effects": [
+    {
+     "op": "monster_turn_to",
+     "criteria": "active"
+    },
+    {
+     "op": "become_threatened",
+     "who": "active"
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g3_08_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g3_08_retro.jpg"
+  },
+  "47008": {
+   "name": "Killer Tail",
+   "reaction": "end_of_round",
+   "refresh": 5,
+   "text": "Each player in the rear sector suffers DMG+1 unless they reveal a dodge from their hand. If there are no players in the rear sector, players in the flank sectors are targeted instead.",
+   "it": "Ogni giocatore nel settore rear subisce DMG+1 a meno che non riveli un dodge dalla mano. Se nel rear non c'e' nessuno, i bersagli sono i giocatori nei flank.",
+   "effects": [
+    {
+     "op": "suffer_unless_reveal",
+     "who": "players_in_rear_or_flank",
+     "type": "dodge",
+     "damage_bonus": 1
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g1_07_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g1_07_retro.jpg"
+  },
+  "47014": {
+   "name": "Killer Tail",
+   "reaction": "end_of_round",
+   "refresh": 5,
+   "text": "Each player in the rear sector suffers DMG+1 unless they reveal 2 dodges from their hand. If there are no players in the rear sector, players in the flank sectors are targeted instead.",
+   "it": "Ogni giocatore nel settore rear subisce DMG+1 a meno che non riveli 2 dodge dalla mano. Se nel rear non c'e' nessuno, i bersagli sono i giocatori nei flank.",
+   "effects": [
+    {
+     "op": "suffer_unless_reveal",
+     "who": "players_in_rear_or_flank",
+     "type": "dodge",
+     "n": 2,
+     "damage_bonus": 1
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g3_06_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g3_06_retro.jpg"
+  },
+  "47009": {
+   "name": "Insane Buzz",
+   "reaction": "end_of_round",
+   "refresh": 5,
+   "text": "If the charge level is 2 or higher, all players become dazed. If a player is already dazed, they discard a card from their hand.",
+   "it": "Se il livello di charge e' 2 o piu', tutti i giocatori diventano dazed; chi lo e' gia' scarta una carta dalla mano.",
+   "effects": [
+    {
+     "op": "daze_all",
+     "min_charge": 2,
+     "random": false
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g1_08_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g1_08_retro.jpg"
+  },
+  "47011": {
+   "name": "Insane Buzz",
+   "reaction": "end_of_round",
+   "refresh": 5,
+   "text": "If the charge level is 2 or higher, all players become dazed. If a player is already dazed, they discard a random card from their hand.",
+   "it": "Se il livello di charge e' 2 o piu', tutti i giocatori diventano dazed; chi lo e' gia' scarta una carta a caso dalla mano.",
+   "effects": [
+    {
+     "op": "daze_all",
+     "min_charge": 2,
+     "random": true
+    }
+   ],
+   "art": "res://art/monsters/jekoros/g2_06_fronte.jpg",
+   "back": "res://art/monsters/jekoros/g2_06_retro.jpg"
+  }
+ },
+ "perils": {
+  "47101": {
+   "n": 1,
+   "stance": 1,
+   "name": "Incessant Echo",
+   "permanent": true,
+   "text": "Permanent. Jekoros is unstoppable.",
+   "it": "Permanente. Jekoros e' unstoppable.",
+   "unstoppable": true,
+   "art": "res://art/monsters/jekoros/g5_01_fronte.jpg"
+  },
+  "471010": {
+   "n": 1,
+   "stance": 1,
+   "name": "Incessant Echo",
+   "permanent": true,
+   "text": "Permanent. Jekoros is unstoppable.",
+   "it": "Permanente. Jekoros e' unstoppable.",
+   "unstoppable": true,
+   "art": "res://art/monsters/jekoros/g5_01_retro.jpg"
+  },
+  "47102": {
+   "n": 1,
+   "stance": 1,
+   "name": "Thunder Horn",
+   "permanent": true,
+   "immune_blind": true,
+   "art": "res://art/monsters/jekoros/g5_02_retro.jpg",
+   "text": "Permanent. Immune to blind. When Jekoros suffers a wound, it gains 1 PP struggle. Unleash: Increase the charge level by 1. A player in a sector with a rock terrain may remove that terrain from the game to prevent unleash damage in that sector.",
+   "it": "Permanente. Immune a blind. Quando Jekoros subisce una ferita guadagna 1 per giocatore struggle. Unleash: il livello di charge aumenta di 1. Un giocatore in un settore con una roccia puo' rimuoverla dal gioco per evitare il danno dell'unleash in quel settore.",
+   "rock_stops_unleash": true,
+   "abilities": [
+    {
+     "trigger": "monster_wound",
+     "effects": [
+      {
+       "op": "monster_gain_struggle",
+       "n": 1,
+       "scale": "per_player"
+      }
+     ]
+    },
+    {
+     "trigger": "unleash",
+     "effects": [
+      {
+       "op": "charge",
+       "n": 1
+      }
+     ]
+    }
+   ]
+  },
+  "471020": {
+   "n": 1,
+   "stance": 1,
+   "name": "Thunder Horn",
+   "permanent": true,
+   "immune_blind": true,
+   "art": "res://art/monsters/jekoros/g5_02_fronte.jpg",
+   "text": "Permanent. Immune to blind. When Jekoros suffers a wound, it gains PP-1 struggle. Unleash: Increase the charge level by 1. A player in a sector with a rock terrain may remove that terrain from the game to prevent unleash damage in that sector.",
+   "it": "Permanente. Immune a blind. Quando Jekoros subisce una ferita guadagna (giocatori-1) struggle. Unleash: il livello di charge aumenta di 1. Un giocatore in un settore con una roccia puo' rimuoverla dal gioco per evitare il danno dell'unleash in quel settore.",
+   "rock_stops_unleash": true,
+   "abilities": [
+    {
+     "trigger": "monster_wound",
+     "effects": [
+      {
+       "op": "monster_gain_struggle",
+       "n": "players_minus_1"
+      }
+     ]
+    },
+    {
+     "trigger": "unleash",
+     "effects": [
+      {
+       "op": "charge",
+       "n": 1
+      }
+     ]
+    }
+   ]
+  },
+  "47103": {
+   "n": 3,
+   "stance": 3,
+   "name": "High Tension",
+   "art": "res://art/monsters/jekoros/g5_00_fronte.jpg",
+   "text": "When a player suffers attrition damage, if the charge level is 2 or more, that player suffers DMGx2 instead of DMG.",
+   "it": "Quando un giocatore subisce danno da attrition, se il livello di charge e' 2 o piu' subisce DMGx2 invece di DMG.",
+   "attrition_double_at_charge": 2
+  },
+  "471030": {
+   "n": 3,
+   "stance": 3,
+   "name": "High Tension",
+   "art": "res://art/monsters/jekoros/g5_00_retro.jpg",
+   "text": "When a player suffers attrition damage, if the charge level is 1 or more, that player suffers DMGx2 instead of DMG.",
+   "it": "Quando un giocatore subisce danno da attrition, se il livello di charge e' 1 o piu' subisce DMGx2 invece di DMG.",
+   "attrition_double_at_charge": 1
+  }
+ },
+ "objectives": {
+  "47201": {
+   "name": "Strike to the Heart",
+   "stance": 2,
+   "permanent": true,
+   "art": "res://art/monsters/jekoros/sciolta_0.jpg",
+   "text": "Permanent. At the start of each player's turn, a player in the front sector may discard an offensive card from their hand to either inflict vulnerable or reduce the charge level by 1.",
+   "it": "Permanente. All'inizio del turno di ogni giocatore, un giocatore nel settore front puo' scartare una carta offensive dalla mano per infliggere vulnerable oppure ridurre di 1 il livello di charge.",
+   "abilities": [
+    {
+     "trigger": "turn_start_front_discard",
+     "kind": "offensive"
+    }
+   ]
+  },
+  "472010": {
+   "name": "Strike to the Heart",
+   "stance": 2,
+   "permanent": true,
+   "art": "res://art/monsters/jekoros/sciolta_0_retro.jpg",
+   "text": "Permanent. At the start of each player's turn, a player in the front sector may discard an attack from their hand to either inflict vulnerable or reduce the charge level by 1.",
+   "it": "Permanente. All'inizio del turno di ogni giocatore, un giocatore nel settore front puo' scartare un attack dalla mano per infliggere vulnerable oppure ridurre di 1 il livello di charge.",
+   "abilities": [
+    {
+     "trigger": "turn_start_front_discard",
+     "type": "attack"
+    }
+   ]
+  }
+ }
+}

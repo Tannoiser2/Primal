@@ -29,6 +29,8 @@ func _ready() -> void:
 		"kharja": _load("res://data/kharja.json"),
 		"dygorax": _load("res://data/dygorax.json"),
 		"toramat": _load("res://data/toramat.json"),
+		"tarragua": _load("res://data/tarragua.json"),
+		"jekoros": _load("res://data/jekoros.json"),
 	}
 	loadouts = _load("res://data/loadouts.json")
 	equipment_it = _load("res://data/equipment_it.json").get("texts", {})

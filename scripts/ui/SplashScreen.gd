@@ -19,17 +19,18 @@ const HUNTER_WEAPONS := {
 	"dareon": "Great Sword", "mirah": "Great Bow", "heleren": "Gunbow",
 	"karah": "Dual Blade", "ljonar": "Sword and Shield", "thoreg": "Hammer",
 }
-const MONSTERS := ["vyraxen", "kharja", "toramat", "dygorax"]
+const MONSTERS := ["vyraxen", "kharja", "toramat", "dygorax", "tarragua", "jekoros"]
 const MONSTER_NAMES := {
 	"vyraxen": "Vyraxen", "kharja": "Kharja",
 	"toramat": "Toramat", "dygorax": "Dygorax",
+	"tarragua": "Tarragua", "jekoros": "Jekoros",
 }
 const ELEMENT_NAMES := {"fire": "fuoco", "earth": "terra", "water": "acqua", "ice": "ghiaccio"}
 
-const CARD := Color(0.13, 0.12, 0.14)
-const CARD_ON := Color(0.24, 0.17, 0.10)
-const GOLD := Color(0.85, 0.62, 0.30)
-const DIM := Color(0.62, 0.59, 0.55)
+const CARD := Color(0.10, 0.08, 0.075)
+const CARD_ON := Color(0.27, 0.13, 0.07)
+const GOLD := Color(0.93, 0.62, 0.34)
+const DIM := Tema.MUTED
 
 var _chosen: Array[String] = ["dareon", "mirah"]
 var _monster := "vyraxen"
@@ -42,10 +43,10 @@ var _tex_cache: Dictionary = {}
 
 
 func _ready() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	# A tutto schermo: sotto non deve vedersi niente della partita.
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.05, 0.045, 0.055)
-	style.set_content_margin_all(24)
+	style.bg_color = Tema.INK
 	add_theme_stylebox_override("panel", style)
 	_build()
 
@@ -65,12 +66,47 @@ func _monster_ready(id: String) -> bool:
 func _build() -> void:
 	for c in get_children():
 		c.queue_free()
-	var center := CenterContainer.new()
-	center.set_anchors_preset(Control.PRESET_FULL_RECT)
-	add_child(center)
+	# Fondale: il drago della copertina, a destra e in penombra, come sulla scatola.
+	var art := TextureRect.new()
+	art.texture = load("res://art/ui/drago.jpg")
+	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	art.anchor_left = 0.40
+	art.anchor_right = 1.0
+	art.anchor_bottom = 1.0
+	art.modulate = Color(1, 1, 1, 0.55)
+	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(art)
+	# Sfumatura dall'inchiostro pieno a sinistra al drago a destra.
+	var fade := TextureRect.new()
+	var grad := Gradient.new()
+	grad.colors = PackedColorArray([Tema.INK, Color(Tema.INK, 0.0)])
+	grad.offsets = PackedFloat32Array([0.0, 1.0])
+	var gt := GradientTexture2D.new()
+	gt.gradient = grad
+	gt.fill_from = Vector2(0, 0)
+	gt.fill_to = Vector2(1, 0)
+	fade.texture = gt
+	fade.anchor_left = 0.42
+	fade.anchor_right = 0.75
+	fade.anchor_bottom = 1.0
+	fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(fade)
+
+	# Il contenuto scorre se lo schermo e' basso (iPad in orizzontale).
+	var scroll := ScrollContainer.new()
+	scroll.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	add_child(scroll)
+	var margin := MarginContainer.new()
+	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	for side in ["left", "right", "top", "bottom"]:
+		margin.add_theme_constant_override("margin_" + side, 36 if side != "top" else 28)
+	scroll.add_child(margin)
 	_body = VBoxContainer.new()
-	_body.add_theme_constant_override("separation", 16)
-	center.add_child(_body)
+	_body.add_theme_constant_override("separation", 14)
+	_body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	margin.add_child(_body)
 	_refresh()
 
 
@@ -78,25 +114,30 @@ func _refresh() -> void:
 	for c in _body.get_children():
 		c.queue_free()
 
-	var title := RichTextLabel.new()
-	title.bbcode_enabled = true
-	title.fit_content = true
-	title.autowrap_mode = TextServer.AUTOWRAP_OFF
-	title.custom_minimum_size = Vector2(980, 62)
-	title.text = "[b][color=#c8763c]PRIMAL: THE AWAKENING[/color][/b]\n" \
-		+ "[color=#9a938c]Modalita' Expedition — una battaglia, un mostro.[/color]"
-	_body.add_child(title)
+	var logo := TextureRect.new()
+	logo.texture = load("res://art/ui/logo.png")
+	logo.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	logo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+	logo.custom_minimum_size = Vector2(440, 115)
+	logo.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	_body.add_child(logo)
+	var tagline := Label.new()
+	tagline.text = "Modalità Expedition: una battaglia, un mostro. Da 2 a 4 cacciatori."
+	tagline.add_theme_color_override("font_color", DIM)
+	_body.add_child(tagline)
 
 	_body.add_child(_section("Cacciatori  (da 2 a 4)"))
-	var hunters := HBoxContainer.new()
-	hunters.add_theme_constant_override("separation", 8)
+	var hunters := HFlowContainer.new()
+	hunters.add_theme_constant_override("h_separation", 10)
+	hunters.add_theme_constant_override("v_separation", 10)
 	for id in ALL_HUNTERS:
 		hunters.add_child(_hunter_tile(id))
 	_body.add_child(hunters)
 
 	_body.add_child(_section("Mostro"))
-	var monsters := HBoxContainer.new()
-	monsters.add_theme_constant_override("separation", 8)
+	var monsters := HFlowContainer.new()
+	monsters.add_theme_constant_override("h_separation", 10)
+	monsters.add_theme_constant_override("v_separation", 10)
 	for id in MONSTERS:
 		monsters.add_child(_monster_tile(id))
 	_body.add_child(monsters)
@@ -118,7 +159,7 @@ func _refresh() -> void:
 
 	var levels := VBoxContainer.new()
 	levels.add_theme_constant_override("separation", 6)
-	levels.add_child(_section("Livello di aggression"))
+	levels.add_child(_section("Livello di aggressività"))
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 6)
 	var group := ButtonGroup.new()
@@ -136,7 +177,7 @@ func _refresh() -> void:
 		row.add_child(b)
 	levels.add_child(row)
 	var gear := Label.new()
-	gear.add_theme_font_size_override("font_size", 11)
+	gear.add_theme_font_size_override("font_size", 13)
 	gear.add_theme_color_override("font_color", DIM)
 	gear.text = "mazzo starter" if _level == 0 \
 		else "forge e potenziamenti di livello %d" % _level
@@ -150,11 +191,24 @@ func _refresh() -> void:
 	_footer.bbcode_enabled = true
 	_footer.fit_content = true
 	_footer.autowrap_mode = TextServer.AUTOWRAP_OFF
-	_footer.custom_minimum_size = Vector2(720, 26)
+	_footer.custom_minimum_size = Vector2(520, 26)
+	_footer.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	tail.add_child(_footer)
 	_start = Button.new()
-	_start.text = "  Inizia la caccia  "
-	_start.custom_minimum_size = Vector2(0, 40)
+	_start.text = "INIZIA LA CACCIA"
+	_start.custom_minimum_size = Vector2(240, 52)
+	_start.add_theme_font_override("font", Tema.title_font())
+	_start.add_theme_font_size_override("font_size", 30)
+	var hot := StyleBoxFlat.new()
+	hot.bg_color = Tema.RUST_DARK
+	hot.border_color = Tema.RUST
+	hot.set_border_width_all(2)
+	hot.border_width_bottom = 4
+	hot.set_corner_radius_all(2)
+	var hot_hover := hot.duplicate()
+	hot_hover.bg_color = Color(0.55, 0.26, 0.12)
+	_start.add_theme_stylebox_override("normal", hot)
+	_start.add_theme_stylebox_override("hover", hot_hover)
 	_start.pressed.connect(func():
 		start_requested.emit(_chosen.duplicate(), _monster, _level, _expedition))
 	tail.add_child(_start)
@@ -205,7 +259,7 @@ func _tile(name: String, subtitle: String, art: Texture2D,
 	button.toggle_mode = true
 	button.button_pressed = picked
 	button.disabled = not enabled
-	button.custom_minimum_size = Vector2(152, 168)
+	button.custom_minimum_size = Vector2(150, 176)
 	if not enabled:
 		button.tooltip_text = disabled_hint
 	var frame := StyleBoxFlat.new()
@@ -224,22 +278,24 @@ func _tile(name: String, subtitle: String, art: Texture2D,
 
 	var portrait := TextureRect.new()
 	portrait.texture = art
-	portrait.custom_minimum_size = Vector2(148, 112)
+	portrait.custom_minimum_size = Vector2(146, 116)
 	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	portrait.modulate = Color.WHITE if enabled else Color(0.42, 0.42, 0.45)
 	box.add_child(portrait)
 
 	var label := Label.new()
-	label.text = name
+	label.text = name.to_upper()
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.add_theme_font_override("font", Tema.title_font())
+	label.add_theme_font_size_override("font_size", 24)
 	label.add_theme_color_override("font_color", GOLD if picked else Color(0.86, 0.84, 0.8))
 	box.add_child(label)
 
 	var sub := Label.new()
 	sub.text = subtitle if enabled else "in arrivo"
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	sub.add_theme_font_size_override("font_size", 10)
+	sub.add_theme_font_size_override("font_size", 12)
 	sub.add_theme_color_override("font_color", DIM)
 	box.add_child(sub)
 
@@ -302,7 +358,7 @@ func _terrain_row() -> Control:
 	if pieces.is_empty():
 		var none := Label.new()
 		none.text = "nessun terreno iniziale"
-		none.add_theme_font_size_override("font_size", 11)
+		none.add_theme_font_size_override("font_size", 13)
 		none.add_theme_color_override("font_color", DIM)
 		row.add_child(none)
 		return row
@@ -323,7 +379,7 @@ func _terrain_row() -> Control:
 		item.add_child(icon)
 		var n := Label.new()
 		n.text = "%d" % counted[type]
-		n.add_theme_font_size_override("font_size", 11)
+		n.add_theme_font_size_override("font_size", 13)
 		n.add_theme_color_override("font_color", DIM)
 		item.add_child(n)
 		row.add_child(item)
@@ -331,11 +387,7 @@ func _terrain_row() -> Control:
 
 
 func _section(text: String) -> Label:
-	var l := Label.new()
-	l.text = text.to_upper()
-	l.add_theme_font_size_override("font_size", 11)
-	l.add_theme_color_override("font_color", Color(0.78, 0.46, 0.24))
-	return l
+	return Tema.title(text.to_upper(), 26)
 
 
 func _update_footer() -> void:

@@ -6,7 +6,7 @@ extends Node
 ## invece di sospendere il motore in attesa della UI.
 
 const GAMES := 15
-const MONSTERS := ["vyraxen", "kharja", "dygorax", "toramat"]
+const MONSTERS := ["vyraxen", "kharja", "dygorax", "toramat", "tarragua", "jekoros"]
 ## Il gruppo di collaudo: due cacciatori, cosi' le partite restano confrontabili.
 const PARTY := ["dareon", "mirah"]
 

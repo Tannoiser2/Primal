@@ -70,6 +70,13 @@ var strain: int = 0
 var weapon_damage_bonus: int = 0
 ## Maelstorm (Karah): la prossima battle dance del turno vale doppio.
 var double_next_battle_dance: bool = false
+## Dazed (Glossario): il prossimo maneuver giocato e' blank — toglie lo struggle
+## ma il suo testo si ignora. Poi il segnalino si scarta.
+var dazed: bool = false
+## Plateau: la miniatura sta sopra la tessera (ci si sale a fine turno).
+var on_plateau: bool = false
+## Brush: nascosto nel brush, col turno in pausa.
+var hiding: bool = false
 
 
 ## Equipaggiamento e mazzo scelti in fase di costruzione. Se vuoto si usa la

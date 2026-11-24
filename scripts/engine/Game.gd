@@ -118,6 +118,20 @@ var _last_attrition_level: int = 0
 ## Carte con un limite di una volta per turno (Not This Time!).
 var _used_this_turn: Array[int] = []
 var objective_counters: Dictionary = {}        ## id objective -> contatori
+## Tracciato charge (Jekoros): a 3 la stance corrente dice cosa succede.
+var charge_level: int = 0
+## Shield in piu' fino a fine turno (Metal Skin, Arkeum Skin di Tarragua).
+var shield_bonus: int = 0
+## Il mostro ha subito danni / una ferita in questo turno (Crushing Horns,
+## Retaliation): si azzera all'inizio di ogni turno.
+var monster_damaged_this_turn: bool = false
+var monster_wounded_this_turn: bool = false
+## Unstoppable (Glossario): ogni behavior innescata da' 1 struggle al mostro.
+var unstoppable_until_round_end: bool = false
+## Brush: chi si e' nascosto e chi gioca al suo posto prima che riprenda.
+var _hidden_seat: int = -1
+var _brush_named_seat: int = -1
+var played_this_round: Array[bool] = []
 var objectives_completed: Array[int] = []
 
 # --- interazione ---
@@ -294,6 +308,13 @@ func setup(hunter_ids: Array, aggression_level: int = 0, seed_value: int = 0,
 	_last_target = -1
 	objective_counters.clear()
 	objectives_completed.clear()
+	charge_level = 0
+	shield_bonus = 0
+	monster_damaged_this_turn = false
+	monster_wounded_this_turn = false
+	unstoppable_until_round_end = false
+	_hidden_seat = -1
+	_brush_named_seat = -1
 
 	aggro_index = 0
 	first_player_index = 0
@@ -329,6 +350,14 @@ func begin_round() -> void:
 		return
 	_log("--- Round %d ---" % round_no)
 	monster_damage_bonus = 0
+	unstoppable_until_round_end = false
+	_hidden_seat = -1
+	_brush_named_seat = -1
+	for q in players:
+		q.hiding = false
+	played_this_round.clear()
+	for i in players.size():
+		played_this_round.append(false)
 	if monster_confused:
 		monster_confused = false
 		_log("Il segnalino confuse di %s viene scartato." % monster_name())
@@ -404,10 +433,10 @@ func _monster_upkeep() -> void:
 ## l'upkeep il mostro guadagna struggle extra in base alle carte aggro che i
 ## giocatori hanno complessivamente in mano.
 func _apply_infuriate() -> void:
-	var stance := current_stance()
-	if not stance.has("peril"):
-		return
-	var thresholds: Array = Db.peril(int(stance["peril"])).get("infuriate", [])
+	var thresholds: Array = []
+	for pid in active_perils():
+		if _peril_active(pid) and Db.peril(pid).has("infuriate"):
+			thresholds = Db.peril(pid)["infuriate"]
 	if thresholds.size() < 3:
 		return
 	var aggro_cards := 0
@@ -461,6 +490,13 @@ func _begin_turn() -> void:
 	p.clear_turn_modifiers()
 	p.sequence.clear()
 	_used_this_turn.clear()
+	shield_bonus = 0
+	monster_damaged_this_turn = false
+	monster_wounded_this_turn = false
+	# Plateau: chi inizia il turno lassu' scende subito, nello stesso settore.
+	if p.on_plateau:
+		p.on_plateau = false
+		_log("%s scende dal plateau." % p.name)
 	_log("Turno di %s (settore %s)." % [p.name, sector_of(p.position)])
 
 	# Reazioni legate all'inizio del turno in un settore.
@@ -532,7 +568,56 @@ func _begin_turn() -> void:
 	if p.skip_movement:
 		_log("%s salta la fase movimento." % p.name)
 		phase = Phase.ACTION
+	elif await _brush_offered(p):
+		return
 	_emit()
+
+
+## Brush (Regolamento p.89): all'inizio della fase Movimento, chi sta in un
+## settore col brush puo' riciclare un dodge per nascondersi. Il suo turno va in
+## pausa e nomina un giocatore che non ha ancora giocato in questo round: finito
+## quel turno, esce dal brush e riprende dalla fase Movimento.
+func _brush_offered(p: PrimalPlayer) -> bool:
+	if not has_terrain(p.position, "brush") or _hidden_seat >= 0:
+		return false
+	if _cards_of_kind_in_hand(p, "dodge", "") == 0:
+		return false
+	var waiting: Array[int] = []
+	for q in players:
+		if q == p or q.ko or q.out_of_game:
+			continue
+		if q.seat < played_this_round.size() and not played_this_round[q.seat]:
+			waiting.append(q.seat)
+	if waiting.is_empty():
+		return false
+	var hide: bool = await _ask({
+		"kind": "confirm",
+		"prompt": "%s: ricicli un dodge per nasconderti nel brush (il turno va in pausa)?" % p.name,
+		"player": p.seat,
+		"default": false,
+	})
+	if not hide:
+		return false
+	if not await _discard_of_type(p, "dodge", "nascondersi nel brush"):
+		return false
+	await _draw_cards(p, 1)
+	var named := waiting[0]
+	if waiting.size() > 1:
+		named = await _ask({
+			"kind": "player",
+			"prompt": "%s si nasconde: chi gioca adesso?" % p.name,
+			"player": p.seat,
+			"options": waiting,
+		})
+		if named < 0:
+			named = waiting[0]
+	p.hiding = true
+	_hidden_seat = p.seat
+	_brush_named_seat = named
+	_log("%s si nasconde nel brush: tocca a %s." % [p.name, players[named].name])
+	active_index = named
+	await _begin_turn()
+	return true
 
 
 ## Fase Movimento. `to_position` = -1 per restare fermi.
@@ -630,6 +715,8 @@ func play_card(card_id: int) -> bool:
 	if cost > 0 and not (await _pay_stamina(p, cost, card_id)):
 		p.hand.append(card_id)
 		return false
+	if p.hand.is_empty():
+		_queue_reaction("empty_hand")
 	p.consume_next_card_modifiers()
 
 	p.sequence.append(card_id)
@@ -651,9 +738,17 @@ func play_card(card_id: int) -> bool:
 		_log("%s prende il segnalino aggro." % p.name)
 		_queue_reaction("aggro_played")
 
+	# Dazed: il primo maneuver giocato e' blank. Toglie lo struggle come sempre
+	# (effetto del colore), ma le sue abilita' non scattano.
+	var blank := false
+	if p.dazed and String(card.get("type", "")) == "maneuver":
+		p.dazed = false
+		blank = true
+		_log("%s e' dazed: %s e' blank (toglie solo lo struggle)." % [p.name, card.get("name", "?")])
+
 	# Tutte le abilita' innescate da questa carta sono simultanee: si risolvono
 	# per priorita' e, a parita', nell'ordine scelto dal giocatore (p.24 e p.35).
-	await _resolve_simultaneous(_collect_card_triggers(p, card), p)
+	await _resolve_simultaneous(_collect_card_triggers(p, card, blank), p)
 	# Solo dopo si applica l'effetto legato al colore della carta, cosi' i bonus
 	# ai danni raccolti dalle abilita' entrano nell'attacco (p.21).
 	await _resolve_color_effect(p, card)
@@ -699,7 +794,7 @@ func play_card(card_id: int) -> bool:
 
 ## Un altro giocatore assiste il giocatore attivo scartando una carta con Assist.
 func assist(helper: PrimalPlayer, card_id: int) -> bool:
-	if helper == active_player() or helper.assisted_this_turn or helper.ko:
+	if helper == active_player() or helper.assisted_this_turn or helper.ko or helper.hiding:
 		return false
 	if not active_player().can_be_assisted:
 		return false
@@ -792,12 +887,17 @@ func _attrition_check(p: PrimalPlayer) -> void:
 					break
 		var card: Dictionary = attrition_cards[idx]
 		var value := int(card.get("value", 0))
+		# Carte attrition di Jekoros: «quando rivelata».
+		if card.has("on_reveal"):
+			_log("Carta attrition di %s: %s" % [monster_name(), card.get("text", "")])
+			await _run_effects(card["on_reveal"], p, {})
 		# Le carte speciali chiedono un colore preciso invece di una difensiva qualsiasi.
 		if card.has("type"):
 			required_type = String(card["type"])
 		attrition_discard.push_front(idx)
 		shown.append(idx)
 		worst = maxi(worst, value)
+		await _after_attrition_draw()
 	if worst < 0:
 		worst = 0
 	_last_attrition_level = worst
@@ -839,7 +939,7 @@ func _attrition_check(p: PrimalPlayer) -> void:
 			_log("La roccia si sbriciola e para il colpo.")
 			outcome["prevented_by"] = "la roccia"
 		else:
-			outcome["damage"] = monster_damage() + _peril_attrition_bonus()
+			outcome["damage"] = (monster_damage() + _peril_attrition_bonus()) * _attrition_multiplier()
 	# Prima si racconta, poi si incassa: il pannello deve essere in piedi quando
 	# il danno arriva, non comparire dopo.
 	# Glossario p.108: si dice che il giocatore attivo ha **evitato** il danno da
@@ -867,6 +967,20 @@ func _attrition_check(p: PrimalPlayer) -> void:
 
 func _end_turn() -> void:
 	var p := active_player()
+	if p.seat < played_this_round.size():
+		played_this_round[p.seat] = true
+	# Plateau: a fine turno ci si puo' salire, uno alla volta.
+	if not p.ko and not p.out_of_game and has_terrain(p.position, "plateau") \
+			and not players.any(func(q): return q.on_plateau):
+		var climb: bool = await _ask({
+			"kind": "confirm",
+			"prompt": "%s: sali sul plateau?" % p.name,
+			"player": p.seat,
+			"default": true,
+		})
+		if climb:
+			p.on_plateau = true
+			_log("%s sale sul plateau." % p.name)
 	# Wildmaw: chi finisce il turno threatened dentro le fauci ci lascia qualcosa.
 	if not p.ko and not p.out_of_game and p.threatened and has_terrain(p.position, "wildmaw"):
 		_log("%s e' threatened nel wildmaw." % p.name)
@@ -886,12 +1000,29 @@ func _end_turn() -> void:
 func _advance_turn() -> void:
 	if finished:
 		return
-	var next := (active_index + 1) % players.size()
-	if next == first_player_index:
-		await _end_round()
-	else:
-		active_index = next
-		await _begin_turn()
+	# Chi era nascosto nel brush riprende il suo turno dalla fase Movimento.
+	if _hidden_seat >= 0 and active_index == _brush_named_seat:
+		var hider := players[_hidden_seat]
+		active_index = _hidden_seat
+		_hidden_seat = -1
+		_brush_named_seat = -1
+		hider.hiding = false
+		_log("%s esce dal brush e riprende il turno." % hider.name)
+		phase = Phase.MOVEMENT
+		_emit()
+		return
+	# Il prossimo, in ordine, che non ha ancora giocato in questo round (col
+	# brush l'ordine puo' essere stato scavalcato).
+	var i := active_index
+	for k in players.size():
+		i = (i + 1) % players.size()
+		if i == first_player_index:
+			break
+		if i >= played_this_round.size() or not played_this_round[i]:
+			active_index = i
+			await _begin_turn()
+			return
+	await _end_round()
 
 
 func _end_round() -> void:
@@ -990,7 +1121,7 @@ func _resolve_color_effect(p: PrimalPlayer, card: Dictionary) -> void:
 ## Raccoglie tutte le abilita' che si attivano giocando `card`: quelle della carta
 ## stessa, quelle innescate da altre carte nella sequenza, weapon, mastery,
 ## obiettivo ed effetti in attesa (es. Sharp Shot).
-func _collect_card_triggers(p: PrimalPlayer, card: Dictionary) -> Array:
+func _collect_card_triggers(p: PrimalPlayer, card: Dictionary, blank := false) -> Array:
 	var items: Array = []
 
 	# effetti in attesa dal turno (Sharp Shot, Targeted Shot)
@@ -1005,7 +1136,9 @@ func _collect_card_triggers(p: PrimalPlayer, card: Dictionary) -> Array:
 			kept.append(entry)
 	p.pending_on_next = kept
 
-	# abilita' della carta appena giocata
+	# abilita' della carta appena giocata (niente, se e' blank per dazed)
+	if blank:
+		card = {"name": card.get("name", "?"), "type": card.get("type", "")}
 	if not card.get("effects", []).is_empty():
 		items.append(_pending_effects(PRIO_OTHER, String(card.get("name", "?")),
 			card["effects"], p, {"card": card}))
@@ -1026,8 +1159,8 @@ func _collect_card_triggers(p: PrimalPlayer, card: Dictionary) -> Array:
 				items.append(_pending_effects(PRIO_OTHER, String(other.get("name", "?")),
 					ability.get("effects", []), p, {"card": other}))
 
-	# weapon
-	var w := p.weapon()
+	# weapon (blank con Unscratchable di Tarragua)
+	var w := p.weapon() if not weapons_blank() else {}
 	if w.has("combo") and _combo_matches_tail(p, w["combo"]) \
 			and (not w.has("condition") or _condition_met(p, w)):
 		items.append(_pending_effects(PRIO_OTHER, "%s (weapon)" % w.get("name", "?"),
@@ -1051,16 +1184,14 @@ func _collect_card_triggers(p: PrimalPlayer, card: Dictionary) -> Array:
 			"actor": p,
 		})
 
-	# obiettivo attivo (es. Hit the Tail)
-	var stance := current_stance()
-	if stance.has("objective") and not objectives_completed.has(int(stance["objective"])):
-		var oid := int(stance["objective"])
+	# obiettivi attivi (es. Hit the Tail)
+	for oid in active_objectives():
 		var obj := Db.objective(oid)
 		# Keep Your Distance vale finche' ha spazio: a segnalini pieni non c'e'
 		# piu' niente da offrire.
 		if obj.has("max_counters") \
 				and int(objective_counters.get(oid, 0)) >= int(obj["max_counters"]):
-			return items
+			continue
 		for ability in obj.get("abilities", []):
 			if not ability.has("combo"):
 				continue
@@ -1312,13 +1443,14 @@ func deal_damage_to_monster(amount: int) -> void:
 	# Shield X (Glossario p.110): la stance corrente toglie X a **ogni** fonte di
 	# danno. Si applica per ultimo, dopo il raddoppio di vulnerable: e' l'armatura
 	# del mostro, non una proprieta' del colpo.
-	var shield := int(current_stance().get("shield", 0))
+	var shield := current_shield()
 	if shield > 0:
 		var stopped := mini(shield, amount)
 		amount = maxi(0, amount - shield)
 		_log("  Shield %d: %d danni fermati, ne passano %d." % [shield, stopped, amount])
 	if amount <= 0:
 		return
+	monster_damaged_this_turn = true
 	stance_damage += amount
 	# Ogni ferita va inflitta una alla volta: la toughness puo' cambiare.
 	while true:
@@ -1341,6 +1473,7 @@ func _wound_monster(n: int) -> void:
 		if finished:
 			return
 		monster_health -= 1
+		monster_wounded_this_turn = true
 		_log("%s subisce una ferita (salute %d)." % [monster_name(), monster_health])
 		if monster_health <= 0:
 			_end_scenario(true, "%s e' stato abbattuto!" % monster_name())
@@ -1377,6 +1510,111 @@ func current_stance() -> Dictionary:
 	return {}
 
 
+## Shield in vigore: quello stampato sulla stance, il bonus di turno delle
+## behavior, e Unscratchable (livello 3) che lo porta a 6 col mostro carico.
+func current_shield() -> int:
+	var shield := int(current_stance().get("shield", 0)) + shield_bonus
+	for pid in active_perils():
+		var pr := Db.peril(pid)
+		if pr.has("shield_at_struggle") and _struggle_per_player_at_least(1):
+			shield = maxi(shield, int(pr["shield_at_struggle"]) + shield_bonus)
+	return shield
+
+
+func _struggle_per_player_at_least(n: int) -> bool:
+	return struggle >= n * players.size()
+
+
+## Le peril in gioco: quelle della stance corrente piu' le *permanenti* delle
+## stance gia' superate, che restano sul tavolo (Glossario, "Permanent").
+## Quelle rese blank da blind restano in gioco ma non agiscono: le filtra chi
+## le usa con `_peril_active`.
+func active_perils() -> Array[int]:
+	var out: Array[int] = []
+	var stances: Array = Db.monster_level(level).get("stances", [])
+	for i in mini(stance_index + 1, stances.size()):
+		var st: Dictionary = stances[i]
+		for pid in _stance_peril_ids(st):
+			if i == stance_index or bool(Db.peril(pid).get("permanent", false)):
+				if not out.has(pid):
+					out.append(pid)
+	return out
+
+
+func _stance_peril_ids(st: Dictionary) -> Array[int]:
+	var ids: Array[int] = []
+	if st.has("perils"):
+		for pid in st["perils"]:
+			ids.append(int(pid))
+	elif st.has("peril"):
+		ids.append(int(st["peril"]))
+	return ids
+
+
+func _peril_active(pid: int) -> bool:
+	return not blinded_perils.has(pid)
+
+
+## Come le peril: l'objective della stance corrente e quelli permanenti delle
+## stance precedenti, finche' non sono completati.
+func active_objectives() -> Array[int]:
+	var out: Array[int] = []
+	var stances: Array = Db.monster_level(level).get("stances", [])
+	for i in mini(stance_index + 1, stances.size()):
+		var st: Dictionary = stances[i]
+		if not st.has("objective"):
+			continue
+		var oid := int(st["objective"])
+		if objectives_completed.has(oid) or out.has(oid):
+			continue
+		if i == stance_index or bool(Db.objective(oid).get("permanent", false)):
+			out.append(oid)
+	return out
+
+
+## Unscratchable (Tarragua): col mostro carico le weapon sono blank.
+func weapons_blank() -> bool:
+	for pid in active_perils():
+		if not _peril_active(pid):
+			continue
+		var pr := Db.peril(pid)
+		if pr.has("weapons_blank_at_struggle_per_player") \
+				and _struggle_per_player_at_least(int(pr["weapons_blank_at_struggle_per_player"])):
+			return true
+	return false
+
+
+func is_unstoppable() -> bool:
+	if unstoppable_until_round_end:
+		return true
+	for pid in active_perils():
+		if _peril_active(pid) and bool(Db.peril(pid).get("unstoppable", false)):
+			return true
+	return false
+
+
+## Tracciato charge (Jekoros): sale e scende, e quando arriva in cima la stance
+## corrente dice cosa succede — si azzera e si passa alla stance dopo, oppure
+## (Stance III) tutti i cacciatori vanno KO.
+func _change_charge(delta: int, set_to: int = -1) -> void:
+	var track: Dictionary = Db.monster(monster_id).get("charge", {})
+	if track.is_empty():
+		return
+	var top := int(track.get("max", 3))
+	var before := charge_level
+	if set_to >= 0:
+		charge_level = clampi(set_to, 0, top)
+	else:
+		charge_level = clampi(charge_level + delta, 0, top)
+	if charge_level != before:
+		_log("Livello di charge: %d." % charge_level)
+	if charge_level >= top and before < top:
+		var full: Array = current_stance().get("on_charge_full", [])
+		if not full.is_empty():
+			_log("Il tracciato charge e' pieno!")
+			await _run_effects(full, null, {})
+
+
 func current_toughness() -> int:
 	return int(current_stance().get("toughness_per_player", 0)) * players.size()
 
@@ -1411,10 +1649,11 @@ func _damage_from(e: Dictionary, ctx: Dictionary = {}) -> int:
 func _exposed_sides() -> Array:
 	var stance := current_stance()
 	# Dragon Scales: mentre Dygorax e' hardened resta esposto solo il rear.
-	if hardened() and stance.has("peril"):
-		var peril := Db.peril(int(stance["peril"]))
-		if peril.has("hardened_exposed") and not blinded_perils.has(int(stance["peril"])):
-			return peril["hardened_exposed"]
+	if hardened():
+		for pid in active_perils():
+			var peril := Db.peril(pid)
+			if peril.has("hardened_exposed") and _peril_active(pid):
+				return peril["hardened_exposed"]
 	return stance.get("exposed", ["front", "rear"])
 
 
@@ -1447,8 +1686,33 @@ func _unleash() -> void:
 		struggle = int(Db.rules().get("unleash_leftover_per_player", 1)) * players.size()
 		return
 	_log("UNLEASH! Tutti i giocatori subiscono %d danni." % monster_damage())
+	# Thunder Horn (Jekoros): l'unleash alza il tracciato charge, e chi ha una
+	# roccia nel settore puo' consumarla per riparare tutto il settore.
+	await _trigger_perils("unleash")
+	var sheltered: Array[int] = []
+	var rock_rule := false
+	for pid in active_perils():
+		if _peril_active(pid) and bool(Db.peril(pid).get("rock_stops_unleash", false)):
+			rock_rule = true
+	if rock_rule:
+		for p in players:
+			if p.ko or p.out_of_game or sheltered.has(p.position):
+				continue
+			if not has_terrain(p.position, "rock"):
+				continue
+			var use: bool = await _ask({
+				"kind": "confirm",
+				"prompt": "%s: rimuovi la roccia del settore per evitare il danno dell'unleash?" % p.name,
+				"player": p.seat,
+				"default": true,
+			})
+			if use:
+				terrain[p.position].erase("rock")
+				sheltered.append(p.position)
+				_log("%s sacrifica la roccia: il settore %s e' al riparo."
+					% [p.name, sector_of(p.position)])
 	for p in players:
-		if not p.ko and not p.out_of_game:
+		if not p.ko and not p.out_of_game and not sheltered.has(p.position):
 			await _suffer(p, monster_damage(), "unleash")
 	struggle = int(Db.rules().get("unleash_leftover_per_player", 1)) * players.size()
 	_log("Lo struggle scende a %d." % struggle)
@@ -1510,7 +1774,8 @@ func _resolve_reactions() -> void:
 				continue
 			if stunned_behaviors.has(slot):
 				continue      # stordita: non si innesca in questo round
-			if String(Db.behavior(bid).get("reaction", "")) == reaction:
+			# "a|b": la carta reagisce a l'una o all'altra condizione (p.93).
+			if reaction in String(Db.behavior(bid).get("reaction", "")).split("|"):
 				behavior_triggered[slot] = true
 				items.append({
 					"priority": PRIO_BEHAVIOR,
@@ -1539,6 +1804,12 @@ func _resolve_behavior(slot: int) -> void:
 	# Carte che si scartano dalla mano quando una behavior viene rivelata.
 	var reaction_ctx := {}
 	await _out_of_turn_offered("behavior_revealed", reaction_ctx)
+	# Objective che rispondono a una behavior rivelata (Slash to the Throat).
+	if not reaction_ctx.get("cancelled", false):
+		await _objective_on_behavior(b, reaction_ctx)
+	# Plateau: chi e' lassu' puo' saltare in groppa e annullare la carta.
+	if not reaction_ctx.get("cancelled", false):
+		await _ride_offered(reaction_ctx)
 
 	# Peril: reazione alla rivelazione (es. firestorm).
 	await _trigger_perils("behavior_revealed", b)
@@ -1582,6 +1853,10 @@ func _resolve_behavior(slot: int) -> void:
 		else:
 			_log("  Struggle insufficiente per il boost (%d/%d)." % [struggle, cost])
 
+	# Unstoppable: a carta risolta, il mostro guadagna 1 struggle.
+	if is_unstoppable() and not finished:
+		await _monster_gain_struggle(1, "unstoppable")
+
 	# 2. Rampage: se ne scattano piu' di una, l'ordine lo scelgono i giocatori.
 	var rampage: Array = []
 	for s in 3:
@@ -1605,6 +1880,116 @@ func _resolve_behavior(slot: int) -> void:
 		behavior_triggered[slot] = false
 		await _check_enter_play(slot)
 	_emit()
+
+
+func _daze(t: PrimalPlayer) -> void:
+	if not t.dazed:
+		t.dazed = true
+		_log("%s diventa dazed: il prossimo maneuver sara' blank." % t.name)
+
+
+## Un altro giocatore puo' scartare una carta per evitare qualcosa al giocatore
+## `t`. Con `nearby` deve stare nello stesso settore o in uno adiacente
+## (Spidery Grasp); senza, va bene chiunque (Heart Seeker).
+func _someone_helps(t: PrimalPlayer, kind: String, type: String, why: String,
+		nearby := true) -> bool:
+	for q in players:
+		if q == t or q.ko or q.out_of_game:
+			continue
+		if nearby and q.position != t.position and not _is_adjacent(q.position, t.position):
+			continue
+		if _cards_of_kind_in_hand(q, type, kind) == 0:
+			continue
+		var yes: bool = await _ask({
+			"kind": "confirm",
+			"prompt": "%s: scarti una carta %s per %s?" % [q.name, type if type != "" else kind, why],
+			"player": q.seat,
+			"default": true,
+		})
+		if yes and await _discard_of_type_or_kind(q, type, kind, why):
+			return true
+	return false
+
+
+## Slash to the Throat (Tarragua): quando si rivela una behavior con la reazione
+## indicata, il giocatore attivo puo' scartare una carta per annullarla.
+func _objective_on_behavior(b: Dictionary, reaction_ctx: Dictionary) -> void:
+	var p := active_player()
+	if p.ko or p.out_of_game:
+		return
+	for oid in active_objectives():
+		var obj := Db.objective(oid)
+		for ability in obj.get("abilities", []):
+			if String(ability.get("trigger", "")) != "behavior_revealed":
+				continue
+			if not String(ability.get("reaction", "")) in String(b.get("reaction", "")).split("|"):
+				continue
+			var type := String(ability.get("discard_type", "attack"))
+			if _cards_of_kind_in_hand(p, type, "") == 0:
+				continue
+			var yes: bool = await _ask({
+				"kind": "confirm",
+				"prompt": "%s (%s): scarti un %s per annullare %s?" % [p.name,
+					obj.get("name", "objective"), type, b.get("name", "la behavior")],
+				"player": p.seat,
+				"default": true,
+			})
+			if yes and await _discard_of_type(p, type, String(obj.get("name", ""))):
+				await _run_effects(ability.get("effects", []), p, reaction_ctx)
+				return
+
+
+## Plateau (Regolamento p.90): chi sta sul plateau, quando si rivela una
+## behavior, puo' metterci sopra la miniatura: la carta perde la sua reazione e
+## si fa il riding check — attrition contro le icone stamina della prima carta
+## del proprio mazzo. Riuscito: weapon damage al mostro e si sceglie il settore.
+## Fallito: si subisce il danno del mostro e si finisce nel front.
+func _ride_offered(reaction_ctx: Dictionary) -> void:
+	for q in players:
+		if not q.on_plateau or q.ko or q.out_of_game:
+			continue
+		var ride: bool = await _ask({
+			"kind": "confirm",
+			"prompt": "%s e' sul plateau: salta in groppa al mostro (annulla la behavior e fai il riding check)?" % q.name,
+			"player": q.seat,
+			"default": true,
+		})
+		if not ride:
+			return
+		q.on_plateau = false
+		reaction_ctx["cancelled"] = true
+		_log("%s salta dal plateau in groppa a %s!" % [q.name, monster_name()])
+		var idx := _draw_attrition()
+		var value := 0 if idx < 0 else int(attrition_cards[idx].get("value", 0))
+		if idx >= 0:
+			attrition_discard.push_front(idx)
+			await _after_attrition_draw()
+		if q.deck.is_empty():
+			await _deck_emptied(q)
+		var icons := 0
+		var top := -1
+		if not q.deck.is_empty():
+			top = q.deck.pop_front()
+			icons = int(Db.action(top).get("stamina", 0))
+			q.discard.push_front(top)
+		_log("Riding check: attrition %d contro %d icone stamina (%s)." % [value, icons,
+			Db.action(top).get("name", "nessuna carta") if top >= 0 else "nessuna carta"])
+		if icons >= value:
+			_log("Riding check riuscito.")
+			await deal_damage_to_monster(weapon_damage_of(q))
+			blow.emit(q.id, "monster", weapon_damage_of(q))
+			var dest: int = await _ask({
+				"kind": "sector",
+				"prompt": "%s: dove atterri?" % q.name,
+				"player": q.seat,
+				"options": [0, 1, 2, 3],
+			})
+			q.position = dest if dest >= 0 else q.position
+		else:
+			_log("Riding check fallito: %s viene sbalzato nel front." % q.name)
+			q.position = monster_facing
+			await _suffer(q, monster_damage(), "behavior")
+		return
 
 
 ## Alcune behavior si innescano appena entrano in uno spazio (Glossario p.93) e
@@ -1633,12 +2018,13 @@ func _draw_behavior() -> int:
 
 
 func _trigger_perils(trigger: String, behavior: Dictionary = {}) -> void:
-	var stance := current_stance()
-	if not stance.has("peril"):
-		return
-	if blinded_perils.has(int(stance["peril"])):
-		return      # blind: la peril e' considerata blank
-	var peril := Db.peril(int(stance["peril"]))
+	for pid in active_perils():
+		if not _peril_active(pid):
+			continue      # blind: la peril e' considerata blank
+		await _trigger_one_peril(Db.peril(pid), trigger, behavior)
+
+
+func _trigger_one_peril(peril: Dictionary, trigger: String, behavior: Dictionary) -> void:
 	for ability in peril.get("abilities", []):
 		if String(ability.get("trigger", "")) != trigger:
 			continue
@@ -1650,17 +2036,79 @@ func _trigger_perils(trigger: String, behavior: Dictionary = {}) -> void:
 		await _run_effects(ability.get("effects", []), null, {})
 
 
+## Strike to the Heart (Jekoros): all'inizio di ogni turno un giocatore nel
+## settore front puo' scartare una carta per infliggere vulnerable o abbassare
+## il tracciato charge.
+func _strike_to_the_heart(ability: Dictionary, oid: int) -> void:
+	var kind := String(ability.get("kind", ""))
+	var type := String(ability.get("type", ""))
+	for q in players:
+		if q.ko or q.out_of_game or sector_of(q.position) != "front":
+			continue
+		if _cards_of_kind_in_hand(q, type, kind) == 0:
+			continue
+		var options: Array[String] = ["Non scartare", "Scarta: infliggi vulnerable"]
+		if charge_level > 0:
+			options.append("Scarta: charge -1")
+		var pick: int = await _ask({
+			"kind": "order",
+			"prompt": "%s (%s): scarti una carta %s?" % [q.name,
+				Db.objective(oid).get("name", "objective"), type if type != "" else kind],
+			"player": q.seat,
+			"options": options,
+		})
+		if pick <= 0:
+			continue
+		if not await _discard_of_type_or_kind(q, type, kind, Db.objective(oid).get("name", "")):
+			continue
+		if pick == 1:
+			await _inflict_on_monster("vulnerable", q)
+		else:
+			await _change_charge(-1)
+		return
+
+
+## Scarta una carta di un tipo preciso (attack...) o di una famiglia
+## (offensive/defensive), chiedendo quale se ce n'e' piu' d'una.
+func _discard_of_type_or_kind(p: PrimalPlayer, type: String, kind: String, reason: String) -> bool:
+	if type != "":
+		return await _discard_of_type(p, type, reason)
+	var eligible: Array[int] = []
+	for cid in p.hand:
+		var t := String(Db.action(cid).get("type", ""))
+		if (kind == "offensive" and Db.is_offensive(t)) or (kind == "defensive" and Db.is_defensive(t)):
+			eligible.append(cid)
+	if eligible.is_empty():
+		return false
+	var cid_pick := eligible[0]
+	if eligible.size() > 1:
+		var picked: Array = await _ask({
+			"kind": "cards",
+			"prompt": "%s: quale carta %s scarti?" % [p.name, kind],
+			"player": p.seat,
+			"cards": eligible,
+			"min": 1, "max": 1,
+		})
+		if not picked.is_empty():
+			cid_pick = int(picked[0])
+	await _discard_from_hand(p, cid_pick)
+	_log("%s scarta %s (%s)." % [p.name, Db.action(cid_pick).get("name", "?"), reason])
+	return true
+
+
 ## Crash on the Rocks: a inizio turno puoi rivelare due carte aggro per mettere
 ## un segnalino sull'objective. Rivelare non costa nulla, ma lo si chiede lo
 ## stesso: mostrare la mano e' un'informazione che si da' agli altri.
 func _offer_turn_start_objective(p: PrimalPlayer) -> void:
-	var stance := current_stance()
-	if not stance.has("objective"):
-		return
-	var oid := int(stance["objective"])
-	if objectives_completed.has(oid):
-		return
+	for oid in active_objectives():
+		await _offer_one_turn_start_objective(p, oid)
+
+
+func _offer_one_turn_start_objective(p: PrimalPlayer, oid: int) -> void:
 	for ability in Db.objective(oid).get("abilities", []):
+		if String(ability.get("trigger", "")) == "turn_start_front_discard":
+			await _strike_to_the_heart(ability, oid)
+			continue
 		if String(ability.get("trigger", "")) != "turn_start":
 			continue
 		var req: Dictionary = ability.get("reveal", {})
@@ -1926,14 +2374,26 @@ func _rock_offered(p: PrimalPlayer) -> bool:
 ## Danno da attrition in piu' dovuto alla peril in gioco (Kharja: 1 per ogni
 ## segnalino sul mostro). Zero se la peril e' blind o non ne ha.
 func _peril_attrition_bonus() -> int:
-	var stance := current_stance()
-	if not stance.has("peril") or blinded_perils.has(int(stance["peril"])):
-		return 0
 	var bonus := 0
-	for ability in Db.peril(int(stance["peril"])).get("abilities", []):
-		if String(ability.get("trigger", "")) == "attrition_damage":
-			bonus += int(ability.get("per_counter", 0)) * monster_counters
+	for pid in active_perils():
+		if not _peril_active(pid):
+			continue
+		for ability in Db.peril(pid).get("abilities", []):
+			if String(ability.get("trigger", "")) == "attrition_damage":
+				bonus += int(ability.get("per_counter", 0)) * monster_counters
 	return bonus
+
+
+## High Tension (Jekoros): col tracciato charge alto il danno da attrition raddoppia.
+func _attrition_multiplier() -> int:
+	for pid in active_perils():
+		if not _peril_active(pid):
+			continue
+		var pr := Db.peril(pid)
+		if pr.has("attrition_double_at_charge") \
+				and charge_level >= int(pr["attrition_double_at_charge"]):
+			return 2
+	return 1
 
 
 # =====================================================================
@@ -2392,9 +2852,11 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 				"prompt": "%s: dove ti sposti?" % mover.name,
 				"player": mover.seat,
 				"options": dests,
-				"allow_none": true,
+				"allow_none": not bool(e.get("forced", false)),
 				"none_label": "Resta",
 			})
+			if dest2 < 0 and bool(e.get("forced", false)):
+				dest2 = dests[0]
 			if dest2 >= 0:
 				mover.position = dest2
 				mover.threatened = false
@@ -2604,6 +3066,172 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 				else:
 					await _suffer(t, full, "behavior")
 
+		"if":
+			var test := {"condition": e.get("test", "")}
+			if _effect_condition_met(test, actor):
+				await _run_effects(e.get("then", []), actor, ctx)
+			else:
+				await _run_effects(e.get("else", []), actor, ctx)
+
+		"shield_bonus":
+			shield_bonus += int(e.get("n", 1))
+			_log("Lo shield di %s sale a %d fino a fine turno." % [monster_name(), current_shield()])
+
+		"unstoppable":
+			unstoppable_until_round_end = true
+			_log("%s e' unstoppable fino a fine round." % monster_name())
+
+		"charge":
+			if e.has("set"):
+				await _change_charge(0, int(e["set"]))
+			else:
+				await _change_charge(int(e.get("n", 1)))
+
+		"advance_stance":
+			if stance_index < 2:
+				await _advance_stance()
+
+		"all_players_ko":
+			_log("Tutti i cacciatori sono KO!")
+			_end_scenario(false, "Il tracciato charge e' pieno: %s travolge tutti i cacciatori." % monster_name())
+
+		"discard_attrition":
+			for i in int(e.get("n", 1)):
+				var idx := _draw_attrition()
+				if idx < 0:
+					break
+				attrition_discard.push_front(idx)
+				await _after_attrition_draw()
+			_log("Scartate %d carte del mazzo attrition." % int(e.get("n", 1)))
+
+		"remove_attrition_card":
+			var want := int(e.get("value", 0))
+			for i in attrition_deck.size():
+				if int(attrition_cards[attrition_deck[i]].get("value", -1)) == want:
+					attrition_deck.remove_at(i)
+					_log("Una carta attrition di valore %d viene rimossa dal gioco." % want)
+					break
+			_shuffle(attrition_deck)
+
+		"skip_movement_unless_help":
+			for t in await _targets(String(e.get("who", "active")), actor):
+				if await _someone_helps(t, String(e.get("kind", "offensive")), String(e.get("type", "")),
+						"evitare che %s salti il movimento" % t.name):
+					continue
+				t.skip_movement = true
+				if bool(e.get("dazed", false)):
+					_daze(t)
+
+		"offer_move":
+			for t in await _targets(String(e.get("who", "active")), actor):
+				var cost_m := int(Db.rules().get("move_cost", 1))
+				if t.available_stamina() < cost_m:
+					continue
+				var dest_m: int = await _ask({
+					"kind": "sector",
+					"prompt": "%s: puoi muoverti subito (%d stamina)" % [t.name, cost_m],
+					"player": t.seat,
+					"options": [posmod(t.position - 1, 4), posmod(t.position + 1, 4)],
+					"allow_none": true,
+					"none_label": "Resta",
+				})
+				if dest_m >= 0 and await _pay_stamina(t, cost_m, -1, "movimento"):
+					t.position = dest_m
+					t.threatened = false
+					_log("%s si sposta nel settore %s." % [t.name, sector_of(dest_m)])
+					_queue_reaction("player_moved")
+
+		"discard_random":
+			for t in await _targets(String(e.get("who", "active")), actor):
+				for i in int(e.get("n", 1)):
+					if t.hand.is_empty():
+						break
+					var cid_r: int = t.hand[rng.randi_range(0, t.hand.size() - 1)]
+					_log("%s scarta a caso %s." % [t.name, Db.action(cid_r).get("name", "?")])
+					await _discard_from_hand(t, cid_r)
+
+		"recycle_all_of_kind":
+			for t in await _targets(String(e.get("who", "active")), actor):
+				var kind_r := String(e.get("kind", "offensive"))
+				var gone: Array[int] = []
+				for cid in t.hand:
+					var ty := String(Db.action(cid).get("type", ""))
+					if (kind_r == "offensive" and Db.is_offensive(ty)) \
+							or (kind_r == "defensive" and Db.is_defensive(ty)):
+						gone.append(cid)
+				for cid in gone:
+					await _discard_from_hand(t, cid)
+				if not gone.is_empty():
+					_log("%s ricicla %d carte %s." % [t.name, gone.size(), kind_r])
+					await _draw_cards(t, gone.size())
+
+		"reveal_random":
+			for t in await _targets(String(e.get("who", "active")), actor):
+				if t.hand.is_empty():
+					await _run_effects(e.get("else", []), t, ctx)
+					continue
+				var cid_v: int = t.hand[rng.randi_range(0, t.hand.size() - 1)]
+				var ty_v := String(Db.action(cid_v).get("type", ""))
+				_log("%s rivela a caso %s (%s)." % [t.name, Db.action(cid_v).get("name", "?"), ty_v])
+				var hit := false
+				if e.has("type"):
+					hit = ty_v == String(e["type"])
+				elif String(e.get("kind", "")) == "offensive":
+					hit = Db.is_offensive(ty_v)
+				else:
+					hit = Db.is_defensive(ty_v)
+				if hit:
+					ctx["revealed"] = cid_v
+					await _run_effects(e.get("match", []), t, ctx)
+				else:
+					await _run_effects(e.get("else", []), t, ctx)
+
+		"discard_revealed":
+			if actor != null and ctx.has("revealed") and actor.hand.has(int(ctx["revealed"])):
+				await _discard_from_hand(actor, int(ctx["revealed"]))
+				_log("%s scarta la carta rivelata." % actor.name)
+
+		"suffer_unless_discard_random":
+			for t in await _targets(String(e.get("who", "active")), actor):
+				var spare := false
+				if not t.hand.is_empty():
+					spare = await _ask({
+						"kind": "confirm",
+						"prompt": "%s: scarti una carta a caso per evitare %d danni?" % [t.name, _damage_from(e, ctx)],
+						"player": t.seat,
+						"default": true,
+					})
+				if spare:
+					var cid_s: int = t.hand[rng.randi_range(0, t.hand.size() - 1)]
+					_log("%s scarta a caso %s." % [t.name, Db.action(cid_s).get("name", "?")])
+					await _discard_from_hand(t, cid_s)
+				else:
+					await _suffer(t, _damage_from(e, ctx), "behavior")
+
+		"turn_unless_other_discards":
+			var act := active_player()
+			if not await _someone_helps(act, "", String(e.get("type", "maneuver")),
+					"evitare che %s si giri verso %s" % [monster_name(), act.name], false):
+				_last_target = act.seat
+				await _turn_monster_to(act.position, "Heart Seeker")
+
+		"daze_all":
+			if charge_level < int(e.get("min_charge", 0)):
+				_log("Il livello di charge e' %d: nessun effetto." % charge_level)
+				return
+			for t in await _targets("all", actor):
+				if t.dazed:
+					if t.hand.is_empty():
+						continue
+					if bool(e.get("random", false)):
+						var cid_d: int = t.hand[rng.randi_range(0, t.hand.size() - 1)]
+						_log("%s e' gia' dazed: scarta a caso %s." % [t.name, Db.action(cid_d).get("name", "?")])
+						await _discard_from_hand(t, cid_d)
+					else:
+						await _discard_any_one(t)
+				else:
+					_daze(t)
+
 		"suffer":
 			var flat := int(e.get("flat", -1))
 			for t in await _targets(String(e.get("who", "active")), actor):
@@ -2614,7 +3242,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 			# qui non si chiede niente, si guarda la mano (Glossario "reveal").
 			var reveal_kind := String(e.get("kind", ""))
 			var reveal_type := String(e.get("type", ""))
-			var need := int(e.get("n", 1))
+			var need := _amount(e.get("n", 1), actor)
 			var only := String(ctx.get("reveal_who", ""))
 			if ctx.has("reveal_n"):
 				need = int(ctx["reveal_n"])
@@ -2789,7 +3417,9 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 			for t in await _targets(String(e.get("who", "players_in_front")), actor):
 				var dests: Array[int] = [posmod(t.position - 1, 4), posmod(t.position + 1, 4)]
 				var payment := String(e.get("payment_type", ctx.get("move_payment_type", "")))
-				var can_pay := t.available_stamina() >= int(Db.rules().get("move_cost", 1))
+				# Rampaging Horns (Tarragua): quel movimento costa di piu'.
+				var forced_cost := int(Db.rules().get("move_cost", 1)) + int(e.get("extra_cost", 0))
+				var can_pay := t.available_stamina() >= forced_cost
 				if payment != "":
 					can_pay = false
 					for cid in t.hand:
@@ -2800,7 +3430,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 				if can_pay:
 					dest = await _ask({
 						"kind": "sector",
-						"prompt": "%s: muoviti (1 stamina) o subisci %d danni" % [t.name, monster_damage()],
+						"prompt": "%s: muoviti (%d stamina) o subisci %d danni" % [t.name, forced_cost, monster_damage()],
 						"player": t.seat,
 						"options": dests,
 						"allow_none": true,
@@ -2809,7 +3439,7 @@ func _run_effect(e: Dictionary, actor: PrimalPlayer, ctx: Dictionary) -> void:
 				var moved := false
 				if dest >= 0:
 					if payment == "":
-						moved = await _pay_stamina(t, int(Db.rules().get("move_cost", 1)), -1, "movimento forzato")
+						moved = await _pay_stamina(t, forced_cost, -1, "movimento forzato")
 					else:
 						moved = await _discard_of_type(t, payment, "muoversi")
 				if moved:
@@ -2975,6 +3605,9 @@ func _effect_condition_met(e: Dictionary, actor: PrimalPlayer) -> bool:
 		"no_bullets": return actor == null or actor.bullets == 0
 		# Diversion: l'alternativa scatta solo se il bullet non e' stato speso.
 		"no_bullet_spent": return _last_variable_payment == 0
+		"monster_damaged_this_turn": return monster_damaged_this_turn
+		"monster_wounded_this_turn": return monster_wounded_this_turn
+		"active_in_front": return sector_of(active_player().position) == "front"
 		_:
 			push_warning("Condizione di effetto non implementata: %s" % e["condition"])
 			return false
@@ -3054,6 +3687,11 @@ func _amount(value: Variant, actor: PrimalPlayer) -> int:
 			"monster_struggle": return struggle
 			"own_damage": return actor.damage if actor != null else 0
 			"variable_payment": return _last_variable_payment
+			"attrition_level":
+				# Livello di attrition attuale: il valore della carta in cima agli scarti.
+				return 0 if attrition_discard.is_empty() \
+					else int(attrition_cards[attrition_discard[0]].get("value", 0))
+			"charge_level": return charge_level
 			_: return 0
 	return int(value)
 
@@ -3072,6 +3710,28 @@ func _targets(who: String, actor: PrimalPlayer) -> Array[PrimalPlayer]:
 				if sector_of(p.position) != want or p.ko or p.out_of_game:
 					continue
 				if who == "threatened_players_in_front" and not p.threatened:
+					continue
+				out.append(p)
+		"players_in_flank_and_rear", "threatened_in_flank", "threatened_in_flank_rear", \
+				"unthreatened_in_flank_rear":
+			for p in players:
+				if p.ko or p.out_of_game:
+					continue
+				var sec := sector_of(p.position)
+				var ok := sec != "front"
+				if who == "threatened_in_flank":
+					ok = sec == "flank" and p.threatened
+				elif who == "threatened_in_flank_rear":
+					ok = ok and p.threatened
+				elif who == "unthreatened_in_flank_rear":
+					ok = ok and not p.threatened
+				if ok:
+					out.append(p)
+		"players_in_water", "active_in_water":
+			for p in players:
+				if p.ko or p.out_of_game or not has_terrain(p.position, "water"):
+					continue
+				if who == "active_in_water" and p != active_player():
 					continue
 				out.append(p)
 		"players_in_active_sector":
@@ -3289,6 +3949,8 @@ func _discard_from_hand(p: PrimalPlayer, card_id: int) -> void:
 		await _run_effects(discarded["on_discard"], p, {})
 	p.hand.erase(card_id)
 	p.discard.push_front(card_id)
+	if p.hand.is_empty():
+		_queue_reaction("empty_hand")
 	var card := Db.action(card_id)
 	for ability in card.get("abilities", []):
 		var when := String(ability.get("trigger", ""))
@@ -3549,11 +4211,16 @@ func _inflict_on_monster(status: String, actor: PrimalPlayer) -> void:
 
 		"blind":
 			# Blind rende blank una peril fino all'inizio del turno di chi l'ha inflitto.
-			var stance := current_stance()
-			if not stance.has("peril"):
+			# Si acceca la peril della stance corrente che non ne sia immune
+			# (Thunder Horn di Jekoros lo e').
+			var pid := -1
+			for candidate in _stance_peril_ids(current_stance()):
+				if not bool(Db.peril(candidate).get("immune_blind", false)):
+					pid = candidate
+					break
+			if pid < 0:
 				_log("  Nessuna peril in gioco da accecare.")
 				return
-			var pid := int(stance["peril"])
 			if blinded_perils.has(pid):
 				_log("  La peril e' gia' blind.")
 				return
@@ -4066,6 +4733,13 @@ func _attrition_level() -> int:
 	if attrition_discard.is_empty():
 		return 99
 	return int(attrition_cards[attrition_discard[0]].get("value", 0))
+
+
+## Wailing Roar (Tarragua) aspetta il momento in cui il mazzo attrition finisce.
+func _after_attrition_draw() -> void:
+	if attrition_deck.is_empty():
+		_log("Il mazzo attrition e' esaurito.")
+		await _trigger_perils("attrition_deck_emptied")
 
 
 func _draw_attrition() -> int:

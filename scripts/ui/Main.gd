@@ -18,11 +18,11 @@ const HAND_LIFT := 16
 
 # Palette: notte, brace, pergamena. Il gioco ha un'estetica forte e l'interfaccia
 # deve starle dietro senza rubarle la scena.
-const INK := Color(0.06, 0.055, 0.065)
-const PANEL := Color(0.11, 0.10, 0.11)
-const EMBER := Color(0.78, 0.46, 0.24)
-const PARCHMENT := Color(0.88, 0.85, 0.79)
-const MUTED := Color(0.62, 0.59, 0.55)
+const INK := Tema.INK
+const PANEL := Tema.PANEL
+const EMBER := Tema.RUST
+const PARCHMENT := Tema.BONE
+const MUTED := Tema.MUTED
 
 var game: PrimalGame
 var board: Board3D
@@ -60,6 +60,10 @@ var _hunter_box: BoxContainer
 var _shown_hunter := ""
 var _last_active := -1
 var _card_zoom: TextureRect
+## Sul tocco non c'e' il passaggio del mouse: il primo tocco solleva la carta
+## per leggerla, il secondo la gioca.
+var _touch_mode := false
+var _touch_pick := -1
 
 # --- pannello di scelta ---
 var _choice_panel: PanelContainer
@@ -79,6 +83,15 @@ var _loadouts: Dictionary = {}
 var _party: Array = ["dareon", "mirah"]
 var _monster: String = "vyraxen"
 var _expedition: String = "1"
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		_touch_mode = true
+	elif event is InputEventMouseMotion and event.device != InputEvent.DEVICE_ID_EMULATION:
+		if _touch_mode:
+			_touch_mode = false
+			_touch_pick = -1
 
 
 ## Le prove da riga di comando saltano la schermata iniziale.
@@ -123,6 +136,8 @@ var _tex_cache: Dictionary = {}
 
 
 func _ready() -> void:
+	# Il tema vale per tutta la finestra, finestre incorporate comprese.
+	get_window().theme = Tema.theme()
 	board = Board3D.new()
 	add_child(board)
 	board.sector_clicked.connect(_on_sector_clicked)
@@ -527,37 +542,7 @@ func _capture_and_quit(frames: int = 30) -> void:
 ## Tema dei pulsanti: compatti, angoli stondati, stati visibili al passaggio e
 ## alla pressione.
 func _button_theme() -> Theme:
-	var theme := Theme.new()
-	var normal := StyleBoxFlat.new()
-	normal.bg_color = Color(0.17, 0.16, 0.17)
-	normal.border_color = Color(0.32, 0.29, 0.28)
-	normal.set_border_width_all(1)
-	normal.set_corner_radius_all(5)
-	normal.content_margin_left = 14
-	normal.content_margin_right = 14
-	normal.content_margin_top = 7
-	normal.content_margin_bottom = 7
-
-	var hover := normal.duplicate()
-	hover.bg_color = Color(0.26, 0.21, 0.16)
-	hover.border_color = EMBER
-	var pressed := normal.duplicate()
-	pressed.bg_color = Color(0.42, 0.26, 0.14)
-	pressed.border_color = EMBER
-	var disabled := normal.duplicate()
-	disabled.bg_color = Color(0.13, 0.13, 0.14)
-	disabled.border_color = Color(0.2, 0.19, 0.19)
-
-	theme.set_stylebox("normal", "Button", normal)
-	theme.set_stylebox("hover", "Button", hover)
-	theme.set_stylebox("pressed", "Button", pressed)
-	theme.set_stylebox("disabled", "Button", disabled)
-	theme.set_stylebox("focus", "Button", StyleBoxEmpty.new())
-	theme.set_color("font_color", "Button", PARCHMENT)
-	theme.set_color("font_hover_color", "Button", Color.WHITE)
-	theme.set_color("font_disabled_color", "Button", Color(0.45, 0.43, 0.42))
-	theme.set_font_size("font_size", "Button", 14)
-	return theme
+	return Tema.theme()
 
 
 ## Finestra vera: spostabile e ridimensionabile, si chiude e si riapre.
@@ -755,7 +740,7 @@ func _build_log_panel() -> void:
 	_log_view.bbcode_enabled = true
 	_log_view.scroll_following = false
 	_log_view.custom_minimum_size = Vector2(272, 400)
-	_log_view.add_theme_font_size_override("normal_font_size", 12)
+	_log_view.add_theme_font_size_override("normal_font_size", 14)
 	_log_view.add_theme_color_override("default_color", MUTED)
 	box.add_child(_log_view)
 
@@ -872,37 +857,26 @@ func _on_loadout_confirmed(choices: Dictionary) -> void:
 ## Intestazione che apre e chiude il pannello sottostante, come fa il registro.
 func _collapse_toggle(title: String, on_toggle: Callable) -> Button:
 	var b := Button.new()
-	b.text = "▾  " + title.to_upper()
+	b.text = "–  " + title.to_upper()
 	b.toggle_mode = true
 	b.button_pressed = true
 	b.alignment = HORIZONTAL_ALIGNMENT_LEFT
-	b.add_theme_font_size_override("font_size", 11)
+	b.add_theme_font_size_override("font_size", 13)
 	b.add_theme_color_override("font_color", EMBER)
 	b.toggled.connect(func(on):
-		b.text = ("▾  " if on else "▸  ") + title.to_upper()
+		b.text = ("–  " if on else "+  ") + title.to_upper()
 		on_toggle.call(on))
 	return b
 
 
 func _heading(text: String) -> Label:
-	var l := Label.new()
-	l.text = text.to_upper()
-	l.add_theme_font_size_override("font_size", 11)
-	l.add_theme_color_override("font_color", EMBER)
-	return l
+	return Tema.title(text.to_upper(), 22)
 
 
 ## Riquadro scuro con bordo brace, usato per tutti i pannelli.
 func _panel(margin: int = 12, accent: bool = false) -> PanelContainer:
 	var box := PanelContainer.new()
-	var style := StyleBoxFlat.new()
-	style.bg_color = PANEL
-	style.set_corner_radius_all(5)
-	style.set_content_margin_all(margin)
-	if accent:
-		style.border_color = EMBER
-		style.set_border_width_all(1)
-	box.add_theme_stylebox_override("panel", style)
+	box.add_theme_stylebox_override("panel", Tema.panel_style(accent, margin))
 	return box
 
 
@@ -911,7 +885,11 @@ func _token(kind: String, count: int = -1, size: int = 30) -> Control:
 	var holder := Control.new()
 	holder.custom_minimum_size = Vector2(size, size)
 	holder.clip_contents = true
-	var tex := _tex("res://art/tokens/%s.png" % kind)
+	# Il segnalino salute nel mod e' un JPEG: si prova prima il PNG, poi il JPEG.
+	var path := "res://art/tokens/%s.png" % kind
+	if not ResourceLoader.exists(path):
+		path = "res://art/tokens/%s.jpg" % kind
+	var tex := _tex(path)
 	if tex != null:
 		var art := TextureRect.new()
 		art.texture = tex
@@ -1080,7 +1058,7 @@ func _choice_card(art: String, text: String, width := 190) -> Control:
 		body.text = text
 		body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		body.custom_minimum_size.x = width
-		body.add_theme_font_size_override("font_size", 11)
+		body.add_theme_font_size_override("font_size", 13)
 		body.add_theme_color_override("font_color", PARCHMENT)
 		col.add_child(body)
 	return col
@@ -1222,7 +1200,7 @@ func _refresh_status() -> void:
 
 	var dmg := Label.new()
 	dmg.text = "DMG %d" % game.monster_damage()
-	dmg.add_theme_font_size_override("font_size", 12)
+	dmg.add_theme_font_size_override("font_size", 14)
 	dmg.add_theme_color_override("font_color", MUTED)
 	dmg.tooltip_text = "danno che infligge ai cacciatori"
 	icons.add_child(dmg)
@@ -1259,7 +1237,7 @@ func _refresh_track() -> void:
 		if i > 0:
 			var arrow := Label.new()
 			arrow.text = "›"
-			arrow.add_theme_font_size_override("font_size", 12)
+			arrow.add_theme_font_size_override("font_size", 14)
 			arrow.add_theme_color_override("font_color", Color(0.34, 0.32, 0.31))
 			_track_row.add_child(arrow)
 		_track_row.add_child(_track_chip(String(steps[i]["label"]),
@@ -1314,7 +1292,7 @@ func _track_chip(text: String, tip: String, offset: int) -> Control:
 	style.content_margin_bottom = 2
 	var label := Label.new()
 	label.text = text
-	label.add_theme_font_size_override("font_size", 11)
+	label.add_theme_font_size_override("font_size", 13)
 	if offset == 0:
 		style.bg_color = Color(0.42, 0.22, 0.10)
 		style.border_color = EMBER
@@ -1375,7 +1353,7 @@ func _entity_box(title: String, portrait: Texture2D, tint: Color) -> PanelContai
 	row.add_child(col)
 	var name := Label.new()
 	name.text = title
-	name.add_theme_font_size_override("font_size", 12)
+	name.add_theme_font_size_override("font_size", 14)
 	name.add_theme_color_override("font_color", tint)
 	col.add_child(name)
 	var icons := HBoxContainer.new()
@@ -1400,7 +1378,7 @@ func _hunter_card(p: PrimalPlayer) -> Control:
 
 	var name := Label.new()
 	name.text = p.name
-	name.add_theme_font_size_override("font_size", 12)
+	name.add_theme_font_size_override("font_size", 14)
 	name.add_theme_color_override("font_color",
 		EMBER if p == game.active_player() else PARCHMENT)
 	col.add_child(name)
@@ -1409,7 +1387,7 @@ func _hunter_card(p: PrimalPlayer) -> Control:
 	stats.text = "%d/%d  mano %d  %s" % [
 		maxi(p.max_health() - p.damage, 0), p.max_health(), p.hand.size(),
 		game.sector_of(p.position)]
-	stats.add_theme_font_size_override("font_size", 10)
+	stats.add_theme_font_size_override("font_size", 12)
 	stats.add_theme_color_override("font_color", MUTED)
 	col.add_child(stats)
 
@@ -1475,7 +1453,7 @@ func _aggro_badge() -> Control:
 	badge.custom_minimum_size = Vector2(50, 22)
 	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	badge.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	badge.add_theme_font_size_override("font_size", 10)
+	badge.add_theme_font_size_override("font_size", 12)
 	badge.add_theme_color_override("font_color", Color.WHITE)
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.72, 0.20, 0.18)
@@ -1690,7 +1668,7 @@ func _card_slot(title: String, art_path: String, width: int, tip := "") -> Contr
 	if title != "":
 		var label := Label.new()
 		label.text = title
-		label.add_theme_font_size_override("font_size", 10)
+		label.add_theme_font_size_override("font_size", 12)
 		label.add_theme_color_override("font_color", EMBER)
 		col.add_child(label)
 	var art := TextureRect.new()
@@ -1899,7 +1877,7 @@ func _refresh_hand() -> void:
 	# tenessi in mano, e solo il bordo superiore sporge.
 	var radius := 900.0
 	var spread := minf(float(cards.size() - 1) * 92.0, view.x * 0.58)
-	var top := view.y - HAND_H + 44.0
+	var top := view.y - HAND_H + 22.0
 	var centre := Vector2(view.x * 0.5, top + radius)
 
 	# Di chi e' questa mano: in hotseat le carte a schermo cambiano padrone a
@@ -1907,12 +1885,16 @@ func _refresh_hand() -> void:
 	var caption := Label.new()
 	caption.text = "MANO DI %s — %d carte" % [p.name.to_upper(), cards.size()]
 	if _pending_play < 0 and game.phase == PrimalGame.Phase.ACTION:
-		caption.text += "   ·   clicca per giocare"
-	caption.add_theme_font_size_override("font_size", 11)
-	caption.add_theme_color_override("font_color", MUTED)
+		caption.text += "   ·   " + ("tocca per leggere, tocca di nuovo per giocare"
+			if _touch_mode else "clicca per giocare")
+	caption.add_theme_font_override("font", Tema.title_font())
+	caption.add_theme_font_size_override("font_size", 20)
+	caption.add_theme_color_override("font_color", PARCHMENT)
+	caption.add_theme_color_override("font_outline_color", Color.BLACK)
+	caption.add_theme_constant_override("outline_size", 6)
 	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	caption.size = Vector2(view.x, 18)
-	caption.position = Vector2(0, top - 22.0)
+	caption.position = Vector2(0, top - 30.0)
 	caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_hand_layer.add_child(caption)
 
@@ -2014,17 +1996,31 @@ func _hand_card(card_id: int, p: PrimalPlayer, pos: Vector2, angle: float, index
 	# Evidenziazione: la carta si alza, si raddrizza e si ingrandisce. Non serve
 	# un'anteprima separata, e' la carta stessa a diventare leggibile.
 	var base := btn.position
-	btn.mouse_entered.connect(func():
+	var lift := func():
 		btn.position = base - Vector2(0, 92)
 		btn.rotation = 0.0
 		btn.scale = Vector2(1.55, 1.55)
-		btn.z_index = 10)
+		btn.z_index = 10
+	if _touch_mode and _touch_pick == card_id:
+		lift.call()
+	btn.mouse_entered.connect(func():
+		if not _touch_mode:
+			lift.call())
 	btn.mouse_exited.connect(func():
+		if _touch_mode and _touch_pick == card_id:
+			return
 		btn.position = base
 		btn.rotation = angle
 		btn.scale = Vector2.ONE
 		btn.z_index = 0)
-	btn.pressed.connect(func(): _on_hand_card(card_id))
+	btn.pressed.connect(func():
+		# Col dito: primo tocco per leggere, secondo per giocare.
+		if _touch_mode and _touch_pick != card_id:
+			_touch_pick = card_id
+			_refresh_hand()
+			return
+		_touch_pick = -1
+		_on_hand_card(card_id))
 	return btn
 
 
@@ -2346,7 +2342,7 @@ func _notice_attrition(outcome: Dictionary) -> void:
 	var why := Label.new()
 	why.text = "sei threatened: due carte, conta la peggiore" \
 		if bool(outcome.get("threatened", false)) else "una carta"
-	why.add_theme_font_size_override("font_size", 12)
+	why.add_theme_font_size_override("font_size", 14)
 	why.add_theme_color_override("font_color", MUTED)
 	col.add_child(why)
 
